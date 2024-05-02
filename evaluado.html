@@ -248,8 +248,123 @@
 						<input type="text" pattern="[0-9]{1,13}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
 					</div>
 				</div>
+				<div class="col-12 col-md-3">
+					<div class="form-group">
+						<label for="item_estado" class="bmd-label-floating">Nacionalidad</label>
+						<select class="form-control" name="item_estado_reg" id="item_estado">
+							<option value="" selected="" disabled="">Seleccione la Nacionalidad</option>
+							<option value="Habilitado">Hondureña</option>
+							<option value="Deshabilitado">Desconocida</option>
+							<option value="Deshabilitado">Otra</option>
+						</select>
+					</div>
+				</div>
+			
+				<div class="col-12 col-md-3">
+					<div class="form-group">
+						<label for="item_estado" class="bmd-label-floating">Sexo</label>
+						<select class="form-control" name="item_estado_reg" id="item_estado">
+							<option value="" selected="" disabled="">Seleccione el Sexo</option>
+							<option value="Habilitado">Masculino</option>
+							<option value="Deshabilitado">Femenino</option>
+							<option value="Deshabilitado">A Determinar</option>
+							<option value="Deshabilitado">Testigo Protegido</option>
+						</select>
+					</div>	
+				</div>
+				<div class="col-12 col-md-3">
+					<div class="form-group">
+						<label for="cliente_telefono" class="bmd-label-floating">diversidad</label>
+						<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="20">
+					</div>
+				</div>
+				<div class="col-12 col-md-3">
+					<div class="form-group">
+						<label for="item_estado" class="bmd-label-floating">Estado Civil</label>
+						<select class="form-control" name="item_estado_reg" id="item_estado">
+							<option value="" selected="" disabled="">Seleccione el Estado Civil</option>
+							<option value="Habilitado">Soltero</option>
+							<option value="Deshabilitado">Casado</option>
+							<option value="Deshabilitado">Union Libre</option>
+							<option value="Deshabilitado">No Aplica</option>
+						</select>
+					</div>	
+				</div>
+				<div class="col-12 col-md-3">
+					<div class="form-group">
+						<label for="item_estado" class="bmd-label-floating">Ocupacion</label>
+						<select class="form-control" name="item_estado_reg" id="item_estado">
+							<option value="" selected="" disabled="">Seleccione la Ocupacion</option>
+							<option value="Habilitado">Ama de casa</option>
+							<option value="Deshabilitado">Abogado</option>s
+							<option value="Deshabilitado">Artesano</option>
+							<option value="Deshabilitado">Estudiante</option>
+						</select>
+					</div>
+				</div>
+			
+				<div class="col-12 col-md-3">
+					<div class="form-group">
+						<label for="item_estado" class="bmd-label-floating">Escolaridad</label>
+						<select class="form-control" name="item_estado_reg" id="item_estado">
+							<option value="" selected="" disabled="">Seleccione la Escolaridad</option>
+							<option value="Habilitado">Analfabeta</option>
+							<option value="Deshabilitado">Primaria Incompleta</option>s
+							<option value="Deshabilitado">Primaria Completa</option>
+							<option value="Deshabilitado">Secundaria Incompleta</option>
+							<option value="Deshabilitado">Secundaria completa</option>
+							<option value="Deshabilitado">Universitaria Incompleta</option>
+							<option value="Deshabilitado">Universitaria completa</option>
+							<option value="Deshabilitado">No Aplica</option>
+							<option value="Deshabilitado">Testigo Protegido (VERIFICAR)</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-12 col-md-2">
+					<div class="form-group">
+						<label for="cliente_telefono" class="bmd-label-floating">Edad</label>
+						<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="3">
+					</div>
+				</div>
+				<div class="col-12 col-md-3">
+					<div class="form-group">
+						<label for="item_estado" class="bmd-label-floating">Tiempo</label>
+						<select class="form-control" name="item_estado_reg" id="item_estado">
+							<option value="" selected="" disabled="">Seleccione el Tiempo</option>
+							<option value="Habilitado">Horas</option>
+							<option value="Deshabilitado">Dias</option>s
+							<option value="Deshabilitado">Semanas</option>
+							<option value="Deshabilitado">Meses</option>
+							<option value="Deshabilitado">Años</option>
+						</select>
+					</div>
+				</div>
 		</div>
 	</div>
+
+<div class="container-fluid">
+		<form action="" class="form-neon" autocomplete="off">
+	<fieldset>
+		<legend><i class="fas fa-user"></i> &nbsp;CONSENTIMIENTO INFORMADO</legend>
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="col-12 col-md-3">
+					<div class="form-group">
+						<label for="item_estado" class="bmd-label-floating">PERIMITE LA EVALUACION</label>
+						<select class="form-control" name="item_estado_reg" id="item_estado">
+							<option value="" selected="" disabled="">Seleccione el Estado</option>
+							<option value="Habilitado">Si</option>
+							<option value="Deshabilitado">No</option>
+						</select>
+					</div>
+				</div>	
+
+			</div>
+		</div>
+	</fieldset>
+</div>
 
 	<div class="container-fluid">
 		<form action="" class="form-neon" autocomplete="off">
@@ -307,99 +422,10 @@
 <legend><i class="fas fa-user"></i> &nbsp; EVALUACION MEDICA</legend>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-12 col-md-3">
-			<div class="form-group">
-				<label for="item_estado" class="bmd-label-floating">Nacionalidad</label>
-				<select class="form-control" name="item_estado_reg" id="item_estado">
-					<option value="" selected="" disabled="">Seleccione la Nacionalidad</option>
-					<option value="Habilitado">Hondureña</option>
-					<option value="Deshabilitado">Desconocida</option>
-					<option value="Deshabilitado">Otra</option>
-				</select>
-			</div>
-		</div>
+
+
 	
-		<div class="col-12 col-md-3">
-			<div class="form-group">
-				<label for="item_estado" class="bmd-label-floating">Sexo</label>
-				<select class="form-control" name="item_estado_reg" id="item_estado">
-					<option value="" selected="" disabled="">Seleccione el Sexo</option>
-					<option value="Habilitado">Masculino</option>
-					<option value="Deshabilitado">Femenino</option>
-					<option value="Deshabilitado">A Determinar</option>
-					<option value="Deshabilitado">Testigo Protegido</option>
-				</select>
-			</div>	
-		</div>
-		<div class="col-12 col-md-3">
-			<div class="form-group">
-				<label for="item_estado" class="bmd-label-floating">Estado Civil</label>
-				<select class="form-control" name="item_estado_reg" id="item_estado">
-					<option value="" selected="" disabled="">Seleccione el Estado Civil</option>
-					<option value="Habilitado">Soltero</option>
-					<option value="Deshabilitado">Casado</option>
-					<option value="Deshabilitado">Union Libre</option>
-					<option value="Deshabilitado">No Aplica</option>
-				</select>
-			</div>	
-		</div>
-		<div class="col-12 col-md-3">
-			<div class="form-group">
-				<label for="cliente_telefono" class="bmd-label-floating">diversidad</label>
-				<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="20">
-			</div>
-		</div>
-	
-		<div class="col-12 col-md-3">
-			<div class="form-group">
-				<label for="item_estado" class="bmd-label-floating">Ocupacion</label>
-				<select class="form-control" name="item_estado_reg" id="item_estado">
-					<option value="" selected="" disabled="">Seleccione la Ocupacion</option>
-					<option value="Habilitado">Ama de casa</option>
-					<option value="Deshabilitado">Abogado</option>s
-					<option value="Deshabilitado">Artesano</option>
-					<option value="Deshabilitado">Estudiante</option>
-				</select>
-			</div>
-		</div>
-	
-		<div class="col-12 col-md-3">
-			<div class="form-group">
-				<label for="item_estado" class="bmd-label-floating">Escolaridad</label>
-				<select class="form-control" name="item_estado_reg" id="item_estado">
-					<option value="" selected="" disabled="">Seleccione la Escolaridad</option>
-					<option value="Habilitado">Analfabeta</option>
-					<option value="Deshabilitado">Primaria Incompleta</option>s
-					<option value="Deshabilitado">Primaria Completa</option>
-					<option value="Deshabilitado">Secundaria Incompleta</option>
-					<option value="Deshabilitado">Secundaria completa</option>
-					<option value="Deshabilitado">Universitaria Incompleta</option>
-					<option value="Deshabilitado">Universitaria completa</option>
-					<option value="Deshabilitado">No Aplica</option>
-					<option value="Deshabilitado">Testigo Protegido (VERIFICAR)</option>
-				</select>
-			</div>
-		</div>
-		
-		<div class="col-12 col-md-2">
-			<div class="form-group">
-				<label for="cliente_telefono" class="bmd-label-floating">Edad</label>
-				<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="3">
-			</div>
-		</div>
-		<div class="col-12 col-md-3">
-			<div class="form-group">
-				<label for="item_estado" class="bmd-label-floating">Tiempo</label>
-				<select class="form-control" name="item_estado_reg" id="item_estado">
-					<option value="" selected="" disabled="">Seleccione el Tiempo</option>
-					<option value="Habilitado">Horas</option>
-					<option value="Deshabilitado">Dias</option>s
-					<option value="Deshabilitado">Semanas</option>
-					<option value="Deshabilitado">Meses</option>
-					<option value="Deshabilitado">Años</option>
-				</select>
-			</div>
-		</div>
+
 
 	</div>
 </div>
