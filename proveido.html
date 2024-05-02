@@ -58,10 +58,10 @@
 					<a href="#" class="nav-btn-submenu"><i class="fas fa-users fa-fw"></i> &nbsp; proveído <i class="fas fa-chevron-down"></i></a>
 					<ul>
 						<li>
-							<a href="paciente.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar proveído</a>
+							<a href="proveido.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar proveído</a>
 						</li>
 						<li>
-							<a href="lista-paciente.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de proveídos</a>
+							<a href="lista-proveido.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de proveídos</a>
 <!-- 						</li>
 						<li>
 							<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar proveído</a>
@@ -73,7 +73,7 @@
 					<a href="#" class="nav-btn-submenu"><i class="fas fa-pallet fa-fw"></i> &nbsp; Evaluaciones <i class="fas fa-chevron-down"></i></a>
 					<ul>
 						<li>
-							<a href="lista-paciente.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Evaluacion</a>
+							<a href="lista-proveido.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Evaluacion</a>
 						</li>
 						<li>
 							<a href="agregar-cita.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Evaluacion</a>
@@ -152,10 +152,10 @@
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a class="active" href="paciente.html"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PROVEÍDO</a>
+						<a class="active" href="proveido.html"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PROVEÍDO</a>
 					</li>
 					<li>
-						<a href="lista-paciente.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDOS</a>
+						<a href="lista-proveido.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDOS</a>
 					</li>
 					<li>
 						<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR PROVEÍDOS</a>
@@ -173,7 +173,7 @@
 								<div class="col-12 col-md-2">
 									<div class="form-group">
 										<label for="cliente_dni" class="bmd-label-floating">Numero de Caso</label>
-										<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+										<input type="text" pattern="[0-9-]{1,27}" class="form-control" value="4410-2024" name="cliente_dni_reg" id="cliente_dni" maxlength="27" disabled>
 									</div>
 									<div class="col-12 col-md-4">
 									</div>
@@ -195,7 +195,7 @@
 								<div class="col-12 col-md-2">
 									<div class="form-group">
 										<label for="prestamo_fecha_inicio">Fecha de recepcion del proveído</label>
-										<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
+										<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio" disabled>
 									</div>
 								</div>
 								<div class="col-12 col-md-6">
