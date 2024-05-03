@@ -47,13 +47,13 @@
 							<a href="agregar-medico.php"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo Medico</a>
 						</li>
 						<li>
-							<a href="user-list.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Medicos</a>
+							<a href="lista-medico.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Medicos</a>
 						</li>
 						<li>
-							<a href="user-new.php"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo Secretaria</a>
+							<a href="agregar-secretaria.php"><i class="fas fa-plus fa-fw"></i> &nbsp; Nueva Secretaria</a>
 						</li>
 						<li>
-							<a href="user-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Secretarias</a>
+							<a href="lista-secretaria.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Secretarias</a>
 						</li>
 					</ul>
 				</li>

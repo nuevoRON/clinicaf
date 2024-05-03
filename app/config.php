@@ -16,11 +16,12 @@ try{
 catch(PDOException $e){
     echo "la conexion a la base de datos fallo:" . $e->getMessage();
 }
-$conexion = null;
+$conexion = null; 
 
 
-/* try{
-    $pdo = new PDO($servidor, username: USUARIO, passwd: PASSWORD,array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8"));
+/*
+try{
+    $pdo = new PDO($servidor, username: $usuario, password: $password,array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8"));
     echo "La Conexion a la Base de Datos a Sido Exitosa";
 }catch(PDOException $e){
    print_r($e);

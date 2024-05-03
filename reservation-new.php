@@ -13,7 +13,7 @@
     <!-- Main container -->
     <main class="full-box main-container">
 <!-- INICIO Nav lateral -->
-<?php include "./in/NavBar.php"; ?>
+<?php include "./inc/NavBar.php"; ?>
 <!-- FIN Nav lateral -->
 
         <section class="full-box page-content">
@@ -477,7 +477,7 @@
 	<!--=============================================
 	=            Include JavaScript files           =
 	==============================================-->
-    <?php include "./in/java.php"; ?>
+    <?php include "./inc/java.php"; ?>
 
 </body>
 </html>

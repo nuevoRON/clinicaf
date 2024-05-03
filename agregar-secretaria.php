@@ -22,7 +22,7 @@
 <!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR MEDICO
+					<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR SECRETARIA
 				</h3>
 				<p class="text-justify">
 					Asegúrese de agregar la información de manera clara y correcta
@@ -32,10 +32,10 @@
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a class="active" href="proveido.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR MEDICO</a>
+						<a class="active" href="proveido.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR SECRETARIA</a>
 					</li>
 					<li>
-						<a href="lista-proveido.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE MEDICOS</a>
+						<a href="lista-proveido.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE SECRETARIAS</a>
 					</li>
 				</ul>	
 			</div>
@@ -44,12 +44,12 @@
 			<div class="container-fluid">
 				<form action="" class="form-neon" autocomplete="off">
 					<fieldset>
-						<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL MEDICO</legend>
+						<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL SECRETARIA</legend>
 						<div class="container-fluid">
 						<div class="row">
 								<div class="col-12 col-md-2">
 									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">Nombre del Medico</label>
+										<label for="cliente_dni" class="bmd-label-floating">Nombre del secretaria</label>
 										<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
 									</div>
 									<div class="col-12 col-md-4">
@@ -57,7 +57,7 @@
 								</div>
 								<div class="col-12 col-md-2">
 									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">Apellido del Medico</label>
+										<label for="cliente_dni" class="bmd-label-floating">Apellido del secretaria</label>
 										<input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
 									</div>
 									<div class="col-12 col-md-4">
