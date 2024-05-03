@@ -11,8 +11,18 @@ $bd = "clinica";
 try{
     $conexion = new PDO("mysql:host=$servidor;dbname=$bd", $usuario, $password);
     $conexion-> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "la coneccion a la base ha sido exitosa";
 }
 catch(PDOException $e){
     echo "la conexion a la base de datos fallo:" . $e->getMessage();
 }
 $conexion = null;
+
+
+/* try{
+    $pdo = new PDO($servidor, username: USUARIO, passwd: PASSWORD,array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8"));
+    echo "La Conexion a la Base de Datos a Sido Exitosa";
+}catch(PDOException $e){
+   print_r($e);
+    
+} */

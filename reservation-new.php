@@ -4,30 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>Nuevo Medico</title>
-
-    <!-- Normalize V8.0.1 -->
-    <link rel="stylesheet" href="./css/normalize.css">
-
-    <!-- Bootstrap V4.3 -->
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-
-    <!-- Bootstrap Material Design V4.0 -->
-    <link rel="stylesheet" href="./css/bootstrap-material-design.min.css">
-
-    <!-- Font Awesome V5.9.0 -->
-    <link rel="stylesheet" href="./css/all.css">
-
-    <!-- Sweet Alerts V8.13.0 CSS file -->
-    <link rel="stylesheet" href="./css/sweetalert2.min.css">
-
-    <!-- Sweet Alert V8.13.0 JS file-->
-    <script src="./js/sweetalert2.min.js"></script>
-
-    <!-- jQuery Custom Content Scroller V3.1.5 -->
-    <link rel="stylesheet" href="./css/jquery.mCustomScrollbar.css">
-
-    <!-- General Styles -->
-    <link rel="stylesheet" href="./css/style.css">
+    <?php include "./inc/link.php"; ?>
+ 
 </head>
 
 
@@ -35,100 +13,11 @@
     <!-- Main container -->
     <main class="full-box main-container">
 <!-- INICIO Nav lateral -->
-<section class="full-box nav-lateral">
-	<div class="full-box nav-lateral-bg show-nav-lateral"></div>
-	<div class="full-box nav-lateral-content">
-		<figure class="full-box nav-lateral-avatar">
-			<i class="far fa-times-circle show-nav-lateral"></i>
-			<img src="./assets/avatar/Avatar.png" class="img-fluid" alt="Avatar">
-			<figcaption class="roboto-medium text-center">
-				DR. Alejandro Ferrera <br><small class="roboto-condensed-light">tegucigalpa</small>
-			</figcaption>
-		</figure>
-		<div class="full-box nav-lateral-bar"></div>
-		<nav class="full-box nav-lateral-menu">
-			<ul>
-				<li>
-					<a href="home.html"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio</a>
-				</li>
-
-				<li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-users fa-fw"></i> &nbsp; proveído <i class="fas fa-chevron-down"></i></a>
-					<ul>
-						<li>
-							<a href="proveido.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar proveído</a>
-						</li>
-						<li>
-							<a href="lista-proveido.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de proveídos</a>
-					</ul>
-				</li>
-
-				<li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-pallet fa-fw"></i> &nbsp; Evaluaciones <i class="fas fa-chevron-down"></i></a>
-					<ul>
-						<li>
-							<a href="lista-evaluacion.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Evaluacion</a>
-						</li>
-<!-- 						<li>
-							<a href="agregar-cita.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Evaluacion</a>
-						</li> -->
-
-					</ul>
-				</li>
-
-				<li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
-					<ul>
-						<li>
-							<a href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo Medico</a>
-						</li>
-						<li>
-							<a href="user-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Medicos</a>
-						</li>
-						<li>
-							<a href="user-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo Secretaria</a>
-						</li>
-						<li>
-							<a href="user-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Secretarias</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-exchange-alt"></i> &nbsp; Control de Revision de Casos <i class="fas fa-chevron-down"></i></a>
-					<ul>
-						<li>
-							<a href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Lista de Casos Evaluados</a>
-						</li>
-
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-clipboard-list"></i> &nbsp; Plantillas <i class="fas fa-chevron-down"></i></a>
-					<ul>
-			
-			
-			
-					</ul>
-				</li>
-			</ul>
-		</nav>
-	</div>
-</section>
+<?php include "./in/NavBar.php"; ?>
 <!-- FIN Nav lateral -->
 
         <section class="full-box page-content">
-            <nav class="full-box navbar-info">
-                <a href="#" class="float-left show-nav-lateral">
-                    <i class="fas fa-exchange-alt"></i>
-                </a>
-                <a href="user-update.html">
-                    <i class="fas fa-user-cog"></i>
-                </a>
-                <a href="#" class="btn-exit-system">
-                    <i class="fas fa-power-off"></i>
-                </a>
-            </nav>
+        <?php include "./inc/NavSup.php"; ?>
 
             <!-- Page header -->
             <div class="full-box page-header">
@@ -588,22 +477,7 @@
 	<!--=============================================
 	=            Include JavaScript files           =
 	==============================================-->
-	<!-- jQuery V3.4.1 -->
-	<script src="./js/jquery-3.4.1.min.js" ></script>
+    <?php include "./in/java.php"; ?>
 
-	<!-- popper -->
-	<script src="./js/popper.min.js" ></script>
-
-	<!-- Bootstrap V4.3 -->
-	<script src="./js/bootstrap.min.js" ></script>
-
-	<!-- jQuery Custom Content Scroller V3.1.5 -->
-	<script src="./js/jquery.mCustomScrollbar.concat.min.js" ></script>
-
-	<!-- Bootstrap Material Design V4.0 -->
-	<script src="./js/bootstrap-material-design.min.js" ></script>
-	<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-
-	<script src="./js/main.js" ></script>
 </body>
 </html>
