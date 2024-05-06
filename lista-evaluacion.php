@@ -55,7 +55,7 @@
 								<th>NOMBRE</th>
 								<th>APELLIDO</th>
 								<th>DEPENDIA SOLICITANTE</th>
-								<th>DELITO	</th>								
+								<th>EVALUACION</th>								
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>

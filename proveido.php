@@ -114,7 +114,7 @@
 								</div>
 								<div class="col-12 col-md-4">
 									<div class="form-group">
-										<label for="cliente_apellido" class="bmd-label-floating">DNI</label>
+										<label for="cliente_apellido" class="bmd-label-floating">DNI</label> 
 										<input type="text" pattern="[0-9]{1,13}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
 									</div>
 								</div>
@@ -338,7 +338,7 @@
 						<div class="container-fluid">
 							<form action="" class="form-neon" autocomplete="off">
 								<fieldset>
-									<legend><i class="fas fa-user"></i> &nbsp;Tipo de Evaluacion</legend>
+									<legend><i class="fas fa-user"></i> &nbsp;Tipo de Reconocimiento (consultar si se cambia por evaluacion)</legend>
 									<div class="container-fluid">
 										<div class="row">
 
@@ -353,9 +353,9 @@
 	==============================================-->
 						<div class="col-12 col-md-6">   
 							<div class="form-group">
-								<label for="item_estado" class="bmd-label-floating">Evaluacion</label>
+								<label for="item_estado" class="bmd-label-floating">Reconocimiento</label>
 								<select class="form-control" name="item_estado_reg" id="item_estado">
-									<option value="" selected="" disabled="">Seleccione el Tipo de Evaluacion</option>
+									<option value="" selected="" disabled="">Seleccione el Tipo de Reconocimiento</option>
 									<option value="Habilitado">Estado de Salud</option>
 									<option value="Deshabilitado">Delito Sexual</option>
 									<option value="Deshabilitado">Lesiones</option>

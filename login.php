@@ -36,6 +36,6 @@
 	<!--=============================================
 	=            Include JavaScript files           =
 	==============================================-->
-	<?php include "./in/java.php"; ?>
+	<?php include "./inc/java.php"; ?>
 </body>
 </html>
