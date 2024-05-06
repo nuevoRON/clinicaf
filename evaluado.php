@@ -417,21 +417,21 @@
 	</div>
 </div>
 	</fieldset>
-	<form method="post" action="tratamiento.php">
-                            <p>
+						<form method="post" action="tratamiento.php">
+                            
                             Por favor, indique el Estado de la Evaluacion:<br>
                             <input type="radio" name="estado" value="menos15" id="menos15"/>
                             <label for="pendiente">Pendiente</label><br />
                             <input type="radio" name="estado" value="medio15-25"id="medio15-25" />
 							<label for="finalizado">Finalizado</label><br />
-                            </p>
-                        </form>
-				<div class="col-12 col-md-4"> 
+							<div class="col-12 col-md-4"> 
 					<div class="form-group">
 						<label for="prestamo_fecha_inicio">Fecha de Finalizacion de la Evaluacion</label>
 						<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
 					</div>
 				</div>
+                        </form>
+				
 
 	 <!--  /*/*/*/*/*/*/*/*/*/*/*/*/*            botones de  guardado y limpiar         /*/*/*/*/*/*/*/*/*/*/*/*/ -->	
 		<br><br>
