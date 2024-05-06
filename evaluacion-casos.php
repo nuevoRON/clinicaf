@@ -76,7 +76,7 @@
                             <input type="radio" name="edad" value="mas40" id="mas40" />
                             <label for="plus40">¿Más viejo?</label>
                             </p>
-                            </form>
+                        </form>
                             
 <!--=============================================
 =            selector           =

@@ -50,7 +50,7 @@
 						<div class="row">
 								<div class="col-12 col-md-2">
 									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">Numero de Caso</label>
+										<label for="cliente_dni" class="bmd-label-floating">Numero de solicitud</label>
 										<input type="text" pattern="[0-9-]{1,27}" class="form-control" value="4410-2024" name="cliente_dni_reg" id="cliente_dni" maxlength="27" disabled>
 									</div>
 									<div class="col-12 col-md-4">

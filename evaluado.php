@@ -71,8 +71,16 @@
 		<div class="row">
 				<div class="col-12 col-md-2">
 					<div class="form-group">
-						<label for="cliente_dni" class="bmd-label-floating">Numero de Caso</label>
+						<label for="cliente_dni" class="bmd-label-floating">Numero de Solicitud</label>
 						<input type="text" pattern="[0-9-]{1,27}" class="form-control" value="4410-2024" name="cliente_dni_reg" id="cliente_dni" maxlength="27" disabled>
+					</div>
+					<div class="col-12 col-md-4">
+					</div>
+				</div>
+				<div class="col-12 col-md-2">
+					<div class="form-group">
+						<label for="cliente_dni" class="bmd-label-floating">Numero de Caso</label>
+						<input type="text" pattern="[0-9-]{1,27}" class="form-control" value="4300-2024" name="cliente_dni_reg" id="cliente_dni" maxlength="27" >
 					</div>
 					<div class="col-12 col-md-4">
 					</div>
@@ -147,6 +155,12 @@
 				<div class="col-12 col-md-4">
 					<div class="form-group">
 						<label for="cliente_apellido" class="bmd-label-floating">DNI</label>
+						<input type="text" pattern="[0-9]{1,13}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
+					</div>
+				</div>
+				<div class="col-12 col-md-4">
+					<div class="form-group">
+						<label for="cliente_apellido" class="bmd-label-floating">Nº de Telefono</label>
 						<input type="text" pattern="[0-9]{1,13}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
 					</div>
 				</div>
@@ -244,14 +258,51 @@
 				</div>
 		</div>
 	</div>
-	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br>
+	<fieldset>
+		<legend><i class="fas fa-user"></i> &nbsp;Datos del Acompañante</legend>
+		<div class="container-fluid">
+			<div class="row">
+			<div class="col-12 col-md-4">
+					<div class="form-group">
+						<label for="cliente_nombre" class="bmd-label-floating">Nombre</label>
+						<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_nombre_reg" id="cliente_nombre" maxlength="40">
+					</div>
+				</div>
+				<div class="col-12 col-md-4">
+					<div class="form-group">
+						<label for="cliente_apellido" class="bmd-label-floating">Apellido</label>
+						<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
+					</div>
+				</div>
+				<div class="col-12 col-md-4">
+					<div class="form-group">
+						<label for="cliente_apellido" class="bmd-label-floating">DNI</label>
+						<input type="text" pattern="[0-9]{1,13}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
+					</div>
+				</div>
+				<div class="col-12 col-md-4">
+					<div class="form-group">
+						<label for="item_estado" class="bmd-label-floating">Relacion</label>
+						<select class="form-control" name="item_estado_reg" id="item_estado">
+							<option value="" selected="" disabled="">Seleccione el Tipo de Relacion</option>
+							<option value="Habilitado">Familiar</option>
+							<option value="Deshabilitado">Desconocida</option>
+							<option value="Deshabilitado">Policia Militar</option>
+							<option value="Deshabilitado">fiscal</option>
+							<option value="Deshabilitado">Otra</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
 <div class="container-fluid">
 		<form action="" class="form-neon" autocomplete="off">
 	<fieldset>
 		<legend><i class="fas fa-user"></i> &nbsp;CONSENTIMIENTO INFORMADO</legend>
 		<div class="container-fluid">
 			<div class="row">
-
 				<div class="col-12 col-md-3">
 					<div class="form-group">
 						<label for="item_estado" class="bmd-label-floating">PERIMITE LA EVALUACION</label>
@@ -366,8 +417,21 @@
 	</div>
 </div>
 	</fieldset>
-	
-
+	<form method="post" action="tratamiento.php">
+                            <p>
+                            Por favor, indique el Estado de la Evaluacion:<br>
+                            <input type="radio" name="estado" value="menos15" id="menos15"/>
+                            <label for="pendiente">Pendiente</label><br />
+                            <input type="radio" name="estado" value="medio15-25"id="medio15-25" />
+							<label for="finalizado">Finalizado</label><br />
+                            </p>
+                        </form>
+				<div class="col-12 col-md-4"> 
+					<div class="form-group">
+						<label for="prestamo_fecha_inicio">Fecha de Finalizacion de la Evaluacion</label>
+						<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
+					</div>
+				</div>
 
 	 <!--  /*/*/*/*/*/*/*/*/*/*/*/*/*            botones de  guardado y limpiar         /*/*/*/*/*/*/*/*/*/*/*/*/ -->	
 		<br><br>
