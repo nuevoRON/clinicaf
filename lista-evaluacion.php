@@ -23,7 +23,7 @@
 			<!-- Page header -->
 			<div class="full-box page-header">
 				<h3 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDO
+					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE EVALUACION
 				</h3>
 				<p class="text-justify">
 					aqui podremos ver la lista de proveídos
@@ -55,7 +55,8 @@
 								<th>NOMBRE</th>
 								<th>APELLIDO</th>
 								<th>DEPENDIA SOLICITANTE</th>
-								<th>EVALUACION</th>								
+								<th>EVALUACION</th>
+								<th>ESTADO</th>									
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -68,6 +69,7 @@
 								<td>APELLIDO DEL PACIENTE</td>
 								<td>FISCALIA DE TURNO</td>
 								<td>VIOLACION</td>
+								<td>NUEVO</td>
 								<td>
 									<a href="evaluado.php" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>	
@@ -88,6 +90,7 @@
 								<td>APELLIDO DEL PACIENTE</td>
 								<td>HEU</td>
 								<td>MALTRATO INFANTIL</td>
+								<td>NUEVO</td>
 								<td>
 									<a href="evaluado.php" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>	
@@ -108,6 +111,7 @@
 								<td>APELLIDO DEL PACIENTE</td>
 								<td>FISCALIA DE LA NIÑES</td>
 								<td>ABUSO SEXUAL</td>
+								<td>PENDIENTE</td>
 								<td>
 									<a href="evaluado.php" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>	
@@ -128,6 +132,7 @@
 								<td>APELLIDO DEL PACIENTE</td>
 								<td>FISCALIS DE LA MUJER</td>
 								<td>ESTADO DE SALUD</td>
+								<td>FINALIZADO</td>
 								<td>
 									<a href="evaluado.php" class="btn btn-success">
 	  									<i class="fas fa-sync-alt"></i>	

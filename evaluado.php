@@ -117,7 +117,18 @@
 							<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27" disabled>
 						</div>
 				</div>
-
+				<div class="col-12 col-md-6">   
+			<div class="form-group">
+				<label for="item_estado" class="bmd-label-floating">Evaluacion</label>
+				<select class="form-control" name="item_estado_reg" id="item_estado" disabled>
+					<option value="" selected="" disabled="">Seleccione el Tipo de Evaluacion</option>
+					<option value="Habilitado">Estado de Salud</option>
+					<option value="Deshabilitado">Delito Sexual</option>
+					<option value="Deshabilitado">Lesiones</option>
+					<option value="Deshabilitado">Expediente Clinico</option>
+				</select>
+			</div>
+		</div>
 		<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL EVALUADO</legend>
 	<div class="container-fluid">
 		<div class="row">
@@ -312,24 +323,7 @@
 <!--  /*/*/*/*/*/*/*/*/*/*/*/*/*            INICIO DE LA EVALUACION MEDICA       /*/*/*/*/*/*/*/*/*/*/*/*/ -->
 <br><br><br><br><br><br><br><br><br><br>
 <legend><i class="fas fa-user"></i> &nbsp; EVALUACION MEDICA</legend>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-12 col-md-6">   
-			<div class="form-group">
-				<label for="item_estado" class="bmd-label-floating">Evaluacion</label>
-				<select class="form-control" name="item_estado_reg" id="item_estado" disabled>
-					<option value="" selected="" disabled="">Seleccione el Tipo de Evaluacion</option>
-					<option value="Habilitado">Estado de Salud</option>
-					<option value="Deshabilitado">Delito Sexual</option>
-					<option value="Deshabilitado">Lesiones</option>
-					<option value="Deshabilitado">Expediente Clinico</option>
-				</select>
-			</div>
-		</div>
 
-
-	</div>
-</div>
 <div class="col-12 col-md-3">
 	<div class="form-group">
 		<label for="item_estado" class="bmd-label-floating">Instrumemto Utilizado</label>

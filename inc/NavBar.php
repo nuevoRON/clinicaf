@@ -61,7 +61,7 @@
 					<a href="#" class="nav-btn-submenu"><i class="fas fa-exchange-alt"></i> &nbsp; Control de Revision de Casos <i class="fas fa-chevron-down"></i></a>
 					<ul>
 						<li>
-							<a href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; Lista de Casos Evaluados</a>
+							<a href="evaluacion-casos.php"><i class="fas fa-plus fa-fw"></i> &nbsp; Lista de Casos Evaluados</a>
 						</li>
 
 						</li>

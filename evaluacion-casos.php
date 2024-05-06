@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Nuevo Medico</title>
+    <title>EVALUACION</title>
     <?php include "./inc/link.php"; ?>
  
 </head>
-
 
 <body>
     <!-- Main container -->
@@ -22,30 +21,27 @@
             <!-- Page header -->
             <div class="full-box page-header">
                 <h3 class="text-left">
-                    <i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO MEDICO
+                    <i class="fas fa-plus fa-fw"></i> &nbsp; CONTROL DE REVISIÓN DE CASOS
                 </h3>
-                <p class="text-justify">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium quod harum vitae, fugit quo soluta. Molestias officiis voluptatum delectus doloribus at tempore, iste optio quam recusandae numquam non inventore dolor.
-                </p>
             </div>
 
             <div class="container-fluid">
                 <ul class="full-box list-unstyled page-nav-tabs">
                     <li>
-                        <a class="active" href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVO MEDICO</a>
+                        <a class="active" href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVAS EVALUACIONES</a>
                     </li>
                     <li>
-                        <a href="reservation-reservation.html"><i class="far fa-calendar-alt"></i> &nbsp; RESERVACIONES</a>
+                        <a href="reservation-reservation.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; CASOS EVALUADOS</a>
                     </li>
-                    <li>
+<!--                     <li>
                         <a href="reservation-pending.html"><i class="fas fa-hand-holding-usd fa-fw"></i> &nbsp; MEDICOS</a>
                     </li>
                     <li>
-                        <a href="reservation-list.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; FINALIZADOS</a>
+                        <a href="reservation-list.html"><i class="far fa-calendar-alt"></i> &nbsp; FINALIZADOS</a>
                     </li>
                     <li>
                         <a href="reservation-search.html"><i class="fas fa-search-dollar fa-fw"></i> &nbsp; BUSCAR POR FECHA</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 
