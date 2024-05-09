@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Clinica Forense</title>
+	<title>Clínica Forense</title>
 	<?php include "./inc/link.php"; ?>
 
 
@@ -72,15 +72,15 @@
 								</div>
 								<div class="col-12 col-md-2">
 									<div class="form-group">
-										<label for="prestamo_fecha_inicio">Fecha de recepcion del proveído</label>
+										<label for="prestamo_fecha_inicio">Fecha de recepción del proveído</label>
 										<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio" disabled>
 									</div>
 								</div>
 								<div class="col-12 col-md-6">
 									<div class="form-group">
-										<label for="item_estado" class="bmd-label-floating">Fiscalia que Remite</label>
+										<label for="item_estado" class="bmd-label-floating">Fiscalía que Remite</label>
 										<select class="form-control" name="item_estado_reg" id="item_estado">
-											<option value="" selected="" disabled="">Seleccione la Fiscalia</option>
+											<option value="" selected="" disabled="">Seleccione la Fiscalía</option>
 											<option value="Habilitado">CONADEH</option>
 											<option value="Deshabilitado">CONAPREV</option>
 											<option value="Deshabilitado">Corte Suprema de Justicia (CSJ)</option>
@@ -148,19 +148,19 @@
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="cliente_apellido" class="bmd-label-floating">Caserio, Aldea o Barrio, del Hecho</label>
+													<label for="cliente_apellido" class="bmd-label-floating">Caserío, Aldea o Barrio, del Hecho</label>
 													<input type="text"  class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="cliente_apellido" class="bmd-label-floating">Lugar Donde Ocurrio el Hecho</label>
+													<label for="cliente_apellido" class="bmd-label-floating">Lugar Donde Ocurrió el Hecho</label>
 													<input type="text" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="prestamo_fecha_inicio">Fecha que Ocurrio el Hecho</label>
+													<label for="prestamo_fecha_inicio">Fecha que Ocurrió el Hecho</label>
 													<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
 												</div>
 											</div>
@@ -359,7 +359,7 @@
 									<option value="Habilitado">Estado de Salud</option>
 									<option value="Deshabilitado">Delito Sexual</option>
 									<option value="Deshabilitado">Lesiones</option>
-									<option value="Deshabilitado">Expediente Clinico</option>
+									<option value="Deshabilitado">Expediente Clínico</option>
 								</select>
 							</div>
 						</div>

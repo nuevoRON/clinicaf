@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Clinica Forense</title>
+	<title>Clínica Forense</title>
 	<?php include "./inc/link.php"; ?>
 
 
@@ -51,10 +51,10 @@
 <!-- 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a class="active" href="proveido.html"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PROVEÍDO</a>
+						<a class="active" href="proveído.html"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PROVEÍDO</a>
 					</li>
 					<li>
-						<a href="lista-proveido.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDOS</a>
+						<a href="lista-proveído.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDOS</a>
 					</li>
 					<li>
 						<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR PROVEÍDOS</a>
@@ -101,15 +101,15 @@
 				</div>
 				<div class="col-12 col-md-2">
 					<div class="form-group">
-						<label for="prestamo_fecha_inicio">Fecha de recepcion del proveído</label>
+						<label for="prestamo_fecha_inicio">Fecha de recepción del proveído</label>
 						<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio" disabled>
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="form-group">
-						<label for="item_estado" class="bmd-label-floating">Fiscalia que Remite</label>
+						<label for="item_estado" class="bmd-label-floating">Fiscalía que Remite</label>
 						<select class="form-control" name="item_estado_reg" id="item_estado" disabled>
-							<option value="" selected="" disabled="">Seleccione la Fiscalia</option>
+							<option value="" selected="" disabled="">Seleccione la Fiscalía</option>
 							<option value="Habilitado">CONADEH</option>
 							<option value="Deshabilitado">CONAPREV</option>
 							<option value="Deshabilitado">Corte Suprema de Justicia (CSJ)</option>
@@ -127,9 +127,9 @@
 				</div>
 				<div class="col-12 col-md-6">   
 			<div class="form-group">
-				<label for="item_estado" class="bmd-label-floating">Evaluacion</label>
+				<label for="item_estado" class="bmd-label-floating">Evaluación</label>
 				<select class="form-control" name="item_estado_reg" id="item_estado" disabled>
-					<option value="" selected="" disabled="">Seleccione el Tipo de Evaluacion</option>
+					<option value="" selected="" disabled="">Seleccione el Tipo de Evaluación</option>
 					<option value="Habilitado">Estado de Salud</option>
 					<option value="Deshabilitado">Delito Sexual</option>
 					<option value="Deshabilitado">Lesiones</option>

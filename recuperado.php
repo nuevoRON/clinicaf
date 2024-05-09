@@ -4,13 +4,13 @@
    
    <div class="col-12 col-md-4">
         <div class="form-group">
-            <label for="prestamo_fecha_inicio">Fecha de Evaluaciòn</label>
+            <label for="prestamo_fecha_inicio">Fecha de Evaluación</label>
             <input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
         </div>
     </div>
     <div class="col-12 col-md-4">
         <div class="form-group">
-            <label for="prestamo_hora_inicio">Hora de Evaluaciòn</label>
+            <label for="prestamo_hora_inicio">Hora de Evaluación</label>
             <input type="time" class="form-control" name="prestamo_hora_inicio_reg" id="prestamo_hora_inicio">
         </div>
     </div>
@@ -69,9 +69,9 @@
 
     <div class="col-12 col-md-3">
         <div class="form-group">
-            <label for="item_estado" class="bmd-label-floating">Ocupacion</label>
+            <label for="item_estado" class="bmd-label-floating">Ocupación</label>
             <select class="form-control" name="item_estado_reg" id="item_estado">
-                <option value="" selected="" disabled="">Seleccione la Ocupacion</option>
+                <option value="" selected="" disabled="">Seleccione la Ocupación</option>
                 <option value="Habilitado">Ama de casa</option>
                 <option value="Deshabilitado">Abogado</option>s
                 <option value="Deshabilitado">Artesano</option>
@@ -141,13 +141,13 @@
 
         <div class="col-12 col-md-4">
             <div class="form-group">
-                <label for="prestamo_fecha_inicio">Fecha de Evaluaciòn</label>
+                <label for="prestamo_fecha_inicio">Fecha de Evaluación</label>
                 <input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
             </div>
         </div>
         <div class="col-12 col-md-4">
             <div class="form-group">
-                <label for="prestamo_hora_inicio">Hora de Evaluaciòn</label>
+                <label for="prestamo_hora_inicio">Hora de Evaluación</label>
                 <input type="time" class="form-control" name="prestamo_hora_inicio_reg" id="prestamo_hora_inicio">
             </div>
         </div>
@@ -205,9 +205,9 @@
 
         <div class="col-12 col-md-3">
             <div class="form-group">
-                <label for="item_estado" class="bmd-label-floating">Ocupacion</label>
+                <label for="item_estado" class="bmd-label-floating">Ocupación</label>
                 <select class="form-control" name="item_estado_reg" id="item_estado">
-                    <option value="" selected="" disabled="">Seleccione la Ocupacion</option>
+                    <option value="" selected="" disabled="">Seleccione la Ocupación</option>
                     <option value="Habilitado">Ama de casa</option>
                     <option value="Deshabilitado">Abogado</option>s
                     <option value="Deshabilitado">Artesano</option>

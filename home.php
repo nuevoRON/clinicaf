@@ -26,7 +26,7 @@
 					<i class="fab fa-dashcube fa-fw"></i> &nbsp; PANTALLA DE INICIO
 				</h3>
 				<p class="text-justify">
-					Breve Descripcion de Clinica Forense.
+					Breve Descripción de Clínica Forense.
 				</p>
 			</div>
 			

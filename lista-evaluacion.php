@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Lista de proveido</title>
+	<title>Lista de proveído</title>
 	<?php include "./inc/link.php"; ?>
 
 
@@ -26,7 +26,7 @@
 					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE EVALUACION
 				</h3>
 				<p class="text-justify">
-					aqui podremos ver la lista de proveídos
+					aquí podremos ver la lista de proveídos
 				</p>
 			</div>
 
