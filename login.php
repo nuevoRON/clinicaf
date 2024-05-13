@@ -17,7 +17,7 @@
 			<p class="text-center">
 				Inicia sesión con tu cuenta
 			</p>
-			<form action="sesion.php" method="POST" autocomplete="off" >
+			<form action="home.php" method="POST" autocomplete="off" >
 				<div class="form-group">
 					<label for="UserName" class="bmd-label-floating"><i class="fas fa-user-secret"></i> &nbsp; Usuario</label>
 					<input type="text" class="form-control" id="UserName" name="usuario" pattern="[a-zA-Z0-9]{1,35}" maxlength="35" required="" >

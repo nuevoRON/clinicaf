@@ -61,8 +61,6 @@
 										<label for="cliente_dni" class="bmd-label-floating">Numero Externos (Oficios, Denuncias, Expediente.)</label>
 										<input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
 									</div>
-									<div class="col-12 col-md-4">
-									</div>
 								</div>
 								<div class="col-12 col-md-2">
 									<div class="form-group">
