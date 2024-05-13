@@ -90,38 +90,38 @@
 					</div>
 					</div>
 				</fieldset>
-<!-- CAMBIO -->
+					<!-- CAMBIO -->
 
-<fieldset>
-	<legend><i class="fas fa-user"></i> &nbsp; Estados</legend>						
-	<div class="container-fluid">						
-		<div class="row">
-				<div class="col-12 col-md-2">
-					<div class="form-group">
-						<label for="item_estado" class="bmd-label-floating">Jornada</label>
-						<select class="form-control" name="item_estado_reg" id="item_estado">
-							<option value="" selected="" disabled="">Seleccione la Jornanda</option>
-							<option value="Habilitado">Matunina</option>
-							<option value="Deshabilitado">Vespertina</option>
-							<option value="Deshabilitado">Nocturna</option>
-						</select>
-					</div>								
-				</div>
-				<div class="col-12 col-md-2">
-					<div class="form-group">
-						<label for="item_estado" class="bmd-label-floating">Estado</label>
-						<select class="form-control" name="item_estado_reg" id="item_estado">
-							<option value="" selected="" disabled="">Seleccione el Estado</option>
-							<option value="Habilitado">Activo</option>
-							<option value="Deshabilitado">Inactivo</option>
-							<option value="Deshabilitado">incapacitado</option>
-							<option value="Deshabilitado">Vacaciones</option>
-						</select>
-					</div>
-				</div>
-		</div>
-	</div>
-</fieldset>
+					<fieldset>
+						<legend><i class="fas fa-user"></i> &nbsp; Estados</legend>						
+						<div class="container-fluid">						
+							<div class="row">
+									<div class="col-12 col-md-2">
+										<div class="form-group">
+											<label for="item_estado" class="bmd-label-floating">Jornada</label>
+											<select class="form-control" name="item_estado_reg" id="item_estado">
+												<option value="" selected="" disabled="">Seleccione la Jornanda</option>
+												<option value="Habilitado">Matunina</option>
+												<option value="Deshabilitado">Vespertina</option>
+												<option value="Deshabilitado">Nocturna</option>
+											</select>
+										</div>								
+									</div>
+									<div class="col-12 col-md-2">
+										<div class="form-group">
+											<label for="item_estado" class="bmd-label-floating">Estado</label>
+											<select class="form-control" name="item_estado_reg" id="item_estado">
+												<option value="" selected="" disabled="">Seleccione el Estado</option>
+												<option value="Habilitado">Activo</option>
+												<option value="Deshabilitado">Inactivo</option>
+												<option value="Deshabilitado">incapacitado</option>
+												<option value="Deshabilitado">Vacaciones</option>
+											</select>
+										</div>
+									</div>
+							</div>
+						</div>
+					</fieldset>
 		
 
 							<br></br>

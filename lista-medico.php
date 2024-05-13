@@ -40,7 +40,143 @@
 					</li>
 				</ul>	
 			</div>
+	<!--=====================================================================================================================================================================================
+	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
+	======================================================================================================================================================================================-->			
 			
+<!-- MODAL MEDICO -->
+            <div class="container-fluid">
+                <div class="container-fluid form-neon">
+                    <div class="container-fluid">                  
+                        <p class="text-center">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCaso"><i class="fas fa-user-plus"></i> &nbsp; Agregar Medico</button>
+                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar item</button> -->
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="ModalCaso" tabindex="-1" role="dialog" aria-labelledby="ModalCaso" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalCaso">Agregar Medico</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+
+
+
+
+
+<!-- Contenedor-->
+<div class="container-fluid">
+				<form action="" class="form-neon" autocomplete="off">
+					<fieldset>
+						<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL MEDICO</legend>
+						<div class="container-fluid">
+						<div class="row">
+								<div class="col-12 col-md-4">
+									<div class="form-group">
+										<label for="cliente_dni" class="bmd-label-floating">Nombre del Medico</label>
+										<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+									</div>
+									<div class="col-12 col-md-4">
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group">
+										<label for="cliente_dni" class="bmd-label-floating">Apellido del Medico</label>
+										<input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+									</div>
+									<div class="col-12 col-md-4">
+									</div>
+								</div>
+								<div class="col-12 col-md-4">									
+										<div class="form-group">
+											<label for="cliente_dni" class="bmd-label-floating">DNI</label>
+											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+										</div>
+								</div>
+								<div class="col-12 col-md-4">									
+										<div class="form-group">
+											<label for="cliente_dni" class="bmd-label-floating">Nº de Empleado</label>
+											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+										</div>
+								</div>
+								<div class="col-12 col-md-5">
+										<div class="form-group">
+											<label for="cliente_dni" class="bmd-label-floating">Correo Electronico</label>
+											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+										</div>
+								</div>
+								<div class="col-12 col-md-3">
+										<div class="form-group">
+											<label for="cliente_dni" class="bmd-label-floating">Nº de Telefono</label>
+											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+										</div>
+								</div>
+					</div>
+					</div>
+				</fieldset>
+
+					<fieldset>
+						<legend><i class="fas fa-user"></i> &nbsp; Estados</legend>						
+						<div class="container-fluid">						
+							<div class="row">
+									<div class="col-12 col-md-6">
+										<div class="form-group">
+											<label for="item_estado" class="bmd-label-floating">Jornada</label>
+											<select class="form-control" name="item_estado_reg" id="item_estado">
+												<option value="" selected="" disabled="">Seleccione la Jornanda</option>
+												<option value="Habilitado">Matunina</option>
+												<option value="Deshabilitado">Vespertina</option>
+												<option value="Deshabilitado">Nocturna</option>
+											</select>
+										</div>								
+									</div>
+									<div class="col-12 col-md-6">
+										<div class="form-group">
+											<label for="item_estado" class="bmd-label-floating">Estado</label>
+											<select class="form-control" name="item_estado_reg" id="item_estado">
+												<option value="" selected="" disabled="">Seleccione el Estado</option>
+												<option value="Habilitado">Activo</option>
+												<option value="Deshabilitado">Inactivo</option>
+												<option value="Deshabilitado">incapacitado</option>
+												<option value="Deshabilitado">Vacaciones</option>
+											</select>
+										</div>
+									</div>
+							</div>
+						</div>
+					</fieldset>
+		
+
+							<br></br>
+					<p class="text-center" style="margin-top: 40px;">
+						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+						&nbsp; &nbsp;
+						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+					</p>
+				</form>
+			</div>	
+
+	<!--=====================================================================================================================================================================================
+	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
+	======================================================================================================================================================================================-->
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
 			<!-- Content here-->
 			<div class="container-fluid">
 				<div class="table-responsive">
