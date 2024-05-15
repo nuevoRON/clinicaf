@@ -80,13 +80,13 @@
 					</div>
 				</a>
 
-				<a href="company.html" class="tile">
+				<!-- <a href="company.html" class="tile">
 					<div class="tile-tittle">********</div>
 					<div class="tile-icon">
 						<i class="fas fa-store-alt fa-fw"></i>
 						<p>1 Registrada</p>
 					</div>
-				</a>
+				</a> -->
 			</div>
 
 		</section>

@@ -38,9 +38,9 @@
 					<li>
 						<a class="active" href="lista-proveido.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDO</a>
 					</li>
-					<li>
+					<!-- <li>
 						<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR PROVEÍDO</a>
-					</li>
+					</li> -->
 				</ul>	
 			</div>
 			
