@@ -65,7 +65,7 @@
 								</div>
 								<div class="col-12 col-md-2">									
 										<div class="form-group">
-											<label for="cliente_dni" class="bmd-label-floating">DNI</label>
+											<label for="cliente_dni" class="bmd-label-floating">Numero de Colegiacion</label>
 											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
 										</div>
 								</div>
