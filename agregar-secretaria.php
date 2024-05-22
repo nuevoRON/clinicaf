@@ -20,14 +20,12 @@
 
 		<?php include "./inc/NavSup.php"; ?>
 <!-- Page header -->
-			<div class="full-box page-header">
 				<h3 class="text-left">
 					<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR SECRETARIA
 				</h3>
 				<p class="text-justify">
 					Asegúrese de agregar la información de manera clara y correcta
 				</p>
-			</div>
 <!--FIN Page header -->
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">

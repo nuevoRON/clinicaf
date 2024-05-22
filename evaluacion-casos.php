@@ -19,11 +19,9 @@
         <?php include "./inc/NavSup.php"; ?>
 
             <!-- Page header -->
-            <div class="full-box page-header">
                 <h3 class="text-left">
                     <i class="fas fa-plus fa-fw"></i> &nbsp; CONTROL DE REVISIÓN DE CASOS
                 </h3>
-            </div>
 
             <div class="container-fluid">
                 <ul class="full-box list-unstyled page-nav-tabs">

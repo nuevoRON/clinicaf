@@ -21,14 +21,12 @@
 		<?php include "./inc/NavSup.php"; ?>
 
 			<!-- Page header -->
-			<div class="full-box page-header">
 				<h3 class="text-left">
 					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDO
 				</h3>
 				<p class="text-justify">
 					aqui podremos ver la lista de proveídos
 				</p>
-			</div>
 
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
@@ -223,27 +221,26 @@
 										<label for="cliente_dni" class="bmd-label-floating">Numero de solicitud</label>
 										<input type="text" pattern="[0-9-]{1,27}" class="form-control" value="4410-2024" name="cliente_dni_reg" id="cliente_dni" maxlength="27" disabled>
 									</div>
-									<div class="col-12 col-md-4">
+									<div class="col-12 col-md-6">
+										<div class="form-group">
+											<label for="cliente_dni" class="bmd-label-floating">Numero Externos (Oficios, Denuncias, Expediente.)</label>
+											<input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+										</div>
 									</div>
-								
-								
-									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">Numero Externos (Oficios, Denuncias, Expediente.)</label>
-										<input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
-									</div>
-								
-								
+						&nbsp; &nbsp;							
+								<div class="col-12 col-md-5">
 									<div class="form-group">
 										<label for="prestamo_fecha_inicio">Fecha de Emision del proveído</label>
 										<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
 									</div>
-								
-								
+								</div>
+						&nbsp; &nbsp;	
+						<div class="col-12 col-md-6">
 									<div class="form-group">
 										<label for="prestamo_fecha_inicio">Fecha de recepción del proveído</label>
-										<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio" disabled>
+										<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
 									</div>
-								
+								</div>								
 								<div class="col-12 col-md-6">
 									<div class="form-group">
 										<label for="item_estado" class="bmd-label-floating">Fiscalía que Remite</label>
@@ -264,7 +261,7 @@
 											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
 										</div>
 								</div>
-
+								&nbsp; &nbsp; &nbsp; &nbsp;
 						<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL EVALUADO</legend>
 						<div class="container-fluid">
 						<div class="row">
@@ -288,14 +285,15 @@
 								</div>
 
 <!-- Contenedor-->
+&nbsp; &nbsp; &nbsp; &nbsp;
 								<div class="container-fluid">
 									<form action="" class="form-neon" autocomplete="off">
 								<fieldset>
 									<legend><i class="fas fa-user"></i> &nbsp;DATOS DEL HECHO</legend>
 									<div class="container-fluid">
 										<div class="row">
-
-											<div class="col-12 col-md-3">
+										
+											<div class="col-12 col-md-7">
 												<div class="form-group">
 													<label for="item_estado" class="bmd-label-floating">Departamento</label>
 													<select class="form-control" name="item_estado_reg" id="item_estado">
@@ -308,25 +306,26 @@
 													</select>
 												</div>
 											</div>	
+											&nbsp; &nbsp;
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="cliente_apellido" class="bmd-label-floating">Municipio</label>
 													<input type="text" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
 												</div>
 											</div>
-											<div class="col-12 col-md-4">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="cliente_apellido" class="bmd-label-floating">Caserío, Aldea o Barrio, del Hecho</label>
 													<input type="text"  class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
 												</div>
 											</div>
-											<div class="col-12 col-md-4">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="cliente_apellido" class="bmd-label-floating">Lugar Donde Ocurrió el Hecho</label>
 													<input type="text" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
 												</div>
 											</div>
-											<div class="col-12 col-md-4">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="prestamo_fecha_inicio">Fecha que Ocurrió el Hecho</label>
 													<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
@@ -387,14 +386,12 @@
 									<option value="Deshabilitado">Jose Lobo</option>
 								</select>
 							</div>
-							
-
                         </div>
-                        <div class="modal-footer">
-                        <button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
-                            &nbsp; &nbsp;
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        </div>
+                        <p class="text-center" style="margin-top: 40px;">
+						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+						&nbsp; &nbsp;
+						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+					</p>
                     </div>
                 </div>
             </div>

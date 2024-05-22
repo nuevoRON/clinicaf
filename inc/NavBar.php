@@ -44,13 +44,19 @@
 					<a href="#" class="nav-btn-submenu"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 					<ul>
 						<li>
-							<a href="agregar-medico.php"><i class="fas fa-plus fa-fw"></i> &nbsp; Nuevo Medico</a>
+							<a href="control-juicios.php"><i class="fas fa-balance-scale"></i> &nbsp; Control de juicios</a>
+						</li>
+						<li>
+							<a href="agregar-cedes.php"><i class="fas fa-clinic-medical"></i> &nbsp; Agregar Nuevas Cedes</a>
+						</li>
+						<li>
+							<a href="agregar-medico.php"><i class="fas fa-user-md"></i> &nbsp; Nuevo Medico</a>
 						</li>
 						<li>
 							<a href="lista-medico.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Medicos</a>
 						</li>
 						<li>
-							<a href="agregar-secretaria.php"><i class="fas fa-plus fa-fw"></i> &nbsp; Nueva Secretaria</a>
+							<a href="agregar-secretaria.php"><i class="fas fa-user-nurse"></i> &nbsp; Nueva Secretaria</a>
 						</li>
 						<li>
 							<a href="lista-secretaria.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Secretarias</a>
