@@ -21,14 +21,12 @@
 		<?php include "./inc/NavSup.php"; ?>
 
 			<!-- Page header -->
-			<div class="full-box page-header">
 				<h3 class="text-left">
 					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE SECRETARIA
 				</h3>
 				<p class="text-justify">
 					aqui podremos ver la lista de secretarias
 				</p>
-			</div>
 
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
