@@ -47,7 +47,7 @@
                 <div class="container-fluid form-neon">
                     <div class="container-fluid">                  
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCaso"><i class="fas fa-user-plus"></i> &nbsp; Agregar Medico</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalmedico"><i class="fas fa-user-plus"></i> &nbsp; Agregar Medico</button>
                             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar item</button> -->
                         </p>
 
@@ -55,11 +55,11 @@
                 </div>
             </div>
             
-            <div class="modal fade" id="ModalCaso" tabindex="-1" role="dialog" aria-labelledby="ModalCaso" aria-hidden="true">
+            <div class="modal fade" id="Modalmedico" tabindex="-1" role="dialog" aria-labelledby="Modalmedico" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalCaso">Agregar Medico</h5>
+                            <h5 class="modal-title" id="Modalmedico">Agregar Medico</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -148,6 +148,33 @@
 											</select>
 										</div>
 									</div>
+									<div class="col-12 col-md-7">   
+										<div class="form-group">
+											<label for="item_estado" class="bmd-label-floating">Departamnto Cede</label>
+											<select class="form-control" name="item_estado_reg" id="item_estado">
+												<option value="" selected="" disabled="">Seleccione el Departamento Cede</option>
+												<option value="Habilitado">Atlántida</option>
+												<option value="Deshabilitado">Choluteca</option>
+												<option value="Deshabilitado">Colón</option>
+												<option value="Deshabilitado">Comayagua</option>
+												<option value="Deshabilitado">Copán</option>
+												<option value="Deshabilitado">Cortés</option>
+												<option value="Deshabilitado">El Paraíso</option>
+												<option value="Deshabilitado">Francisco Morazán</option>
+												<option value="Deshabilitado">Gracias a Dios</option>
+												<option value="Deshabilitado">Intibucá</option>
+												<option value="Deshabilitado">Islas de la Bahía</option>
+												<option value="Deshabilitado">La Paz</option>
+												<option value="Deshabilitado">Lempira</option>
+												<option value="Deshabilitado">Ocotepeque</option>
+												<option value="Deshabilitado">Olancho</option>
+												<option value="Deshabilitado">Santa Bárbara</option>
+												<option value="Deshabilitado">Valle</option>
+												<option value="Deshabilitado">Yoro</option>
+												
+											</select>
+										</div>							
+                                	</div>
 							</div>
 						</div>
 					</fieldset>
@@ -184,12 +211,13 @@
 								<th>#</th>
 								<th>NOMBRE</th>
 								<th>APELLIDO</th>
-								<th>DNI</th>
+								<th>COLEGIACION</th>
 								<th>Nº EMPLEADO</th>
 								<th>Nº CORREO ELECTRONICO</th>
 								<th>Nº DE TELEFONO</th>	
 								<th>JORNADA</th>	
-								<th>ESTADO</th>							
+								<th>ESTADO</th>	
+								<th>CEDE</th>		
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -199,16 +227,17 @@
 								<td>1</td>
 								<td>Pedro</td>
 								<td>Alvarez</td>
-								<td>080119854420</td>
+								<td>4545</td>
 								<td>4530</td>
 								<td>palvares@gmail.com</td>
 								<td>85446328</td>
 								<td>matutina</td>
 								<td>activo</td>
+								<td>Intibucá</td>
 								<td>
-									<a href="proveido.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
-									</a>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalmedico">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>	
 								</td>
 								<td>
 									<form action="">
@@ -222,16 +251,17 @@
 								<td>2</td>
 								<td>Pedro</td>
 								<td>Alvarez</td>
-								<td>080119854420</td>
+								<td>2710</td>
 								<td>4530</td>
 								<td>palvares@gmail.com</td>
 								<td>85446328</td>
 								<td>matutina</td>
 								<td>vacaciones</td>
+								<td>Valle</td>
 								<td>
-									<a href="proveido.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
-									</a>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalmedico">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>	
 								</td>
 								<td>
 									<form action="">
@@ -245,16 +275,17 @@
 								<td>3</td>
 								<td>Pedro</td>
 								<td>Alvarez</td>
-								<td>080119854420</td>
+								<td>4420</td>
 								<td>4530</td>
 								<td>palvares@gmail.com</td>
 								<td>85446328</td>
 								<td>matutina</td>
-								<td>vacaciones</td>>
+								<td>vacaciones</td>
+								<td>Francisco Morazán</td>
 								<td>
-									<a href="proveido.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
-									</a>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalmedico">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>	
 								</td>
 								<td>
 									<form action="">
@@ -268,16 +299,17 @@
 								<td>4</td>
 								<td>Pedro</td>
 								<td>Alvarez</td>
-								<td>080119854420</td>
+								<td>8850</td>
 								<td>4530</td>
 								<td>palvares@gmail.com</td>
 								<td>85446328</td>
 								<td>matutina</td>
 								<td>activo</td>
+								<td>Comayagua</td>
 								<td>
-									<a href="proveido.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
-									</a>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalmedico">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>	
 								</td>
 								<td>
 									<form action="">

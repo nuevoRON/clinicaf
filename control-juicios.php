@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Lista de Medico</title>
+	<title>Lista de Juicios</title>
 	<?php include "./inc/link.php"; ?>
 
 
@@ -32,11 +32,11 @@
 	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
 	======================================================================================================================================================================================-->			
 			
-<!-- MODAL MEDICO -->         
+<!-- MODAL JUICIOS -->         
                 
                     <div class="container-fluid">                  
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modaljuicio"><i class="fas fa-user-plus"></i> &nbsp; Agregar Medico</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modaljuicio"><i class="fas fa-user-plus"></i> &nbsp; Agregar Juicio</button>
                         </p>
 
                     </div>

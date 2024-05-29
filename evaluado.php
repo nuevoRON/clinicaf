@@ -410,27 +410,30 @@
 		<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="3">
 	</div>
 </div>
+
+
+</fieldset>
+
 <div class="col-12 col-md-4">
-	<div class="form-group">
-		<label for="cliente_telefono" class="bmd-label-floating">Descripcion de la Evaluacion</label>
-		<textarea name="precise" id="precise" cols="80" rows="4"></textarea><!--  /*/*/*/  ESTA ES LA CAJA DE TEXTO   /*/*/*/ -->
-	</div>
+<div class="form-group">
+	<label for="cliente_telefono" class="bmd-label-floating">Descripcion de la Evaluacion</label>
+	<textarea name="precise" id="precise" cols="80" rows="4"></textarea><!--  /*/*/*/  ESTA ES LA CAJA DE TEXTO   /*/*/*/ -->
 </div>
-	</fieldset>
-						<form method="post" action="tratamiento.php">
-                            
-                            Por favor, indique el Estado de la Evaluacion:<br>
-                            <input type="radio" name="estado" value="menos15" id="menos15"/>
-                            <label for="pendiente">Pendiente</label><br />
-                            <input type="radio" name="estado" value="medio15-25"id="medio15-25" />
-							<label for="finalizado">Finalizado</label><br />
-							<div class="col-12 col-md-4"> 
-					<div class="form-group">
-						<label for="prestamo_fecha_inicio">Fecha de Finalizacion de la Evaluacion</label>
-						<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
+</div>
+				<form method="post" action="tratamiento.php">
+					
+					Por favor, indique el Estado de la Evaluacion:<br>
+					<input type="radio" name="estado" value="menos15" id="menos15"/>
+					<label for="pendiente">Pendiente</label><br />
+					<input type="radio" name="estado" value="medio15-25"id="medio15-25" />
+					<label for="finalizado">Finalizado</label><br />
+					<div class="col-12 col-md-4"> 
+						<div class="form-group">
+							<label for="prestamo_fecha_inicio">Fecha de Finalizacion de la Evaluacion</label>
+							<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
+						</div>
 					</div>
-				</div>
-                        </form>
+				</form>
 				
 
 	 <!--  /*/*/*/*/*/*/*/*/*/*/*/*/*            botones de  guardado y limpiar         /*/*/*/*/*/*/*/*/*/*/*/*/ -->	
