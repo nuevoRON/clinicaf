@@ -49,18 +49,18 @@
 						<li>
 							<a href="agregar-cedes.php"><i class="fas fa-clinic-medical"></i> &nbsp; Agregar Nuevas Cedes</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="agregar-medico.php"><i class="fas fa-user-md"></i> &nbsp; Nuevo Medico</a>
-						</li>
+						</li> -->
 						<li>
-							<a href="lista-medico.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Medicos</a>
+							<a href="lista-medico.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Agregar Nuevo Peronal</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="agregar-secretaria.php"><i class="fas fa-user-nurse"></i> &nbsp; Nueva Secretaria</a>
 						</li>
 						<li>
 							<a href="lista-secretaria.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Lista de Secretarias</a>
-						</li>
+						</li> -->
 					</ul>
 				</li>
 				<li>

@@ -290,6 +290,7 @@
 							<option value="Deshabilitado">Desconocida</option>
 							<option value="Deshabilitado">Policia Militar</option>
 							<option value="Deshabilitado">fiscal</option>
+							<option value="Deshabilitado">custodio penitenciario</option>
 							<option value="Deshabilitado">Otra</option>
 						</select>
 					</div>
@@ -310,6 +311,8 @@
 							<option value="" selected="" disabled="">Seleccione el Estado</option>
 							<option value="Habilitado">Si</option>
 							<option value="Deshabilitado">No</option>
+							<option value="Habilitado">No Se Encontro</option>
+							<option value="Habilitado">No Se Preseto a la Evaluacion</option>
 						</select>
 					</div>
 				</div>	
@@ -423,10 +426,10 @@
 				<form method="post" action="tratamiento.php">
 					
 					Por favor, indique el Estado de la Evaluacion:<br>
-					<input type="radio" name="estado" value="menos15" id="menos15"/>
+					<!-- <input type="radio" name="estado" value="menos15" id="menos15"/>
 					<label for="pendiente">Pendiente</label><br />
 					<input type="radio" name="estado" value="medio15-25"id="medio15-25" />
-					<label for="finalizado">Finalizado</label><br />
+					<label for="finalizado">Finalizado</label><br /> -->
 					<div class="col-12 col-md-4"> 
 						<div class="form-group">
 							<label for="prestamo_fecha_inicio">Fecha de Finalizacion de la Evaluacion</label>

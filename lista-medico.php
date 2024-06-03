@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Lista de Medico</title>
+	<title>Lista de Personal</title>
 	<?php include "./inc/link.php"; ?>
 
 
@@ -22,22 +22,8 @@
 
 			<!-- Page header -->
 				<h3 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE MEDICO
+					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PERSONAL
 				</h3>
-				<p class="text-justify">
-					aqui podremos ver la lista de medicos
-				</p>
-
-			<div class="container-fluid">
-				<ul class="full-box list-unstyled page-nav-tabs">
- 					<li>
-						<a href="agregar-medico.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR MEDICO</a>
-					</li> 
-					<li>
-						<a class="active" href="lista-medico.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE MEDICOS</a>
-					</li>
-				</ul>	
-			</div>
 	<!--=====================================================================================================================================================================================
 	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
 	======================================================================================================================================================================================-->			
@@ -47,7 +33,7 @@
                 <div class="container-fluid form-neon">
                     <div class="container-fluid">                  
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalmedico"><i class="fas fa-user-plus"></i> &nbsp; Agregar Medico</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalmedico"><i class="fas fa-user-plus"></i> &nbsp; Agregar Nuevo Personal</button>
                             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar item</button> -->
                         </p>
 
@@ -59,7 +45,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="Modalmedico">Agregar Medico</h5>
+                            <h5 class="modal-title" id="Modalmedico">Agregar Nuevo Personal</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -74,12 +60,12 @@
 <div class="container-fluid">
 				<form action="" class="form-neon" autocomplete="off">
 					<fieldset>
-						<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL MEDICO</legend>
+						<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL PERSONAL</legend>
 						<div class="container-fluid">
 						<div class="row">
 								<div class="col-12 col-md-4">
 									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">Nombre del Medico</label>
+										<label for="cliente_dni" class="bmd-label-floating">Nombre</label>
 										<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
 									</div>
 									<div class="col-12 col-md-4">
@@ -87,7 +73,7 @@
 								</div>
 								<div class="col-12 col-md-4">
 									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">Apellido del Medico</label>
+										<label for="cliente_dni" class="bmd-label-floating">Apellido</label>
 										<input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
 									</div>
 									<div class="col-12 col-md-4">
@@ -145,6 +131,20 @@
 												<option value="Deshabilitado">Inactivo</option>
 												<option value="Deshabilitado">incapacitado</option>
 												<option value="Deshabilitado">Vacaciones</option>
+												<option value="Deshabilitado">De Baja</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-12 col-md-5">
+										<div class="form-group">
+											<label for="item_estado" class="bmd-label-floating">Puesto de Trabajo</label>
+											<select class="form-control" name="item_estado_reg" id="item_estado">
+												<option value="" selected="" disabled="">Seleccione el Puesto</option>
+												<option value="Habilitado">Medico Especialista</option>
+												<option value="Deshabilitado">Perito Medico Forense</option>
+												<option value="Deshabilitado">Odontologo</option>
+												<option value="Deshabilitado">Enfermera</option>
+												<option value="Deshabilitado">Secretaria</option>
 											</select>
 										</div>
 									</div>
@@ -216,7 +216,8 @@
 								<th>Nº CORREO ELECTRONICO</th>
 								<th>Nº DE TELEFONO</th>	
 								<th>JORNADA</th>	
-								<th>ESTADO</th>	
+								<th>ESTADO</th>
+								<th>PUESTO</th>	
 								<th>CEDE</th>		
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
@@ -233,6 +234,7 @@
 								<td>85446328</td>
 								<td>matutina</td>
 								<td>activo</td>
+								<td>perito medico forense</td>
 								<td>Intibucá</td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalmedico">
@@ -257,6 +259,7 @@
 								<td>85446328</td>
 								<td>matutina</td>
 								<td>vacaciones</td>
+								<td>odontologo</td>
 								<td>Valle</td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalmedico">
@@ -275,12 +278,13 @@
 								<td>3</td>
 								<td>Pedro</td>
 								<td>Alvarez</td>
-								<td>4420</td>
+								<td></td>
 								<td>4530</td>
 								<td>palvares@gmail.com</td>
 								<td>85446328</td>
 								<td>matutina</td>
 								<td>vacaciones</td>
+								<td>perito medico forense</td>
 								<td>Francisco Morazán</td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalmedico">
@@ -305,6 +309,7 @@
 								<td>85446328</td>
 								<td>matutina</td>
 								<td>activo</td>
+								<td>odontologo</td>
 								<td>Comayagua</td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalmedico">

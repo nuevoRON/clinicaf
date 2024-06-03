@@ -98,12 +98,12 @@
                                         <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-8">
+                                <!-- <div class="col-12 col-md-8">
                                     <div class="form-group">
                                         <label for="cliente_dni" class="bmd-label-floating">Encargado de la Cede</label>
                                         <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
                                     </div>
-                                </div>
+                                </div> -->
                     </div>
                 </fieldset>
 					

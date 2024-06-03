@@ -30,10 +30,10 @@
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
-						<a class="active" href="proveido.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR MEDICO</a>
+						<a class="active" href="agregar-medico.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR MEDICO</a>
 					</li>
 					<li>
-						<a href="lista-proveido.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE MEDICOS</a>
+						<a href="lista-medico.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE MEDICOS</a>
 					</li>
 				</ul>	
 			</div>

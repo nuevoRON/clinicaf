@@ -30,9 +30,9 @@
 
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
- 					<li>
+ 					<!-- <li>
 						<a href="proveido.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PROVEÍDO</a>
-					</li> 
+					</li>  -->
 					<li>
 						<a class="active" href="lista-proveido.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDO</a>
 					</li>

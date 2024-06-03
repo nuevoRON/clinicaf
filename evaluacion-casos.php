@@ -176,7 +176,7 @@
                             </div>
                             <div class="container-fluid">                                   
                                  <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Medico que Realizo ls Evaluaciion</label>
+                                    <label for="item_estado" class="bmd-label-floating">Medico que Realizo la Revision</label>
                                     <select class="form-control" name="item_estado_reg" id="item_estado">
                                         <option value="" selected="" disabled="">Seleccione el Medico</option>
                                         <option value="Habilitado">Carlos Alberto</option>

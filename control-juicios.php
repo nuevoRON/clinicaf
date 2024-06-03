@@ -59,13 +59,19 @@
                     <legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL JUICIO</legend>
                     <div class="container-fluid">
                         <div class="row">
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-5">
                                     <div class="form-group">
                                         <label for="cliente_dni" class="bmd-label-floating">Numero del Caso</label>
                                         <input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4">
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label for="prestamo_fecha_inicio">Fecha que se recibe la citacion</label>
+										<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion_id">
+									</div>
+								</div>
+                                <div class="col-12 col-md-6">
 									<div class="form-group">
 										<label for="prestamo_fecha_inicio">Fecha del Juicio</label>
 										<input type="date" class="form-control" name="fecha_juicio" id="fecha_juicio_id">
@@ -114,7 +120,8 @@
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
-								<th>NUMERO DEL CASO</th>
+								<th>NUMERO DEL CASO</th>								
+								<th>FECHA DE RECEPCION DE CITACION</th>
 								<th>FECHA DEL JUICIO</th>
 								<th>NOMBRE DEL MEDICO</th>
 								<th>LUGAR DEL JUICIO</th>
@@ -126,6 +133,7 @@
 						<tr class="text-center" >
 								<td>1</td>
 								<td>4250-2017</td>
+								<td>25/03/2024</td>
 								<td>14/04/2024</td>
 								<td>juan fernando</td>
 								<td>tribunal de setencias tegucigalpa</td>
@@ -145,6 +153,7 @@
 							<tr class="text-center" >
 								<td>2</td>
 								<td>8520-2023</td>
+								<td>26/01/2024</td>
 								<td>14/04/2024</td>
 								<td>jose argueta</td>
 								<td>jusgado de la comyagaua</td>
@@ -164,6 +173,7 @@
 							<tr class="text-center" >
 								<td>3</td>
 								<td>5628-2023</td>
+								<td>18/12/2023</td>
 								<td>15/06/2024</td>
 								<td>julio fernandez</td>
 								<td>tribunal de sentencias tegucigalpa</td>
@@ -183,6 +193,7 @@
 							<tr class="text-center" >
 								<td>4</td>
 								<td>4230-2022</td>
+								<td>24/06s/2024</td>
 								<td>25/06/2024</td>
 								<td>julio fernandez</td>
 								<td>tribunal de sentencias juticalpa</td>
