@@ -133,9 +133,9 @@
 									</div>
 									<div class="col-12 col-md-7">   
 										<div class="form-group">
-											<label for="item_estado" class="bmd-label-floating">Departamnto Cede</label>
+											<label for="item_estado" class="bmd-label-floating">Departamnto Sede</label>
 											<select class="form-control" name="item_estado_reg" id="item_estado">
-												<option value="" selected="" disabled="">Seleccione el Departamento Cede</option>
+												<option value="" selected="" disabled="">Seleccione el Departamento Sede</option>
 												<option value="Habilitado">Atlántida</option>
 												<option value="Deshabilitado">Choluteca</option>
 												<option value="Deshabilitado">Colón</option>
@@ -199,7 +199,7 @@
 								<th>Nº DE TELEFONO</th>	
 								<th>JORNADA</th>	
 								<th>ESTADO</th>	
-								<th>CEDE</th>		
+								<th>SEDE</th>		
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>

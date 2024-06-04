@@ -260,7 +260,7 @@
 	</div>
 	<br><br><br>
 	<fieldset>
-		<legend><i class="fas fa-user"></i> &nbsp;Datos del Acompañante</legend>
+		<legend><i class="fas fa-user"></i> &nbsp;DATOS DEL ACOMPAÑANTE</legend>
 		<div class="container-fluid">
 			<div class="row">
 			<div class="col-12 col-md-4">
@@ -430,6 +430,26 @@
 					<label for="pendiente">Pendiente</label><br />
 					<input type="radio" name="estado" value="medio15-25"id="medio15-25" />
 					<label for="finalizado">Finalizado</label><br /> -->
+					<div class="col-12 col-md-4">                                   
+                                 <div class="form-group">
+                                    <label for="item_estado" class="bmd-label-floating">Sede de Evaluacion</label>
+                                    <select class="form-control" name="item_estado_reg" id="item_estado">
+                                        <option value="" selected="" disabled="">Elija la Sede</option>
+                                        <option value="Habilitado">Comayagua</option>
+                                        <option value="Deshabilitado">Choluteca</option>
+                                        <option value="Deshabilitado">Siguatepeque</option>
+                                        <option value="Deshabilitado">Juticalpa</option>
+                                        <option value="Deshabilitado">Catacamas</option>
+                                        <option value="Deshabilitado">La Esperanza</option>
+                                        <option value="Deshabilitado">Marcala</option>
+                                        <option value="Deshabilitado">La Paz</option>
+                                        <option value="Deshabilitado">Nacaome</option>
+                                        <option value="Deshabilitado">Danli</option>
+                                        <option value="Deshabilitado">Yuscaran</option>
+                                        <option value="Deshabilitado">Talanga</option>
+                                    </select>
+								</div>
+                            </div>
 					<div class="col-12 col-md-4"> 
 						<div class="form-group">
 							<label for="prestamo_fecha_inicio">Fecha de Finalizacion de la Evaluacion</label>

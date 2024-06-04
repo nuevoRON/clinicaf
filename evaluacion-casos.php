@@ -184,6 +184,36 @@
                                     </select>
 								</div>
                             </div>
+                            <div class="container-fluid">                                   
+                                 <div class="form-group">
+                                    <label for="item_estado" class="bmd-label-floating">Sede de Evaluacion</label>
+                                    <select class="form-control" name="item_estado_reg" id="item_estado">
+                                        <option value="" selected="" disabled="">Elija la Sede</option>
+                                        <option value="Habilitado">Comayagua</option>
+                                        <option value="Deshabilitado">Choluteca</option>
+                                        <option value="Deshabilitado">Siguatepeque</option>
+                                        <option value="Deshabilitado">Juticalpa</option>
+                                        <option value="Deshabilitado">Catacamas</option>
+                                        <option value="Deshabilitado">La Esperanza</option>
+                                        <option value="Deshabilitado">Marcala</option>
+                                        <option value="Deshabilitado">La Paz</option>
+                                        <option value="Deshabilitado">Nacaome</option>
+                                        <option value="Deshabilitado">Danli</option>
+                                        <option value="Deshabilitado">Yuscaran</option>
+                                        <option value="Deshabilitado">Talanga</option>
+                                    </select>
+								</div>
+                            </div>
+                            <div class="container-fluid">                                   
+                                 <div class="form-group">
+                                    <label for="item_estado" class="bmd-label-floating">El Caso Fue Entregado Con Revision</label>
+                                    <select class="form-control" name="item_estado_reg" id="item_estado">
+                                        <option value="" selected="" disabled="">Elija su Respuesta</option>
+                                        <option value="Habilitado">SI</option>
+                                        <option value="habilitado">No</option>
+                                    </select>
+								</div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                         <button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>

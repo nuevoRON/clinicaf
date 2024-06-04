@@ -24,40 +24,18 @@
 				<h3 class="text-left">
 					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDO
 				</h3>
-				<p class="text-justify">
-					aqui podremos ver la lista de proveídos
-				</p>
+				<div class="container-fluid">
+					
+						<div class="container-fluid">
+							<p class="text-center">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalproveído"><i class="fas fa-user-plus"></i> &nbsp; Agregar Proveído</button>
+								<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar item</button> -->
+							</p>
 
-			<div class="container-fluid">
-				<ul class="full-box list-unstyled page-nav-tabs">
- 					<!-- <li>
-						<a href="proveido.php"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PROVEÍDO</a>
-					</li>  -->
-					<li>
-						<a class="active" href="lista-proveido.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDO</a>
-					</li>
-<!-- 					<li>
-						<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR PROVEÍDO</a>
-					</li> -->
-				</ul>	
-			</div>
-			<div class="container-fluid">
-                <div class="container-fluid form-neon">
-                    <div class="container-fluid">
-                        <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalproveído"><i class="fas fa-user-plus"></i> &nbsp; Agregar Proveído</button>
-                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar item</button> -->
-                        </p>
-
-                    </div>
-                </div>
-            </div>
-			
-
-
-
-
-			<!-- Content here-->
+						</div>
+					</div>
+            	</div>
+				<!-- Content here-->
 			<div class="container-fluid">
 				<div class="table-responsive">
 					<table class="table table-dark table-sm">
@@ -68,8 +46,7 @@
 								<th>NOMBRE</th>
 								<th>APELLIDO</th>
 								<th>DEPENDIA SOLICITANTE</th>
-								<th>TIPO RECONOCIMINETO</th>
-								<th>RESULTADO</th>								
+								<th>TIPO RECONOCIMINETO</th>							
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -83,14 +60,9 @@
 								<td>FISCALIA DE TURNO</td>
 								<td>VIOLACION</td>
 								<td>
-									<button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover" title="paciente" data-content="Resultado del medico">
-										<i class="fas fa-info-circle"></i>
-									</button>
-								</td>
-								<td>
-									<a href="proveido.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
-									</a>
+									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
 								</td>
 								<td>
 									<form action="">
@@ -108,14 +80,9 @@
 								<td>HEU</td>
 								<td>MALTRATO INFANTIL</td>
 								<td>
-									<button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover" title="paciente" data-content="Resultado del medico">
-										<i class="fas fa-info-circle"></i>
-									</button>
-								</td>
-								<td>
-									<a href="proveido.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
-									</a>
+									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
 								</td>
 								<td>
 									<form action="">
@@ -133,14 +100,9 @@
 								<td>FISCALIA DE LA NIÑES</td>
 								<td>ABUSO SEXUAL</td>
 								<td>
-									<button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover" title="paciente" data-content="Resultado del medico">
-										<i class="fas fa-info-circle"></i>
-									</button>
-								</td>
-								<td>
-									<a href="proveido.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
-									</a>
+									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
 								</td>
 								<td>
 									<form action="">
@@ -158,14 +120,9 @@
 								<td>FISCALIS DE LA MUJER</td>
 								<td>ESTADO DE SALUD</td>
 								<td>
-									<button type="button" class="btn btn-info" data-toggle="popover" data-trigger="hover" title="paciente" data-content="Resultado del medico">
-										<i class="fas fa-info-circle"></i>
-									</button>
-								</td>
-								<td>
-									<a href="proveido.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
-									</a>
+									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
 								</td>
 								<td>
 									<form action="">
