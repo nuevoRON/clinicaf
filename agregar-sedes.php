@@ -131,7 +131,6 @@
 								<th>DEPARTAMENTO</th>
 								<th>MUNICIPIO</th>
 								<th>UBICACION</th>
-								<th>ENGARDO DE LA SEDE</th>
                                 <th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -142,7 +141,6 @@
 								<td>Olancho</td>
 								<td>*********</td>
 								<td>*******</td>
-								<td>Jefe Regional</td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
                                         <i class="fas fa-sync-alt"></i>
@@ -161,7 +159,6 @@
 								<td>Yoro</td>
 								<td>*********</td>
 								<td>*******</td>
-								<td>Jefe Regional</td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
                                         <i class="fas fa-sync-alt"></i>
@@ -180,7 +177,6 @@
 								<td>Intibucá</td>
 								<td>*********</td>
 								<td>*******</td>
-								<td>Jefe Regional</td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
                                         <i class="fas fa-sync-alt"></i>
@@ -199,7 +195,6 @@
 								<td>Valle</td>
 								<td>*********</td>
 								<td>*******</td>
-								<td>Jefe Regional</td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
                                         <i class="fas fa-sync-alt"></i>

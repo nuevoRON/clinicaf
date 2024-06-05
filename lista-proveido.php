@@ -41,7 +41,7 @@
 					<table class="table table-dark table-sm">
 						<thead>
 							<tr class="text-center roboto-medium">
-								<th># DE CASO</th>
+								<th># DE SOLICITUD</th>
 								<th>DNI</th>
 								<th>NOMBRE</th>
 								<th>APELLIDO</th>
@@ -306,7 +306,7 @@
 						<div class="container-fluid">
 							<form action="" class="form-neon" autocomplete="off">
 								<fieldset>
-									<legend><i class="fas fa-user"></i> &nbsp;Tipo de Reconocimiento (consultar si se cambia por evaluacion)</legend>
+									<legend><i class="fas fa-user"></i> &nbsp;TIPO DE RECONOCIMINETO	</legend>
 									<div class="container-fluid">
 										<div class="row">
 
@@ -345,10 +345,10 @@
 							</div>
                         </div>
                         <p class="text-center" style="margin-top: 40px;">
-						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
-						&nbsp; &nbsp;
-						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
-					</p>
+							<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+							&nbsp; &nbsp;
+							<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+						</p>
                     </div>
                 </div>
             </div>
