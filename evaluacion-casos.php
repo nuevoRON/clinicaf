@@ -59,18 +59,26 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="container-fluid">
-                                    <div class="form-group">
-										<label for="item_estado" class="bmd-label-floating">Medico que revisa</label>
-										<select class="form-control" name="item_estado_reg" id="item_estado">
-											<option value="" selected="" disabled="">Seleccione el Medico</option>
-											<option value="Habilitado">Fernando</option>
-											<option value="Deshabilitado">Julio</option>
-											<option value="Deshabilitado">Raul</option>
-										</select>
-									</div>
+                            <div class="container-fluid">                                   
+                                 <div class="form-group">
+                                    <label for="item_estado" class="bmd-label-floating">Medico que Realizo la Revision</label>
+                                    <select class="form-control" name="item_estado_reg" id="item_estado">
+                                        <option value="" selected="" disabled="">Seleccione el Medico</option>
+                                        <option value="Habilitado">Carlos Alberto</option>
+                                        <option value="Deshabilitado">Teresa de Jesus Barahona</option>                                    
+                                    </select>
+								</div>
                             </div>
-                            <br>
+                            <div class="container-fluid">                                   
+                                 <div class="form-group">
+                                    <label for="item_estado" class="bmd-label-floating">Enviado para</label>
+                                    <select class="form-control" name="item_estado_reg" id="item_estado">
+                                        <option value="" selected="" disabled="">Seleccione para que fue enviado</option>
+                                        <option value="Habilitado">Revision</option>
+                                        <option value="Deshabilitado">Descargo</option>                                    
+                                    </select>
+								</div>
+                            </div>
                             <div class="container-fluid" id="tabla_clientes">
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered table-sm">
@@ -122,8 +130,15 @@
                                         <option value="Deshabilitado">Mala Praxis</option>
                                         <option value="Deshabilitado">Maltrato Familiar</option>
                                         <option value="Deshabilitado">Violencia Domenstica</option>
+                                        <option value="Deshabilitado">Revision de Expediente</option>
                                     </select>
 								</div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="form-group">
+                                    <label for="cliente_dni" class="bmd-label-floating">Observaciones</label>
+                                    <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+                                </div>
                             </div>
                             <div class="container-fluid">                                   
                                  <div class="form-group">
@@ -156,7 +171,7 @@
                             </div>
                             <div class="container-fluid">                                   
                                  <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Oficina Regional Que Realiza la Evaluacion</label>
+                                    <label for="item_estado" class="bmd-label-floating">Clinica Regional/local Que Realiza la Evaluacion</label>
                                     <select class="form-control" name="item_estado_reg" id="item_estado">
                                         <option value="" selected="" disabled="">Elija la oficina a la que pertenece</option>
                                         <option value="Habilitado">Comayagua</option>
@@ -174,45 +189,6 @@
                                     </select>
 								</div>
                             </div>
-                            <div class="container-fluid">                                   
-                                 <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Medico que Realizo la Revision</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Seleccione el Medico</option>
-                                        <option value="Habilitado">Carlos Alberto</option>
-                                        <option value="Deshabilitado">Teresa de Jesus Barahona</option>                                    
-                                    </select>
-								</div>
-                            </div>
-                            <div class="container-fluid">                                   
-                                 <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Sede de Evaluacion</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Elija la Sede</option>
-                                        <option value="Habilitado">Comayagua</option>
-                                        <option value="Deshabilitado">Choluteca</option>
-                                        <option value="Deshabilitado">Siguatepeque</option>
-                                        <option value="Deshabilitado">Juticalpa</option>
-                                        <option value="Deshabilitado">Catacamas</option>
-                                        <option value="Deshabilitado">La Esperanza</option>
-                                        <option value="Deshabilitado">Marcala</option>
-                                        <option value="Deshabilitado">La Paz</option>
-                                        <option value="Deshabilitado">Nacaome</option>
-                                        <option value="Deshabilitado">Danli</option>
-                                        <option value="Deshabilitado">Yuscaran</option>
-                                        <option value="Deshabilitado">Talanga</option>
-                                    </select>
-								</div>
-                            </div>
-                            <div class="container-fluid">                                   
-                                 <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">El Caso Fue Entregado Con Revision</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Elija su Respuesta</option>
-                                        <option value="Habilitado">SI</option>
-                                        <option value="habilitado">No</option>
-                                    </select>
-								</div>
                             </div>
                         </div>
                         

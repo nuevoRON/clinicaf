@@ -425,7 +425,7 @@
 </div>
 				<form method="post" action="tratamiento.php">
 					
-					Por favor, indique el Estado de la Evaluacion:<br>
+					Por favor, Indique el Lugar de la Evaluacion:<br>
 					<!-- <input type="radio" name="estado" value="menos15" id="menos15"/>
 					<label for="pendiente">Pendiente</label><br />
 					<input type="radio" name="estado" value="medio15-25"id="medio15-25" />

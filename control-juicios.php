@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Lista de Juicios</title>
+	<title>Lista de citaciones</title>
 	<?php include "./inc/link.php"; ?>
 
 
@@ -23,7 +23,7 @@
 			<!-- Page header -->
 			<div class="full-box">
 				<h4 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; CONTROL DE JUICOS
+					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; CONTROL DE CITACIONES
 				</h4>
 			</div>
 
@@ -56,7 +56,7 @@
 <div class="container-fluid">
             <form action="" class="form-neon" autocomplete="off">
                 <fieldset>
-                    <legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL JUICIO</legend>
+                    <legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DE LA CITACION</legend>
                     <div class="container-fluid">
                         <div class="row">
                                 <div class="col-12 col-md-5">

@@ -46,7 +46,8 @@
 								<th>NOMBRE</th>
 								<th>APELLIDO</th>
 								<th>DEPENDIA SOLICITANTE</th>
-								<th>TIPO RECONOCIMINETO</th>							
+								<th>TIPO RECONOCIMINETO</th>
+								<th>FECHA PARA LA CUAL FUE CITADO</th>						
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -59,6 +60,7 @@
 								<td>APELLIDO DEL PACIENTE</td>
 								<td>FISCALIA DE TURNO</td>
 								<td>VIOLACION</td>
+								<td>14/20/2024</td>
 								<td>
 									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
                                         <i class="fas fa-sync-alt"></i>
@@ -79,6 +81,7 @@
 								<td>APELLIDO DEL PACIENTE</td>
 								<td>HEU</td>
 								<td>MALTRATO INFANTIL</td>
+								<td>14/20/2024</td>
 								<td>
 									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
                                         <i class="fas fa-sync-alt"></i>
@@ -99,6 +102,7 @@
 								<td>APELLIDO DEL PACIENTE</td>
 								<td>FISCALIA DE LA NIÑES</td>
 								<td>ABUSO SEXUAL</td>
+								<td>14/20/2024</td>
 								<td>
 									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
                                         <i class="fas fa-sync-alt"></i>
@@ -119,6 +123,7 @@
 								<td>APELLIDO DEL PACIENTE</td>
 								<td>FISCALIS DE LA MUJER</td>
 								<td>ESTADO DE SALUD</td>
+								<td>14/20/2024</td>
 								<td>
 									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
                                         <i class="fas fa-sync-alt"></i>
@@ -341,9 +346,16 @@
 									<option value="Deshabilitado">Claudia Lagos</option>
 									<option value="Deshabilitado">Arnoldo Castillo</option>
 									<option value="Deshabilitado">Jose Lobo</option>
+									<option value="Deshabilitado">Pendiente de Asignacion</option>
 								</select>
 							</div>
                         </div>
+						<div class="col-12 col-md-5">
+									<div class="form-group">
+										<label for="prestamo_fecha_inicio">Fecha Para la cual fue citado</label>
+										<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
+									</div>
+								</div>
                         <p class="text-center" style="margin-top: 40px;">
 							<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
 							&nbsp; &nbsp;
