@@ -256,6 +256,12 @@
 						</select>
 					</div>
 				</div>
+				<div class="col-12 col-md-2">
+					<div class="form-group">
+						<label for="cliente_telefono" class="bmd-label-floating">Lugar de Procdencia del Evaluado</label>
+						<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="3">
+					</div>
+				</div>
 		</div>
 	</div>
 	<br><br><br>
