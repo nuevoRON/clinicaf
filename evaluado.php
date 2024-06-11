@@ -184,7 +184,6 @@
 							<option value="Habilitado">Masculino</option>
 							<option value="Deshabilitado">Femenino</option>
 							<option value="Deshabilitado">A Determinar</option>
-							<option value="Deshabilitado">Testigo Protegido</option>
 						</select>
 					</div>	
 				</div>
@@ -232,7 +231,6 @@
 							<option value="Deshabilitado">Universitaria Incompleta</option>
 							<option value="Deshabilitado">Universitaria completa</option>
 							<option value="Deshabilitado">No Aplica</option>
-							<option value="Deshabilitado">Testigo Protegido (VERIFICAR)</option>
 						</select>
 					</div>
 				</div>

@@ -32,22 +32,22 @@
 	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
 	======================================================================================================================================================================================-->			
 			
-<!-- MODAL JUICIOS -->         
+<!-- MODAL CITACION -->         
                 
                     <div class="container-fluid">                  
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modaljuicio"><i class="fas fa-user-plus"></i> &nbsp; Agregar Juicio</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCitacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Citacion</button>
                         </p>
 
                     </div>
                
            
             
-            <div class="modal fade" id="Modaljuicio" tabindex="-1" role="dialog" aria-labelledby="Modaljuicio" aria-hidden="true">
+            <div class="modal fade" id="ModalCitacion" tabindex="-1" role="dialog" aria-labelledby="ModalCitacion" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="Modaljuicio">Agregar Juicio</h5>
+                            <h5 class="modal-title" id="ModalCitacion">Agregar Citacion</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -65,6 +65,16 @@
                                         <input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
                                     </div>
                                 </div>
+								<div class="col-12 col-md-6">   
+                                    <div class="form-group">
+                                        <label for="item_estado" class="bmd-label-floating">Tipo de Citacion</label>
+                                        <select class="form-control" name="item_estado_reg" id="item_estado">
+                                            <option value="" selected="" disabled="">Seleccione la Citacion</option>
+                                            <option value="Habilitado">Juicio</option>
+                                            <option value="Habilitado">Juramentacion</option>
+                                        </select>
+                                    </div>							
+                                </div>
 								<div class="col-12 col-md-6">
 									<div class="form-group">
 										<label for="prestamo_fecha_inicio">Fecha que se recibe la citacion</label>
@@ -73,8 +83,8 @@
 								</div>
                                 <div class="col-12 col-md-6">
 									<div class="form-group">
-										<label for="prestamo_fecha_inicio">Fecha del Juicio</label>
-										<input type="date" class="form-control" name="fecha_juicio" id="fecha_juicio_id">
+										<label for="prestamo_fecha_inicio">Fecha de la citacion</label>
+										<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion_id">
 									</div>
 								</div>
                                 <div class="col-12 col-md-6">   
@@ -92,7 +102,7 @@
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <div class="form-group">
-                                        <label for="cliente_dni" class="bmd-label-floating">Lugar del Juicio</label>
+                                        <label for="cliente_dni" class="bmd-label-floating">Lugar de la citacion</label>
                                         <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
                                     </div>
                                 </div>  
@@ -120,11 +130,12 @@
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
-								<th>NUMERO DEL CASO</th>								
+								<th>NUMERO DEL CASO</th>
+								<th>TIPO DE CITACION</th>								
 								<th>FECHA DE RECEPCION DE CITACION</th>
-								<th>FECHA DEL JUICIO</th>
+								<th>FECHA DE LA CITACION</th>
 								<th>NOMBRE DEL MEDICO</th>
-								<th>LUGAR DEL JUICIO</th>
+								<th>LUGAR DE LA CITACION</th>
                                 <th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -133,12 +144,13 @@
 						<tr class="text-center" >
 								<td>1</td>
 								<td>4250-2017</td>
+								<td>Juicio</td>
 								<td>25/03/2024</td>
 								<td>14/04/2024</td>
 								<td>juan fernando</td>
 								<td>tribunal de setencias tegucigalpa</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modaljuicio">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>									
 								</td>
@@ -151,14 +163,15 @@
 								</td>
 							</tr>
 							<tr class="text-center" >
-								<td>2</td>
+								<td>2</td>								
 								<td>8520-2023</td>
+								<td>Juramentacion</td>
 								<td>26/01/2024</td>
 								<td>14/04/2024</td>
 								<td>jose argueta</td>
 								<td>jusgado de la comyagaua</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modaljuicio">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>
@@ -173,12 +186,13 @@
 							<tr class="text-center" >
 								<td>3</td>
 								<td>5628-2023</td>
+								<td>Juramentacion</td>
 								<td>18/12/2023</td>
 								<td>15/06/2024</td>
 								<td>julio fernandez</td>
 								<td>tribunal de sentencias tegucigalpa</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modaljuicio">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>
@@ -193,12 +207,13 @@
 							<tr class="text-center" >
 								<td>4</td>
 								<td>4230-2022</td>
+								<td>Juicio</td>
 								<td>24/06s/2024</td>
 								<td>25/06/2024</td>
 								<td>julio fernandez</td>
 								<td>tribunal de sentencias juticalpa</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modaljuicio">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>
