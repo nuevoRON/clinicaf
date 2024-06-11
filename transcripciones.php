@@ -33,18 +33,18 @@
                 
 <div class="container-fluid">                  
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalVacacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Documento</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalTranscri"><i class="fas fa-user-plus"></i> &nbsp; Agregar Documento</button>
                         </p>
 
                     </div>
                
            
             
-            <div class="modal fade" id="ModalVacacion" tabindex="-1" role="dialog" aria-labelledby="ModalVacacion" aria-hidden="true">
+            <div class="modal fade" id="ModalTranscri" tabindex="-1" role="dialog" aria-labelledby="ModalTranscri" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalVacacion">Agregar</h5>
+                            <h5 class="modal-title" id="ModalTranscri">Agregar</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -169,7 +169,7 @@
 								<td>TRANSCRIOCION</td>
 								<td>4530-2024</td>
 								<td>1</td>
-								<th>FERNANDO</th>
+								<th>JUAN</th>
 								<td>FISCALIA DE LA MUJER</td>
 								<td>FISCALIA</td>
 								<td>14/5/2024</td>
@@ -177,7 +177,7 @@
 								<td>ANTA FERNANDA</td>
 								<td>FUE ENTREGADA A LA SECRETARIA</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalTranscri">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>
@@ -202,7 +202,7 @@
 								<td>ANTA FERNANDA</td>
 								<td>FUE ENTREGADA A LA SECRETARIA</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalTranscri">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>
@@ -227,7 +227,7 @@
 								<td>ANTA FERNANDA</td>
 								<td>FUE ENTREGADA A LA SECRETARIA</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalTranscri">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>
@@ -252,7 +252,7 @@
 								<td>ANTA FERNANDA</td>
 								<td>FUE ENTREGADA A LA SECRETARIA</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalTranscri">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>

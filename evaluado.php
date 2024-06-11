@@ -31,38 +31,6 @@
 				</a>
 			</nav>
 
-
-									<!--=============================================
-									=           se comento por que se requiere           =
-									==============================================-->
-<!-- Page header -->
-<!-- 			<div class="full-box page-header">
-				<h3 class="text-left">
-					<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PROVEÍDO
-				</h3>
-				<p class="text-justify">
-					Asegúrese de agregar la información de manera clara y correcta
-				</p>
-			</div> -->
-<!--FIN Page header -->
-									<!--=============================================
-									=           se comento por que se requiere           =
-									==============================================-->
-<!-- 			<div class="container-fluid">
-				<ul class="full-box list-unstyled page-nav-tabs">
-					<li>
-						<a class="active" href="proveído.html"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR PROVEÍDO</a>
-					</li>
-					<li>
-						<a href="lista-proveído.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDOS</a>
-					</li>
-					<li>
-						<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR PROVEÍDOS</a>
-					</li>
-				</ul>	
-			</div> -->
-			
-<!-- Contenedor-->
 <div class="container-fluid">
 <form action="" class="form-neon" autocomplete="off">
 	<fieldset>
@@ -185,8 +153,11 @@
 							<option value="Deshabilitado">Femenino</option>
 							<option value="Deshabilitado">A Determinar</option>
 						</select>
+
 					</div>	
 				</div>
+
+				
 				<div class="col-12 col-md-3">
 					<div class="form-group">
 						<label for="cliente_telefono" class="bmd-label-floating">diversidad</label>
@@ -219,10 +190,69 @@
 				</div> -->
 				<div class="col-12 col-md-2">
 					<div class="form-group">
-						<label for="cliente_telefono" class="bmd-label-floating">Ocupacion</label>
-						<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="3">
-					</div>
+						<label for="item_estado" class="bmd-label-floating">Ocupacion</label>
+						<select class="form-control" name="item_estado_reg" id="item_estado">
+							<option value="" selected="" disabled="">Seleccione la Ocupacion</option>
+							<option value="Habilitado">Albañil</option>
+							<option value="Deshabilitado">Carpintero</option>s
+							<option value="Deshabilitado">Ama de Casa</option>
+							<option value="Deshabilitado">Pezcador</option>
+							<option value="Deshabilitado">Taxista</option>
+							<option value="Deshabilitado">Secretariaa</option>
+							<option value="Deshabilitado">Estudiante</option>
+							<option value="Deshabilitado">No Aplica</option>
+						</select>
+					</div>				
 				</div>
+									<!-- MODAL AGREGAR OCUPACION -->
+ <!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-    BOTON PARA AGREGAR    -*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+<div class="">
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalOcupacion">
+						<i class="fas fa-plus"></i>
+					</button>
+</div>
+<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->             
+   
+            <div class="modal fade" id="ModalOcupacion" tabindex="-1" role="dialog" aria-labelledby="ModalOcupacion" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalOcupacion">Agregar Nueva Ocupacion</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+<!-- Contenedor-->
+<div class="container-fluid">
+            <form action="" class="form-neon" autocomplete="off">
+                <fieldset>
+                    <div class="container-fluid">
+                        <div class="row">
+							<div class="col-12 col-md-8">									
+								<div class="form-group" >
+									<label for="instrumento" class="bmd-label-floating">Ocupacion</label>
+									<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="instrumento_reg" id="id_instrumento	" maxlength="27">
+								</div>
+							</div>
+						</div>	
+                    </div>
+                </fieldset>
+					
+					<p class="text-center" style="margin-top: 40px;">
+						&nbsp; &nbsp;
+						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+					</p>
+			</form>
+			</div>	
+            </div>
+        </div>
+    </div>
+<!--=====================================================================================================================================================================================
+	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
+======================================================================================================================================================================================-->
+
 				<div class="col-12 col-md-3">
 					<div class="form-group">
 						<label for="item_estado" class="bmd-label-floating">Escolaridad</label>
@@ -237,9 +267,8 @@
 							<option value="Deshabilitado">Universitaria completa</option>
 							<option value="Deshabilitado">No Aplica</option>
 						</select>
-					</div>
+					</div>				
 				</div>
-				
 				<div class="col-12 col-md-2">
 					<div class="form-group">
 						<label for="cliente_telefono" class="bmd-label-floating">Edad</label>
@@ -404,6 +433,54 @@
 			<option value="Deshabilitado">No Aplica</option>
 		</select>
 	</div>
+										<!-- MODAL AGREGAR INSTRUMENTO -->
+ <!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-    BOTON PARA AGREGAR    -*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+<div class="">
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalInstru">
+						<i class="fas fa-plus"></i>
+					</button>
+</div>
+<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->             
+   
+            <div class="modal fade" id="ModalInstru" tabindex="-1" role="dialog" aria-labelledby="ModalInstru" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalInstru">Agregar Nuevo Instrumento</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+<!-- Contenedor-->
+<div class="container-fluid">
+            <form action="" class="form-neon" autocomplete="off">
+                <fieldset>
+                    <div class="container-fluid">
+                        <div class="row">
+							<div class="col-12 col-md-8">									
+								<div class="form-group" >
+									<label for="instrumento" class="bmd-label-floating">Instrumento</label>
+									<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="instrumento_reg" id="id_instrumento	" maxlength="27">
+								</div>
+							</div>
+						</div>	
+                    </div>
+                </fieldset>
+					
+					<p class="text-center" style="margin-top: 40px;">
+						&nbsp; &nbsp;
+						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+					</p>
+			</form>
+			</div>	
+            </div>
+        </div>
+    </div>
+<!--=====================================================================================================================================================================================
+	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
+======================================================================================================================================================================================-->
 </div><div class="col-12 col-md-3">
 	<div class="form-group">
 		<label for="item_estado" class="bmd-label-floating">Relacion Con el Agresor</label>
