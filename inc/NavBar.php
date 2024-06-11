@@ -39,6 +39,9 @@
 				<li>
 					<a href="control-juicios.php"><i class="fas fa-balance-scale"></i> &nbsp; Control de Citaciones</a>
 				</li>
+				<li>
+					<a href="transcripciones.php"><i class="fas fa-copy"></i> &nbsp; Transcripciones y Ampliaciones</a>
+				</li>
 				<ul>
 					<li>
 						<a href="evaluacion-casos.php"><i class="fas fa-exchange-alt"></i> &nbsp; Revision de Casos</a>
@@ -52,6 +55,9 @@
 						</li>
 						<li>
 							<a href="personal.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Nuevo Peronal</a>
+						</li>
+						<li>
+							<a href="control_vacaiones.php"><i class="fas fa-calendar-week"></i> &nbsp; vacaciones</a>
 						</li>
 					</ul>
 				</li>
