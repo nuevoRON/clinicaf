@@ -171,7 +171,7 @@
 							<option value="" selected="" disabled="">Seleccione la Nacionalidad</option>
 							<option value="Habilitado">Hondureña</option>
 							<option value="Deshabilitado">Desconocida</option>
-							<option value="Deshabilitado">Otra</option>
+							<option value="Deshabilitado">Otra</option>								
 						</select>
 					</div>
 				</div>
@@ -205,7 +205,7 @@
 						</select>
 					</div>	
 				</div>
-				<div class="col-12 col-md-3">
+				<!-- <div class="col-12 col-md-3">
 					<div class="form-group">
 						<label for="item_estado" class="bmd-label-floating">Ocupacion</label>
 						<select class="form-control" name="item_estado_reg" id="item_estado">
@@ -216,8 +216,13 @@
 							<option value="Deshabilitado">Estudiante</option>
 						</select>
 					</div>
+				</div> -->
+				<div class="col-12 col-md-2">
+					<div class="form-group">
+						<label for="cliente_telefono" class="bmd-label-floating">Ocupacion</label>
+						<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="cliente_telefono_reg" id="cliente_telefono" maxlength="3">
+					</div>
 				</div>
-			
 				<div class="col-12 col-md-3">
 					<div class="form-group">
 						<label for="item_estado" class="bmd-label-floating">Escolaridad</label>
