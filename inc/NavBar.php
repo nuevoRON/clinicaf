@@ -40,7 +40,7 @@
 					<a href="control-juicios.php"><i class="fas fa-balance-scale"></i> &nbsp; Control de Citaciones</a>
 				</li>
 				<li>
-					<a href="transcripciones.php"><i class="fas fa-copy"></i> &nbsp; Transcripciones y Ampliaciones</a>
+					<a href="control_dictamenes.php"><i class="fas fa-copy"></i> &nbsp; Control de Dictameness</a>
 				</li>
 				<ul>
 					<li>
