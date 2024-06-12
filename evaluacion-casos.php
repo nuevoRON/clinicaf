@@ -24,17 +24,6 @@
                 </h3>
 
             <div class="container-fluid">
-                <ul class="full-box list-unstyled page-nav-tabs">
-                    <li>
-                        <a class="active" href="reservation-new.html"><i class="fas fa-plus fa-fw"></i> &nbsp; NUEVAS EVALUACIONES</a>
-                    </li>
-                    <li>
-                        <a href="reservation-reservation.html"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; CASOS EVALUADOS</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="container-fluid">
                 <div class="container-fluid form-neon">
                     <div class="container-fluid">
                         <p class="text-center roboto-medium">EVALUACION DE CASOS</p>

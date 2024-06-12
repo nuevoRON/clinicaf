@@ -15,13 +15,6 @@
 				<li>
 					<a href="home.php"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Inicio</a>
 				</li>
-
-				<!-- <li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-users fa-fw"></i> &nbsp; proveído <i class="fas fa-chevron-down"></i></a>
-					<ul>
-							<a href="lista-proveido.php"><i class="fas fa-users fa-fw"></i> &nbsp; Lista de proveídos</a>
-					</ul>
-				</li> -->
 				<ul>
 					<li>
 					<a href="lista-proveido.php"><i class="fas fa-users fa-fw"></i> &nbsp; proveídos</a>
@@ -32,10 +25,6 @@
 						<a href="lista-evaluacion.php"><i class="fas fa-pallet fa-fw"></i> &nbsp; Evaluacion</a>
 					</li>
 				</ul>
-				<!-- <li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-pallet fa-fw"></i> &nbsp; Evaluaciones <i class="fas fa-chevron-down"></i></a>
-					
-				</li> -->
 				<li>
 					<a href="control-juicios.php"><i class="fas fa-balance-scale"></i> &nbsp; Control de Citaciones</a>
 				</li>
@@ -48,6 +37,12 @@
 					</li>
 				</ul>
 				<li>
+					<a href="#" class="nav-btn-submenu"><i class="fas fa-clipboard-list"></i> &nbsp; Plantillas <i class="fas fa-chevron-down"></i></a>
+					<ul>			
+			
+					</ul>
+				</li>
+				<li>
 					<a href="#" class="nav-btn-submenu"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 					<ul>
 						<li>
@@ -59,17 +54,6 @@
 						<li>
 							<a href="control_vacaiones.php"><i class="fas fa-calendar-week"></i> &nbsp; vacaciones</a>
 						</li>
-					</ul>
-				</li>
-				<!-- <li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-exchange-alt"></i> &nbsp; Control de Revision de Casos <i class="fas fa-chevron-down"></i></a>
-				</li> -->
-				<li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-clipboard-list"></i> &nbsp; Plantillas <i class="fas fa-chevron-down"></i></a>
-					<ul>
-			
-			
-			
 					</ul>
 				</li>
 			</ul>

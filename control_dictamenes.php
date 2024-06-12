@@ -171,10 +171,9 @@
 								<td>Dictamen</td>
 								<td>Pedro Alvares</td>
 								<td>25/03/2024</td>
-								<td>Fiscalia de la Mujer</td>
-								
+								<td>Fiscalia de la Mujer</td>								
 								<td>25/03/2024</td>
-								<td>Entregado a secretaria</td>>
+								<td>Entregado a secretaria</td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalDictamen">
                                         <i class="fas fa-sync-alt"></i>
@@ -216,8 +215,7 @@
 								<td>Transcripcion</td>
 								<td>juan fernando</td>
 								<td>25/03/2024</td>
-								<td>Fiscalia de la Mujer</td>
-								
+								<td>Fiscalia de la Mujer</td>								
 								<td>25/03/2024</td>
 								<td>primera copia</td>
 								<td>
