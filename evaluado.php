@@ -540,8 +540,7 @@
 							<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
 						</div>
 					</div>
-				</form>
-				
+				</form>			
 
 	 <!--  /*/*/*/*/*/*/*/*/*/*/*/*/*            botones de  guardado y limpiar         /*/*/*/*/*/*/*/*/*/*/*/*/ -->	
 		<br><br>
