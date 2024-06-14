@@ -43,7 +43,7 @@
                
            
             
-            <div class="modal fade" id="ModalCitacion" tabindex="-1" role="dialog" aria-labelledby="ModalCitacion" aria-hidden="true">
+            <div class="modal fade" id="ModalCitacion" tabindex="-1" role="dialog" aria-labelledby="ModalCitacion" data-backdrop="static" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

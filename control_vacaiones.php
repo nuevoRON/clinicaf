@@ -40,7 +40,7 @@
                
            
             
-            <div class="modal fade" id="ModalVacacion" tabindex="-1" role="dialog" aria-labelledby="ModalVacacion" aria-hidden="true">
+            <div class="modal fade" id="ModalVacacion" tabindex="-1" role="dialog" aria-labelledby="ModalVacacion" data-backdrop="static" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

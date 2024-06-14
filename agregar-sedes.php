@@ -43,7 +43,7 @@
                
            
             
-            <div class="modal fade" id="ModalSedes" tabindex="-1"  role="dialog" aria-labelledby="ModalSedes" aria-hidden="true">
+            <div class="modal fade" id="ModalSedes" tabindex="-1"  role="dialog" aria-labelledby="ModalSedes" data-backdrop="static" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

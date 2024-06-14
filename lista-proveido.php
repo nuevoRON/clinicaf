@@ -29,7 +29,6 @@
 						<div class="container-fluid">
 							<p class="text-center">
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalproveído"><i class="fas fa-user-plus"></i> &nbsp; Agregar Proveído</button>
-								<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar item</button> -->
 							</p>
 
 						</div>
@@ -161,9 +160,12 @@
 <!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->                            
 <!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->  
             <!-- MODAL PROVEÍDO -->
-            <div class="modal fade" id="Modalproveído" tabindex="-1" role="dialog" aria-labelledby="Modalproveído" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
+            <div class="modal fade" id="Modalproveído" tabindex="-1" role="dialog" aria-labelledby="Modalproveído" data-backdrop="static" aria-hidden="true">
+                <!-- caja de dialogo -->
+			<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <!-- caja de contenido -->        
+			<div class="modal-content">
+				<!-- encanezado de la caja --> 
                         <div class="modal-header">
                             <h5 class="modal-title" id="Modalproveído">Agregar Proveído</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
