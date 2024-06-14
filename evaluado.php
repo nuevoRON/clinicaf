@@ -512,10 +512,8 @@
 				<form method="post" action="tratamiento.php">
 					
 					Por favor, Indique el Lugar de la Evaluacion:<br>
-					<!-- <input type="radio" name="estado" value="menos15" id="menos15"/>
-					<label for="pendiente">Pendiente</label><br />
-					<input type="radio" name="estado" value="medio15-25"id="medio15-25" />
-					<label for="finalizado">Finalizado</label><br /> -->
+					<!-- seran las 27 locales mas las ciudades principales TEGUCIGALPA, CEIBA, SPS. -->
+					
 					<div class="col-12 col-md-4">                                   
                                  <div class="form-group">
                                     <label for="item_estado" class="bmd-label-floating">Sede de Evaluacion</label>

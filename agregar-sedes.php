@@ -36,15 +36,15 @@
                 
                     <div class="container-fluid">                  
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalSedes"><i class="fas fa-user-plus"></i> &nbsp; Agregar Sedes</button>
+                            <button type="button" class="btn btn-primary" data-bs-backdrop="static" data-toggle="modal" data-target="#ModalSedes"><i class="fas fa-user-plus"></i> &nbsp; Agregar Sedes</button>
                         </p>
 
                     </div>
                
            
             
-            <div class="modal fade" id="ModalSedes" tabindex="-1" role="dialog" aria-labelledby="ModalSedes" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+            <div class="modal fade" id="ModalSedes" tabindex="-1"  role="dialog" aria-labelledby="ModalSedes" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="ModalSedes">Agregar Nueva  Sede</h5>

@@ -75,6 +75,7 @@
 												<option value="" selected="" disabled="">Seleccione el Estado</option>>
 												<option value="Deshabilitado">incapacitado</option>
 												<option value="Deshabilitado">Vacaciones</option>
+												<option value="Deshabilitado">Otras</option>
 											</select>
 										</div>
 									</div>
@@ -90,6 +91,12 @@
 											<input type="date" class="form-control" name="Fecha_final" id="fecha_final">
 										</div>
 									</div>
+									<div class="col-12 col-md-4">									
+										<div class="form-group">
+											<label for="cliente_dni" class="bmd-label-floating">observaciones</label>
+											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+										</div>
+								</div>
                                
                                 
                     </div>
@@ -126,7 +133,8 @@
 								<th>ESTADO</th>
 								<th>FECHA DE INICIO</th>
 								<th>FECHA FINAL</th>	
-								<th>TOTAL VACACIONES</th>		
+								<th>TOTAL VACACIONES</th>
+								<th>OBSERVACION</th>		
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -140,6 +148,7 @@
 								<td>14/5/2024</td>
 								<td>14/6/2024</td>
 								<td>31</td>
+								<td></td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
                                         <i class="fas fa-sync-alt"></i>
@@ -161,6 +170,7 @@
 								<td>14/5/2024</td>
 								<td>14/6/2024</td>
 								<td>31</td>
+								<td></td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
                                         <i class="fas fa-sync-alt"></i>
@@ -182,6 +192,7 @@
 								<td>14/5/2024</td>
 								<td>14/6/2024</td>
 								<td>31</td>
+								<td></td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
                                         <i class="fas fa-sync-alt"></i>
@@ -203,6 +214,7 @@
 								<td>14/5/2024</td>
 								<td>14/6/2024</td>
 								<td>31</td>
+								<td></td>
 								<td>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
                                         <i class="fas fa-sync-alt"></i>
