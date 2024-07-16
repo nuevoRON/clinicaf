@@ -15,8 +15,15 @@ class Inicio extends Controller{
     public function proveidos()
     {
         $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'home.js';
+        $data['script'] = 'proveidos.js';
         $this->views->getView('inicio', 'lista-proveido', $data);
+    }
+
+    public function sexos()
+    {
+        $data['title'] = 'Panel Administrativo'; 
+        $data['script'] = 'proveidos.js';
+        $this->views->getView('inicio', 'sexos', $data);
     }
 
 }

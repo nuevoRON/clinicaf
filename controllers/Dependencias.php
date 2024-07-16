@@ -1,9 +1,9 @@
 <?php
-require 'Bitacora.php';
+//require 'Bitacora.php';
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
-class Areas extends Controller
+class Dependencias extends Controller
 {
 
     private $id_usuario;
@@ -18,67 +18,79 @@ class Areas extends Controller
 
     public function plazasDisponibles()
     {
-        $data['title'] = 'Plazas Disponibles';
+        $data['title'] = 'PLAZAS DISPONIBLES';
         $data['script'] = 'plazas.js';
         $this->views->getView('usuarios', 'plazasDisponibles', $data);
     }
 
-    public function pdfAreas()
+    public function listarPuestos()
     {
-        $data['title'] = 'Plazas Disponibles';
-        $data['script'] = 'plazas.js';
-        $this->views->getView('pdf', 'pdfAreas', $data);
-    }
-
-    public function listarAreas()
-    {
-        $data = $this->model->getAreas();
+        $data = $this->model->getPuestos();
         for ($i = 0; $i < count($data); $i++) {
             $data[$i]['acciones'] = '<div>
-            <button class="btn btn-danger" type="button" onclick="eliminarArea(' . $data[$i]['ID_AREA'] . ')"><i class = "fas fa-times-circle"></i></button>
-            <button class="btn btn-info" type="button" onclick="editarArea(' . $data[$i]['ID_AREA'] . ')"><i class="fa-regular fa-pen-to-square"></i></button>
+            <button class="btn btn-danger" type="button" onclick="eliminarPuesto(' . $data[$i]['ID_PUESTO'] . ')"><i class = "fas fa-times-circle"></i></button>
+            <button class="btn btn-info" type="button" onclick="editarPuesto(' . $data[$i]['ID_PUESTO'] . ')"><i class="fa-regular fa-pen-to-square"></i></button>
             </div>';
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 
-    public function getAreas(){
-        $data = $this->model->getAreas();
-        $res = array('areas'=>$data, 'type'=>'success');
+    public function getDependencias(){
+        $data = $this->model->getDependencias();
+        $res = array('dependencias'=>$data, 'type'=>'success');
         echo json_encode($res, JSON_UNESCAPED_UNICODE);
         die();
     }
 
+
+    public function getDepartamentos(){
+        $data = $this->model->getDepartamentos();
+        $res = array('departamentos'=>$data, 'type'=>'success');
+        echo json_encode($res, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+
+    public function getMunicipios($id)
+    {   
+        $data = $this->model->getMunicipios($id);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     //metodo para registrar y modificar
-    public function registrarArea(){
+    public function registrarPuesto(){
         if (isset($_POST)) {
             if (empty($_POST['nombres'])) {
                 $res = array('msg' => 'EL NOMBRE ES REQUERIDO', 'type' => 'warning');
             } else if (empty($_POST['descripcion'])) {
                 $res = array('msg' => 'EL NOMBRE ES REQUERIDO', 'type' => 'warning');
+            }else if (empty($_POST['salario'])) {
+                $res = array('msg' => 'EL SALARO ES REQUERIDO', 'type' => 'warning');
             }else{
                 $nombres = strClean($_POST['nombres']);
-                $descripcion = strClean($_POST['descripcion']); //
+                $descripcion = strClean($_POST['descripcion']); 
+                $salario = strClean($_POST['salario']); //
 
                 $id = strClean($_POST['id']);
                 if ($id == '') {
-                    $data = $this->model->registrarArea($nombres,$descripcion);//##(ORIGINAL)->   $data = $this->model->registrar($roles, $numeros);     <-(ORIGINAL)##//   
+                    $data = $this->model->registrarPuesto($nombres,$descripcion,$salario);
                         if ($data > 0) {
                             $bitacora = new Bitacora();
-                            $bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA '.$nombres, 1);
-                            $res = array('msg' => 'AREA REGISTRADA', 'type' => 'success');
+                            $bitacora->model->crearEvento($_SESSION['id_usuario'], 26, 'CREACION', 'SE HA CREADO EL PUESTO '.$nombres, 1);
+                            $res = array('msg' => 'PUESTO REGISTRADO', 'type' => 'success');
 
                         } else {
                             $res = array('msg' => 'ERROR AL REGISTRAR', 'type' => 'error');
                         }
                 } else {
                     //verificar si existen los datos (ACTUALIZAR)
-                    $data = $this->model->actualizarArea($nombres,$descripcion,$id);
+                    $data = $this->model->actualizarPuesto($nombres,$descripcion,$salario,$id);
                     if ($data > 0) {
                         $bitacora = new Bitacora();
-                        $bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA '.$nombres, 1);
-                        $res = array('msg' => 'AREA ACTUALIZADA', 'type' => 'success');
+                        $bitacora->model->crearEvento($_SESSION['id_usuario'], 26, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL PUESTO '.$nombres, 1);
+                        $res = array('msg' => 'PUESTO ACTUALIZADO', 'type' => 'success');
                     } else {
                         $res = array('msg' => 'ERROR AL ACTUALIZAR', 'type' => 'error');
                     }       
@@ -91,24 +103,23 @@ class Areas extends Controller
         die();
     }
 
-    public function editarArea($id)
+    public function editarPuesto($id)
     {
-        $data = $this->model->editarArea($id);
+        $data = $this->model->editarPuesto($id);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 
-    public function eliminarArea($id)
+    public function eliminarPuesto($id)
     {
-        $data = $this->model->eliminarArea($id);
+        $data = $this->model->eliminarPuesto($id);
         if ($data == 0) {
-            $bitacora = new Bitacora();
-            $bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ACTUALIZADO EL AREA '.$id, 1);
-            $res = array('msg' => 'AREA ELIMINADA', 'type' => 'success');
+            $res = array('msg' => 'PUESTO ELIMINADO', 'type' => 'success');
         } else {
             $res = array('msg' => 'ERROR AL ELIMINAR', 'type' => 'error');
-        }
+        } 
+
         echo json_encode($res, JSON_UNESCAPED_UNICODE);
-        die();  
+        die();
     }
 }

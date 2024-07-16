@@ -33,22 +33,23 @@ $(document).ready(function(){
 	$('.btn-exit-system').on('click', function(e){
 		e.preventDefault();
 		Swal.fire({
-			title: 'Are you sure to close the session?',
-			text: "You are about to close the session and exit the system",
+			title: '¿Está seguro de cerrar sesión?',
+			text: "En este momento cerrará sesión y saldrá del sistema",
 			type: 'question',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, exit!',
-			cancelButtonText: 'No, cancel'
+			confirmButtonText: 'Si, Cerrar Sesión',
+			cancelButtonText: 'No, cancelar'
 		}).then((result) => {
 			if (result.value) {
-				window.location="index.html";
+				window.location="http://localhost/clinicaf";
 			}
 		});
 	});
     
 });
+
 (function($){
     $(window).on("load",function(){
         $(".nav-lateral-content").mCustomScrollbar({

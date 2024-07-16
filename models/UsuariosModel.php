@@ -171,9 +171,9 @@ class UsuariosModel extends Query
         return $this->save($sql, $array);
     }
 
-    public function getRoles($rol)
+    public function getMedicos()
     {
-        $sql = "SELECT id, ROL, DESCRIPCION, ROL_EST, FECHA_CREACION FROM tbl_roles WHERE ROL_EST != $rol";
+        $sql = "SELECT id_usu, nombre, apellido FROM tbl_usu WHERE puesto = '1'";
         return $this->selectAll($sql);
     }
     public function modificarDatos($contraseña, $id)

@@ -1,9 +1,9 @@
 <?php
-require 'Bitacora.php';
+//require 'Bitacora.php';
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
-class Puestos extends Controller
+class Reconocimientos extends Controller
 {
 
     private $id_usuario;
@@ -36,9 +36,9 @@ class Puestos extends Controller
         die();
     }
 
-    public function getAreas(){
-        $data = $this->model->getAreas();
-        $res = array('areas'=>$data, 'type'=>'success');
+    public function getReconocimientos(){
+        $data = $this->model->getReconocimientos();
+        $res = array('reconocimientos'=>$data, 'type'=>'success');
         echo json_encode($res, JSON_UNESCAPED_UNICODE);
         die();
     }

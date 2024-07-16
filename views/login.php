@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Login</title>
-	<?php include "templates/archivosCss.php"; ?>
+	<?php include "templates/archivosCssLogin.php"; ?>
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 	<!--=============================================
 	=            Include JavaScript files           =
 	==============================================-->
-	<?php include "templates/archivosJS.php"; ?>
+	<?php include "templates/archivosJSLogin.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/login.js?<?php echo time(); ?>"></script>
 </body>
 </html>

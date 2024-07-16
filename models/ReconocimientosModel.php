@@ -1,12 +1,12 @@
 <?php
-class PuestosModel extends Query{
+class ReconocimientosModel extends Query{
     public function __construct() {
         parent::__construct();
     }
 
-    public function getPuestos()
+    public function getReconocimientos()
     {
-        $sql = "SELECT * from tbl_puesto";
+        $sql = "SELECT * from tbl_reconocimiento";
         return $this->selectAll($sql);
     }
 

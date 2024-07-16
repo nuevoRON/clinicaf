@@ -54,6 +54,9 @@
 						<li>
 							<a href="control_vacaiones.php"><i class="fas fa-calendar-week"></i> &nbsp; vacaciones</a>
 						</li>
+						<li>
+							<a href="<?php echo BASE_URL . 'inicio/sexos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Sexo</a>
+						</li>
 					</ul>
 				</li>
 			</ul>

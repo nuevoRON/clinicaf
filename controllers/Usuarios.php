@@ -622,10 +622,10 @@ class Usuarios extends Controller
         die();
     }
 
-    public function getRoles($id)
+    public function getMedicos()
     {
-        $data = $this->model->getRoles($id);
-        $res = array('roles' => $data, 'type' => 'success');
+        $data = $this->model->getMedicos();
+        $res = array('medicos' => $data, 'type' => 'success');
         echo json_encode($res, JSON_UNESCAPED_UNICODE);
         die();
     }

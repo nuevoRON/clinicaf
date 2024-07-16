@@ -11,13 +11,16 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 
 	<!-- Sweet Alerts V8.13.0 CSS fassets/ile -->
-	<link rel="stylesheet" href="../assets/css/sweetalert2.min.css">
+	<!-- <link rel="stylesheet" href="../assets/css/sweetalert2.min.css"> -->
 
 	<!-- Sweet Alert V8.13.0 JS file-->
-	<script src="../assets/js/sweetalert2.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- <script src="../assets/js/sweetalert2.min.js" ></script> -->
 
 	<!-- jQuery Custom Content Scroller V3.1.5 -->
 	<link rel="stylesheet" href="../assets/css/jquery.mCustomScrollbar.css">
 	
 	<!-- General Styles -->
 	<link rel="stylesheet" href="../assets/css/style.css">
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">

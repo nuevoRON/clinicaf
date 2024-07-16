@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('Ingrese una clave')
       //errorClave.textContent = 'LA CONTRASEÑA ES REQUERIDO';
     }else {
-      let url = 'http://localhost/clinicaProyecto/login/iniciarSesion';
+      let url = 'http://localhost/clinicaf/login/iniciarSesion';
       const data = new FormData(this);
       const http = new XMLHttpRequest();
       http.open('POST', url, true);
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
             url = base_url + "Bitacora/CrearEvento";
             axios.post(url, data).then((res) => {console.log(res)}); */
 
-            window.location = 'http://localhost/clinicaProyecto/inicio/';
+            window.location = 'http://localhost/clinicaf/inicio/';
           } else {
             Swal.fire(
               'Error',
