@@ -16,26 +16,6 @@ class Dependencias extends Controller
         }
     }
 
-    public function plazasDisponibles()
-    {
-        $data['title'] = 'PLAZAS DISPONIBLES';
-        $data['script'] = 'plazas.js';
-        $this->views->getView('usuarios', 'plazasDisponibles', $data);
-    }
-
-    public function listarPuestos()
-    {
-        $data = $this->model->getPuestos();
-        for ($i = 0; $i < count($data); $i++) {
-            $data[$i]['acciones'] = '<div>
-            <button class="btn btn-danger" type="button" onclick="eliminarPuesto(' . $data[$i]['ID_PUESTO'] . ')"><i class = "fas fa-times-circle"></i></button>
-            <button class="btn btn-info" type="button" onclick="editarPuesto(' . $data[$i]['ID_PUESTO'] . ')"><i class="fa-regular fa-pen-to-square"></i></button>
-            </div>';
-        }
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
-    }
-
     public function getDependencias(){
         $data = $this->model->getDependencias();
         $res = array('dependencias'=>$data, 'type'=>'success');

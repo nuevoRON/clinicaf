@@ -1,34 +1,36 @@
+<?php include "views/templates/sesion.php"; ?>
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Lista de proveído</title>
-	<?php include "./inc/link.php"; ?>
-
-
+	<?php include "views/templates/archivosCss.php"; ?>
 </head>
+
 <body>
-	
+
 	<!-- Main container -->
 	<main class="full-box main-container">
-<!-- INICIO Nav lateral -->
-<?php include "./inc/NavBar.php"; ?>
-<!-- FIN Nav lateral -->
+		<!-- INICIO Nav lateral -->
+		<?php include "views/templates/NavBar.php"; ?>
+		<!-- FIN Nav lateral -->
 
 		<!-- Page content -->
 		<section class="full-box page-content">
-		<?php include "./inc/NavSup.php"; ?>
+			<?php include "views/templates/NavSup.php"; ?>
 
 			<!-- Page header -->
-				<h3 class="text-center">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE EVALUACION
-				</h3>
+			<h3 class="text-center">
+				<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE EVALUACION
+			</h3>
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 				</ul>
 			</div>
-			
+
 			<!-- Content here-->
 			<div class="container-fluid">
 				<div class="table-responsive">
@@ -41,13 +43,13 @@
 								<th>APELLIDO</th>
 								<th>DEPENDIA SOLICITANTE</th>
 								<th>EVALUACION</th>
-								<th>ESTADO</th>									
+								<th>ESTADO</th>
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-center" >
+							<tr class="text-center">
 								<td>1896-2024</td>
 								<td>012342567</td>
 								<td>NOMBRE DEL PACIENTE</td>
@@ -57,18 +59,18 @@
 								<td>NUEVO</td>
 								<td>
 									<a href="evaluado.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
+										<i class="fas fa-sync-alt"></i>
 									</a>
 								</td>
 								<td>
 									<form action="">
 										<button type="button" class="btn btn-warning">
-		  									<i class="far fa-trash-alt"></i>
+											<i class="far fa-trash-alt"></i>
 										</button>
 									</form>
 								</td>
 							</tr>
-							<tr class="text-center" >
+							<tr class="text-center">
 								<td>1897-2024</td>
 								<td>012342567</td>
 								<td>NOMBRE DEL PACIENTE</td>
@@ -78,18 +80,18 @@
 								<td>NUEVO</td>
 								<td>
 									<a href="evaluado.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
+										<i class="fas fa-sync-alt"></i>
 									</a>
 								</td>
 								<td>
 									<form action="">
 										<button type="button" class="btn btn-warning">
-		  									<i class="far fa-trash-alt"></i>
+											<i class="far fa-trash-alt"></i>
 										</button>
 									</form>
 								</td>
 							</tr>
-							<tr class="text-center" >
+							<tr class="text-center">
 								<td>2025-2024</td>
 								<td>012342567</td>
 								<td>NOMBRE DEL PACIENTE</td>
@@ -99,18 +101,18 @@
 								<td>PENDIENTE</td>
 								<td>
 									<a href="evaluado.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
+										<i class="fas fa-sync-alt"></i>
 									</a>
 								</td>
 								<td>
 									<form action="">
 										<button type="button" class="btn btn-warning">
-		  									<i class="far fa-trash-alt"></i>
+											<i class="far fa-trash-alt"></i>
 										</button>
 									</form>
 								</td>
 							</tr>
-							<tr class="text-center" >
+							<tr class="text-center">
 								<td>3605-2024</td>
 								<td>012342567</td>
 								<td>NOMBRE DEL PACIENTE</td>
@@ -120,13 +122,13 @@
 								<td>FINALIZADO</td>
 								<td>
 									<a href="evaluado.php" class="btn btn-success">
-	  									<i class="fas fa-sync-alt"></i>	
+										<i class="fas fa-sync-alt"></i>
 									</a>
 								</td>
 								<td>
 									<form action="">
 										<button type="button" class="btn btn-warning">
-		  									<i class="far fa-trash-alt"></i>
+											<i class="far fa-trash-alt"></i>
 										</button>
 									</form>
 								</td>
@@ -151,12 +153,13 @@
 
 		</section>
 	</main>
-	
-	
+
+
 	<!--=============================================
 	=            Include JavaScript files           =
 	==============================================-->
-	<?php include "./inc/java.php"; ?>
+	<?php include "views/templates/archivosJS.php"; ?>
 
 </body>
+
 </html>

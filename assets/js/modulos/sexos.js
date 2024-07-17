@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Se extraen los datos de la base de datos para llenar el datatable
   let urlListarSexo = "http://localhost/clinicaf/sexos/listarSexos";
+
   axios
     .get(urlListarSexo)
     .then(function (response) {
@@ -114,7 +115,6 @@ formulario.addEventListener('submit', function(e) {
         if (this.readyState == 4 && this.status == 200) {
           console.log(this.responseText);
           const res = JSON.parse(this.responseText);
-
           
           Swal.fire({
             title: res.titulo,

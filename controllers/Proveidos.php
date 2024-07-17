@@ -15,19 +15,6 @@ class Proveidos extends Controller
         }
     }
 
-    public function listarAreas()
-    {
-        $data = $this->model->getAreas();
-        for ($i = 0; $i < count($data); $i++) {
-            $data[$i]['acciones'] = '<div>
-            <button class="btn btn-danger" type="button" onclick="eliminarArea(' . $data[$i]['ID_AREA'] . ')"><i class = "fas fa-times-circle"></i></button>
-            <button class="btn btn-info" type="button" onclick="editarArea(' . $data[$i]['ID_AREA'] . ')"><i class="fa-regular fa-pen-to-square"></i></button>
-            </div>';
-        }
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
-    }
-
     //metodo para registrar y modificar
     public function insertarProveido() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -60,25 +47,4 @@ class Proveidos extends Controller
         }
     }
     
-
-    public function editarArea($id)
-    {
-        $data = $this->model->editarArea($id);
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
-    }
-
-    public function eliminarArea($id)
-    {
-        $data = $this->model->eliminarArea($id);
-        if ($data == 0) {
-            $bitacora = new Bitacora();
-            $bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ACTUALIZADO EL AREA '.$id, 1);
-            $res = array('msg' => 'AREA ELIMINADA', 'type' => 'success');
-        } else {
-            $res = array('msg' => 'ERROR AL ELIMINAR', 'type' => 'error');
-        }
-        echo json_encode($res, JSON_UNESCAPED_UNICODE);
-        die();  
-    }
 }

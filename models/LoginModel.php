@@ -5,7 +5,16 @@ class LoginModel extends Query{
     }
     public function getDatos($correo)
     {
-        $sql = "SELECT * FROM tbl_usu WHERE usuario = '$correo'";
+        $sql = "SELECT u.id_usu,
+                       u.usuario,
+                       u.nombre,
+                       u.contrasena,
+                       u.apellido,
+                       u.estado,
+                       s.ubucacion 
+                FROM tbl_usu u
+                INNER JOIN tbl_sedes s ON s.id_sede = u.sede 
+                WHERE u.usuario = '$correo'";
         return $this->select($sql);
     }
 
@@ -29,12 +38,12 @@ class LoginModel extends Query{
         return $this->save($sql, $array);
     }
 
-    public function getParametro($parametro)
+    /* public function getParametro($parametro)
     {
         $sql = "SELECT p.ID_PARAMETRO, p.PARAMETROS, p.VALOR, p.ID_USUARIO, u.USUARIO, p.FECHA_CREACION, p.FECHA_MODIFICACION
         FROM tbl_parametro p
         JOIN tbl_usuario u ON p.ID_USUARIO = u.ID_USUARIO WHERE p.PARAMETROS = $parametro;";
         return $this->select($sql);
-    }
+    } */
 }
 ?>

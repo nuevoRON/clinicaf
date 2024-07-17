@@ -1,3 +1,5 @@
+<?php include "views/templates/sesion.php"; ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

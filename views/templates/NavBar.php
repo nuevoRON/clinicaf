@@ -6,7 +6,7 @@
 			<i class="far fa-times-circle show-nav-lateral"></i>
 			<img src="../assets/images/Avatar.png" class="img-fluid" alt="Avatar">
 			<figcaption class="roboto-medium text-center">
-				DR. Alejandro Ferrera <br><small class="roboto-condensed-light">Tegucigalpa</small>
+				DR. <?php echo $_SESSION['nombre_usuario']?><br><small class="roboto-condensed-light"><?php echo $_SESSION['sede']?></small>
 			</figcaption>
 		</figure>
 		<div class="full-box nav-lateral-bar"></div>
@@ -17,23 +17,23 @@
 				</li>
 				<ul>
 					<li>
-					<a href="<?php echo BASE_URL . 'inicio/proveidos'; ?>"><i class="fas fa-users fa-fw"></i> &nbsp; proveídos</a>
+					<a href="<?php echo BASE_URL . 'inicio/proveidos'; ?>"><i class="fas fa-users fa-fw"></i> &nbsp; Proveídos</a>
 					</li>
 				</ul>
 				<ul>
 					<li>
-						<a href="lista-evaluacion.php"><i class="fas fa-pallet fa-fw"></i> &nbsp; Evaluacion</a>
+						<a href="<?php echo BASE_URL . 'inicio/listaEvaluacion'; ?>"><i class="fas fa-pallet fa-fw"></i> &nbsp; Evaluacion</a>
 					</li>
 				</ul>
 				<li>
-					<a href="control-juicios.php"><i class="fas fa-balance-scale"></i> &nbsp; Control de Citaciones</a>
+					<a href="<?php echo BASE_URL . 'inicio/controlJuicios'; ?>"><i class="fas fa-balance-scale"></i> &nbsp; Control de Citaciones</a>
 				</li>
 				<li>
-					<a href="control_dictamenes.php"><i class="fas fa-copy"></i> &nbsp; Control de Dictameness</a>
+					<a href="<?php echo BASE_URL . 'inicio/controlDictamenes'; ?>"><i class="fas fa-copy"></i> &nbsp; Control de Dictameness</a>
 				</li>
 				<ul>
 					<li>
-						<a href="evaluacion-casos.php"><i class="fas fa-exchange-alt"></i> &nbsp; Revision de Casos</a>
+						<a href="<?php echo BASE_URL . 'inicio/evaluacionCasos'; ?>"><i class="fas fa-exchange-alt"></i> &nbsp; Revision de Casos</a>
 					</li>
 				</ul>
 				<li>
@@ -46,13 +46,13 @@
 					<a href="#" class="nav-btn-submenu"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 					<ul>
 						<li>
-							<a href="agregar-sedes.php"><i class="fas fa-clinic-medical"></i> &nbsp; Nuevas Sedes</a>
+							<a href="<?php echo BASE_URL . 'inicio/sedes'; ?>"><i class="fas fa-clinic-medical"></i> &nbsp; Nuevas Sedes</a>
 						</li>
 						<li>
-							<a href="personal.php"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Nuevo Peronal</a>
+							<a href="<?php echo BASE_URL . 'inicio/personal'; ?>"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Nuevo Personal</a>
 						</li>
 						<li>
-							<a href="control_vacaiones.php"><i class="fas fa-calendar-week"></i> &nbsp; vacaciones</a>
+							<a href="<?php echo BASE_URL . 'inicio/controlVacaciones'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; vacaciones</a>
 						</li>
 						<li>
 							<a href="<?php echo BASE_URL . 'inicio/sexos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Sexo</a>

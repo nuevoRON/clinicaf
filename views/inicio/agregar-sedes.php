@@ -1,29 +1,29 @@
+<?php include "views/templates/sesion.php"; ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Lista de citaciones</title>
-	<?php include "./inc/link.php"; ?>
-
-
+	<title>Agregar Sedes</title>
+	<?php include "views/templates/archivosCss.php"; ?>
 </head>
 <body>
 	
 	<!-- Main container -->
 	<main class="full-box main-container">
 <!-- INICIO Nav lateral -->
-<?php include "./inc/NavBar.php"; ?>
+<?php include "views/templates/NavBar.php"; ?>
 <!-- FIN Nav lateral -->
 
 		<!-- Page content -->
 		<section class="full-box page-content">
-		<?php include "./inc/NavSup.php"; ?>
+		<?php include "views/templates/NavSup.php"; ?>
 
 			<!-- Page header -->
 			<div class="full-box">
 				<h4 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; CONTROL DE CITACIONES
+					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; NUEVAS SEDES
 				</h4>
 			</div>
 
@@ -32,22 +32,22 @@
 	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
 	======================================================================================================================================================================================-->			
 			
-<!-- MODAL CITACION -->         
+<!-- MODAL MEDICO -->         
                 
                     <div class="container-fluid">                  
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCitacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Citacion</button>
+                            <button type="button" class="btn btn-primary" data-bs-backdrop="static" data-toggle="modal" data-target="#ModalSedes"><i class="fas fa-user-plus"></i> &nbsp; Agregar Sedes</button>
                         </p>
 
                     </div>
                
            
             
-            <div class="modal fade" id="ModalCitacion" tabindex="-1" role="dialog" aria-labelledby="ModalCitacion" data-backdrop="static" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+            <div class="modal fade" id="ModalSedes" tabindex="-1"  role="dialog" aria-labelledby="ModalSedes" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalCitacion">Agregar Citacion</h5>
+                            <h5 class="modal-title" id="ModalSedes">Agregar Nueva  Sede</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -56,56 +56,54 @@
 <div class="container-fluid">
             <form action="" class="form-neon" autocomplete="off">
                 <fieldset>
-                    <legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DE LA CITACION</legend>
+                    <legend><i class="fas fa-user"></i> &nbsp; DATOS DE LA SEDE</legend>
                     <div class="container-fluid">
                         <div class="row">
-                                <div class="col-12 col-md-5">
+                        <div class="col-12 col-md-6">   
                                     <div class="form-group">
-                                        <label for="cliente_dni" class="bmd-label-floating">Numero del Caso</label>
-                                        <input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
-                                    </div>
-                                </div>
-								<div class="col-12 col-md-6">   
-                                    <div class="form-group">
-                                        <label for="item_estado" class="bmd-label-floating">Tipo de Citacion</label>
+                                        <label for="item_estado" class="bmd-label-floating">Departamnto</label>
                                         <select class="form-control" name="item_estado_reg" id="item_estado">
-                                            <option value="" selected="" disabled="">Seleccione la Citacion</option>
-                                            <option value="Habilitado">Juicio</option>
-                                            <option value="Habilitado">Juramentacion</option>
-                                        </select>
-                                    </div>							
-                                </div>
-								<div class="col-12 col-md-6">
-									<div class="form-group">
-										<label for="prestamo_fecha_inicio">Fecha que se recibe la citacion</label>
-										<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion_id">
-									</div>
-								</div>
-                                <div class="col-12 col-md-6">
-									<div class="form-group">
-										<label for="prestamo_fecha_inicio">Fecha de la citacion</label>
-										<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion_id">
-									</div>
-								</div>
-                                <div class="col-12 col-md-6">   
-                                    <div class="form-group">
-                                        <label for="item_estado" class="bmd-label-floating">Medico</label>
-                                        <select class="form-control" name="item_estado_reg" id="item_estado">
-                                            <option value="" selected="" disabled="">Seleccione al Medico</option>
-                                            <option value="Habilitado">Fernando Flores</option>
-                                            <option value="Deshabilitado">Raul Aguilar</option>
-                                            <option value="Deshabilitado">Claudia Lagos</option>
-                                            <option value="Deshabilitado">Arnoldo Castillo</option>
-                                            <option value="Deshabilitado">Jose Lobo</option>
+                                            <option value="" selected="" disabled="">Seleccione el Departamento</option>
+                                            <option value="Habilitado">Atlántida</option>
+                                            <option value="Deshabilitado">Choluteca</option>
+                                            <option value="Deshabilitado">Colón</option>
+                                            <option value="Deshabilitado">Comayagua</option>
+                                            <option value="Deshabilitado">Copán</option>
+                                            <option value="Deshabilitado">Cortés</option>
+                                            <option value="Deshabilitado">El Paraíso</option>
+                                            <option value="Deshabilitado">Francisco Morazán</option>
+                                            <option value="Deshabilitado">Gracias a Dios</option>
+                                            <option value="Deshabilitado">Intibucá</option>
+                                            <option value="Deshabilitado">Islas de la Bahía</option>
+                                            <option value="Deshabilitado">La Paz</option>
+                                            <option value="Deshabilitado">Lempira</option>
+                                            <option value="Deshabilitado">Ocotepeque</option>
+                                            <option value="Deshabilitado">Olancho</option>
+                                            <option value="Deshabilitado">Santa Bárbara</option>
+                                            <option value="Deshabilitado">Valle</option>
+                                            <option value="Deshabilitado">Yoro</option>
+                                            
                                         </select>
                                     </div>							
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <div class="form-group">
-                                        <label for="cliente_dni" class="bmd-label-floating">Lugar de la citacion</label>
+                                        <label for="cliente_dni" class="bmd-label-floating">municipio</label>
                                         <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
                                     </div>
-                                </div>  
+                                </div> 
+                                <div class="col-12 col-md-8">
+                                    <div class="form-group">
+                                        <label for="cliente_dni" class="bmd-label-floating">Lugar de Ubucacion</label>
+                                        <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
+                                    </div>
+                                </div>
+                                <!-- <div class="col-12 col-md-8">
+                                    <div class="form-group">
+                                        <label for="cliente_dni" class="bmd-label-floating">Encargado de la Cede</label>
+                                        <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
+                                    </div>
+                                </div> -->
                     </div>
                 </fieldset>
 					
@@ -130,12 +128,9 @@
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
-								<th>NUMERO DEL CASO</th>
-								<th>TIPO DE CITACION</th>								
-								<th>FECHA DE RECEPCION DE CITACION</th>
-								<th>FECHA DE LA CITACION</th>
-								<th>NOMBRE DEL MEDICO</th>
-								<th>LUGAR DE LA CITACION</th>
+								<th>DEPARTAMENTO</th>
+								<th>MUNICIPIO</th>
+								<th>UBICACION</th>
                                 <th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -143,14 +138,11 @@
 						<tbody>
 						<tr class="text-center" >
 								<td>1</td>
-								<td>4250-2017</td>
-								<td>Juicio</td>
-								<td>25/03/2024</td>
-								<td>14/04/2024</td>
-								<td>juan fernando</td>
-								<td>tribunal de setencias tegucigalpa</td>
+								<td>Olancho</td>
+								<td>*********</td>
+								<td>*******</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>									
 								</td>
@@ -163,15 +155,12 @@
 								</td>
 							</tr>
 							<tr class="text-center" >
-								<td>2</td>								
-								<td>8520-2023</td>
-								<td>Juramentacion</td>
-								<td>26/01/2024</td>
-								<td>14/04/2024</td>
-								<td>jose argueta</td>
-								<td>jusgado de la comyagaua</td>
+								<td>2</td>
+								<td>Yoro</td>
+								<td>*********</td>
+								<td>*******</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>
@@ -185,14 +174,11 @@
 							</tr>
 							<tr class="text-center" >
 								<td>3</td>
-								<td>5628-2023</td>
-								<td>Juramentacion</td>
-								<td>18/12/2023</td>
-								<td>15/06/2024</td>
-								<td>julio fernandez</td>
-								<td>tribunal de sentencias tegucigalpa</td>
+								<td>Intibucá</td>
+								<td>*********</td>
+								<td>*******</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>
@@ -206,14 +192,11 @@
 							</tr>
 							<tr class="text-center" >
 								<td>4</td>
-								<td>4230-2022</td>
-								<td>Juicio</td>
-								<td>24/06s/2024</td>
-								<td>25/06/2024</td>
-								<td>julio fernandez</td>
-								<td>tribunal de sentencias juticalpa</td>
+								<td>Valle</td>
+								<td>*********</td>
+								<td>*******</td>
 								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>	
 								</td>
@@ -250,7 +233,7 @@
 	<!--=============================================
 	=            Include JavaScript files           =
 	==============================================-->
-	<?php include "./inc/java.php"; ?>
+	<?php include "views/templates/archivosJS.php"; ?>
 
 </body>
 </html>

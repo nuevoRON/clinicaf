@@ -29,21 +29,19 @@ class Login extends Controller{
             }else if(empty($_POST['clave'])){
                 $res = array('msg' => 'LA CONTRASEÑA ES REQUERIDO', 'type' => 'warning');
             }else {
-                $correo = strClean($_POST['usuario']);
+                $usuario = strClean($_POST['usuario']);
                 $clave = strClean($_POST['clave']);
-                $data = $this->model->getDatos($correo);
+                $data = $this->model->getDatos($usuario);
                 
                 if (empty($data)){
                     $res = array('msg' => 'EL USUARIO NO EXISTE', 'type' => 'warning');
                 }else{
                     if(password_verify($clave, $data['contrasena'])){
-                        //$_SESSION['id_usuario'] = $data['ID_USUARIO'];
-                        //$_SESSION['nombre_usuario'] = $data['NOMBRE_USUARIO'];
-                        //$_SESSION['usuario'] = $data['USUARIO'];
-                        //$_SESSION['correo_usuario'] = $data['CORREO_ELECTRONICO'];
-                        //$_SESSION['estado'] = $data['ESTADO_USUARIO'];
-                        //$_SESSION['autoregistro'] = $data['AUTOREGISTRO'];
-                        //$_SESSION['esEmpleado'] = $data['EMPLEADO'];
+                        $_SESSION['id_usuario'] = $data['id_usu'];
+                        $_SESSION['nombre_usuario'] = $data['nombre'] . ' ' .$data['apellido'];
+                        $_SESSION['usuario'] = $data['usuario'];
+                        $_SESSION['estado'] = $data['estado'];
+                        $_SESSION['sede'] = $data['ubucacion'];
                         
                         //$rol = $this->model->getRol($data['id']);
                         //$_SESSION['permisos'] = $rol['permisos'];
@@ -59,16 +57,16 @@ class Login extends Controller{
                         $res = array('msg' => 'DATOS CORRECTOS', 'id_usuario' => $data['id_usu'], 'type' => 'success');
                         //}
                     }else {
-                        $intentos = $this->model->getParametro("'ADMIN_INTENTOS'");
+                        /* $intentos = $this->model->getParametro("'ADMIN_INTENTOS'");
                         $valorIntentos = $intentos['VALOR'];
                         // Actualizar intentos del usuario
                         $this->model->actualizarIntentos(($data['INTENTOS']+1), $data['ID_USUARIO']);
                         if ($data['INTENTOS'] == $valorIntentos && $data['ID_USUARIO'] != 1) {
                             $this->model->bloquearUsuario($data['ID_USUARIO']);
                             $res = array('msg' => 'CONTRASEÑA INCORRECTA, USUARIO BLOQUEADO', 'type' => 'warning');
-                        } else {
+                        } else { */
                             $res = array('msg' => 'CONTRASEÑA INCORRECTA', 'type' => 'warning');
-                        }
+                        //}
                     }
                 }
             }     
@@ -76,6 +74,17 @@ class Login extends Controller{
             $res = array('msg' => 'ERROR DESCONOCIDO', 'type' => 'error');
         }
         echo json_encode($res, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+
+    public function cerrarSesion(){
+        // Borra todas las variables de sesión
+	    session_unset();
+
+        // Destruye la sesión
+        session_destroy();
+        header('Location: ' . BASE_URL);
         die();
     }
 }
