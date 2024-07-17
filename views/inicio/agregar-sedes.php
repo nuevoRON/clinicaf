@@ -54,56 +54,35 @@
                         </div>
 <!-- Contenedor-->
 <div class="container-fluid">
-            <form action="" class="form-neon" autocomplete="off">
+            <form action="" class="form-neon" autocomplete="off" id="formulario">
                 <fieldset>
                     <legend><i class="fas fa-user"></i> &nbsp; DATOS DE LA SEDE</legend>
                     <div class="container-fluid">
+						<input type="hidden" name="id" id="id">
                         <div class="row">
                         <div class="col-12 col-md-6">   
                                     <div class="form-group">
-                                        <label for="item_estado" class="bmd-label-floating">Departamnto</label>
-                                        <select class="form-control" name="item_estado_reg" id="item_estado">
+                                        <label for="departamento" class="bmd-label-floating">Departamnto</label>
+                                        <select class="form-control" name="departamento" id="departamento">
                                             <option value="" selected="" disabled="">Seleccione el Departamento</option>
-                                            <option value="Habilitado">Atlántida</option>
-                                            <option value="Deshabilitado">Choluteca</option>
-                                            <option value="Deshabilitado">Colón</option>
-                                            <option value="Deshabilitado">Comayagua</option>
-                                            <option value="Deshabilitado">Copán</option>
-                                            <option value="Deshabilitado">Cortés</option>
-                                            <option value="Deshabilitado">El Paraíso</option>
-                                            <option value="Deshabilitado">Francisco Morazán</option>
-                                            <option value="Deshabilitado">Gracias a Dios</option>
-                                            <option value="Deshabilitado">Intibucá</option>
-                                            <option value="Deshabilitado">Islas de la Bahía</option>
-                                            <option value="Deshabilitado">La Paz</option>
-                                            <option value="Deshabilitado">Lempira</option>
-                                            <option value="Deshabilitado">Ocotepeque</option>
-                                            <option value="Deshabilitado">Olancho</option>
-                                            <option value="Deshabilitado">Santa Bárbara</option>
-                                            <option value="Deshabilitado">Valle</option>
-                                            <option value="Deshabilitado">Yoro</option>
                                             
                                         </select>
                                     </div>							
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <div class="form-group">
-                                        <label for="cliente_dni" class="bmd-label-floating">municipio</label>
-                                        <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
+                                        <label for="municipio" class="bmd-label-floating">Municipio</label>
+                                        <select class="form-control" name="municipio" id="municipio">
+                                            
+                                        </select>
                                     </div>
                                 </div> 
                                 <div class="col-12 col-md-8">
                                     <div class="form-group">
-                                        <label for="cliente_dni" class="bmd-label-floating">Lugar de Ubucacion</label>
-                                        <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
+                                        <label for="ubicacion" class="bmd-label-floating">Lugar de Ubicacion</label>
+                                        <input type="text"  class="form-control" name="ubicacion" id="ubicacion" maxlength="50">
                                     </div>
                                 </div>
-                                <!-- <div class="col-12 col-md-8">
-                                    <div class="form-group">
-                                        <label for="cliente_dni" class="bmd-label-floating">Encargado de la Cede</label>
-                                        <input type="text"  class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
-                                    </div>
-                                </div> -->
                     </div>
                 </fieldset>
 					
@@ -234,6 +213,7 @@
 	=            Include JavaScript files           =
 	==============================================-->
 	<?php include "views/templates/archivosJS.php"; ?>
+	<script src="<?php echo BASE_URL; ?>assets/js/modulos/sedes.js"></script>
 
 </body>
 </html>
