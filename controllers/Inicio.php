@@ -19,14 +19,7 @@ class Inicio extends Controller{
         $this->views->getView('inicio', 'lista-proveido', $data);
     }
 
-    public function sedes()
-    {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'agregar-sedes', $data);
-    }
-
-    public function controlDictamenes()
+       public function controlDictamenes()
     {
         $data['title'] = 'Panel Administrativo'; 
         $data['script'] = 'proveidos.js';
@@ -84,6 +77,13 @@ class Inicio extends Controller{
         $data['title'] = 'Panel Administrativo'; 
         $data['script'] = 'proveidos.js';
         $this->views->getView('inicio', 'personal', $data);
+    }
+
+    public function agregarsedes()
+    {
+        $data['title'] = 'Panel Administrativo'; 
+        $data['script'] = 'proveidos.js';
+        $this->views->getView('inicio', 'agregar-sedes', $data);
     }
 
 }

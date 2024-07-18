@@ -46,7 +46,7 @@
 					<a href="#" class="nav-btn-submenu"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 					<ul>
 						<li>
-							<a href="<?php echo BASE_URL . 'inicio/sedes'; ?>"><i class="fas fa-clinic-medical"></i> &nbsp; Nuevas Sedes</a>
+							<a href="<?php echo BASE_URL . 'inicio/agregarsedes'; ?>"><i class="fas fa-clinic-medical"></i> &nbsp; Nuevas Sedes</a>
 						</li>
 						<li>
 							<a href="<?php echo BASE_URL . 'inicio/personal'; ?>"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Nuevo Personal</a>

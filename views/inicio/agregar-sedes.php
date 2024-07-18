@@ -32,7 +32,7 @@
 	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
 	======================================================================================================================================================================================-->			
 			
-<!-- MODAL MEDICO -->         
+<!-- MODAL SEDES -->         
                 
                     <div class="container-fluid">                  
                         <p class="text-center">
@@ -103,7 +103,7 @@
 			<!-- Content here-->
 			<div class="container-fluid">
 				<div class="table-responsive">
-					<table class="table table-dark table-sm">
+					<table class="table table-dark table-sm" id="tabala_sedes">
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
@@ -115,78 +115,7 @@
 							</tr>
 						</thead>
 						<tbody>
-						<tr class="text-center" >
-								<td>1</td>
-								<td>Olancho</td>
-								<td>*********</td>
-								<td>*******</td>
-								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
-                                        <i class="fas fa-sync-alt"></i>
-                                    </button>									
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-		  									<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center" >
-								<td>2</td>
-								<td>Yoro</td>
-								<td>*********</td>
-								<td>*******</td>
-								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
-                                        <i class="fas fa-sync-alt"></i>
-                                    </button>	
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-		  									<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center" >
-								<td>3</td>
-								<td>Intibucá</td>
-								<td>*********</td>
-								<td>*******</td>
-								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
-                                        <i class="fas fa-sync-alt"></i>
-                                    </button>	
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-		  									<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center" >
-								<td>4</td>
-								<td>Valle</td>
-								<td>*********</td>
-								<td>*******</td>
-								<td>
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalSedes">
-                                        <i class="fas fa-sync-alt"></i>
-                                    </button>	
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-		  									<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
+						
 						</tbody>
 					</table>
 				</div>

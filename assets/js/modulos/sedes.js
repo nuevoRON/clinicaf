@@ -3,7 +3,7 @@ const formulario = document.querySelector("#formulario");
 const selectDepartamento = document.querySelector("#departamento");
 const selectMunicipio = document.querySelector("#municipio");
 
-const nombre = document.querySelector("#nombre_sexo");
+const ubicacion = document.querySelector("#ubicacion");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -84,10 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Mostrar Tabla */
   //Se extraen los datos de la base de datos para llenar el datatable
-  let urlListarSexo = "http://localhost/clinicaf/sexos/listarSexos";
+  let urlListarSedes = "http://localhost/clinicaf/sedes/listarSedes";
 
   axios
-    .get(urlListarSexo)
+    .get(urlListarSedes)
     //si no hay problemas con la consulta se reciben los datos y se construye la tabla
     .then(function (response) {
       //se muestran los datos obtenidos
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let datos = response.data;
 
       //se inicializa el datatable usando el id de la tabla
-      $('#tblSexos').DataTable({
+      $('#tabala_sedes').DataTable({
         language: {
           "decimal": ",",
           "thousands": ".",
@@ -121,8 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
         paging: true,
         //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
         columns: [
-            { data: 'id_sexo' },
-            { data: 'nom_sexo' },
+            { data: 'id_sede' },
+            { data: 'fk_departamento' },
+            { data: 'fk_municipio' },
+            { data: 'ubucacion' },
             //estas dos columnas contienen los botones para editar y eliminar
             //de ser necesario se pueden agregar más columnas con otros botones
             {
@@ -146,11 +148,11 @@ document.addEventListener("DOMContentLoaded", function () {
           createdRow: function(row, data, dataIndex) {
             // Agregar un evento onclick a los botones "Editar"
             $(row).find('.btn-success','btn').click(function() {
-                editarSexo(data.id_sexo);
+                editarSede(data.id_sede);
             });
   
             $(row).find('.btn-warning').click(function() {
-              eliminarSexo(data.id_sexo);
+              eliminarSede(data.id_sede);
           });
         },
   
@@ -165,15 +167,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Formulario para crear o actualizar un registro */
   formulario.addEventListener('submit', function(e) {
-      console.log(nombre)
-      e.preventDefault(); 
+      console.log(ubicacion)
+      e.preventDefault(); /*evita que se envie el formulario sin validar*/
 
-      if (nombre.value == "") {
+      if (ubicacion.value == "") {
           console.log('No puede enviar el formulario vacio')
       } else {
         //Rutas a las funciones para crear y actualizar registros
-        const urlInsertar = "http://localhost/clinicaf/sexos/insertarSexo";
-        const urlActualizar = "http://localhost/clinicaf/sexos/actualizarSexo";
+        const urlInsertar = "http://localhost/clinicaf/sedes/insertarSede";
+        const urlActualizar = "http://localhost/clinicaf/sedes/actualizarSede";
         const data = new FormData(this);
       
         // Verificar si el campo 'id' está presente en los datos del formulario
@@ -225,10 +227,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /*Eliminar registros*/
 //esta funcion recibe el id del registro para realizar la eliminación
-function eliminarSexo(idSexo) {
+function eliminarSede(idSede) {
 
   Swal.fire({
-    title: "¿Estas seguro de eliminar este sexo?",
+    title: "¿Estas seguro de eliminar esta sede?",
     text: "Esta acción no se puede deshacer",
     icon: "warning",
     showCancelButton: true,
@@ -238,7 +240,7 @@ function eliminarSexo(idSexo) {
     cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
-      let url = "http://localhost/clinicaf/sexos/eliminarSexo/" + idSexo;
+      let url = "http://localhost/clinicaf/sedes/eliminarSede/" + idSede;
       //hacer una instancia del objeto CMLHttoRequest
       const http = new XMLHttpRequest();
       //Abrir una Conexion - POST - GET
@@ -263,8 +265,8 @@ function eliminarSexo(idSexo) {
 
 
 /* Obtener datos de un registro para edición */
-function editarSexo(idSexo) {
-  const url = "http://localhost/clinicaf/sexos/obtenerSexo/" + idSexo;
+function editarSede(idSede) {
+  const url = "http://localhost/clinicaf/sedes/obtenerSede/" + idSede;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
   //Abrir una Conexion - POST - GET
@@ -278,11 +280,18 @@ function editarSexo(idSexo) {
     if (this.readyState == 4 && this.status == 200) {
       console.log(this.responseText);
       const res = JSON.parse(this.responseText);
-      id.value = res.id_sexo;
-      nombre.value = res.nom_sexo;
+      id.value = res.id_sede;
+      ubicacion.value = res.ubucacion;
+      
+      $("#departamento option[value=" + res.fk_departamento + "]").attr({
+        selected: true,
+      });
+      $("#municipio option[value=" + res.fk_municipio + "]").attr({
+        selected: true,
+      });
 
       //Se abre el modal usando su id
-      $('#ModalSexo').modal('show'); 
+      $('#ModalSedes').modal('show'); 
       
     }
   };
