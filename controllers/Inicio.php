@@ -86,4 +86,11 @@ class Inicio extends Controller{
         $this->views->getView('inicio', 'agregar-sedes', $data);
     }
 
+    public function puestos()
+    {
+        $data['title'] = 'Panel Administrativo'; 
+        $data['script'] = 'proveidos.js';
+        $this->views->getView('inicio', 'agragar_puestos', $data);
+    }
+
 }

@@ -57,6 +57,9 @@
 						<li>
 							<a href="<?php echo BASE_URL . 'inicio/sexos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Sexo</a>
 						</li>
+						<li>
+							<a href="<?php echo BASE_URL . 'inicio/puestos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Puesto</a>
+						</li>
 					</ul>
 				</li>
 			</ul>

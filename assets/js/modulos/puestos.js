@@ -1,19 +1,18 @@
-//Datos generales del Sexo
+//Datos generales del puestos
 const formulario = document.querySelector("#formulario");
-const selectDepartamento = document.querySelector("#departamento");
-const selectMunicipio = document.querySelector("#municipio");
+const selectnom_puesto = document.querySelector("#nom_puesto");
 
-const ubicacion = document.querySelector("#ubicacion");
+const estado = document.querySelector("#estdo");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
   /* Selects Dinámicos */
 
-  //Cargar departamentos
-  //se llama a la funcion getDepartamentos para obtener los departamentos
-  let urlDepartamento = "http://localhost/clinicaf/dependencias/getDepartamentos";
+  //Cargar puestos
+  //se llama a la funcion getpuestos para obtener los puestos
+  let urlPuestos = "http://localhost/clinicaf/dependencias/getPuestos";
   axios
-    .get(urlDepartamento)
+    .get(urlPuestos)
     //si no hay problemas con la consulta se reciben los datos y se construyen las opciones del select
     .then(function (response) {
       // Llenar Select
@@ -41,11 +40,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Cargar municipios
     //la funcion se ejecuta al momento de detectar que se selecciono una opción del select de departamentos
-    selectDepartamento.addEventListener("change", function() {
+    selectPuestos.addEventListener("change", function() {
       //se llama a la funcion getMunicipios para obtener los municipios
       //La variable idDepartamento obtiene el valor que se asignó con option.value en la funcion anterior
-      let idDepartamento= selectDepartamento.options[selectDepartamento.selectedIndex].value
-      let urlMunicipio = "http://localhost/clinicaf/dependencias/getMunicipios/"+ idDepartamento;
+      let idDepartamento= selectDepartamento.options[selectPuestos.selectedIndex].value
+      let urlMunicipio = "http://localhost/clinicaf/dependencias/getPuestos/"+ idpuesto;
   
       // Eliminar opciones existentes del select de municipios
       /* Para manejar de forma dinamica el select de municipios cada vez que se selecciona un departamento
@@ -84,10 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Mostrar Tabla */
   //Se extraen los datos de la base de datos para llenar el datatable
-  let urlListarSedes = "http://localhost/clinicaf/sedes/listarSedes";
+  let urlListarPuestos = "http://localhost/clinicaf/Puestos/listarPuestos";
 
   axios
-    .get(urlListarSedes)
+    .get(urllistarPuestos)
     //si no hay problemas con la consulta se reciben los datos y se construye la tabla
     .then(function (response) {
       //se muestran los datos obtenidos
@@ -97,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let datos = response.data;
 
       //se inicializa el datatable usando el id de la tabla
-      $('#tabla_sedes').DataTable({
+      $('#tabla_puestos').DataTable({
         language: {
           "decimal": ",",
           "thousands": ".",
@@ -121,10 +120,9 @@ document.addEventListener("DOMContentLoaded", function () {
         paging: true,
         //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
         columns: [
-            { data: 'id_sede' },
-            { data: 'fk_departamento' },
-            { data: 'fk_municipio' },
-            { data: 'ubucacion' },
+            { data: 'id_puesto' },
+            { data: 'nom_puesto' },
+            { data: 'estado' },
             //estas dos columnas contienen los botones para editar y eliminar
             //de ser necesario se pueden agregar más columnas con otros botones
             {
@@ -148,11 +146,11 @@ document.addEventListener("DOMContentLoaded", function () {
           createdRow: function(row, data, dataIndex) {
             // Agregar un evento onclick a los botones "Editar"
             $(row).find('.btn-success','btn').click(function() {
-                editarSede(data.id_sede);
+                editarPuesto(data.id_puesto);
             });
   
             $(row).find('.btn-warning').click(function() {
-              eliminarSede(data.id_sede);
+              eliminarPuesto(data.id_puesto);
           });
         },
   
@@ -174,8 +172,8 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log('No puede enviar el formulario vacio')
       } else {
         //Rutas a las funciones para crear y actualizar registros
-        const urlInsertar = "http://localhost/clinicaf/sedes/insertarSede";
-        const urlActualizar = "http://localhost/clinicaf/sedes/actualizarSede";
+        const urlInsertar = "http://localhost/clinicaf/puestos/insertarSede";
+        const urlActualizar = "http://localhost/clinicaf/puestos/actualizarSede";
         const data = new FormData(this);
       
         // Verificar si el campo 'id' está presente en los datos del formulario
@@ -230,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function eliminarSede(idSede) {
 
   Swal.fire({
-    title: "¿Estas seguro de eliminar esta sede?",
+    title: "¿Estas seguro de eliminar este puesto?",
     text: "Esta acción no se puede deshacer",
     icon: "warning",
     showCancelButton: true,
@@ -240,7 +238,7 @@ function eliminarSede(idSede) {
     cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
-      let url = "http://localhost/clinicaf/sedes/eliminarSede/" + idSede;
+      let url = "http://localhost/clinicaf/puestos/eliminarPuestos/" + idSede;
       //hacer una instancia del objeto CMLHttoRequest
       const http = new XMLHttpRequest();
       //Abrir una Conexion - POST - GET
@@ -266,7 +264,7 @@ function eliminarSede(idSede) {
 
 /* Obtener datos de un registro para edición */
 function editarSede(idSede) {
-  const url = "http://localhost/clinicaf/sedes/obtenerSede/" + idSede;
+  const url = "http://localhost/clinicaf/puestos/obtenerPuesto/" + idSede;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
   //Abrir una Conexion - POST - GET
@@ -280,7 +278,7 @@ function editarSede(idSede) {
     if (this.readyState == 4 && this.status == 200) {
       console.log(this.responseText);
       const res = JSON.parse(this.responseText);
-      id.value = res.id_sede;
+      id.value = res.id_puesto;
       ubicacion.value = res.ubucacion;
       
       $("#departamento option[value=" + res.fk_departamento + "]").attr({
@@ -291,7 +289,7 @@ function editarSede(idSede) {
       });
 
       //Se abre el modal usando su id
-      $('#ModalSedes').modal('show'); 
+      $('#ModalPuestos').modal('show'); 
       
     }
   };

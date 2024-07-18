@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Agregar Sedes</title>
+	<title>Agregar Puestos</title>
 	<?php include "views/templates/archivosCss.php"; ?>
 </head>
 <body>
@@ -23,7 +23,7 @@
 			<!-- Page header -->
 			<div class="full-box">
 				<h4 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; NUEVAS SEDES
+					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; NUEVOS PUESTOS
 				</h4>
 			</div>
 
@@ -32,22 +32,22 @@
 	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
 	======================================================================================================================================================================================-->			
 			
-<!-- MODAL SEDES -->         
+<!-- MODAL PUESTOS -->         
                 
                     <div class="container-fluid">                  
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-bs-backdrop="static" data-toggle="modal" data-target="#ModalSedes"><i class="fas fa-user-plus"></i> &nbsp; Agregar Sedes</button>
+                            <button type="button" class="btn btn-primary" data-bs-backdrop="static" data-toggle="modal" data-target="#ModalPuestos"><i class="fas fa-user-plus"></i> &nbsp; Agregar Puestos</button>
                         </p>
 
                     </div>
                
            
             
-            <div class="modal fade" id="ModalSedes" tabindex="-1"  role="dialog" aria-labelledby="ModalSedes" data-backdrop="static" aria-hidden="true">
+            <div class="modal fade" id="ModalPuestos" tabindex="-1"  role="dialog" aria-labelledby="ModalPuestos" data-backdrop="static" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalSedes">Agregar Nueva  Sede</h5>
+                            <h5 class="modal-title" id="ModalPuestos">Agregar Nuevo Puesto</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -56,33 +56,24 @@
 <div class="container-fluid">
             <form action="" class="form-neon" autocomplete="off" id="formulario">
                 <fieldset>
-                    <legend><i class="fas fa-user"></i> &nbsp; DATOS DE LA SEDE</legend>
+                    <legend><i class="fas fa-user"></i> &nbsp; DATOS DEL PUESTO</legend>
                     <div class="container-fluid">
 						<input type="hidden" name="id" id="id">
                         <div class="row">
-                        <div class="col-12 col-md-6">   
+                               <div class="col-12 col-md-8">
                                     <div class="form-group">
-                                        <label for="departamento" class="bmd-label-floating">Departamnto</label>
-                                        <select class="form-control" name="departamento" id="departamento">
-                                            <option value="" selected="" disabled="">Seleccione el Departamento</option>
-                                            
-                                        </select>
-                                    </div>							
+                                        <label for="puesto" class="bmd-label-floating">Nombre de Puesto</label>
+                                        <input type="text"  class="form-control" name="puesto" id="puesto" maxlength="50">
+                                    </div>
                                 </div>
-                                <div class="col-12 col-md-8">
+								<div class="col-12 col-md-8">
                                     <div class="form-group">
-                                        <label for="municipio" class="bmd-label-floating">Municipio</label>
-                                        <select class="form-control" name="municipio" id="municipio">
+                                        <label for="estado" class="bmd-label-floating">ESTADO</label>
+                                        <select class="form-control" name="estado" id="estado">
                                             
                                         </select>
                                     </div>
                                 </div> 
-                                <div class="col-12 col-md-8">
-                                    <div class="form-group">
-                                        <label for="ubicacion" class="bmd-label-floating">Lugar de Ubicacion</label>
-                                        <input type="text"  class="form-control" name="ubicacion" id="ubicacion" maxlength="50">
-                                    </div>
-                                </div>
                     </div>
                 </fieldset>
 					
@@ -102,14 +93,13 @@
 
 			<!-- Content here-->
 			<div class="container-fluid">
-				<div class="table-responsive">
-					<table class="table table-dark table-sm" id="tabla_sedes">
+				<div class="table-responsive" >
+					<table class="table table-dark table-sm" id="tabla_puestos">
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
-								<th>DEPARTAMENTO</th>
-								<th>MUNICIPIO</th>
-								<th>UBICACION</th>
+								<th>NOMBRE DEL PUESTO</th>
+								<th>ESTADO</th>
                                 <th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -119,19 +109,6 @@
 						</tbody>
 					</table>
 				</div>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item disabled">
-							<a class="page-link" href="#" tabindex="-1">Previous</a>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item">
-							<a class="page-link" href="#">Next</a>
-						</li>
-					</ul>
-				</nav>
 			</div>
 
 		</section>
@@ -142,7 +119,7 @@
 	=            Include JavaScript files           =
 	==============================================-->
 	<?php include "views/templates/archivosJS.php"; ?>
-	<script src="<?php echo BASE_URL; ?>assets/js/modulos/sedes.js"></script>
+	<script src="<?php echo BASE_URL; ?>assets/js/modulos/puestos.js"></script>
 
 </body>
 </html>
