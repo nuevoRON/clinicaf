@@ -1,92 +1,16 @@
 //Datos generales del puestos
 const formulario = document.querySelector("#formulario");
-const selectnom_puesto = document.querySelector("#nom_puesto");
-
-const estado = document.querySelector("#estdo");
+const selectEstado = document.querySelector("#estado");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
-  /* Selects Dinámicos */
-
-  //Cargar puestos
-  //se llama a la funcion getpuestos para obtener los puestos
-  let urlPuestos = "http://localhost/clinicaf/dependencias/getPuestos";
-  axios
-    .get(urlPuestos)
-    //si no hay problemas con la consulta se reciben los datos y se construyen las opciones del select
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      //se recorre el response con un forEach para ir creando las opciones
-      response.data.departamentos.forEach((opcion) => {
-        //se crea un elemento de la clase option
-        let option = document.createElement("option");
-
-        //dentro del option se agregan los datos de la base de datos
-        //option.text muestra el nombre guardado en base de datos y option.value el id del registro en la base de datos
-        option.text = opcion.nombre_departamento;
-        option.value = opcion.id_departamento;
-
-        //se usa la funcion appendChild para crear las opciones dentro del select
-        //el select ya esta definido como variable en la parte de arriba
-        selectDepartamento.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      //Se ejecuta un console.log en caso de que haya un error en la logica del controlador y modelo
-      console.error("Ocurrió un error:", error);
-    });
-
-
-    //Cargar municipios
-    //la funcion se ejecuta al momento de detectar que se selecciono una opción del select de departamentos
-    selectPuestos.addEventListener("change", function() {
-      //se llama a la funcion getMunicipios para obtener los municipios
-      //La variable idDepartamento obtiene el valor que se asignó con option.value en la funcion anterior
-      let idDepartamento= selectDepartamento.options[selectPuestos.selectedIndex].value
-      let urlMunicipio = "http://localhost/clinicaf/dependencias/getPuestos/"+ idpuesto;
   
-      // Eliminar opciones existentes del select de municipios
-      /* Para manejar de forma dinamica el select de municipios cada vez que se selecciona un departamento
-      el select de municipios se borra y se vuelve a recrear con los datos del nuevo departamento */
-      while (selectMunicipio.firstChild) {
-          selectMunicipio.removeChild(selectMunicipio.firstChild);
-      }
-
-      axios
-      //si no hay problemas con la consulta se reciben los datos y se construyen las opciones del select
-      .get(urlMunicipio)
-      .then(function (response) {
-        // Llenar Select
-        console.log(response);
-        //se recorre el response con un forEach para ir creando las opciones
-        response.data.forEach((opcion) => {
-           //se crea un elemento de la clase option
-          let option = document.createElement("option");
-
-          //dentro del option se agregan los datos de la base de datos
-         //option.text muestra el nombre guardado en base de datos y option.value el id del registro en la base de datos
-          option.text = opcion.nombre_municipio;
-          option.value = opcion.id_municipio;
-
-          //se usa la funcion appendChild para crear las opciones dentro del select
-         //el select ya esta definido como variable en la parte de arriba
-          selectMunicipio.appendChild(option);
-        });
-      })
-      .catch(function (error) {
-        //Se ejecuta un console.log en caso de que haya un error en la logica del controlador y modelo
-        console.error("Ocurrió un error:", error);
-      });
-  
-  });
-
   /* Mostrar Tabla */
   //Se extraen los datos de la base de datos para llenar el datatable
   let urlListarPuestos = "http://localhost/clinicaf/Puestos/listarPuestos";
 
   axios
-    .get(urllistarPuestos)
+    .get(urlListarPuestos)
     //si no hay problemas con la consulta se reciben los datos y se construye la tabla
     .then(function (response) {
       //se muestran los datos obtenidos

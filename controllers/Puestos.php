@@ -23,6 +23,14 @@ class Puestos extends Controller
         die();
     }
 
+
+    public function getEstados(){
+        $data = $this->model->getEstados();
+        $res = array('estados'=>$data, 'type'=>'success');
+        echo json_encode($res, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     //Registrar sexos
     public function insertarSede() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

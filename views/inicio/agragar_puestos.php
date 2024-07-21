@@ -64,13 +64,16 @@
                                     <div class="form-group">
                                         <label for="puesto" class="bmd-label-floating">Nombre de Puesto</label>
                                         <input type="text"  class="form-control" name="puesto" id="puesto" maxlength="50">
+										<span id="spanNombre" style="color: red; font-size:1rem;"></span>
                                     </div>
                                 </div>
 								<div class="col-12 col-md-8">
                                     <div class="form-group">
                                         <label for="estado" class="bmd-label-floating">ESTADO</label>
                                         <select class="form-control" name="estado" id="estado">
-                                            
+											<option value="" disabled selected>Seleccione una opción</option>
+                                            <option value="Activo">Activo</option>
+											<option value="Inactivo">Inactivo</option>
                                         </select>
                                     </div>
                                 </div> 
@@ -80,7 +83,7 @@
 					<p class="text-center" style="margin-top: 40px;">
 						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
 						&nbsp; &nbsp;
-						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+						<button type="submit" class="btn btn-raised btn-info btn-sm" id="btn-enviar"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
 					</p>
 				</form>
 			</div>	
@@ -120,6 +123,6 @@
 	==============================================-->
 	<?php include "views/templates/archivosJS.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/puestos.js"></script>
-
+	<script src="<?php echo BASE_URL; ?>assets/js/validaciones/validacionPuestos.js"></script>
 </body>
 </html>

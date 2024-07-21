@@ -6,7 +6,7 @@ class PuestosModel extends Query{
 
     public function insertarPuestos($puesto,$estado) {
         $sql = "INSERT INTO tbl_puestos (nom_puesto,estado) VALUES(?,?)";
-        $array = array($depatamento,$municipio,$ubicacion);
+        $array = array($puesto,$estado);
         return $this->insertar($sql, $array);
     }
 
@@ -18,7 +18,14 @@ class PuestosModel extends Query{
 
     public function getPuestos()
     {
-        $sql = " SELECT * FROM tbl_puestos";
+        $sql = "SELECT * FROM tbl_puestos";
+        return $this->selectAll($sql);
+    }
+
+
+    public function getEstados()
+    {
+        $sql = "SELECT * FROM tbl_estados";
         return $this->selectAll($sql);
     }
 
