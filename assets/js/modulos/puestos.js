@@ -67,24 +67,24 @@ document.addEventListener("DOMContentLoaded", function () {
         //estas dos funciones contienen las referencias a las funciones que realizan edicion y eliminacion
         //se usa una funcion find para encontrar un boton en especifico usando su clase y asi asignarle 
         //la función javascript que le corresponde
-          createdRow: function(row, data, dataIndex) {
-            // Agregar un evento onclick a los botones "Editar"
-            $(row).find('.btn-success','btn').click(function() {
-                editarPuestos(data.id_puesto);
-            });
-  
-            $(row).find('.btn-warning').click(function() {
-              eliminarPuestos(data.id_puesto);
+        createdRow: function(row, data, dataIndex) {
+          // Agregar un evento onclick a los botones "Editar"
+          $(row).find('.btn-success','btn').click(function() {
+              editarPuestos(data.id_puesto);
           });
-        },
-  
-      });
 
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
+          $(row).find('.btn-warning').click(function() {
+            eliminarPuestos(data.id_puesto);
+        });
+      },
+
     });
+
+  })
+  .catch(function (error) {
+    // Maneja errores
+    console.error("Ocurrió un error:", error);
+  });
 
 
   /* Formulario para crear o actualizar un registro */

@@ -21,6 +21,7 @@ class PuestosModel extends Query{
         $sql = "SELECT * FROM tbl_puestos";
         return $this->selectAll($sql);
     }
+    
 
 
     public function getEstados()
