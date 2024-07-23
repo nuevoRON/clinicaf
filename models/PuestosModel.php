@@ -29,13 +29,13 @@ class PuestosModel extends Query{
         return $this->selectAll($sql);
     }
 
-    public function eliminarSede($id)
+    public function eliminarPuestos($id)
     {
         $sql = " DELETE FROM tbl_puestos WHERE id_puesto = $id";
         return $this->select($sql);
     }
 
-    public function actualizarSede($puesto,$estado, $id)
+    public function actualizarPuestos($puesto,$estado, $id)
     {
         $sql = "UPDATE tbl_puestos SET nom_puesto=?, estsdo=?   WHERE id_puesto=?";
         $array = array($puesto,$estado, $id);

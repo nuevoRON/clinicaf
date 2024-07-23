@@ -31,29 +31,28 @@ class Puestos extends Controller
         die();
     }
 
-    //Registrar sexos
-    public function insertarSede() {
+    //Registrar Puestos
+    public function insertarPuestos() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (empty($_POST['ubicacion'])) {
+            if (empty($_POST['nom_puesto'])) {
                 $res = array('titulo' => 'Error', 
                             'desc' => 'La ubicación no puede ir vacío', 
                             'type' => 'warning');
             }else {
-                $depatamento = strClean($_POST['departamento']);
-                $municipio = strClean($_POST['municipio']);
-                $ubicacion = strClean($_POST['ubicacion']);
+                $nom_puesto = strClean($_POST['nom_puesto']);
+                $estado = strClean($_POST['estado']);
     
-                $data = $this->model->insertarSede($depatamento,$municipio,$ubicacion);
+                $data = $this->model->insertarPuestos($nom_puesto,$estado);
                 
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
-                    $res = array('titulo' => 'Sede Registrada', 
-                            'desc' => 'La sede se ha registrado exitosamente', 
+                    $res = array('titulo' => 'Puesto Registrado', 
+                            'desc' => 'El puesto se ha registrado exitosamente', 
                             'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 
-                                'desc' => 'Hubo un problema al registrar la sede', 
+                                'desc' => 'Hubo un problema al registrar el puesto', 
                                 'type' => 'error');
                 }
             }
@@ -62,8 +61,8 @@ class Puestos extends Controller
         }
     }
 
-    //Actualizar sexos
-    public function actualizarSede() {
+    //Actualizar Puestos
+    public function actualizarPuestos() {
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -77,16 +76,16 @@ class Puestos extends Controller
                 $municipio = strClean($putData['municipio']);
                 $id = strClean($putData['id']);
     
-                $data = $this->model->actualizarSede($departamento, $municipio, $ubicacion, $id);
+                $data = $this->model->actualizarPuestos($departamento, $municipio, $ubicacion, $id);
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
                     $res = array('titulo' => 'Sexo Actualizado', 
-                                 'desc' => 'La sede se ha actualizado exitosamente', 
+                                 'desc' => 'El puesto se ha actualizado exitosamente', 
                                  'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 
-                                'desc' => 'Error al actualizar la sede', 
+                                'desc' => 'Error al actualizar el puesto', 
                                 'type' => 'success');
                 }
             }
@@ -96,23 +95,23 @@ class Puestos extends Controller
     }
     
     //Obtener datos de sexo para edición
-    public function obtenerSede($id) {
+    public function obtenerPuestos($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $data = $this->model->obtenerSede($id);
+            $data = $this->model->obtenerPuestos($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }
     }
     
-    //Eliminar sede
-    public function eliminarSede($id){
+    //Eliminar Puesto
+    public function eliminarPuestos($id){
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {
                 $res = array('msg' => 'ID inválido o no proporcionado', 'type' => 'error');
             } else {
                 // Realizar la eliminación en la base de datos
-                $data = $this->model->eliminarSede($id);
+                $data = $this->model->eliminarPuestos($id);
                 
                 if ($data > 0) {
                     // Registro de evento en la bitácora (ejemplo)
@@ -120,11 +119,11 @@ class Puestos extends Controller
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
                     
                     $res = array('titulo' => 'Sede Eliminada', 
-                                'desc' => 'La sede se ha eliminado exitosamente', 
+                                'desc' => 'El puesto se ha eliminado exitosamente', 
                                 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 
-                                'desc' => 'Hubo un error al eliminar la sede seleccionada', 
+                                'desc' => 'Hubo un error al eliminar el puesto seleccionada', 
                                 'type' => 'warning');
                 }
             }

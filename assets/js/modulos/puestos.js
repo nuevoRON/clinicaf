@@ -70,11 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
           createdRow: function(row, data, dataIndex) {
             // Agregar un evento onclick a los botones "Editar"
             $(row).find('.btn-success','btn').click(function() {
-                editarPuesto(data.id_puesto);
+                editarPuestos(data.id_puesto);
             });
   
             $(row).find('.btn-warning').click(function() {
-              eliminarPuesto(data.id_puesto);
+              eliminarPuestos(data.id_puesto);
           });
         },
   
@@ -96,8 +96,8 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log('No puede enviar el formulario vacio')
       } else {
         //Rutas a las funciones para crear y actualizar registros
-        const urlInsertar = "http://localhost/clinicaf/puestos/insertarSede";
-        const urlActualizar = "http://localhost/clinicaf/puestos/actualizarSede";
+        const urlInsertar = "http://localhost/clinicaf/puestos/insertarPuestos";
+        const urlActualizar = "http://localhost/clinicaf/puestos/actualizarPuestos";
         const data = new FormData(this);
       
         // Verificar si el campo 'id' está presente en los datos del formulario
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /*Eliminar registros*/
 //esta funcion recibe el id del registro para realizar la eliminación
-function eliminarSede(idSede) {
+function eliminarPuestos(idSede) {
 
   Swal.fire({
     title: "¿Estas seguro de eliminar este puesto?",
@@ -187,7 +187,7 @@ function eliminarSede(idSede) {
 
 
 /* Obtener datos de un registro para edición */
-function editarSede(idSede) {
+function editarpuestos(idSede) {
   const url = "http://localhost/clinicaf/puestos/obtenerPuesto/" + idSede;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
@@ -205,10 +205,10 @@ function editarSede(idSede) {
       id.value = res.id_puesto;
       ubicacion.value = res.ubucacion;
       
-      $("#departamento option[value=" + res.fk_departamento + "]").attr({
+      $("#nom_puesto option[value=" + res.nom_puesto + "]").attr({
         selected: true,
       });
-      $("#municipio option[value=" + res.fk_municipio + "]").attr({
+      $("#estado option[value=" + res.estado + "]").attr({
         selected: true,
       });
 
