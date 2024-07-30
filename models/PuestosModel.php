@@ -26,7 +26,7 @@ class PuestosModel extends Query{
 
     public function getEstados()
     {
-        $sql = "SELECT * FROM tbl_estados";
+        $sql = "SELECT * FROM tbl_puestos";
         return $this->selectAll($sql);
     }
 
@@ -38,7 +38,7 @@ class PuestosModel extends Query{
 
     public function actualizarPuestos($puesto,$estado, $id)
     {
-        $sql = "UPDATE tbl_puestos SET nom_puesto=?, estsdo=?   WHERE id_puesto=?";
+        $sql = "UPDATE tbl_puestos SET nom_puesto=?, estado=?   WHERE id_puesto=?";
         $array = array($puesto,$estado, $id);
         return $this->save($sql, $array);
     }

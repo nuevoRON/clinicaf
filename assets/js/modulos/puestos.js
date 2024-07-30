@@ -187,7 +187,7 @@ function eliminarPuestos(idSede) {
 
 
 /* Obtener datos de un registro para edición */
-function editarpuestos(idSede) {
+function editarPuestos(idSede) {
   const url = "http://localhost/clinicaf/puestos/obtenerPuesto/" + idSede;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
@@ -213,7 +213,7 @@ function editarpuestos(idSede) {
       });
 
       //Se abre el modal usando su id
-      $('#ModalPuestos').modal('show'); 
+      $('#ModalPuestos').modal('show');
       
     }
   };
