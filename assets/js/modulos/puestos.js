@@ -1,6 +1,7 @@
 //Datos generales del puestos
 const formulario = document.querySelector("#formulario");
 const selectEstado = document.querySelector("#estado");
+const selectid_puesto = document.querySelector("#id_puesto");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -89,10 +90,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Formulario para crear o actualizar un registro */
   formulario.addEventListener('submit', function(e) {
-      console.log(ubicacion)
+      console.log(estado)
       e.preventDefault(); /*evita que se envie el formulario sin validar*/
 
-      if (ubicacion.value == "") {
+      if (estado.value == "") {
           console.log('No puede enviar el formulario vacio')
       } else {
         //Rutas a las funciones para crear y actualizar registros
@@ -149,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /*Eliminar registros*/
 //esta funcion recibe el id del registro para realizar la eliminación
-function eliminarPuestos(idSede) {
+function eliminarPuestos(id_puesto) {
 
   Swal.fire({
     title: "¿Estas seguro de eliminar este puesto?",
@@ -162,7 +163,7 @@ function eliminarPuestos(idSede) {
     cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
-      let url = "http://localhost/clinicaf/puestos/eliminarPuestos/" + idSede;
+      let url = "http://localhost/clinicaf/puestos/eliminarPuestos/" + id_puesto;
       //hacer una instancia del objeto CMLHttoRequest
       const http = new XMLHttpRequest();
       //Abrir una Conexion - POST - GET
@@ -187,8 +188,8 @@ function eliminarPuestos(idSede) {
 
 
 /* Obtener datos de un registro para edición */
-function editarPuestos(idSede) {
-  const url = "http://localhost/clinicaf/puestos/obtenerPuesto/" + idSede;
+function editarPuestos(id_puesto) {
+  const url = "http://localhost/clinicaf/puestos/obtenerPuesto/" + id_puesto;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
   //Abrir una Conexion - POST - GET
@@ -203,7 +204,7 @@ function editarPuestos(idSede) {
       console.log(this.responseText);
       const res = JSON.parse(this.responseText);
       id.value = res.id_puesto;
-      ubicacion.value = res.ubucacion;
+      estado.value = res.ubucacion;
       
       $("#nom_puesto option[value=" + res.nom_puesto + "]").attr({
         selected: true,
