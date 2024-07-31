@@ -204,7 +204,7 @@ function editarPuestos(id_puesto) {
       console.log(this.responseText);
       const res = JSON.parse(this.responseText);
       id.value = res.id_puesto;
-      estado.value = res.estado;
+      id_puesto.value = res.id_puesto;
       
       $("#nom_puesto option[value=" + res.nom_puesto + "]").attr({
         selected: true,
