@@ -36,7 +36,7 @@ class Puestos extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['nom_puesto'])) {
                 $res = array('titulo' => 'Error', 
-                            'desc' => 'La ubicación no puede ir vacío', 
+                            'desc' => 'El puesto no puede ir vacío', 
                             'type' => 'warning');
             }else {
                 $nom_puesto = strClean($_POST['nom_puesto']);
@@ -66,17 +66,16 @@ class Puestos extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
-            if (empty($putData['ubicacion'])) {
+            if (empty($putData['nombre'])) {
                 $res = array('msg' => 'EL NOMBRE ES REQUERIDO', 'type' => 'warning');
             } else if (empty($putData['id'])) {
                 $res = array('msg' => 'ID REQUERIDO PARA ACTUALIZACIÓN', 'type' => 'warning');
             } else {
-                $ubicacion = strClean($putData['ubicacion']);
-                $departamento = strClean($putData['departamento']);
-                $municipio = strClean($putData['municipio']);
+                $nombre = strClean($putData['nombre']);
+                $estado = strClean($putData['estado']);
                 $id = strClean($putData['id']);
     
-                $data = $this->model->actualizarPuestos($departamento, $municipio, $ubicacion, $id);
+                $data = $this->model->actualizarPuestos($nombre, $estado, $id);
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);

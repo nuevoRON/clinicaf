@@ -1,7 +1,7 @@
 //Datos generales del puestos
 const formulario = document.querySelector("#formulario");
 const selectEstado = document.querySelector("#estado");
-const selectid_puesto = document.querySelector("#id_puesto");
+const selectipuesto = document.querySelector("#puesto");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -204,7 +204,7 @@ function editarPuestos(id_puesto) {
       console.log(this.responseText);
       const res = JSON.parse(this.responseText);
       id.value = res.id_puesto;
-      estado.value = res.ubucacion;
+      estado.value = res.estado;
       
       $("#nom_puesto option[value=" + res.nom_puesto + "]").attr({
         selected: true,
