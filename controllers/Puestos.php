@@ -66,12 +66,12 @@ class Puestos extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
-            if (empty($putData['nombre'])) {
+            if (empty($putData['puesto'])) {
                 $res = array('msg' => 'EL NOMBRE ES REQUERIDO', 'type' => 'warning');
             } else if (empty($putData['id'])) {
                 $res = array('msg' => 'ID REQUERIDO PARA ACTUALIZACIÓN', 'type' => 'warning');
             } else {
-                $puesto = strClean($putData['nombre']);
+                $puesto = strClean($putData['puesto']);
                 $estado = strClean($putData['estado']);
                 $id = strClean($putData['id']);
     
@@ -79,7 +79,7 @@ class Puestos extends Controller
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
-                    $res = array('titulo' => 'Sexo Actualizado', 
+                    $res = array('titulo' => 'Puesto Actualizado', 
                                  'desc' => 'El puesto se ha actualizado exitosamente', 
                                  'type' => 'success');
                 } else {
