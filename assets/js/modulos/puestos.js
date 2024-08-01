@@ -189,7 +189,7 @@ function eliminarPuestos(id_puesto) {
 
 /* Obtener datos de un registro para edición */
 function editarPuestos(id_puesto) {
-  const url = "http://localhost/clinicaf/puestos/obtenerPuesto/" + id_puesto;
+  const url = "http://localhost/clinicaf/puestos/obtenerPuestos/" + id_puesto;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
   //Abrir una Conexion - POST - GET

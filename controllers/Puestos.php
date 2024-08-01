@@ -34,12 +34,12 @@ class Puestos extends Controller
     //Registrar Puestos
     public function insertarPuestos() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (empty($_POST['nom_puesto'])) {
+            if (empty($_POST['puesto'])) {//puesto viene de la vista
                 $res = array('titulo' => 'Error', 
                             'desc' => 'El puesto no puede ir vacío', 
                             'type' => 'warning');
             }else {
-                $nom_puesto = strClean($_POST['nom_puesto']);
+                $nom_puesto = strClean($_POST['puesto']);//puesto viene de la vista
                 $estado = strClean($_POST['estado']);
     
                 $data = $this->model->insertarPuestos($nom_puesto,$estado);
@@ -71,11 +71,11 @@ class Puestos extends Controller
             } else if (empty($putData['id'])) {
                 $res = array('msg' => 'ID REQUERIDO PARA ACTUALIZACIÓN', 'type' => 'warning');
             } else {
-                $nombre = strClean($putData['nombre']);
+                $puesto = strClean($putData['nombre']);
                 $estado = strClean($putData['estado']);
                 $id = strClean($putData['id']);
     
-                $data = $this->model->actualizarPuestos($nombre, $estado, $id);
+                $data = $this->model->actualizarPuestos($puesto, $estado, $id);
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
