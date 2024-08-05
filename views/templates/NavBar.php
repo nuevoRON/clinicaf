@@ -60,6 +60,9 @@
 						<li>
 							<a href="<?php echo BASE_URL . 'inicio/puestos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Puesto</a>
 						</li>
+						<li>
+							<a href="<?php echo BASE_URL . 'inicio/reconocmientos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Reconocmientos</a>
+						</li>
 					</ul>
 				</li>
 			</ul>

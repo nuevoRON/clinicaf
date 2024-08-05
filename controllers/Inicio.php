@@ -93,4 +93,11 @@ class Inicio extends Controller{
         $this->views->getView('inicio', 'agragar_puestos', $data);
     }
 
+    public function reconocmientos()
+    {
+        $data['title'] = 'Panel Administrativo'; 
+        $data['script'] = 'proveidos.js';
+        $this->views->getView('inicio', 'lista_reconocimiento', $data);
+    }
+
 }
