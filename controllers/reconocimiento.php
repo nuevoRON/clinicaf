@@ -3,7 +3,7 @@ require 'Bitacora.php';
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
-class Puestos extends Controller
+class Reconocimiento extends Controller
 {
     private $id_usuario;
     public function __construct()
@@ -24,12 +24,12 @@ class Puestos extends Controller
     }
 
 
-    public function getReconocimientos(){
+ /*    public function getReconocimientos(){
         $data = $this->model->getReconocimientos();
         $res = array('estados'=>$data, 'type'=>'success');
         echo json_encode($res, JSON_UNESCAPED_UNICODE);
         die();
-    }
+    } */
 
     //Registrar Puestos
     public function insertarReconocimientos() {

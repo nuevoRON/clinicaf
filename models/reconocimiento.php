@@ -24,11 +24,11 @@ class ReconocimientoModel extends Query{
     
 
 
-     public function getReconocimientos()
+  /*    public function getReconocimientos()
      {
          $sql = "SELECT * FROM tbl_reconocimiento";
          return $this->selectAll($sql);
-     }
+     } */
 
     public function eliminarReconocimientos($id)
     {
