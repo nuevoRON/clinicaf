@@ -36,12 +36,7 @@
 						<a href="<?php echo BASE_URL . 'inicio/evaluacionCasos'; ?>"><i class="fas fa-exchange-alt"></i> &nbsp; Revision de Casos</a>
 					</li>
 				</ul>
-				<li>
-					<a href="#" class="nav-btn-submenu"><i class="fas fa-clipboard-list"></i> &nbsp; Plantillas <i class="fas fa-chevron-down"></i></a>
-					<ul>			
-			
-					</ul>
-				</li>
+	
 				<li>
 					<a href="#" class="nav-btn-submenu"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 					<ul>
@@ -63,6 +58,12 @@
 						<li>
 							<a href="<?php echo BASE_URL . 'inicio/reconocmientos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Reconocmientos</a>
 						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="#" class="nav-btn-submenu"><i class="fas fa-clipboard-list"></i> &nbsp; Plantillas <i class="fas fa-chevron-down"></i></a>
+					<ul>			
+			
 					</ul>
 				</li>
 			</ul>
