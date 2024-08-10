@@ -58,7 +58,7 @@
 								<td>VIOLACION</td>
 								<td>NUEVO</td>
 								<td>
-									<a href="evaluado.php" class="btn btn-success">
+									<a href="clinicaForense" class="btn btn-success">
 										<i class="fas fa-sync-alt"></i>
 									</a>
 								</td>
@@ -79,7 +79,7 @@
 								<td>MALTRATO INFANTIL</td>
 								<td>NUEVO</td>
 								<td>
-									<a href="evaluado.php" class="btn btn-success">
+									<a href="clinicaForense" class="btn btn-success">
 										<i class="fas fa-sync-alt"></i>
 									</a>
 								</td>
@@ -100,7 +100,7 @@
 								<td>ABUSO SEXUAL</td>
 								<td>PENDIENTE</td>
 								<td>
-									<a href="evaluado.php" class="btn btn-success">
+									<a href="clinicaForense" class="btn btn-success">
 										<i class="fas fa-sync-alt"></i>
 									</a>
 								</td>
@@ -121,7 +121,7 @@
 								<td>ESTADO DE SALUD</td>
 								<td>FINALIZADO</td>
 								<td>
-									<a href="evaluado.php" class="btn btn-success">
+									<a href="clinicaForense" class="btn btn-success">
 										<i class="fas fa-sync-alt"></i>
 									</a>
 								</td>
