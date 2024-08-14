@@ -10,28 +10,28 @@ class ReconocimientosModel extends Query{
         return $this->selectAll($sql);
     }
 
-    public function registrarPuesto($nombres,$descripcion,$salario) {
-        $sql = "INSERT INTO tbl_puesto (NOMBRE,DESCRIPCION,SALARIO) VALUES(?,?,?)";
-        $array = array($nombres,$descripcion,$salario);
+    public function insertarReconocimientos($nom_reco) {
+        $sql = "INSERT INTO tbl_reconocimiento (nom_reconocimiento) VALUES(?)";
+        $array = array($nom_reco);
         return $this->insertar($sql, $array);
     }
 
-    public function editarPuesto($id)
+    public function editarReconocimientos($id)
     {
-        $sql = " SELECT * FROM tbl_puesto WHERE ID_PUESTO = $id";
+        $sql = " SELECT * FROM tbl_reconocimiento WHERE id_reconocimiento = $id";
         return $this->select($sql);
     }
 
-    public function eliminarPuesto($id)
+    public function eliminarReconocimientos($id)
     {
-        $sql = " DELETE FROM tbl_puesto WHERE ID_PUESTO = $id";
+        $sql = " DELETE FROM tbl_reconocimiento WHERE id_reconocimiento = $id";
         return $this->select($sql);
     }
 
-    public function actualizarPuesto($nombres,$descripcion,$salario,$id)
+    public function actualizarReconocimientos($nom_reco,$id)
     {
-        $sql = "UPDATE tbl_puesto SET NOMBRE=?, DESCRIPCION=?, SALARIO=? WHERE ID_PUESTO=?";
-        $array = array($nombres, $descripcion,$salario,$id);
+        $sql = "UPDATE tbl_reconocimiento SET nom_reconocimiento=? WHERE id_reconocimiento=?";
+        $array = array($nom_reco, $id);
         return $this->save($sql, $array);
     }
 

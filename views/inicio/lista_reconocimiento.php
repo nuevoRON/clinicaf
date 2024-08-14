@@ -36,14 +36,14 @@
                 
                     <div class="container-fluid">                  
                         <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-bs-backdrop="static" data-toggle="modal" data-target="#ModalPuestos"><i class="fas fa-user-plus"></i> &nbsp; Agregar Reconocimientos</button>
+                            <button type="button" class="btn btn-primary" data-bs-backdrop="static" data-toggle="modal" data-target="#ModalReconocimiento"><i class="fas fa-user-plus"></i> &nbsp; Agregar Reconocimientos</button>
                         </p>
 
                     </div>
                
            
             
-            <div class="modal fade" id="ModalPuestos" tabindex="-1"  role="dialog" aria-labelledby="ModalPuestos" data-backdrop="static" aria-hidden="true">
+            <div class="modal fade" id="ModalReconocimiento" tabindex="-1"  role="dialog" aria-labelledby="ModalReconocimiento" data-backdrop="static" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -62,8 +62,8 @@
                         <div class="row">
                                <div class="col-12 col-md-8">
                                     <div class="form-group">
-                                        <label for="puesto" class="bmd-label-floating">Nombre de Reconocimiento</label>
-                                        <input type="text"  class="form-control" name="puesto" id="puesto" maxlength="50">
+                                        <label for="reconocimiento" class="bmd-label-floating">Nombre de Reconocimiento</label>
+                                        <input type="text"  class="form-control" name="reconocimiento" id="reconocimiento" maxlength="50">
 										<span id="spanNombre" style="color: red; font-size:1rem;"></span>
                                     </div>
                                 </div>
