@@ -6,10 +6,10 @@ const id = document.querySelector("#id");
 document.addEventListener("DOMContentLoaded", function () {
 
   //Se extraen los datos de la base de datos para llenar el datatable
-  let urlListarSexo = "http://localhost/clinicaf/Reconocimiento/listarReconocimientos";
+  let urlListarReconocimiento = "http://localhost/clinicaf/Reconocimiento/listarReconocimientos";
 
   axios
-    .get(urlListarSexo)
+    .get(urlListarReconocimiento)
     .then(function (response) {
       //se muestran los datos obtenidos
       console.log(response.data);
@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
           createdRow: function(row, data, dataIndex) {
             // Agregar un evento onclick a los botones "Editar"
             $(row).find('.btn-success','btn').click(function() {
-                editarReconocimiento(data.id_reconocimiento);
+                editarReconocimientos(data.id_reconocimiento);
             });
   
             $(row).find('.btn-warning').click(function() {
-              eliminarReconocimiento(data.id_reconocimiento);
+              eliminarReconocimientos(data.id_reconocimiento);
           });
         },
   
@@ -83,8 +83,8 @@ formulario.addEventListener('submit', function(e) {
         console.log('No puede enviar el formulario vacio')
     } else {
       //Rutas a las funciones para crear y actualizar registros
-      const urlInsertar = "http://localhost/clinicaf/Reconocimientos/insertarReconocimiento";
-      const urlActualizar = "http://localhost/clinicaf/Reconocimientos/actualizarReconocimiento";
+      const urlInsertar = "http://localhost/clinicaf/Reconocimiento/insertarReconocimientos";
+      const urlActualizar = "http://localhost/clinicaf/Reconocimiento/actualizarReconocimientos";
       const data = new FormData(this);
     
       // Verificar si el campo 'id' está presente en los datos del formulario
@@ -135,7 +135,7 @@ formulario.addEventListener('submit', function(e) {
 
 
 //funcion para eliminar usuario
-function eliminarReconocimiento(idreconocimiento) {
+function eliminarReconocimientos(idreconocimiento) {
 
   Swal.fire({
     title: "¿Estas seguro de eliminar este sexo?",
@@ -148,7 +148,7 @@ function eliminarReconocimiento(idreconocimiento) {
     cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
-      let url = "http://localhost/clinicaf/Reconocimiento/eliminarReconocimiento/" + idreconocimiento;
+      let url = "http://localhost/clinicaf/Reconocimiento/eliminarReconocimientos/" + idreconocimiento;
       //hacer una instancia del objeto CMLHttoRequest
       const http = new XMLHttpRequest();
       //Abrir una Conexion - POST - GET
@@ -174,7 +174,7 @@ function eliminarReconocimiento(idreconocimiento) {
 
 // funcion para recuperar los datos del sexo
 function editarReconocimiento(idreconocimiento) {
-  const url = "http://localhost/clinicaf/Reconocimiento/obtenerReconocimiento/" + idreconocimiento;
+  const url = "http://localhost/clinicaf/Reconocimiento/obtenerReconocimientos/" + idreconocimiento;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
   //Abrir una Conexion - POST - GET

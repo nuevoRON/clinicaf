@@ -39,7 +39,7 @@ class Reconocimiento extends Controller
                             'desc' => 'El recocnocimiento no puede ir vacío', 
                             'type' => 'warning');
             }else {
-                $nom_reco = strClean($_POST['recocnocimiento']);//recocnocimiento viene de la vista
+                $nom_reco = strClean($_POST['reconocimiento']);//recocnocimiento viene de la vista
                 // $estado = strClean($_POST['estado']);
     
                 $data = $this->model->insertarReconocimientos($nom_reco);
