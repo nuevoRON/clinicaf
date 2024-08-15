@@ -24,19 +24,12 @@ class Reconocimiento extends Controller
     }
 
 
- /*    public function getReconocimientos(){
-        $data = $this->model->getReconocimientos();
-        $res = array('estados'=>$data, 'type'=>'success');
-        echo json_encode($res, JSON_UNESCAPED_UNICODE);
-        die();
-    } */
-
     //Registrar recocnocimiento
     public function insertarReconocimientos() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (empty($_POST['recocnocimiento'])) {//recocnocimiento viene de la vista
+            if (empty($_POST['reconocimiento'])) {//recocnocimiento viene de la vista
                 $res = array('titulo' => 'Error', 
-                            'desc' => 'El recocnocimiento no puede ir vacío', 
+                            'desc' => 'El reconocimiento no puede ir vacío', 
                             'type' => 'warning');
             }else {
                 $nom_reco = strClean($_POST['reconocimiento']);//recocnocimiento viene de la vista
@@ -47,12 +40,12 @@ class Reconocimiento extends Controller
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
-                    $res = array('titulo' => 'Puesto Registrado', 
-                            'desc' => 'El puesto se ha registrado exitosamente', 
+                    $res = array('titulo' => 'Reconocimiento Registrado', 
+                            'desc' => 'El reconocimiento se ha registrado exitosamente', 
                             'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 
-                                'desc' => 'Hubo un problema al registrar el puesto', 
+                                'desc' => 'Hubo un problema al registrar el reconocimiento', 
                                 'type' => 'error');
                 }
             }
@@ -78,7 +71,7 @@ class Reconocimiento extends Controller
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
-                    $res = array('titulo' => 'reconocimiento Actualizado', 
+                    $res = array('titulo' => 'Reconocimiento Actualizado', 
                                  'desc' => 'El reconocimiento se ha actualizado exitosamente', 
                                  'type' => 'success');
                 } else {
@@ -116,12 +109,12 @@ class Reconocimiento extends Controller
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
                     
-                    $res = array('titulo' => 'Sede Eliminada', 
-                                'desc' => 'El puesto se ha eliminado exitosamente', 
+                    $res = array('titulo' => 'Reconocimiento Eliminado', 
+                                'desc' => 'El reconocimiento se ha eliminado exitosamente', 
                                 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 
-                                'desc' => 'Hubo un error al eliminar el puesto seleccionada', 
+                                'desc' => 'Hubo un error al eliminar el reconocimiento seleccionada', 
                                 'type' => 'warning');
                 }
             }

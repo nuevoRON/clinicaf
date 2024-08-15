@@ -1,6 +1,6 @@
 //Datos generales del Sexo
 const formulario = document.querySelector("#formulario");
-const nombre = document.querySelector("#nombre_reconocimiento");
+const nombre = document.querySelector("#reconocimiento");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -83,8 +83,8 @@ formulario.addEventListener('submit', function(e) {
         console.log('No puede enviar el formulario vacio')
     } else {
       //Rutas a las funciones para crear y actualizar registros
-      const urlInsertar = "http://localhost/clinicaf/Reconocimiento/insertarReconocimientos";
-      const urlActualizar = "http://localhost/clinicaf/Reconocimiento/actualizarReconocimientos";
+      const urlInsertar = "http://localhost/clinicaf/reconocimiento/insertarReconocimientos";
+      const urlActualizar = "http://localhost/clinicaf/reconocimiento/actualizarReconocimientos";
       const data = new FormData(this);
     
       // Verificar si el campo 'id' está presente en los datos del formulario
@@ -173,7 +173,7 @@ function eliminarReconocimientos(idreconocimiento) {
 
 
 // funcion para recuperar los datos del sexo
-function editarReconocimiento(idreconocimiento) {
+function editarReconocimientos(idreconocimiento) {
   const url = "http://localhost/clinicaf/Reconocimiento/obtenerReconocimientos/" + idreconocimiento;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
@@ -189,7 +189,7 @@ function editarReconocimiento(idreconocimiento) {
       id.value = res.id_reconocimiento;
       nombre.value = res.nom_reconocimiento;
       
-      btnAccion.textContent = "Actualizar";
+      document.getElementById('btn-enviar').textContent = "Actualizar";
 
       $('#ModalReconocimiento').modal('show'); 
       
