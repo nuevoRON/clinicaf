@@ -1,25 +1,20 @@
-//Datos generales del puestos
+//Datos generales del Sexo
 const formulario = document.querySelector("#formulario");
-const selectReconocimiento = document.querySelector("#reconocimiento");
+const nombre = document.querySelector("#nombre_reconocimiento");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
-  
-  /* Mostrar Tabla */
+
   //Se extraen los datos de la base de datos para llenar el datatable
-  let urllistarReconocimientos = "http://localhost/clinicaf/reconocimiento/listarReconocimientos";
+  let urlListarReconocimiento = "http://localhost/clinicaf/Reconocimiento/listarReconocimientos";
 
   axios
-    .get(urllistarReconocimientos)
-    //si no hay problemas con la consulta se reciben los datos y se construye la tabla
+    .get(urlListarReconocimiento)
     .then(function (response) {
       //se muestran los datos obtenidos
       console.log(response.data);
-      //los datos a mostrar en la tabla se encuentran en response.data
-      //se define una variable que pueda ser usada dentro del datatable
       let datos = response.data;
 
-      //se inicializa el datatable usando el id de la tabla
       $('#tabla_reconocimiento').DataTable({
         language: {
           "decimal": ",",
@@ -39,15 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           "sProcessing":"Cargando..."
       },
-        //se usa la variable definida arriba con los datos
         data: datos,
         paging: true,
-        //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
         columns: [
             { data: 'id_reconocimiento' },
             { data: 'nom_reconocimiento' },
-            //estas dos columnas contienen los botones para editar y eliminar
-            //de ser necesario se pueden agregar más columnas con otros botones
             {
                 render: function(data, type, row) {
                     // Agregar botones "Editar" y "Eliminar"
@@ -63,95 +54,91 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }, 
         ],
-        //estas dos funciones contienen las referencias a las funciones que realizan edicion y eliminacion
-        //se usa una funcion find para encontrar un boton en especifico usando su clase y asi asignarle 
-        //la función javascript que le corresponde
-        createdRow: function(row, data, dataIndex) {
-          // Agregar un evento onclick a los botones "Editar"
-          $(row).find('.btn-success','btn').click(function() {
-              editarPuestos(data.id_puesto);
+          createdRow: function(row, data, dataIndex) {
+            // Agregar un evento onclick a los botones "Editar"
+            $(row).find('.btn-success','btn').click(function() {
+                editarReconocimientos(data.id_reconocimiento);
+            });
+  
+            $(row).find('.btn-warning').click(function() {
+              eliminarReconocimientos(data.id_reconocimiento);
           });
+        },
+  
+      });
 
-          $(row).find('.btn-warning').click(function() {
-            eliminarPuestos(data.id_puesto);
-        });
-      },
-
+    })
+    .catch(function (error) {
+      // Maneja errores
+      console.error("Ocurrió un error:", error);
     });
 
-  })
-  .catch(function (error) {
-    // Maneja errores
-    console.error("Ocurrió un error:", error);
-  });
 
+//Funciones del formulario para agregar o actualizar un registro
+formulario.addEventListener('submit', function(e) {
+    console.log(nombre)
+    e.preventDefault(); 
 
-  /* Formulario para crear o actualizar un registro */
-  formulario.addEventListener('submit', function(e) {
-      console.log(estado)
-      e.preventDefault(); /*evita que se envie el formulario sin validar*/
-
-      if (estado.value == "") {
-          console.log('No puede enviar el formulario vacio')
+    if (nombre.value == "") {
+        console.log('No puede enviar el formulario vacio')
+    } else {
+      //Rutas a las funciones para crear y actualizar registros
+      const urlInsertar = "http://localhost/clinicaf/Reconocimiento/insertarReconocimientos";
+      const urlActualizar = "http://localhost/clinicaf/Reconocimiento/actualizarReconocimientos";
+      const data = new FormData(this);
+    
+      // Verificar si el campo 'id' está presente en los datos del formulario
+      const id = data.get('id');
+      
+      //Se valida por medio de un operador ternario si se recibe un id del formulario
+      //Si existe un dato de id se usa urlActualizar, sino se usa urlInsertar
+      const url = id ? urlActualizar : urlInsertar;
+      const method = id ? "PUT" : "POST";
+    
+      const http = new XMLHttpRequest();
+      http.open(method, url, true);
+      
+      // Si se usa PUT, hay que enviar los datos como JSON
+      if (method === "PUT") {
+          // Convertir FormData a JSON
+          const object = {};
+          data.forEach((value, key) => { object[key] = value });
+          const jsonData = JSON.stringify(object);
+          http.setRequestHeader("Content-Type", "application/json");
+          http.send(jsonData);
       } else {
-        //Rutas a las funciones para crear y actualizar registros
-        const urlInsertar = "http://localhost/clinicaf/puestos/insertarPuestos";
-        const urlActualizar = "http://localhost/clinicaf/puestos/actualizarPuestos";
-        const data = new FormData(this);
-      
-        // Verificar si el campo 'id' está presente en los datos del formulario
-        const id = data.get('id');
-        
-        //Se valida por medio de un operador ternario si se recibe un id del formulario
-        //Si existe un dato de id se usa urlActualizar, sino se usa urlInsertar
-        const url = id ? urlActualizar : urlInsertar;
-        const method = id ? "PUT" : "POST";
-      
-        const http = new XMLHttpRequest();
-        http.open(method, url, true);
-        
-        // Si se usa PUT, hay que enviar los datos como JSON
-        if (method === "PUT") {
-            // Convertir FormData a JSON
-            const object = {};
-            data.forEach((value, key) => { object[key] = value });
-            const jsonData = JSON.stringify(object);
-            http.setRequestHeader("Content-Type", "application/json");
-            http.send(jsonData);
-        } else {
-            // Para POST, se envía directamente el FormData
-            http.send(data);
-        }
-      
-        http.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
-            const res = JSON.parse(this.responseText);
-            
-            Swal.fire({
-              title: res.titulo,
-              text: res.desc,
-              icon: res.type
-            }).then((result) => {
-              if (this.responseText.includes('"type":"success"')) {
-                location.reload();
-              }
-          });
-
-            
-          }
-        };
+          // Para POST, se envía directamente el FormData
+          http.send(data);
       }
-    });
+    
+      http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
+          const res = JSON.parse(this.responseText);
+          
+          Swal.fire({
+            title: res.titulo,
+            text: res.desc,
+            icon: res.type
+          }).then((result) => {
+            if (this.responseText.includes('"type":"success"')) {
+              location.reload();
+            }
+        });
+
+          
+        }
+      };
+    }
+  });
 });
 
 
-/*Eliminar registros*/
-//esta funcion recibe el id del registro para realizar la eliminación
-function eliminarPuestos(id_puesto) {
+//funcion para eliminar usuario
+function eliminarReconocimientos(idreconocimiento) {
 
   Swal.fire({
-    title: "¿Estas seguro de eliminar este puesto?",
+    title: "¿Estas seguro de eliminar este sexo?",
     text: "Esta acción no se puede deshacer",
     icon: "warning",
     showCancelButton: true,
@@ -161,7 +148,7 @@ function eliminarPuestos(id_puesto) {
     cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
-      let url = "http://localhost/clinicaf/puestos/eliminarPuestos/" + id_puesto;
+      let url = "http://localhost/clinicaf/Reconocimiento/eliminarReconocimientos/" + idreconocimiento;
       //hacer una instancia del objeto CMLHttoRequest
       const http = new XMLHttpRequest();
       //Abrir una Conexion - POST - GET
@@ -185,9 +172,9 @@ function eliminarPuestos(id_puesto) {
 }
 
 
-/* Obtener datos de un registro para edición */
-function editarPuestos(id_puesto) {
-  const url = "http://localhost/clinicaf/puestos/obtenerPuestos/" + id_puesto;
+// funcion para recuperar los datos del sexo
+function editarReconocimiento(idreconocimiento) {
+  const url = "http://localhost/clinicaf/Reconocimiento/obtenerReconocimientos/" + idreconocimiento;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
   //Abrir una Conexion - POST - GET
@@ -196,21 +183,15 @@ function editarPuestos(id_puesto) {
   http.send();
   //Verificar estados
   http.onreadystatechange = function () {
-    //si se obtienen los datos de la base de datos se deben ingresar en los inputs
-    //usando los id para asignar los datos en los mismos
     if (this.readyState == 4 && this.status == 200) {
       console.log(this.responseText);
       const res = JSON.parse(this.responseText);
-      id.value = res.id_puesto;
-      selectReconocimiento.value = res.nom_reconocimiento;
-
+      id.value = res.id_reconocimiento;
+      nombre.value = res.nom_reconocimiento;
       
-      $("#estado option[value=" + res.estado + "]").attr({
-        selected: true,
-      });
+      btnAccion.textContent = "Actualizar";
 
-      //Se abre el modal usando su id
-      $('#ModalReconocimiento').modal('show');
+      $('#ModalReconocimiento').modal('show'); 
       
     }
   };

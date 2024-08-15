@@ -31,18 +31,18 @@ class Reconocimiento extends Controller
         die();
     } */
 
-    //Registrar Puestos
+    //Registrar recocnocimiento
     public function insertarReconocimientos() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (empty($_POST['puesto'])) {//puesto viene de la vista
+            if (empty($_POST['recocnocimiento'])) {//recocnocimiento viene de la vista
                 $res = array('titulo' => 'Error', 
-                            'desc' => 'El puesto no puede ir vacío', 
+                            'desc' => 'El recocnocimiento no puede ir vacío', 
                             'type' => 'warning');
             }else {
-                $nom_puesto = strClean($_POST['puesto']);//puesto viene de la vista
-                $estado = strClean($_POST['estado']);
+                $nom_reco = strClean($_POST['reconocimiento']);//recocnocimiento viene de la vista
+                // $estado = strClean($_POST['estado']);
     
-                $data = $this->model->insertarReconocimientos($nom_puesto,$estado);
+                $data = $this->model->insertarReconocimientos($nom_reco);
                 
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
@@ -66,25 +66,24 @@ class Reconocimiento extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
-            if (empty($putData['puesto'])) {
+            if (empty($putData['reconocimiento'])) {
                 $res = array('msg' => 'EL NOMBRE ES REQUERIDO', 'type' => 'warning');
             } else if (empty($putData['id'])) {
                 $res = array('msg' => 'ID REQUERIDO PARA ACTUALIZACIÓN', 'type' => 'warning');
             } else {
-                $puesto = strClean($putData['puesto']);
-                $estado = strClean($putData['estado']);
+                $nom_reco = strClean($putData['reconocimiento']);
                 $id = strClean($putData['id']);
     
-                $data = $this->model->actualizarReconocimientos($puesto, $estado, $id);
+                $data = $this->model->actualizarReconocimientos($nom_reco, $id);
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
-                    $res = array('titulo' => 'Puesto Actualizado', 
-                                 'desc' => 'El puesto se ha actualizado exitosamente', 
+                    $res = array('titulo' => 'reconocimiento Actualizado', 
+                                 'desc' => 'El reconocimiento se ha actualizado exitosamente', 
                                  'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 
-                                'desc' => 'Error al actualizar el puesto', 
+                                'desc' => 'Error al actualizar el reconocimiento', 
                                 'type' => 'success');
                 }
             }
