@@ -10,25 +10,9 @@ const fiscalia = document.querySelector("#item_dependencia_reg");
 
 const selectDependencias = document.querySelector("#item_dependencia_reg");
 const selectReconocimiento = document.querySelector("#item_recon_reg");
-const selectMedico = document.querySelector("#item_estado_reg");
+const selectMedico = document.querySelector("#medico");
 const selectDepartamento = document.querySelector("#item_departamento_reg");
 const selectMunicipio = document.querySelector("#item_municipio_reg");
-
-//elementos para mostrar errores
-/* const errorUsuario = document.querySelector("#errorUsuario");
-const errorNombre = document.querySelector("#errorNombre");
-const errorApellido = document.querySelector("#errorApellido");
-const errorCorreo = document.querySelector("#errorCorreo");
-const errorIdentidad = document.querySelector("#errorIdentidad");
-const errorDireccion = document.querySelector("#errorDireccion");
-const errorContraseña = document.querySelector("#errorContraseña");
-const errorRol = document.querySelector("#errorRol");
-const errorEstado = document.querySelector("#errorEstado"); */
-
-/* const btnAccion = document.querySelector("#btnAccion"); */
-/* const btnNuevo = document.querySelector("#btnNuevo"); */
-/* const sino = 1; const permi = 0 */
-
 
 document.addEventListener("DOMContentLoaded", function () {
   //permisosPantalla = obtenerPermisos("Usuarios", permisosUsuario);
@@ -160,6 +144,94 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
+    /* Mostrar Tabla */
+  //Se extraen los datos de la base de datos para llenar el datatable
+  let urlListarSedes = "http://localhost/clinicaf/proveidos/listarProveidos";
+
+  axios
+    .get(urlListarSedes)
+    //si no hay problemas con la consulta se reciben los datos y se construye la tabla
+    .then(function (response) {
+      //se muestran los datos obtenidos
+      console.log(response.data);
+      //los datos a mostrar en la tabla se encuentran en response.data
+      //se define una variable que pueda ser usada dentro del datatable
+      let datos = response.data;
+
+      //se inicializa el datatable usando el id de la tabla
+      $('#tabla_proveidos').DataTable({
+        language: {
+          "decimal": ",",
+          "thousands": ".",
+          "lengthMenu": "Mostrar _MENU_ registros",
+          "zeroRecords": "No se encontraron resultados",
+          "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+          "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+          "sSearch": "Buscar:",
+          "No data available in table" : "No hay datos disponibles",
+          "oPaginate": {
+              "sFirst": "Primero",
+              "sLast":"Último",
+              "sNext":"Siguiente",
+              "sPrevious": "Anterior"
+          },
+          "sProcessing":"Cargando..."
+      },
+        //se usa la variable definida arriba con los datos
+        data: datos,
+        paging: true,
+        //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
+        columns: [
+       
+            { data: 'num_caso' },
+            { data: 'dni_evaluado' },
+            { data: 'nombre_evaluado' },
+            { data: 'apellido_evaluado' },
+            { data: 'nom_dependencia' },
+            { data: 'nom_reconocimiento' },
+            { data: 'fecha_citacion' },
+            //estas dos columnas contienen los botones para editar y eliminar
+            //de ser necesario se pueden agregar más columnas con otros botones
+            {
+                render: function(data, type, row) {
+                    // Agregar botones "Editar" y "Eliminar"
+                    return `<button class="btn btn-success">
+                    <i class="fas fa-sync-alt"></i></button>`;
+                }
+            },
+            {
+                render: function(data, type, row) {
+                    // Agregar botones "Editar" y "Eliminar"
+                    return `<button class="btn btn-warning">
+                    <i class="fas fa-trash-alt"></i></button>`;
+                }
+            }, 
+        ],
+        //estas dos funciones contienen las referencias a las funciones que realizan edicion y eliminacion
+        //se usa una funcion find para encontrar un boton en especifico usando su clase y asi asignarle 
+        //la función javascript que le corresponde
+          createdRow: function(row, data, dataIndex) {
+            // Agregar un evento onclick a los botones "Editar"
+            $(row).find('.btn-success','btn').click(function() {
+              editarProveido(data.id_proveidos);
+            });
+  
+            $(row).find('.btn-warning').click(function() {
+              eliminarProveido(data.id_proveidos);
+          });
+        },
+  
+      });
+
+    })
+    .catch(function (error) {
+      // Maneja errores
+      console.error("Ocurrió un error:", error);
+    });
+
+
+
   formulario.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir la acción por defecto del formulario
 
@@ -202,11 +274,11 @@ document.addEventListener("DOMContentLoaded", function () {
             title: res.titulo,
             text: res.desc,
             icon: res.type
-          });
-
-          if (this.responseText.includes('"type":"success"')) {
-            console.log('si se insertó')
-          }
+          }).then((result) => {
+            if (this.responseText.includes('"type":"success"')) {
+              location.reload();
+            }
+        });
     
         }
       };
@@ -215,39 +287,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-//funcion para eliminar usuario
-function eliminarUsuario(idUsuarioParam) {
-  if (!permisosPantalla.eliminar) {
-    Swal.fire({
-      toast: true,
-      position: "top-right",
-      icon: "info",
-      title: "NO TIENE PERMISO DE ELIMINAR",
-      showConfirmButton: false,
-      timer: 1500,
-    }); 
-  } else 
-  if (idUsuarioParam === 1) {
-    Swal.fire({
-      icon: "warning",
-      title: "Acción no permitida",
-      text: "El usuario administrador no puede ser eliminado.",
-      confirmButtonColor: "#3085d6",
-    });
-    return; // No se permite eliminar el usuario con ID 1
-  }
+/*Eliminar registros*/
+//esta funcion recibe el id del registro para realizar la eliminación
+function eliminarProveido(idProveido) {
 
   Swal.fire({
-    title: "Estas seguro de inhabilitar este usuario?",
-    text: "El registro no se eliminara de forma permanente, solo cambiara el estado!",
+    title: "¿Estas seguro de eliminar este proveído?",
+    text: "Esta acción no se puede deshacer",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Si, Inhabilitar!",
+    confirmButtonText: "Si",
+    cancelButtonText: "No",
   }).then((result) => {
     if (result.isConfirmed) {
-      let url = base_url + "usuarios/eliminar/" + idUsuarioParam;
+      let url = "http://localhost/clinicaf/proveidos/eliminarProveido/" + idProveido;
       //hacer una instancia del objeto CMLHttoRequest
       const http = new XMLHttpRequest();
       //Abrir una Conexion - POST - GET
@@ -258,47 +313,28 @@ function eliminarUsuario(idUsuarioParam) {
       http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
           const res = JSON.parse(this.responseText);
+
           Swal.fire({
-            toast: true,
-            position: "top-right",
-            icon: res.type,
-            title: res.msg,
-            showConfirmButton: false,
-            timer: 2000,
-          });
-          if (res.type == "success") {
-            tblUsuarios.ajax.reload();
-            let data = {
-              idUser: idUsuario,
-              idObjeto: 1,
-              accion: "DESACTIVAR",
-              descripcion: "SE DESACTIVÓ AL USUARIO DEL ID " + idUsuarioParam,
-            };
-            url = base_url + "Bitacora/CrearEvento";
-            axios.post(url, data).then((res) => {
-              console.log(res);
-            });
-          }
+            title: res.titulo,
+            text: res.desc,
+            icon: res.type
+          }).then((result) => {
+            if (this.responseText.includes('"type":"success"')) {
+              location.reload();
+            }
+        });
         }
       };
     }
   });
 }
 
-// funcion para recuperar los datos del usuario
-function editarUsuario(idUsuario) {
-  if (!permisosPantalla.actualizar) {
-    Swal.fire({
-      toast: true,
-      position: "top-right",
-      icon: "info",
-      title: "NO TIENE PERMISO DE ACTUALIZAR",
-      showConfirmButton: false,
-      timer: 1500,
-    }); 
-  } else{
-  
-  const url = base_url + "usuarios/editar/" + idUsuario;
+
+
+// funcion para recuperar los datos del proveido
+function editarProveido(idProveido) {
+
+  const url = "http://localhost/clinicaf/proveidos/editarProveido/" + idProveido;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
   //Abrir una Conexion - POST - GET
@@ -310,43 +346,78 @@ function editarUsuario(idUsuario) {
     if (this.readyState == 4 && this.status == 200) {
       console.log(this.responseText);
       const res = JSON.parse(this.responseText);
-      id.value = res.ID_USUARIO;
-      usuario.value = res.USUARIO;
-      nombres.value = res.NOMBRE_USUARIO;
-      apellido.value = res.APELLIDO_USUARIO;
-      correo.value = res.CORREO_ELECTRONICO;
-      identidad.value = res.NUM_IDENTIDAD;
-      direccion.value = res.DIRECCION_1;
-      estado.value = res.ESTADO_USUARIO;
-      vencimiento.value = res.FECHA_VENCIMIENTO;
-      rol.value = res.id;
-      if (estado.value == 1) {
-        estado.disabled = true;
-        tipo.value = 1;
-      } else {
-        estado.disabled = false;
-        tipo.value = 2;
+      document.getElementById('id').value = idProveido;
+      document.getElementById('numero_solicitud_reg').value = res.num_caso;
+      document.getElementById('numero_externo_reg').value = res.num_caso_ext;
+      document.getElementById('fecha_emision').value = res.fech_emi_soli;
+      document.getElementById('fecha_recepcion').value = res.fech_recep_soli;
+      document.getElementById('nombre').value = res.nombre_evaluado;
+      document.getElementById('apellido').value = res.apellido_evaluado;
+      document.getElementById('dni').value = res.dni_evaluado;
+      document.getElementById('aldea_barrio').value = res.localidad;
+      document.getElementById('lugar').value = res.lugar_hecho;
+      document.getElementById('fecha_hecho').value = res.fecha_hecho;
+      document.getElementById('fecha_citacion').value = res.fecha_citacion;
+      $("#item_departamento_reg option[value=" + res.id_departamento + "]").attr({selected: true,});
+      $("#item_dependencia_reg option[value=" + res.fiscalia_remitente + "]").attr({selected: true,});
+      $("#item_recon_reg option[value=" + res.tipo_reconocimiento + "]").attr({selected: true,});
+      $("#medico option[value=" + res.medico + "]").attr({selected: true,});
+
+      //Cargar municipios
+      if(res.fk_departamento != 0){
+        const selectDepartamento = document.querySelector("#item_departamento_reg");
+        const selectMunicipio = document.querySelector("#item_municipio_reg");
+
+          //se llama a la funcion getMunicipios para obtener los municipios
+          //La variable idDepartamento obtiene el valor que se asignó con option.value en la funcion anterior
+          let idDepartamento= selectDepartamento.options[selectDepartamento.selectedIndex].value
+          let urlMunicipio = "http://localhost/clinicaf/dependencias/getMunicipios/"+ idDepartamento;
+      
+          // Eliminar opciones existentes del select de municipios
+          /* Para manejar de forma dinamica el select de municipios cada vez que se selecciona un departamento
+          el select de municipios se borra y se vuelve a recrear con los datos del nuevo departamento */
+          while (selectMunicipio.firstChild) {
+              selectMunicipio.removeChild(selectMunicipio.firstChild);
+          }
+
+          axios
+          //si no hay problemas con la consulta se reciben los datos y se construyen las opciones del select
+          .get(urlMunicipio)
+          .then(function (response) {
+            // Llenar Select
+            console.log(response);
+            //se recorre el response con un forEach para ir creando las opciones
+            response.data.forEach((opcion) => {
+              //se crea un elemento de la clase option
+              let option = document.createElement("option");
+
+              //dentro del option se agregan los datos de la base de datos
+            //option.text muestra el nombre guardado en base de datos y option.value el id del registro en la base de datos
+              option.text = opcion.nombre_municipio;
+              option.value = opcion.id_municipio;
+
+              //se usa la funcion appendChild para crear las opciones dentro del select
+            //el select ya esta definido como variable en la parte de arriba
+              selectMunicipio.appendChild(option);
+            });
+
+            if(res.fk_municipio != 0){
+              $("#item_municipio_reg option[value=" + res.fk_municipio + "]").attr({
+                selected: true,
+              });
+      
+            }
+          })
+          .catch(function (error) {
+            //Se ejecuta un console.log en caso de que haya un error en la logica del controlador y modelo
+            console.error("Ocurrió un error:", error);
+          });
+      
       }
-      contraseña.value = "0000000";
-      usuario.setAttribute("readonly", "readonly");
-      contraseña.setAttribute("readonly", "readonly");
-      btnAccion.textContent = "Actualizar";
-      const firstTabEl = document.querySelector("#nav-tab button:last-child");
-      const firstTab = new bootstrap.Tab(firstTabEl);
-      firstTab.show();
+
+     //Se abre el modal usando su id
+     $('#Modalproveído').modal('show'); 
     }
-  };
   }
-  //sino = 1
-  //const permi = 1
-}
-function limpiarCampos() {
-  id.value = "";
-  btnAccion.textContent = "Registrar";
-  contraseña.removeAttribute("readonly");
-  formulario.reset();
-  tipo.value = 1;
-  nombres.focus();
-  usuario.removeAttribute("readonly");
-  estado.disabled = true;
+  
 }

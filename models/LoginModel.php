@@ -11,7 +11,7 @@ class LoginModel extends Query{
                        u.contrasena,
                        u.apellido,
                        u.estado,
-                       s.ubucacion 
+                       s.ubicacion 
                 FROM tbl_usu u
                 INNER JOIN tbl_sedes s ON s.id_sede = u.sede 
                 WHERE u.usuario = '$correo'";

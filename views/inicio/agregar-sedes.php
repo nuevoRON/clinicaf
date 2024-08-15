@@ -83,6 +83,19 @@
                                         <input type="text"  class="form-control" name="ubicacion" id="ubicacion" maxlength="50">
                                     </div>
                                 </div>
+								<div class="col-12 col-md-8">
+                                    <div class="form-group">
+                                        <label for="ubicacion" class="bmd-label-floating">Codigo Alfábetico</label>
+                                        <input type="text"  class="form-control" name="cod_alfabetico" id="cod_alfabetico" maxlength="5">
+                                    </div>
+                                </div>
+								<div class="col-12 col-md-8">
+                                    <div class="form-group">
+                                        <label for="ubicacion" class="bmd-label-floating">Código Numérico</label>
+                                        <input type="number"  class="form-control" name="cod_numerico" id="cod_numerico" maxlength="5">
+                                    </div>
+                                </div>
+
                     </div>
                 </fieldset>
 					
@@ -103,13 +116,15 @@
 			<!-- Content here-->
 			<div class="container-fluid">
 				<div class="table-responsive">
-					<table class="table table-dark table-sm" id="tabla_sedes">
+					<table class="table table-dark table-sm text-center" id="tabla_sedes">
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
 								<th>DEPARTAMENTO</th>
 								<th>MUNICIPIO</th>
 								<th>UBICACION</th>
+								<th>CODIGO ALFABETICO</th>
+								<th>CODIGO NUMERICO</th>
                                 <th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>

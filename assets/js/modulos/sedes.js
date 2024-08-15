@@ -122,9 +122,11 @@ document.addEventListener("DOMContentLoaded", function () {
         //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
         columns: [
             { data: 'id_sede' },
-            { data: 'fk_departamento' },
-            { data: 'fk_municipio' },
-            { data: 'ubucacion' },
+            { data: 'nombre_departamento' },
+            { data: 'nombre_municipio' },
+            { data: 'ubicacion' },
+            { data: 'cod_alfabetico' },
+            { data: 'cod_numerico' },
             //estas dos columnas contienen los botones para editar y eliminar
             //de ser necesario se pueden agregar más columnas con otros botones
             {
@@ -281,14 +283,65 @@ function editarSede(idSede) {
       console.log(this.responseText);
       const res = JSON.parse(this.responseText);
       id.value = res.id_sede;
-      ubicacion.value = res.ubucacion;
+      ubicacion.value = res.ubicacion;
+      document.getElementById('cod_alfabetico').value = res.cod_alfabetico;
+      document.getElementById('cod_numerico').value = res.cod_numerico;
       
       $("#departamento option[value=" + res.fk_departamento + "]").attr({
         selected: true,
       });
-      $("#municipio option[value=" + res.fk_municipio + "]").attr({
-        selected: true,
-      });
+
+        //Cargar municipios
+      if(res.fk_departamento != 0){
+        const selectDepartamento = document.querySelector("#departamento");
+        const selectMunicipio = document.querySelector("#municipio");
+
+          //se llama a la funcion getMunicipios para obtener los municipios
+          //La variable idDepartamento obtiene el valor que se asignó con option.value en la funcion anterior
+          let idDepartamento= selectDepartamento.options[selectDepartamento.selectedIndex].value
+          let urlMunicipio = "http://localhost/clinicaf/dependencias/getMunicipios/"+ idDepartamento;
+      
+          // Eliminar opciones existentes del select de municipios
+          /* Para manejar de forma dinamica el select de municipios cada vez que se selecciona un departamento
+          el select de municipios se borra y se vuelve a recrear con los datos del nuevo departamento */
+          while (selectMunicipio.firstChild) {
+              selectMunicipio.removeChild(selectMunicipio.firstChild);
+          }
+
+          axios
+          //si no hay problemas con la consulta se reciben los datos y se construyen las opciones del select
+          .get(urlMunicipio)
+          .then(function (response) {
+            // Llenar Select
+            console.log(response);
+            //se recorre el response con un forEach para ir creando las opciones
+            response.data.forEach((opcion) => {
+              //se crea un elemento de la clase option
+              let option = document.createElement("option");
+
+              //dentro del option se agregan los datos de la base de datos
+            //option.text muestra el nombre guardado en base de datos y option.value el id del registro en la base de datos
+              option.text = opcion.nombre_municipio;
+              option.value = opcion.id_municipio;
+
+              //se usa la funcion appendChild para crear las opciones dentro del select
+            //el select ya esta definido como variable en la parte de arriba
+              selectMunicipio.appendChild(option);
+            });
+
+            if(res.fk_municipio != 0){
+              $("#municipio option[value=" + res.fk_municipio + "]").attr({
+                selected: true,
+              });
+      
+            }
+          })
+          .catch(function (error) {
+            //Se ejecuta un console.log en caso de que haya un error en la logica del controlador y modelo
+            console.error("Ocurrió un error:", error);
+          });
+      
+      }
 
       //Se abre el modal usando su id
       $('#ModalSedes').modal('show'); 

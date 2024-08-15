@@ -41,7 +41,7 @@ class Login extends Controller{
                         $_SESSION['nombre_usuario'] = $data['nombre'] . ' ' .$data['apellido'];
                         $_SESSION['usuario'] = $data['usuario'];
                         $_SESSION['estado'] = $data['estado'];
-                        $_SESSION['sede'] = $data['ubucacion'];
+                        $_SESSION['sede'] = $data['ubicacion'];
                         
                         //$rol = $this->model->getRol($data['id']);
                         //$_SESSION['permisos'] = $rol['permisos'];

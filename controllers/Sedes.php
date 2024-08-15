@@ -34,8 +34,10 @@ class Sedes extends Controller
                 $depatamento = strClean($_POST['departamento']);
                 $municipio = strClean($_POST['municipio']);
                 $ubicacion = strClean($_POST['ubicacion']);
+                $cod_alfabetico = strClean($_POST['cod_alfabetico']);
+                $cod_numerico = strClean($_POST['cod_numerico']);
     
-                $data = $this->model->insertarSede($depatamento,$municipio,$ubicacion);
+                $data = $this->model->insertarSede($depatamento,$municipio,$ubicacion, $cod_alfabetico, $cod_numerico);
                 
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
@@ -67,13 +69,15 @@ class Sedes extends Controller
                 $ubicacion = strClean($putData['ubicacion']);
                 $departamento = strClean($putData['departamento']);
                 $municipio = strClean($putData['municipio']);
+                $cod_alfabetico = strClean($putData['cod_alfabetico']);
+                $cod_numerico = strClean($putData['cod_numerico']);
                 $id = strClean($putData['id']);
     
-                $data = $this->model->actualizarSede($departamento, $municipio, $ubicacion, $id);
+                $data = $this->model->actualizarSede($departamento, $municipio, $ubicacion, $cod_alfabetico, $cod_numerico, $id);
                 if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
-                    $res = array('titulo' => 'Sexo Actualizado', 
+                    $res = array('titulo' => 'Sede Actualizada', 
                                  'desc' => 'La sede se ha actualizado exitosamente', 
                                  'type' => 'success');
                 } else {

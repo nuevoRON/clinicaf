@@ -35,7 +35,7 @@
 			<!-- Content here-->
 			<div class="container-fluid">
 				<div class="table-responsive">
-					<table class="table table-dark table-sm">
+					<table class="table table-dark table-sm text-center" id="tabla_proveidos">
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th># DE SOLICITUD</th>
@@ -50,106 +50,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-center">
-								<td>1896-2024</td>
-								<td>012342567</td>
-								<td>NOMBRE DEL PACIENTE</td>
-								<td>APELLIDO DEL PACIENTE</td>
-								<td>FISCALIA DE TURNO</td>
-								<td>VIOLACION</td>
-								<td>14/20/2024</td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center">
-								<td>1897-2024</td>
-								<td>012342567</td>
-								<td>NOMBRE DEL PACIENTE</td>
-								<td>APELLIDO DEL PACIENTE</td>
-								<td>HEU</td>
-								<td>MALTRATO INFANTIL</td>
-								<td>14/20/2024</td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center">
-								<td>2025-2024</td>
-								<td>012342567</td>
-								<td>NOMBRE DEL PACIENTE</td>
-								<td>APELLIDO DEL PACIENTE</td>
-								<td>FISCALIA DE LA NIÑES</td>
-								<td>ABUSO SEXUAL</td>
-								<td>14/20/2024</td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center">
-								<td>3605-2024</td>
-								<td>012342567</td>
-								<td>NOMBRE DEL PACIENTE</td>
-								<td>APELLIDO DEL PACIENTE</td>
-								<td>FISCALIS DE LA MUJER</td>
-								<td>ESTADO DE SALUD</td>
-								<td>14/20/2024</td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalproveído">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item disabled">
-							<a class="page-link" href="#" tabindex="-1">Previous</a>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item">
-							<a class="page-link" href="#">Next</a>
-						</li>
-					</ul>
-				</nav>
+				
 			</div>
 
 		</section>
@@ -224,20 +129,20 @@
 											<div class="row">
 												<div class="col-12 col-md-4">
 													<div class="form-group">
-														<label for="cliente_nombre" class="bmd-label-floating">Nombre</label>
-														<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_nombre_reg" id="cliente_nombre" maxlength="40">
+														<label for="nombre" class="bmd-label-floating">Nombre</label>
+														<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="nombre" id="nombre" maxlength="40">
 													</div>
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
-														<label for="cliente_apellido" class="bmd-label-floating">Apellido</label>
-														<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
+														<label for="apellido" class="bmd-label-floating">Apellido</label>
+														<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="apellido" id="apellido" maxlength="40">
 													</div>
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
 														<label for="cliente_apellido" class="bmd-label-floating">DNI</label>
-														<input type="text" pattern="[0-9]{1,13}" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
+														<input type="text" pattern="[0-9]{1,13}" class="form-control" name="dni" id="dni" maxlength="40">
 													</div>
 												</div>
 
@@ -270,20 +175,20 @@
 																</div>
 																<div class="col-12 col-md-6">
 																	<div class="form-group">
-																		<label for="cliente_apellido" class="bmd-label-floating">Caserío, Aldea o Barrio, del Hecho</label>
-																		<input type="text" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
+																		<label for="aldea_barrio" class="bmd-label-floating">Caserío, Aldea o Barrio, del Hecho</label>
+																		<input type="text" class="form-control" name="aldea_barrio" id="aldea_barrio" maxlength="40">
 																	</div>
 																</div>
 																<div class="col-12 col-md-6">
 																	<div class="form-group">
-																		<label for="cliente_apellido" class="bmd-label-floating">Lugar Donde Ocurrió el Hecho</label>
-																		<input type="text" class="form-control" name="cliente_apellido_reg" id="cliente_apellido" maxlength="40">
+																		<label for="lugar" class="bmd-label-floating">Lugar Donde Ocurrió el Hecho</label>
+																		<input type="text" class="form-control" name="lugar" id="lugar" maxlength="40">
 																	</div>
 																</div>
 																<div class="col-12 col-md-6">
 																	<div class="form-group">
-																		<label for="prestamo_fecha_inicio">Fecha que Ocurrió el Hecho</label>
-																		<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
+																		<label for="fecha_hecho">Fecha que Ocurrió el Hecho</label>
+																		<input type="date" class="form-control" name="fecha_hecho" id="fecha_hecho">
 																	</div>
 																</div>
 
@@ -303,7 +208,7 @@
 
 										<div class="container-fluid">
 											<fieldset>
-												<legend><i class="fas fa-user"></i> &nbsp;TIPO DE RECONOCIMINETO </legend>
+												<legend><i class="fas fa-user"></i> &nbsp;TIPO DE RECONOCIMIENTO </legend>
 												<div class="container-fluid">
 													<div class="row">
 
@@ -318,7 +223,7 @@
 										==============================================-->
 										<div class="col-12 col-md-6">
 											<div class="form-group">
-												<label for="item_estado" class="bmd-label-floating">Reconocimiento</label>
+												<label for="item_recon_reg" class="bmd-label-floating">Reconocimiento</label>
 												<select class="form-control" name="item_recon_reg" id="item_recon_reg">
 													<option value="" selected="" disabled="">Seleccione el Tipo de Reconocimiento</option>
 												</select>
@@ -326,8 +231,8 @@
 										</div>
 										<div class="col-12 col-md-6">
 											<div class="form-group">
-												<label for="item_estado" class="bmd-label-floating">Medico</label>
-												<select class="form-control" name="item_estado_reg" id="item_estado_reg">
+												<label for="medico" class="bmd-label-floating">Medico</label>
+												<select class="form-control" name="medico" id="medico">
 													<option value="" selected="" disabled="">Seleccione al Medico</option>
 
 												</select>
@@ -335,8 +240,8 @@
 										</div>
 										<div class="col-12 col-md-5">
 											<div class="form-group">
-												<label for="prestamo_fecha_inicio">Fecha Para la cual fue citado</label>
-												<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
+												<label for="fecha_citacion">Fecha Para la cual fue citado</label>
+												<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion">
 											</div>
 										</div>
 									</div>

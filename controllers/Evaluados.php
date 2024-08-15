@@ -3,7 +3,7 @@ require 'Bitacora.php';
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
-class Proveidos extends Controller
+class Evaluados extends Controller
 {
     private $id_usuario;
     public function __construct()
@@ -16,9 +16,36 @@ class Proveidos extends Controller
     }
 
      //Cargar datos en tabla
-     public function listarProveidos()
+     public function listarOcupaciones()
      {
-         $data = $this->model->listarProveidos();
+         $data = $this->model->listarOcupaciones();
+         echo json_encode($data, JSON_UNESCAPED_UNICODE);
+         die();
+     }
+     
+
+     //Cargar datos en tabla
+     public function listarEscolaridad()
+     {
+         $data = $this->model->listarEscolaridad();
+         echo json_encode($data, JSON_UNESCAPED_UNICODE);
+         die();
+     }
+
+
+     //Cargar datos en tabla
+     public function listarInstrumentos()
+     {
+         $data = $this->model->listarInstrumentos();
+         echo json_encode($data, JSON_UNESCAPED_UNICODE);
+         die();
+     }
+
+
+     //Cargar datos en tabla
+     public function listarEvaluados()
+     {
+         $data = $this->model->listarEvaluados();
          echo json_encode($data, JSON_UNESCAPED_UNICODE);
          die();
      }

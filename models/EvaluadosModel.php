@@ -1,8 +1,36 @@
 <?php
-class ProveidosModel extends Query{
+class EvaluadosModel extends Query{
     public function __construct() {
         parent::__construct();
     }
+
+
+    public function listarOcupaciones()
+    {
+        $sql = "SELECT * from tbl_ocupaciones";
+        return $this->selectAll($sql);
+    }
+
+    public function listarOcupaciones()
+    {
+        $sql = "SELECT * from tbl_ocupaciones";
+        return $this->selectAll($sql);
+    }
+
+
+    public function listarEscolaridad()
+    {
+        $sql = "SELECT * from tbl_escolaridad";
+        return $this->selectAll($sql);
+    }
+
+
+    public function listarInstrumentos()
+    {
+        $sql = "SELECT * from tbl_instrumento";
+        return $this->selectAll($sql);
+    }
+
 
     public function getPuestos()
     {
@@ -10,7 +38,7 @@ class ProveidosModel extends Query{
         return $this->selectAll($sql);
     }
 
-    public function listarProveidos()
+    public function listarEvaluados()
     {
         $sql = "SELECT  p.id_proveidos,
                         p.num_caso,
@@ -19,7 +47,7 @@ class ProveidosModel extends Query{
                         e.apellido_evaluado,
                         d.nom_dependencia,
                         r.nom_reconocimiento,
-                        pr.fecha_citacion
+                        e.estado_evaluacion
                         FROM tbl_proveidos p
                 INNER JOIN tbl_evaluado e on e.id_proveido = p.id_proveidos
                 INNER JOIN tbl_dependencia d on d.id_dependencia = p.fiscalia_remitente
