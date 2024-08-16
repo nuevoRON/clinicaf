@@ -4,9 +4,9 @@ class ReconocimientoModel extends Query{
         parent::__construct();
     }
 
-    public function insertarReconocimientos($puesto,$estado) {
+    public function insertarReconocimientos($nom_reco) {
         $sql = "INSERT INTO tbl_reconocimiento (nom_reconocimiento) VALUES(?)";
-        $array = array($puesto,$estado);
+        $array = array($nom_reco);
         return $this->insertar($sql, $array);
     }
 
@@ -36,10 +36,10 @@ class ReconocimientoModel extends Query{
         return $this->select($sql);
     }
 
-    public function actualizarReconocimientos($puesto,$estado, $id)
+    public function actualizarReconocimientos($nom_reco, $id)
     {
         $sql = "UPDATE tbl_reconocimiento SET nom_reconocimiento=?   WHERE id_reconocimiento=?";
-        $array = array($puesto,$estado, $id);
+        $array = array($nom_reco, $id);
         return $this->save($sql, $array);
     }
 

@@ -1,6 +1,6 @@
 //Datos generales del Sexo
 const formulario = document.querySelector("#formulario");
-const nombre = document.querySelector("#nombre_reconocimiento");
+const nombre = document.querySelector("#reconocimiento");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -173,7 +173,7 @@ function eliminarReconocimientos(idreconocimiento) {
 
 
 // funcion para recuperar los datos del sexo
-function editarReconocimiento(idreconocimiento) {
+function editarReconocimientos(idreconocimiento) {
   const url = "http://localhost/clinicaf/Reconocimiento/obtenerReconocimientos/" + idreconocimiento;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
