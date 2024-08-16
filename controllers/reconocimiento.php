@@ -24,7 +24,7 @@ class Reconocimiento extends Controller
     }
 
 
-    //Registrar recocnocimiento
+    //Registrar reconocimiento
     public function insertarReconocimientos() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['reconocimiento'])) {//recocnocimiento viene de la vista
@@ -32,7 +32,7 @@ class Reconocimiento extends Controller
                             'desc' => 'El reconocimiento no puede ir vacío', 
                             'type' => 'warning');
             }else {
-                $nom_reco = strClean($_POST['reconocimiento']);//recocnocimiento viene de la vista
+                $nom_reco = strClean($_POST['reconocimiento']);//reconocimiento viene de la vista
                 // $estado = strClean($_POST['estado']);
     
                 $data = $this->model->insertarReconocimientos($nom_reco);
