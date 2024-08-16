@@ -42,6 +42,14 @@ class Evaluados extends Controller
      }
 
 
+     public function listarEstadoCivil()
+     {
+         $data = $this->model->listarEstadoCivil();
+         echo json_encode($data, JSON_UNESCAPED_UNICODE);
+         die();
+     }
+
+
      //Cargar datos en tabla
      public function listarEvaluados()
      {
@@ -52,59 +60,26 @@ class Evaluados extends Controller
 
 
      //Obtener datos de proveido para edición
-    public function editarProveido($id) {
+    public function editarEvaluado($id) {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $data = $this->model->editarProveido($id);
+            $data = $this->model->editarEvaluado($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }
     }
 
-    //metodo para registrar y modificar
-    public function insertarProveido() {
+    public function insertarOcupacion() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (empty($_POST['numero_solicitud_reg'])) {
-                $res = array('msg' => 'EL NUMERO DE SOLICIUD ES REQUERIDO', 'type' => 'warning');
-            } else if (empty($_POST['fecha_emision'])) {
-                $res = array('msg' => 'LA FECHA DE EMISION ES REQUERIDA', 'type' => 'warning');
-            }else if (empty($_POST['fecha_recepcion'])) {
-                $res = array('msg' => 'LA FECHA DE RECEPCION ES REQUERIDA', 'type' => 'warning');
-            }else if (empty($_POST['item_dependencia_reg'])) {
-                $res = array('msg' => 'LA FISCALIA ES REQUERIDA', 'type' => 'warning');
+            if (empty($_POST['ocupacion_nueva'])) {
+                $res = array('msg' => 'EL NOMBRE DE OCUPACION ES REQUERIDO', 'type' => 'warning');
             }else {
-                /* Datos para la tabla de Proveidos */
-                $numeroSolicitud = strClean($_POST['numero_solicitud_reg']);
-                $fechaEmision = strClean($_POST['fecha_emision']);
-                $fechaRecepcion = strClean($_POST['fecha_recepcion']);
-                $fiscalia = strClean($_POST['item_dependencia_reg']);
-                $numeroExterno = strClean($_POST['numero_externo_reg']);
+                $ocupacion = strClean($_POST['ocupacion_nueva']);
+                $data = $this->model->insertarOcupacion($ocupacion);
 
-                /* Datos para la tabla de Evaluado */
-                $nombre = strClean($_POST['nombre']);
-                $apellido = strClean($_POST['apellido']);
-                $dni = strClean($_POST['dni']);
-
-                /* Datos para la tabla de Hechos */
-                $departamento = strClean($_POST['item_departamento_reg']);
-                $municipio = strClean($_POST['item_municipio_reg']);
-                $localidad = strClean($_POST['aldea_barrio']);
-                $lugar = strClean($_POST['lugar']);
-                $fechaHecho = strClean($_POST['fecha_hecho']);
-
-                /* Datos para la tabla de Reconocimiento */
-                $tipoReconocimiento = strClean($_POST['item_recon_reg']);
-                $medico = strClean($_POST['medico']);
-                $fechaCitacion = strClean($_POST['fecha_citacion']);
-
-                $dataProveido = $this->model->insertarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno);
-                $dataEvaluado = $this->model->insertarEvaluado($nombre, $apellido, $dni, $dataProveido);
-                $dataHechos = $this->model->insertarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido);
-                $dataReconocimiento = $this->model->insertarReconocimiento($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion);
-
-                if ($dataReconocimiento > 0) {
+                if ($data > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
-                    $res = array('titulo' => 'Proveido Registrado', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
+                    $res = array('titulo' => 'Ocupacion Registrada', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al registrar el proveido', 'type' => 'error');
                 }
@@ -115,49 +90,89 @@ class Evaluados extends Controller
     }
 
 
-    public function actualizarProveido() {
+    public function insertarInstrumento() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (empty($_POST['instrumento_nuevo'])) {
+                $res = array('msg' => 'EL NOMBRE DE INSTRUMENTO ES REQUERIDO', 'type' => 'warning');
+            }else {
+                $instrumento = strClean($_POST['instrumento_nuevo']);
+                $data = $this->model->insertarInstrumento($instrumento);
+
+                if ($data > 0) {
+                    //$bitacora = new Bitacora();
+                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $res = array('titulo' => 'Instrumento Registrado', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
+                } else {
+                    $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al registrar el proveido', 'type' => 'error');
+                }
+            }
+            echo json_encode($res, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
+
+    public function actualizarEvaluado() {
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
 
-            if (empty($putData['id'])) {
+            if (empty($putData['id_evaluado'])) {
                 $res = array('msg' => 'ID REQUERIDO PARA ACTUALIZACIÓN', 'type' => 'warning');
             } else {
-                /* Datos para la tabla de Proveidos */
-                $numeroSolicitud = strClean($putData['numero_solicitud_reg']);
-                $fechaEmision = strClean($putData['fecha_emision']);
-                $fechaRecepcion = strClean($putData['fecha_recepcion']);
-                $fiscalia = strClean($putData['item_dependencia_reg']);
-                $numeroExterno = strClean($putData['numero_externo_reg']);
-
                 /* Datos para la tabla de Evaluado */
                 $nombre = strClean($putData['nombre']);
                 $apellido = strClean($putData['apellido']);
                 $dni = strClean($putData['dni']);
+                $telefono = strClean($putData['telefono']);
+                $nacionalidad = strClean($putData['nacionalidad']);
+                $sexo = strClean($putData['sexo']);
+                $diversidad = strClean($putData['diversidad']);
+                $estadoCivil = strClean($putData['estadoCivil']);
+                $ocupacion = strClean($putData['ocupacion']);
+                $escolaridad = strClean($putData['escolaridad']);
+                $edad = strClean($putData['edad']);
+                $tiempo = strClean($putData['tiempo']);
+                $nombreAcomp = strClean($putData['nombre_acomp']);
+                $lugarProcedencia = strClean($putData['lugar_procedencia']);
+                $apellidoAcomp = strClean($putData['apellido_acomp']);
+                $dniAcomp = strClean($putData['dni_acomp']);
+                $relacion = strClean($putData['relacion']);
+
+                /* Datos para la tabla de Evaluacion */
+                $consentimiento = strClean($putData['permiso_evaluacion']);
+                $instrumento = strClean($putData['instrumento']);
+                $relacionAgresor = strClean($putData['relacion_agresor']);
+                $conocido = $putData['agresor_conocido'] != '' ? strClean($putData['agresor_conocido']) :'';
+                $descripcion = strClean($putData['descripcion_evaluacion']);
+                $sede = strClean($putData['sede_evaluacion']);
+                $fechaFinalizacion = $putData['fecha_finalizacion'] != '' ? strClean($putData['fecha_finalizacion']) : null;
 
                 /* Datos para la tabla de Hechos */
-                $departamento = strClean($putData['item_departamento_reg']);
-                $municipio = strClean($putData['item_municipio_reg']);
+                $departamento = strClean($putData['departamento']);
+                $municipio = strClean($putData['municipio']);
                 $localidad = strClean($putData['aldea_barrio']);
-                $lugar = strClean($putData['lugar']);
+                $lugar = strClean($putData['lugar_hecho']);
                 $fechaHecho = strClean($putData['fecha_hecho']);
+                $estado = 
 
-                /* Datos para la tabla de Reconocimiento */
-                $tipoReconocimiento = strClean($putData['item_recon_reg']);
-                $medico = strClean($putData['medico']);
-                $fechaCitacion = strClean($putData['fecha_citacion']);
-                $id = strClean($putData['id']);
+                $id = strClean($putData['id_evaluado']);
+                $estadoEvaluacion = $putData['fecha_finalizacion'] != '' ? 'Realizado' : 'Pendiente';
 
-                $dataProveido = $this->model->actualizarProveido($numeroSolicitud, $numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, $id);
-                $dataEvaluado = $this->model->actualizarEvaluado($nombre, $apellido, $dni, $id);
+                $dataEvaluado = $this->model->actualizarEvaluado($nombre, $apellido, $dni,$telefono,$sexo,$edad,
+                $diversidad, $tiempo,$nombreAcomp, $apellidoAcomp,$relacion,$nacionalidad,$estadoCivil,$ocupacion,
+                $lugarProcedencia, $escolaridad, $dniAcomp, $estadoEvaluacion, $id);
+
+                $dataEvaluacion = $this->model->actualizarEvaluacion($consentimiento, $instrumento, $descripcion, $relacionAgresor,
+                $conocido, $sede, $fechaFinalizacion, $id);
+
                 $dataHechos = $this->model->actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id);
-                $dataReconocimiento = $this->model->actualizarReconocimiento($tipoReconocimiento, $medico, $fechaCitacion, $id);
-
-                if ($dataReconocimiento > 0) {
+            
+                if ($dataHechos > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
-                    $res = array('titulo' => 'Proveido Actualizado', 'desc' => 'Los datos del proveido se actualizaron exitosamente', 'type' => 'success');
+                    $res = array('titulo' => 'Evaluación Actualizada', 'desc' => 'Los datos de la evaluación se actualizaron exitosamente', 'type' => 'success');
                 } else {
-                    $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al actualizar el proveido', 'type' => 'error');
+                    $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al actualizar la evaluación', 'type' => 'error');
                 }
             }
             echo json_encode($res, JSON_UNESCAPED_UNICODE);

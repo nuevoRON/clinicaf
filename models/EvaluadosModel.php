@@ -11,13 +11,6 @@ class EvaluadosModel extends Query{
         return $this->selectAll($sql);
     }
 
-    public function listarOcupaciones()
-    {
-        $sql = "SELECT * from tbl_ocupaciones";
-        return $this->selectAll($sql);
-    }
-
-
     public function listarEscolaridad()
     {
         $sql = "SELECT * from tbl_escolaridad";
@@ -31,6 +24,12 @@ class EvaluadosModel extends Query{
         return $this->selectAll($sql);
     }
 
+
+    public function listarEstadoCivil()
+    {
+        $sql = "SELECT * from tbl_estado_civil";
+        return $this->selectAll($sql);
+    }
 
     public function getPuestos()
     {
@@ -57,43 +56,33 @@ class EvaluadosModel extends Query{
         return $this->selectAll($sql);
     }
 
-    public function insertarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno) {
-        $sql = "INSERT INTO tbl_proveidos (num_caso,num_caso_ext,fech_emi_soli, fech_recep_soli,
-        fiscalia_remitente) VALUES(?,?,?,?,?)";
-        $array = array($numeroSolicitud,  $numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia);
-        return $this->insertar($sql, $array);
-    }
-
-    public function insertarEvaluado($nombre, $apellido, $dni, $dataProveido) {
-        $sql = "INSERT INTO tbl_evaluado (nombre_evaluado,apellido_evaluado,dni_evaluado, id_proveido) VALUES(?,?,?,?)";
-        $array = array($nombre,  $apellido, $dni, $dataProveido);
-        return $this->insertar($sql, $array);
-    }
-
-    public function insertarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido) {
-        $sql = "INSERT INTO tbl_hecho (id_departamento,id_municipio,localidad, lugar_hecho,fecha_hecho,
-        id_proveido) VALUES(?,?,?,?,?,?)";
-        $array = array($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido);
-        return $this->insertar($sql, $array);
-    }
-
-    public function insertarReconocimiento($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion) {
-        $sql = "INSERT INTO tbl_proveido_reconocimiento (id_proveido_reconocimiento,tipo_reconocimiento,medico, fecha_citacion) 
-        VALUES(?,?,?,?)";
-        $array = array($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion);
-        return $this->insertar($sql, $array);
-    }
-
-    public function editarProveido($id)
+    public function editarEvaluado($id)
     {
         $sql = "SELECT  p.num_caso,
                         p.num_caso_ext,
                         p.fech_emi_soli,
                         p.fech_recep_soli,
-                        p.fiscalia_remitente,
+                        d.nom_dependencia,
+                        r.nom_reconocimiento,
                         e.nombre_evaluado,
                         e.apellido_evaluado,
                         e.dni_evaluado,
+                        e.telefono_evaluado,
+                        e.id_sexo,
+                        e.edad,
+                        e.diversidad,
+                        e.tiempo,
+                        e.nombre_acompanante,
+                        e.apellido_acompanante,
+                        e.dni_acompanante,
+                        e.relacion_acompanante,
+                        e.nacionalidad,
+                        e.estado_civil,
+                        e.ocupacion,
+                        e.lugar_procedencia,
+                        e.escolaridad,
+                        e.tiempo,
+                        e.estado_evaluacion,
                         h.id_departamento,
                         h.id_municipio,
                         h.localidad,
@@ -101,10 +90,18 @@ class EvaluadosModel extends Query{
                         h.fecha_hecho,
                         pr.tipo_reconocimiento,
                         pr.medico,
-                        pr.fecha_citacion  
+                        pr.fecha_citacion,
+                        ev.consentimiento_informado,
+                        ev.instrumento_agresion,
+                        ev.descripcion_evaluacion,
+                        ev.relacion_agresor,
+                        ev.sede_evaluacion,
+                        ev.especificar_relacion,
+                        ev.fecha_finalizacion  
                 FROM tbl_proveidos p
                 INNER JOIN tbl_evaluado e on e.id_proveido = p.id_proveidos
                 INNER JOIN tbl_hecho h on h.id_proveido = p.id_proveidos
+                INNER JOIN tbl_evaluacion ev on ev.id_proveido = p.id_proveidos
                 INNER JOIN tbl_dependencia d on d.id_dependencia = p.fiscalia_remitente
                 INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
                 INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
@@ -112,22 +109,35 @@ class EvaluadosModel extends Query{
         return $this->select($sql);
     }
 
-    public function actualizarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$id)
-    {
-        $sql = "UPDATE tbl_proveidos SET num_caso=?, num_caso_ext=?, fech_emi_soli=?, fech_recep_soli=?,
-        fiscalia_remitente=? WHERE id_proveidos=?";
-        $array = array($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, $id);
-        return $this->save($sql, $array);
+
+    public function insertarInstrumento($instrumento) {
+        $sql = "INSERT INTO tbl_instrumento (nom_instrumento) VALUES(?)";
+        $array = array($instrumento);
+        return $this->insertar($sql, $array);
     }
 
 
-    public function actualizarEvaluado($nombre, $apellido, $dni,$id)
+    public function insertarOcupacion($ocupacion) {
+        $sql = "INSERT INTO tbl_ocupaciones (nom_ocupacion) VALUES(?)";
+        $array = array($ocupacion);
+        return $this->insertar($sql, $array);
+    }
+
+
+    public function actualizarEvaluado($nombre, $apellido, $dni,$telefono,$sexo,$edad,
+    $diversidad, $tiempo,$nombreAcomp, $apellidoAcomp,$relacion,$nacionalidad,$estadoCivil,$ocupacion,
+    $lugarProcedencia, $escolaridad, $dniAcomp, $estadoEvaluacion, $id)
     {
-        $sql = "UPDATE tbl_evaluado SET nombre_evaluado=?, apellido_evaluado=?, dni_evaluado=?
-        WHERE id_proveido=?";
-        $array = array($nombre, $apellido, $dni,$id);
+        $sql = "UPDATE tbl_evaluado SET nombre_evaluado=?, apellido_evaluado=?, dni_evaluado=?, telefono_evaluado = ?,
+        id_sexo = ?, edad = ?, diversidad = ?, tiempo = ?, nombre_acompanante = ?, apellido_acompanante = ?,
+        relacion_acompanante = ?, nacionalidad = ?, estado_civil = ?, ocupacion = ?, lugar_procedencia = ?,
+        escolaridad = ?, dni_acompanante = ?, estado_evaluacion = ? WHERE id_proveido=?";
+        $array = array($nombre, $apellido, $dni,$telefono,$sexo,$edad,
+        $diversidad, $tiempo,$nombreAcomp, $apellidoAcomp,$relacion,$nacionalidad,$estadoCivil,$ocupacion,
+        $lugarProcedencia, $escolaridad, $dniAcomp, $estadoEvaluacion, $id);
         return $this->save($sql, $array);
     }
+
 
     public function actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho,$id)
     {
@@ -137,11 +147,14 @@ class EvaluadosModel extends Query{
         return $this->save($sql, $array);
     }
 
-    public function actualizarReconocimiento($tipoReconocimiento, $medico, $fechaCitacion, $id)
+    public function actualizarEvaluacion($consentimiento, $instrumento, $descripcion, $relacionAgresor, $conocido,
+    $sede, $fechaFinalizacion, $id)
     {
-        $sql = "UPDATE tbl_proveido_reconocimiento SET tipo_reconocimiento=?, medico=?, fecha_citacion=?
-        where id_proveido_reconocimiento = ?";
-        $array = array($tipoReconocimiento, $medico, $fechaCitacion, $id);
+        $sql = "UPDATE tbl_evaluacion SET consentimiento_informado=?, instrumento_agresion=?, descripcion_evaluacion=?, 
+        relacion_agresor=?, especificar_relacion = ?, sede_evaluacion=?, fecha_finalizacion = ? 
+        WHERE id_proveido=?";
+        $array = array($consentimiento, $instrumento, $descripcion, $relacionAgresor, $conocido,
+        $sede, $fechaFinalizacion, $id);
         return $this->save($sql, $array);
     }
 

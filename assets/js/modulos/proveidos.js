@@ -51,13 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   //Cargar reconocimientos
-  let urlReconocimiento = "http://localhost/clinicaf/reconocimientos/getReconocimientos";
+  let urlReconocimiento = "http://localhost/clinicaf/reconocimiento/listarReconocimientos";
   axios
     .get(urlReconocimiento)
     .then(function (response) {
       // Llenar Select
       console.log(response);
-      response.data.reconocimientos.forEach((opcion) => {
+      response.data.forEach((opcion) => {
         let option = document.createElement("option");
 
         option.text = opcion.nom_reconocimiento;
@@ -344,7 +344,6 @@ function editarProveido(idProveido) {
   //Verificar estados
   http.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
       const res = JSON.parse(this.responseText);
       document.getElementById('id').value = idProveido;
       document.getElementById('numero_solicitud_reg').value = res.num_caso;
@@ -401,8 +400,9 @@ function editarProveido(idProveido) {
               selectMunicipio.appendChild(option);
             });
 
-            if(res.fk_municipio != 0){
-              $("#item_municipio_reg option[value=" + res.fk_municipio + "]").attr({
+            console.log(res.id_municipio)
+            if(res.id_municipio != 0){
+              $("#item_municipio_reg option[value=" + res.id_municipio + "]").attr({
                 selected: true,
               });
       

@@ -14,7 +14,17 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Clínica Forense</title>
 	<?php include "views/templates/archivosCss.php"; ?>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
+
+<style>
+	select {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+</style>
 
 <body>
 
@@ -27,9 +37,9 @@
 		<!-- Page content -->
 		<section class="full-box page-content">
 			<?php include "views/templates/NavSup.php"; ?>
-			<input type="hidden" value="<?php echo $id?>" id="id_evaluado" class="text">
 			<div class="container-fluid">
-				<form action="" class="form-neon" autocomplete="off">
+				<form action="" class="form-neon" id="formulario" autocomplete="off">
+					<input type="hidden" value="<?php echo $id?>" id="id_evaluado" name="id_evaluado" class="text">
 					<fieldset>
 						<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL PROVEÍDO</legend>
 						<div class="container-fluid">
@@ -73,7 +83,7 @@
 								<div class="col-12 col-md-6">
 									<div class="form-group">
 										<label for="item_estado" class="bmd-label-floating">Fiscalía que Remite</label>
-										<input type="date" class="form-control" name="fiscalia" id="fiscalia" disabled>
+										<input type="text" class="form-control" name="fiscalia" id="fiscalia" disabled>
 									</div>
 								</div>
 								<div class="col-12 col-md-6">
@@ -86,7 +96,7 @@
 								<div class="col-12 col-md-6">
 									<div class="form-group">
 										<label for="item_estado" class="bmd-label-floating">Evaluación</label>
-										<input type="date" class="form-control" name="tipo_evaluacion" id="tipo_evaluacion" disabled>
+										<input type="text" class="form-control" name="tipo_evaluacion" id="tipo_evaluacion" disabled>
 									</div>
 								</div>
 								<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL EVALUADO</legend>
@@ -121,9 +131,9 @@
 												<label for="nacionalidad" class="bmd-label-floating">Nacionalidad</label>
 												<select class="form-control" name="nacionalidad" id="nacionalidad">
 													<option value="" selected="" disabled="">Seleccione la Nacionalidad</option>
-													<option value="Habilitado">Hondureña</option>
-													<option value="Deshabilitado">Desconocida</option>
-													<option value="Deshabilitado">Otra</option>
+													<option value="1">Hondureña</option>
+													<option value="2">Desconocida</option>
+													<option value="3">Otra</option>
 												</select>
 											</div>
 										</div>
@@ -151,10 +161,7 @@
 												<label for="estadoCivil" class="bmd-label-floating">Estado Civil</label>
 												<select class="form-control" name="estadoCivil" id="estadoCivil">
 													<option value="" selected="" disabled="">Seleccione el Estado Civil</option>
-													<option value="Habilitado">Soltero</option>
-													<option value="Deshabilitado">Casado</option>
-													<option value="Deshabilitado">Union Libre</option>
-													<option value="Deshabilitado">No Aplica</option>
+													
 												</select>
 											</div>
 										</div>
@@ -162,7 +169,7 @@
 										<div class="col-12 col-md-2">
 											<div class="form-group">
 												<label for="ocupacion" class="bmd-label-floating">Ocupacion</label>
-												<select class="form-control" name="ocupacion" id="ocupacion">
+												<select class="form-control" name="ocupacion" id="ocupacion" style="margin-top:1rem;">
 													<option value="" selected="" disabled="">Seleccione la Ocupacion</option>
 													
 												</select>
@@ -178,44 +185,6 @@
 										</div>
 										<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
-
-										<div class="modal fade" id="ModalOcupacion" tabindex="-1" role="dialog" aria-labelledby="ModalOcupacion" data-backdrop="static" aria-hidden="true">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="ModalOcupacion">Agregar Nueva Ocupacion</h5>
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-													<!-- Contenedor-->
-													<div class="container-fluid">
-														<form action="" class="form-neon" autocomplete="off">
-															<fieldset>
-																<div class="container-fluid">
-																	<div class="row">
-																		<div class="col-12 col-md-8">
-																			<div class="form-group">
-																				<label for="instrumento" class="bmd-label-floating">Ocupacion</label>
-																				<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="instrumento_reg" id="id_instrumento	" maxlength="27">
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</fieldset>
-
-															<p class="text-center" style="margin-top: 40px;">
-																&nbsp; &nbsp;
-																<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
-															</p>
-														</form>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--=====================================================================================================================================================================================
-	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
-======================================================================================================================================================================================-->
 
 										<div class="col-12 col-md-3">
 											<div class="form-group">
@@ -237,11 +206,11 @@
 												<label for="tiempo" class="bmd-label-floating">Tiempo</label>
 												<select class="form-control" name="tiempo" id="tiempo">
 													<option value="" selected="" disabled="">Seleccione el Tiempo</option>
-													<option value="Habilitado">Horas</option>
-													<option value="Deshabilitado">Dias</option>s
-													<option value="Deshabilitado">Semanas</option>
-													<option value="Deshabilitado">Meses</option>
-													<option value="Deshabilitado">Años</option>
+													<option value="Horas">Horas</option>
+													<option value="Dias">Dias</option>s
+													<option value="Semanas">Semanas</option>
+													<option value="Meses">Meses</option>
+													<option value="Años">Años</option>
 												</select>
 											</div>
 										</div>
@@ -281,12 +250,12 @@
 													<label for="relacion" class="bmd-label-floating">Relacion</label>
 													<select class="form-control" name="relacion" id="relacion">
 														<option value="" selected="" disabled="">Seleccione el Tipo de Relacion</option>
-														<option value="Habilitado">Familiar</option>
-														<option value="Deshabilitado">Desconocida</option>
-														<option value="Deshabilitado">Policia Militar</option>
-														<option value="Deshabilitado">Fiscal</option>
-														<option value="Deshabilitado">Custodio penitenciario</option>
-														<option value="Deshabilitado">Otra</option>
+														<option value="Familiar">Familiar</option>
+														<option value="Desconocida">Desconocida</option>
+														<option value="Policia Militar">Policia Militar</option>
+														<option value="Fiscal">Fiscal</option>
+														<option value="Custodio penitenciario">Custodio penitenciario</option>
+														<option value="Otra">Otra</option>
 													</select>
 												</div>
 											</div>
@@ -294,7 +263,6 @@
 									</div>
 								</fieldset>
 								<div class="container-fluid">
-									<form action="" class="form-neon" autocomplete="off">
 										<fieldset>
 											<legend><i class="fas fa-user"></i> &nbsp;CONSENTIMIENTO INFORMADO</legend>
 											<div class="container-fluid">
@@ -304,10 +272,10 @@
 															<label for="permiso_evaluacion" class="bmd-label-floating">PERMITE LA EVALUACION</label>
 															<select class="form-control" name="permiso_evaluacion" id="permiso_evaluacion">
 																<option value="" selected="" disabled="">Seleccione el Estado</option>
-																<option value="Habilitado">Si</option>
-																<option value="Deshabilitado">No</option>
-																<option value="Habilitado">No Se Encontro</option>
-																<option value="Habilitado">No Se Presento a la Evaluacion</option>
+																<option value="Si">Si</option>
+																<option value="No">No</option>
+																<option value="No Se Encontro">No Se Encontro</option>
+																<option value="No Se Presento a la Evaluacion">No Se Presento a la Evaluacion</option>
 															</select>
 														</div>
 													</div>
@@ -318,7 +286,7 @@
 								</div>
 								<br><br><br><br><br><br>
 								<div class="container-fluid">
-									<form action="" class="form-neon" autocomplete="off">
+								
 										<fieldset>
 											<legend><i class="fas fa-user"></i> &nbsp;DATOS DEL HECHO</legend>
 											<div class="container-fluid">
@@ -376,8 +344,8 @@
 									<div class="form-group">
 										<label for="instrumento" class="bmd-label-floating">Instrumemto Utilizado</label>
 										<select class="form-control" name="instrumento" id="instrumento">
-											<option value="" selected="" disabled="">Seleccione el Instrumemto</option>
-											
+											<option value="" selected="" disabled="">Seleccione el Instrumento</option>
+
 										</select>
 									</div>
 									<!-- MODAL AGREGAR INSTRUMENTO -->
@@ -388,10 +356,106 @@
 											<i class="fas fa-plus"></i>
 										</button>
 									</div>
+								</div>
 									<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+								<div class="col-12 col-md-3">
+									<div class="form-group">
+										<label for="relacion_agresor" class="bmd-label-floating">Relacion Con el Agresor</label>
+										<select class="form-control" name="relacion_agresor" id="relacion_agresor">
+											<option value="" selected="" disabled="">Seleccione</option>
+											<option value="Conocido">Conocido</option>
+											<option value="Desconocido">Desconocido</option>
+											<option value="Autoridad Militar">Autoridad Militar</option>
+											<option value="No Aplica">No Aplica</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-12 col-md-4">
+									<div class="form-group">
+										<label for="agresor_conocido" class="bmd-label-floating">En Caso de ser Conocido Especifique</label>
+										<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="agresor_conocido" id="agresor_conocido" maxlength="20">
+									</div>
+								</div>
 
-									<div class="modal fade" id="ModalInstru" tabindex="-1" role="dialog" aria-labelledby="ModalInstru" data-backdrop="static" aria-hidden="true">
+
+					</fieldset>
+
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label for="descripcion_evaluacion" class="bmd-label-floating">Descripcion de la Evaluacion</label>
+							<textarea name="descripcion_evaluacion" id="descripcion_evaluacion" cols="80" rows="4"></textarea><!--  /*/*/*/  ESTA ES LA CAJA DE TEXTO   /*/*/*/ -->
+						</div>
+					</div>
+
+						Por favor, Indique el Lugar de la Evaluacion:<br>
+						<!-- seran las 27 locales mas las ciudades principales TEGUCIGALPA, CEIBA, SPS. -->
+
+						<div class="col-12 col-md-4">
+							<div class="form-group">
+								<label for="sede_evaluacion" class="bmd-label-floating">Sede de Evaluacion</label>
+								<select class="form-control" name="sede_evaluacion" id="sede_evaluacion">
+									<option value="" selected="" disabled="">Elija la Sede</option>
+									
+								</select>
+							</div>
+						</div>
+						<div class="col-12 col-md-4">
+							<div class="form-group">
+								<label for="fecha_finalizacion">Fecha de Finalizacion de la Evaluacion</label>
+								<input type="date" class="form-control" name="fecha_finalizacion" id="fecha_finalizacion">
+							</div>
+						</div>
+
+					<!--  /*/*/*/*/*/*/*/*/*/*/*/*/*            botones de  guardado y limpiar         /*/*/*/*/*/*/*/*/*/*/*/*/ -->
+					<br><br>
+					<p class="text-center" style="margin-top: 40px;">
+						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+						&nbsp; &nbsp;
+						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+					</p>
+				</form>
+			</div>
+
+		</section>
+	</main>
+
+	<div class="modal fade" id="ModalOcupacion" tabindex="-1" role="dialog" aria-labelledby="ModalOcupacion" data-backdrop="static" aria-hidden="true">
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="ModalOcupacion">Agregar Nueva Ocupacion</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<!-- Contenedor-->
+													<div class="container-fluid">
+														<form action="" class="form-neon" id="formularioOcupacion" autocomplete="off">
+															<fieldset>
+																<div class="container-fluid">
+																	<div class="row">
+																		<div class="col-12 col-md-8">
+																			<div class="form-group">
+																				<label for="ocupacion_nueva" class="bmd-label-floating">Ocupacion</label>
+																				<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="ocupacion_nueva" id="ocupacion_nueva	" maxlength="27">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</fieldset>
+
+															<p class="text-center" style="margin-top: 40px;">
+																&nbsp; &nbsp;
+																<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+															</p>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="modal fade" id="ModalInstru" tabindex="-1" role="dialog" aria-labelledby="ModalInstru" data-backdrop="static" aria-hidden="true">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -402,14 +466,14 @@
 												</div>
 												<!-- Contenedor-->
 												<div class="container-fluid">
-													<form action="" class="form-neon" autocomplete="off">
+													<form action="" class="form-neon" id="formularioInstrumento" autocomplete="off">
 														<fieldset>
 															<div class="container-fluid">
 																<div class="row">
 																	<div class="col-12 col-md-8">
 																		<div class="form-group">
-																			<label for="instrumento" class="bmd-label-floating">Instrumento</label>
-																			<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="instrumento_reg" id="id_instrumento	" maxlength="27">
+																			<label for="instrumento_nuevo" class="bmd-label-floating">Instrumento</label>
+																			<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="instrumento_nuevo" id="instrumento_nuevo" maxlength="27">
 																		</div>
 																	</div>
 																</div>
@@ -425,83 +489,6 @@
 											</div>
 										</div>
 									</div>
-									<!--=====================================================================================================================================================================================
-	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
-======================================================================================================================================================================================-->
-								</div>
-								<div class="col-12 col-md-3">
-									<div class="form-group">
-										<label for="relacion_agresor" class="bmd-label-floating">Relacion Con el Agresor</label>
-										<select class="form-control" name="relacion_agresor" id="relacion_agresor">
-											<option value="" selected="" disabled="">Seleccione</option>
-											<option value="Habilitado">Conocido</option>
-											<option value="Deshabilitado">Desconocido</option>
-											<option value="Deshabilitado">Autoridad Militar</option>
-											<option value="Deshabilitado">No Aplica</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-12 col-md-4">
-									<div class="form-group">
-										<label for="agresor_conocido" class="bmd-label-floating">En Caso de ser Conocido Especifique</label>
-										<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="agresor_conocido" id="agresor_conocido" maxlength="3">
-									</div>
-								</div>
-
-
-					</fieldset>
-
-					<div class="col-12 col-md-4">
-						<div class="form-group">
-							<label for="descripcion_evaluacion" class="bmd-label-floating">Descripcion de la Evaluacion</label>
-							<textarea name="descripcion_evaluacion" id="descripcion_evaluacion" cols="80" rows="4"></textarea><!--  /*/*/*/  ESTA ES LA CAJA DE TEXTO   /*/*/*/ -->
-						</div>
-					</div>
-					<form method="post" action="tratamiento.php">
-
-						Por favor, Indique el Lugar de la Evaluacion:<br>
-						<!-- seran las 27 locales mas las ciudades principales TEGUCIGALPA, CEIBA, SPS. -->
-
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<label for="sede_evaluacion" class="bmd-label-floating">Sede de Evaluacion</label>
-								<select class="form-control" name="sede_evaluacion" id="sede_evaluacion">
-									<option value="" selected="" disabled="">Elija la Sede</option>
-									<option value="Habilitado">Comayagua</option>
-									<option value="Deshabilitado">Choluteca</option>
-									<option value="Deshabilitado">Siguatepeque</option>
-									<option value="Deshabilitado">Juticalpa</option>
-									<option value="Deshabilitado">Catacamas</option>
-									<option value="Deshabilitado">La Esperanza</option>
-									<option value="Deshabilitado">Marcala</option>
-									<option value="Deshabilitado">La Paz</option>
-									<option value="Deshabilitado">Nacaome</option>
-									<option value="Deshabilitado">Danli</option>
-									<option value="Deshabilitado">Yuscaran</option>
-									<option value="Deshabilitado">Talanga</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-12 col-md-4">
-							<div class="form-group">
-								<label for="prestamo_fecha_inicio">Fecha de Finalizacion de la Evaluacion</label>
-								<input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
-							</div>
-						</div>
-					</form>
-
-					<!--  /*/*/*/*/*/*/*/*/*/*/*/*/*            botones de  guardado y limpiar         /*/*/*/*/*/*/*/*/*/*/*/*/ -->
-					<br><br>
-					<p class="text-center" style="margin-top: 40px;">
-						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
-						&nbsp; &nbsp;
-						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
-					</p>
-				</form>
-			</div>
-
-		</section>
-	</main>
 
 
 	<!--=============================================
@@ -509,6 +496,7 @@
 	==============================================-->
 	<?php include "views/templates/archivosJS.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/evaluados.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
 </html>

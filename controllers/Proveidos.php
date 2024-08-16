@@ -73,8 +73,9 @@ class Proveidos extends Controller
                 $dataEvaluado = $this->model->insertarEvaluado($nombre, $apellido, $dni, $dataProveido);
                 $dataHechos = $this->model->insertarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido);
                 $dataReconocimiento = $this->model->insertarReconocimiento($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion);
+                $dataEvaluacion = $this->model->insertarEvaluacion($dataProveido);
 
-                if ($dataReconocimiento > 0) {
+                if ($dataEvaluacion > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
                     $res = array('titulo' => 'Proveido Registrado', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
@@ -124,7 +125,7 @@ class Proveidos extends Controller
                 $dataEvaluado = $this->model->actualizarEvaluado($nombre, $apellido, $dni, $id);
                 $dataHechos = $this->model->actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id);
                 $dataReconocimiento = $this->model->actualizarReconocimiento($tipoReconocimiento, $medico, $fechaCitacion, $id);
-
+                $dataReconocimiento = $this->model->actualizarReconocimiento($tipoReconocimiento, $medico, $fechaCitacion, $id);
                 if ($dataReconocimiento > 0) {
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);

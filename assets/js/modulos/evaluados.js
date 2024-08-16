@@ -1,10 +1,7 @@
 //Datos generales del Proveido
 const formulario = document.querySelector("#formulario");
-const numeroSolicitud = document.querySelector("#numero_solicitud_reg");
-const numeroExterno = document.querySelector("#numero_externo_reg");
-const fechaEmision = document.querySelector("#fecha_emision");
-const fechaRecepcion = document.querySelector("#fecha_recepcion");
-const fiscalia = document.querySelector("#item_dependencia_reg");
+const formularioOcupacion = document.querySelector("#formularioOcupacion");
+const formularioInstrumento = document.querySelector("#formularioInstrumento");
 
 const selectOcupacion = document.querySelector("#ocupacion");
 const selectSexo = document.querySelector("#sexo");
@@ -12,96 +9,22 @@ const selectEscolaridad = document.querySelector("#escolaridad");
 const selectDepartamento = document.querySelector("#departamento");
 const selectMunicipio = document.querySelector("#municipio");
 const selectInstrumento = document.querySelector("#instrumento");
+const selectEstadoCivil = document.querySelector("#estadoCivil");
+const selectSede = document.querySelector("#sede_evaluacion");
 const idEvaluado = document.querySelector("#id_evaluado").value;
 
 document.addEventListener("DOMContentLoaded", function () {
-  /* Mostrar Tabla */
-  //Se extraen los datos de la base de datos para llenar el datatable
-  let urlListarEvaluados = "http://localhost/clinicaf/evaluados/listarEvaluados";
-
-  axios
-    .get(urlListarEvaluados)
-    //si no hay problemas con la consulta se reciben los datos y se construye la tabla
-    .then(function (response) {
-      //se muestran los datos obtenidos
-      console.log(response.data);
-      //los datos a mostrar en la tabla se encuentran en response.data
-      //se define una variable que pueda ser usada dentro del datatable
-      let datos = response.data;
-
-      //se inicializa el datatable usando el id de la tabla
-      $('#tabla_evaluados').DataTable({
-        language: {
-          "decimal": ",",
-          "thousands": ".",
-          "lengthMenu": "Mostrar _MENU_ registros",
-          "zeroRecords": "No se encontraron resultados",
-          "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-          "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-          "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-          "sSearch": "Buscar:",
-          "No data available in table" : "No hay datos disponibles",
-          "oPaginate": {
-              "sFirst": "Primero",
-              "sLast":"Último",
-              "sNext":"Siguiente",
-              "sPrevious": "Anterior"
-          },
-          "sProcessing":"Cargando..."
-      },
-        //se usa la variable definida arriba con los datos
-        data: datos,
-        paging: true,
-        //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
-        columns: [
-       
-            { data: 'num_caso' },
-            { data: 'dni_evaluado' },
-            { data: 'nombre_evaluado' },
-            { data: 'apellido_evaluado' },
-            { data: 'nom_dependencia' },
-            { data: 'nom_reconocimiento' },
-            { data: 'estado_evaluacion' },
-            //estas dos columnas contienen los botones para editar y eliminar
-            //de ser necesario se pueden agregar más columnas con otros botones
-            {
-                render: function(data, type, row) {
-                    // Agregar botones "Editar" y "Eliminar"
-                    return `<button class="btn btn-success">
-                    <i class="fas fa-sync-alt"></i></button>`;
-                }
-            },
-            {
-                render: function(data, type, row) {
-                    // Agregar botones "Editar" y "Eliminar"
-                    return `<button class="btn btn-warning">
-                    <i class="fas fa-trash-alt"></i></button>`;
-                }
-            }, 
-        ],
-        //estas dos funciones contienen las referencias a las funciones que realizan edicion y eliminacion
-        //se usa una funcion find para encontrar un boton en especifico usando su clase y asi asignarle 
-        //la función javascript que le corresponde
-          createdRow: function(row, data, dataIndex) {
-            // Agregar un evento onclick a los botones "Editar"
-            $(row).find('.btn-success','btn').click(function() {
-              window.location.href = './clinicaForense?id='+data.id_proveidos;
-            });
-  
-            $(row).find('.btn-warning').click(function() {
-              eliminarProveido(data.id_proveidos);
-          });
-        },
-  
-      });
-
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
+  $(document).ready(function() {
+    $('#ocupacion').select2({
+      selectionCssClass: "",
+      language:"SpanishTranslation"
     });
+  });
 
-
+  $(document).ready(function() {
+    $('#instrumento').select2();
+  });
+  
   //Cargar sexos
   let url = "http://localhost/clinicaf/sexos/listarSexos";
   axios
@@ -242,9 +165,51 @@ document.addEventListener("DOMContentLoaded", function () {
        // Maneja errores
        console.error("Ocurrió un error:", error);
      });
+
+
+     //Cargar estado civil
+   let urlEstadoCivil = "http://localhost/clinicaf/evaluados/listarEstadoCivil";
+   axios
+     .get(urlEstadoCivil)
+     .then(function (response) {
+       // Llenar Select
+       console.log(response);
+       response.data.forEach((opcion) => {
+         let option = document.createElement("option");
+ 
+         option.text = opcion.nom_estado;
+         option.value = opcion.id_estado_civil;
+         selectEstadoCivil.appendChild(option);
+       });
+     })
+     .catch(function (error) {
+       // Maneja errores
+       console.error("Ocurrió un error:", error);
+     });
+
+
+     //Cargar estado civil
+   let urlSede = "http://localhost/clinicaf/sedes/listarSedes";
+   axios
+     .get(urlSede)
+     .then(function (response) {
+       // Llenar Select
+       console.log(response);
+       response.data.forEach((opcion) => {
+         let option = document.createElement("option");
+ 
+         option.text = opcion.ubicacion;
+         option.value = opcion.id_sede;
+         selectSede.appendChild(option);
+       });
+     })
+     .catch(function (error) {
+       // Maneja errores
+       console.error("Ocurrió un error:", error);
+     });
      
      
-  const urlEvaluado = "http://localhost/clinicaf/proveidos/editarProveido/" + idEvaluado;
+  const urlEvaluado = "http://localhost/clinicaf/evaluados/editarEvaluado/" + idEvaluado;
   //hacer una instancia del objeto CMLHttoRequest
   const http = new XMLHttpRequest();
   //Abrir una Conexion - POST - GET
@@ -256,17 +221,62 @@ document.addEventListener("DOMContentLoaded", function () {
     if (this.readyState == 4 && this.status == 200) {
       console.log(this.responseText);
       const res = JSON.parse(this.responseText);
-      document.getElementById('numero_solicitud').value = res.num_caso;
-      document.getElementById('numero_caso_ext').value = res.num_caso_ext;
-      document.getElementById('fecha_emision').value = res.fech_emi_soli;
-      document.getElementById('fecha_recepcion').value = res.fech_recep_soli;
-      document.getElementById('nombre').value = res.nombre_evaluado;
-      document.getElementById('apellido').value = res.apellido_evaluado;
-      document.getElementById('dni').value = res.dni_evaluado;
-      document.getElementById('aldea_barrio').value = res.localidad;
-      document.getElementById('lugar_hecho').value = res.lugar_hecho;
-      document.getElementById('fecha_hecho').value = res.fecha_hecho;
-      $("#departamento option[value=" + res.id_departamento + "]").attr({selected: true,});
+
+      if(res.estado_evaluacion == 'Pendiente' || res.estado_evaluacion == 'Realizado'){
+        document.getElementById('numero_solicitud').value = res.num_caso;
+        document.getElementById('numero_caso_ext').value = res.num_caso_ext;
+        document.getElementById('fecha_emision').value = res.fech_emi_soli;
+        document.getElementById('fecha_recepcion').value = res.fech_recep_soli;
+  
+        document.getElementById('nombre').value = res.nombre_evaluado;
+        document.getElementById('apellido').value = res.apellido_evaluado;
+        document.getElementById('dni').value = res.dni_evaluado;
+        document.getElementById('telefono').value = res.telefono_evaluado;
+        document.getElementById('diversidad').value = res.diversidad;
+        document.getElementById('edad').value = res.edad;
+        document.getElementById('lugar_procedencia').value = res.lugar_procedencia;
+  
+        document.getElementById('nombre_acomp').value = res.nombre_acompanante;
+        document.getElementById('apellido_acomp').value = res.apellido_acompanante;
+        document.getElementById('dni_acomp').value = res.dni_acompanante;
+        document.getElementById('aldea_barrio').value = res.localidad;
+        document.getElementById('lugar_hecho').value = res.lugar_hecho;
+        document.getElementById('fecha_hecho').value = res.fecha_hecho;
+  
+        document.getElementById('fiscalia').value = res.nom_dependencia;
+        document.getElementById('tipo_evaluacion').value = res.nom_reconocimiento;
+        document.getElementById('descripcion_evaluacion').value = res.descripcion_evaluacion;
+        document.getElementById('agresor_conocido').value = res.especificar_relacion;
+        document.getElementById('fecha_finalizacion').value = res.fecha_finalizacion;
+  
+        $("#departamento option[value=" + res.id_departamento + "]").attr({selected: true,});
+        $("#nacionalidad option[value=" + res.nacionalidad + "]").attr({selected: true,});
+        $("#sexo option[value=" + res.id_sexo + "]").attr({selected: true,});
+        $("#estadoCivil option[value=" + res.estado_civil + "]").attr({selected: true,});
+        $("#ocupacion option[value=" + res.ocupacion + "]").attr({selected: true,});
+        $("#escolaridad option[value=" + res.escolaridad + "]").attr({selected: true,});
+        $("#tiempo option[value=" + res.tiempo + "]").attr({selected: true,});
+        $("#relacion option[value=" + res.relacion_acompanante + "]").attr({selected: true,});
+        $("#permiso_evaluacion option[value=" + res.consentimiento_informado + "]").attr({selected: true,});
+        $("#instrumento option[value=" + res.instrumento_agresion + "]").attr({selected: true,});
+        $("#relacion_agresor option[value=" + res.relacion_agresor + "]").attr({selected: true,});
+        $("#sede_evaluacion option[value=" + res.sede_evaluacion + "]").attr({selected: true,});
+      }else if(res.estado_evaluacion == 'Nuevo'){
+        document.getElementById('numero_solicitud').value = res.num_caso;
+        document.getElementById('numero_caso_ext').value = res.num_caso_ext;
+        document.getElementById('fecha_emision').value = res.fech_emi_soli;
+        document.getElementById('fecha_recepcion').value = res.fech_recep_soli;
+        document.getElementById('nombre').value = res.nombre_evaluado;
+        document.getElementById('apellido').value = res.apellido_evaluado;
+        document.getElementById('dni').value = res.dni_evaluado;
+        document.getElementById('aldea_barrio').value = res.localidad;
+        document.getElementById('lugar_hecho').value = res.lugar_hecho;
+        document.getElementById('fecha_hecho').value = res.fecha_hecho;
+        document.getElementById('fiscalia').value = res.nom_dependencia;
+        document.getElementById('tipo_evaluacion').value = res.nom_reconocimiento;
+        $("#departamento option[value=" + res.id_departamento + "]").attr({selected: true,})
+      }
+      
 
       //Cargar municipios
       if(res.id_departamento != 0){
@@ -303,8 +313,8 @@ document.addEventListener("DOMContentLoaded", function () {
               selectMunicipio.appendChild(option);
             });
 
-            if(res.fk_municipio != 0){
-              $("#item_municipio_reg option[value=" + res.id_departamento + "]").attr({
+            if(res.id_municipio != 0){
+              $("#municipio option[value=" + res.id_municipio + "]").attr({
                 selected: true,
               });
       
@@ -319,83 +329,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  //Cargar médicos
-  /* let url = "http://localhost/clinicaf/usuarios/getMedicos";
-  axios
-    .get(url)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.medicos.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = `${opcion.nombre} ${opcion.apellido}`;
-        option.value = opcion.id_usu;
-        selectMedico.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    }); */
-
-
-  //Cargar reconocimientos
- /*  let urlReconocimiento = "http://localhost/clinicaf/reconocimientos/getReconocimientos";
-  axios
-    .get(urlReconocimiento)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.reconocimientos.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nom_reconocimiento;
-        option.value = opcion.id_reconocimiento;
-        selectReconocimiento.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    }); */
-
-
-  //Cargar dependencias
- /*  let urlDependencias = "http://localhost/clinicaf/dependencias/getDependencias";
-  axios
-    .get(urlDependencias)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.dependencias.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nom_dependencia;
-        option.value = opcion.id_dependencia;
-        selectDependencias.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
- */
-
 
   formulario.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir la acción por defecto del formulario
 
-    if (numeroSolicitud.value == "" || numeroExterno.value == "" || fechaEmision.value == ""
-      || fechaRecepcion.value == "" || fiscalia.value == "") {
-        console.log('No puede enviar el formulario vacio')
-    } else {
-      const urlInsertar = "http://localhost/clinicaf/proveidos/insertarProveido";
-      const urlActualizar = "http://localhost/clinicaf/proveidos/actualizarProveido";
+      const urlInsertar = "http://localhost/clinicaf/evaluados/insertarEvaluado";
+      const urlActualizar = "http://localhost/clinicaf/evaluados/actualizarEvaluado";
       const data = new FormData(this);
     
       // Verificar si el campo 'id' está presente en los datos del formulario
-      const id = data.get('id'); // Asume que el campo 'id' tiene el nombre 'id'
+      const id = data.get('id_evaluado'); // Asume que el campo 'id' tiene el nombre 'id'
       
       const url = id ? urlActualizar : urlInsertar;
       const method = id ? "PUT" : "POST";
@@ -427,14 +370,101 @@ document.addEventListener("DOMContentLoaded", function () {
             icon: res.type
           }).then((result) => {
             if (this.responseText.includes('"type":"success"')) {
-              location.reload();
+              window.location.href = './listaEvaluacion'
             }
         });
     
         }
       };
-    }
   });
+});
+
+
+/* Añadir nuevas ocupaciones */
+formularioOcupacion.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevenir la acción por defecto del formulario
+    const url = "http://localhost/clinicaf/evaluados/insertarOcupacion";
+    const method = "POST";
+    const data = new FormData(this);
+  
+    const http = new XMLHttpRequest();
+    http.open(method, url, true);
+    http.send(data);
+
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        $('#ModalOcupacion').modal('hide'); 
+
+        let urlOcupacion = "http://localhost/clinicaf/evaluados/listarOcupaciones";
+            // Eliminar opciones existentes del select de municipios
+            while (selectOcupacion.firstChild) {
+              selectOcupacion.removeChild(selectOcupacion.firstChild);
+            }
+
+            axios
+            .get(urlOcupacion)
+            .then(function (response) {
+              // Llenar Select
+              console.log(response);
+              response.data.forEach((opcion) => {
+                let option = document.createElement("option");
+
+                option.text = opcion.nom_ocupacion;
+                option.value = opcion.id_ocupacion;
+                selectOcupacion.appendChild(option);
+              });
+
+            })
+            .catch(function (error) {
+              // Maneja errores
+              console.error("Ocurrió un error:", error);
+            })
+      }
+    };
+});
+
+
+/* Añadir nuevos instrumentos */
+formularioInstrumento.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevenir la acción por defecto del formulario
+    const url = "http://localhost/clinicaf/evaluados/insertarInstrumento";
+    const method = "POST";
+    const data = new FormData(this);
+  
+    const http = new XMLHttpRequest();
+    http.open(method, url, true);
+    http.send(data);
+
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        $('#ModalInstru').modal('hide'); 
+
+        let urlInstrumentos = "http://localhost/clinicaf/evaluados/listarInstrumentos";
+            // Eliminar opciones existentes del select de municipios
+            while (selectInstrumento.firstChild) {
+              selectInstrumento.removeChild(selectInstrumento.firstChild);
+            }
+
+            axios
+            .get(urlInstrumentos)
+            .then(function (response) {
+              // Llenar Select
+              console.log(response);
+              response.data.forEach((opcion) => {
+                let option = document.createElement("option");
+
+                option.text = opcion.nom_instrumento;
+                option.value = opcion.id_instrumento;
+                selectInstrumento.appendChild(option);
+              });
+
+            })
+            .catch(function (error) {
+              // Maneja errores
+              console.error("Ocurrió un error:", error);
+            })
+      }
+    };
 });
 
 
