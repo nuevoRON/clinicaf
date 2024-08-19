@@ -231,7 +231,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-
   formulario.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir la acción por defecto del formulario
 

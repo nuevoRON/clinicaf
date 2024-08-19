@@ -132,4 +132,51 @@ class ProveidosModel extends Query{
         return $this->save($sql, $array);
     }
 
+
+    public function obtenerDatosSedes($id)
+    {
+        $sql = "select s.cod_numerico,
+                    c.codigo_numerico
+                from tbl_usu u
+                inner join tbl_sedes s on s.id_sede = u.sede 
+                inner join tbl_clinicas c on c.id_clinica = u.laboratorio
+                where u.id_usu = $id";
+        return $this->selectAll($sql);
+    }
+
+
+    public function insertarNumeroSolicitud($numeroSolicitud) {
+        $sql = "INSERT INTO tbl_numero_solicitud_temp (numero_solicitud) VALUES(?)";
+        $array = array($numeroSolicitud);
+        return $this->insertar($sql, $array);
+    }
+
+
+    public function obtenerUltimoCorrelativo($sede, $laboratorio) {
+        $sql = "SELECT ultimo_correlativo FROM tbl_correlativos_solicitud WHERE sede = ? AND laboratorio = ? FOR UPDATE";
+        return $this->getSingleValue($sql, [$sede, $laboratorio]);
+    }
+
+    public function insertarNuevoCorrelativo($sede, $laboratorio, $correlativoInicial) {
+        $sql = "INSERT INTO tbl_correlativos_solicitud (sede, laboratorio, ultimo_correlativo) VALUES (?, ?, ?)";
+        return $this->save($sql, [$sede, $laboratorio, $correlativoInicial]);
+    }
+
+    public function actualizarUltimoCorrelativo($sede, $laboratorio, $nuevoCorrelativo) {
+        $sql = "UPDATE tbl_correlativos_solicitud SET ultimo_correlativo = ? WHERE sede = ? AND laboratorio = ?";
+        return $this->save($sql, [$nuevoCorrelativo, $sede, $laboratorio]);
+    }
+
+    public function iniciarTransaccion() {
+        $this->beginTransaction();
+    }
+
+    public function confirmarTransaccion() {
+        $this->commit();
+    }
+
+    public function revertirTransaccion() {
+        $this->rollback();
+    }
+
 }

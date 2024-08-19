@@ -44,9 +44,16 @@ $(document).ready(function(){
 		}).then((result) => {
 			if (result.isConfirmed) {
 				let url = "http://localhost/clinicaf/login/cerrarSesion/";
-				const http = new XMLHttpRequest();
-				http.open("GET", url, true);
-				http.send();
+				fetch(url)
+					.then(response => response.json())
+					.then(data => {
+						if (data.status === "success") {
+							window.location.href = data.redirect;
+						}
+					})
+					.catch(error => {
+						console.error('Error al cerrar sesión:', error);
+					});
 			}
 		});
 	});

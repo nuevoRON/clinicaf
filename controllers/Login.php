@@ -79,12 +79,14 @@ class Login extends Controller{
 
 
     public function cerrarSesion(){
-        // Borra todas las variables de sesión
 	    session_unset();
-
-        // Destruye la sesión
         session_destroy();
-        header('Location: ' . BASE_URL);
+
+        //se envía un objeto para validar el cierre de sesión y redirigir al login
+        echo json_encode([
+            "status" => "success",
+            "redirect" => BASE_URL . "login"
+        ]);
         die();
     }
 }

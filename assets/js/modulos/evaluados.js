@@ -11,6 +11,7 @@ const selectMunicipio = document.querySelector("#municipio");
 const selectInstrumento = document.querySelector("#instrumento");
 const selectEstadoCivil = document.querySelector("#estadoCivil");
 const selectSede = document.querySelector("#sede_evaluacion");
+const sedeConsentimiento = document.getElementById('permiso_evaluacion')
 const idEvaluado = document.querySelector("#id_evaluado").value;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -261,7 +262,9 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#instrumento option[value=" + res.instrumento_agresion + "]").attr({selected: true,});
         $("#relacion_agresor option[value=" + res.relacion_agresor + "]").attr({selected: true,});
         $("#sede_evaluacion option[value=" + res.sede_evaluacion + "]").attr({selected: true,});
-      }else if(res.estado_evaluacion == 'Nuevo'){
+
+        res.consentimiento_informado == 'Si' ? $(".contenedor-consentimiento").show() : $(".contenedor-consentimiento").hide();
+      }else if(res.estado_evaluacion == 'Nuevo'){ 
         document.getElementById('numero_solicitud').value = res.num_caso;
         document.getElementById('numero_caso_ext').value = res.num_caso_ext;
         document.getElementById('fecha_emision').value = res.fech_emi_soli;
@@ -275,6 +278,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('fiscalia').value = res.nom_dependencia;
         document.getElementById('tipo_evaluacion').value = res.nom_reconocimiento;
         $("#departamento option[value=" + res.id_departamento + "]").attr({selected: true,})
+
+        $(".contenedor-consentimiento").hide();
       }
       
 
@@ -328,6 +333,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
+
+  sedeConsentimiento.addEventListener("change", function() {
+    sedeConsentimiento.value == 'Si' ? $(".contenedor-consentimiento").show() : $(".contenedor-consentimiento").hide();
+  })
 
 
   formulario.addEventListener('submit', function(event) {

@@ -99,6 +99,7 @@
 										<input type="text" class="form-control" name="tipo_evaluacion" id="tipo_evaluacion" disabled>
 									</div>
 								</div>
+								<hr>
 								<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DEL EVALUADO</legend>
 								<div class="container-fluid">
 									<div class="row">
@@ -223,6 +224,7 @@
 									</div>
 								</div>
 								<br><br><br>
+								<hr>
 								<fieldset>
 									<legend><i class="fas fa-user"></i> &nbsp;DATOS DEL ACOMPAÑANTE</legend>
 									<div class="container-fluid">
@@ -262,6 +264,8 @@
 										</div>
 									</div>
 								</fieldset>
+								<hr>
+								<br><br><br><br><br><br>
 								<div class="container-fluid">
 										<fieldset>
 											<legend><i class="fas fa-user"></i> &nbsp;CONSENTIMIENTO INFORMADO</legend>
@@ -285,7 +289,8 @@
 										</fieldset>
 								</div>
 								<br><br><br><br><br><br>
-								<div class="container-fluid">
+								<hr>
+								<div class="container-fluid contenedor-consentimiento">
 								
 										<fieldset>
 											<legend><i class="fas fa-user"></i> &nbsp;DATOS DEL HECHO</legend>
@@ -335,52 +340,55 @@
 											</div>
 										</fieldset>
 								</div>
+								<hr>
+								<div class="container-fluid contenedor-consentimiento">
+									<div class="row">
+										<!--  /*/*/*/*/*/*/*/*/*/*/*/*/*            INICIO DE LA EVALUACION MEDICA       /*/*/*/*/*/*/*/*/*/*/*/*/ -->
+										<br>
+										<legend><i class="fas fa-user"></i> &nbsp; EVALUACION MEDICA</legend>
 
-								<!--  /*/*/*/*/*/*/*/*/*/*/*/*/*            INICIO DE LA EVALUACION MEDICA       /*/*/*/*/*/*/*/*/*/*/*/*/ -->
-								<br><br><br><br><br><br><br><br><br><br>
-								<legend><i class="fas fa-user"></i> &nbsp; EVALUACION MEDICA</legend>
+										<div class="col-12 col-md-3">
+											<div class="form-group">
+												<label for="instrumento" class="bmd-label-floating">Instrumemto Utilizado</label>
+												<select class="form-control" name="instrumento" id="instrumento">
+													<option value="" selected="" disabled="">Seleccione el Instrumento</option>
 
-								<div class="col-12 col-md-3">
-									<div class="form-group">
-										<label for="instrumento" class="bmd-label-floating">Instrumemto Utilizado</label>
-										<select class="form-control" name="instrumento" id="instrumento">
-											<option value="" selected="" disabled="">Seleccione el Instrumento</option>
-
-										</select>
-									</div>
-									<!-- MODAL AGREGAR INSTRUMENTO -->
-									<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-    BOTON PARA AGREGAR    -*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
-									<div class="">
-										<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalInstru">
-											<i class="fas fa-plus"></i>
-										</button>
-									</div>
-								</div>
-									<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+												</select>
+											</div>
+											<!-- MODAL AGREGAR INSTRUMENTO -->
+											<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+		*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-		*-*-*-    BOTON PARA AGREGAR    -*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+													<div class="">
+														<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalInstru">
+															<i class="fas fa-plus"></i>
+														</button>
+													</div>
+												</div>
+											<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
-								<div class="col-12 col-md-3">
-									<div class="form-group">
-										<label for="relacion_agresor" class="bmd-label-floating">Relacion Con el Agresor</label>
-										<select class="form-control" name="relacion_agresor" id="relacion_agresor">
-											<option value="" selected="" disabled="">Seleccione</option>
-											<option value="Conocido">Conocido</option>
-											<option value="Desconocido">Desconocido</option>
-											<option value="Autoridad Militar">Autoridad Militar</option>
-											<option value="No Aplica">No Aplica</option>
-										</select>
+											<div class="col-12 col-md-3">
+												<div class="form-group">
+													<label for="relacion_agresor" class="bmd-label-floating">Relacion Con el Agresor</label>
+													<select class="form-control" name="relacion_agresor" id="relacion_agresor">
+														<option value="" selected="" disabled="">Seleccione</option>
+														<option value="Conocido">Conocido</option>
+														<option value="Desconocido">Desconocido</option>
+														<option value="Autoridad Militar">Autoridad Militar</option>
+														<option value="No Aplica">No Aplica</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-12 col-md-4">
+												<div class="form-group">
+													<label for="agresor_conocido" class="bmd-label-floating">En Caso de ser Conocido Especifique</label>
+													<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="agresor_conocido" id="agresor_conocido" maxlength="20">
+												</div>
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="col-12 col-md-4">
-									<div class="form-group">
-										<label for="agresor_conocido" class="bmd-label-floating">En Caso de ser Conocido Especifique</label>
-										<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="agresor_conocido" id="agresor_conocido" maxlength="20">
-									</div>
-								</div>
-
 
 					</fieldset>
-
+					<hr>
 					<div class="col-12 col-md-4">
 						<div class="form-group">
 							<label for="descripcion_evaluacion" class="bmd-label-floating">Descripcion de la Evaluacion</label>

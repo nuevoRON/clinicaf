@@ -39,5 +39,23 @@ class Query extends Conexion{
         }
         return $res;
     }
+
+     public function beginTransaction() {
+        $this->con->beginTransaction();
+    }
+
+    public function commit() {
+        $this->con->commit();
+    }
+
+    public function rollback() {
+        $this->con->rollBack();
+    }
+    
+    public function getSingleValue($sql, $params = []) {
+        $result = $this->con->prepare($sql);
+        $result->execute($params);
+        return $result->fetchColumn();
+    }
 }
 ?>

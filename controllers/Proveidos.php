@@ -35,6 +35,9 @@ class Proveidos extends Controller
 
     //metodo para registrar y modificar
     public function insertarProveido() {
+        $sede = '';
+        $laboratorio = '';
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['numero_solicitud_reg'])) {
                 $res = array('msg' => 'EL NUMERO DE SOLICIUD ES REQUERIDO', 'type' => 'warning');
@@ -69,7 +72,17 @@ class Proveidos extends Controller
                 $medico = strClean($_POST['medico']);
                 $fechaCitacion = strClean($_POST['fecha_citacion']);
 
-                $dataProveido = $this->model->insertarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno);
+                $data = $this->model->obtenerDatosSedes($medico);
+
+                foreach($data as $val){
+                    $sede = $val['cod_numerico'];
+                    $laboratorio = $val['codigo_numerico'];
+                }
+
+                // Generar el número de solicitud correlativo
+                $numeroSolicitudCorrelativo = $this->generarNumeroSolicitudCorrelativo($sede, $laboratorio);
+
+                $dataProveido = $this->model->insertarProveido($numeroSolicitudCorrelativo, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno);
                 $dataEvaluado = $this->model->insertarEvaluado($nombre, $apellido, $dni, $dataProveido);
                 $dataHechos = $this->model->insertarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido);
                 $dataReconocimiento = $this->model->insertarReconocimiento($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion);
@@ -170,5 +183,87 @@ class Proveidos extends Controller
             die();
         }
     }
+
+
+    public function generarNumero($id){
+        $sede = '';
+        $laboratorio = '';
+        $anio = date('Y');
+        $numero = '00001';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+            
+            if ($id === null) {
+                $res = array('msg' => 'ID inválido o no proporcionado', 'type' => 'error');
+            } else {
+                // Realizar la eliminación en la base de datos
+                $data = $this->model->obtenerDatosSedes($id);
+
+                foreach($data as $val){
+                    $sede = $val['cod_numerico'];
+                    $laboratorio = $val['codigo_numerico'];
+                }
+                
+                $numeroSolicitud = $anio.'-'.$sede.'-'.$laboratorio.'-'.$numero;
+
+                $dataSolicitud = $this->model->insertarNumeroSolicitud($numeroSolicitud);
+                
+                /* if ($data > 0) {
+                    // Registro de evento en la bitácora (ejemplo)
+                    //$bitacora = new Bitacora();
+                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    
+                    $res = array('titulo' => 'Proveido Eliminado', 
+                                'desc' => 'El proveido se ha eliminado exitosamente', 
+                                'type' => 'success');
+                } else {
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'Hubo un error al eliminar el proveido seleccionado', 
+                                'type' => 'warning');
+                } */
+            }
+            
+            // Devolver respuesta en formato JSON
+            echo $numeroSolicitud;
+            die();
+        }
+    }
+
+
+    // Función para generar el número de solicitud correlativo
+    private function generarNumeroSolicitudCorrelativo($sede, $laboratorio) {
+        // Iniciar una transacción desde el modelo
+        $this->model->iniciarTransaccion();
+    
+        try {
+            // Obtener el último correlativo desde el modelo
+            $ultimoCorrelativo = $this->model->obtenerUltimoCorrelativo($sede, $laboratorio);
+
+            if ($ultimoCorrelativo === false) {
+                $ultimoCorrelativo = 0;
+                $this->model->insertarNuevoCorrelativo($sede, $laboratorio, $ultimoCorrelativo);
+            }
+    
+    
+            // Incrementar el correlativo
+            $nuevoCorrelativo = $ultimoCorrelativo + 1;
+    
+            // Actualizar el último correlativo en la tabla de control
+            $this->model->actualizarUltimoCorrelativo($sede, $laboratorio, $nuevoCorrelativo);
+    
+            // Confirmar la transacción desde el modelo
+            $this->model->confirmarTransaccion();
+    
+            // Formatear el número de solicitud
+            $añoActual = date("Y");
+            return "{$añoActual}-{$sede}-{$laboratorio}-" . str_pad($nuevoCorrelativo, 5, "0", STR_PAD_LEFT); 
+    
+        } catch (Exception $e) {
+            // Revertir la transacción en caso de error desde el modelo
+            $this->model->revertirTransaccion();
+            throw new Exception("Error al generar el número de solicitud: " . $e->getMessage());
+        }
+    }
+    
     
 }
