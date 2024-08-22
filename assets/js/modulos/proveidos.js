@@ -15,20 +15,6 @@ const selectDepartamento = document.querySelector("#item_departamento_reg");
 const selectMunicipio = document.querySelector("#item_municipio_reg");
 
 document.addEventListener("DOMContentLoaded", function () {
-  //permisosPantalla = obtenerPermisos("Usuarios", permisosUsuario);
-
-  /* if (!permisosPantalla.consultar) {
-    window.location.replace(base_url + "admin");
-  } */
-  // cargar roles del usuario
- /* console.log(permisosUsuario);
-  let permisosPantalla = obtenerPermisos("Usuarios", permisosUsuario);
-
-  console.log(permisosPantalla);
-  if (!permisosPantalla.consultar) {
-    window.location.replace(base_url + "admin");
-  }*/
-
   //Cargar médicos
   let url = "http://localhost/clinicaf/usuarios/getMedicos";
   axios
@@ -234,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
   formulario.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir la acción por defecto del formulario
 
-    if (numeroSolicitud.value == "" || numeroExterno.value == "" || fechaEmision.value == ""
+    if (fechaEmision.value == ""
       || fechaRecepcion.value == "" || fiscalia.value == "") {
         console.log('No puede enviar el formulario vacio')
     } else {

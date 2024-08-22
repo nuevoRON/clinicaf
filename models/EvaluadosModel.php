@@ -62,6 +62,7 @@ class EvaluadosModel extends Query{
                         p.num_caso_ext,
                         p.fech_emi_soli,
                         p.fech_recep_soli,
+                        p.num_solicitud,
                         d.nom_dependencia,
                         r.nom_reconocimiento,
                         e.nombre_evaluado,

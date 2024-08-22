@@ -29,10 +29,10 @@ class ProveidosModel extends Query{
         return $this->selectAll($sql);
     }
 
-    public function insertarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno) {
+    public function insertarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$numeroCasoCorrelativo) {
         $sql = "INSERT INTO tbl_proveidos (num_caso,num_caso_ext,fech_emi_soli, fech_recep_soli,
-        fiscalia_remitente, registro_borrado) VALUES(?,?,?,?,?,?)";
-        $array = array($numeroSolicitud,  $numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, 'A');
+        fiscalia_remitente, registro_borrado, num_solicitud) VALUES(?,?,?,?,?,?,?)";
+        $array = array($numeroCasoCorrelativo,  $numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, 'A',$numeroSolicitud);
         return $this->insertar($sql, $array);
     }
 
@@ -91,11 +91,11 @@ class ProveidosModel extends Query{
         return $this->select($sql);
     }
 
-    public function actualizarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$id)
+    public function actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$id)
     {
-        $sql = "UPDATE tbl_proveidos SET num_caso=?, num_caso_ext=?, fech_emi_soli=?, fech_recep_soli=?,
+        $sql = "UPDATE tbl_proveidos SET num_caso_ext = ?, fech_emi_soli=?, fech_recep_soli=?,
         fiscalia_remitente=? WHERE id_proveidos=?";
-        $array = array($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, $id);
+        $array = array($numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, $id);
         return $this->save($sql, $array);
     }
 
@@ -157,6 +157,7 @@ class ProveidosModel extends Query{
         return $this->getSingleValue($sql, [$sede, $laboratorio]);
     }
 
+    //Funciones para generar numero de solicitud
     public function insertarNuevoCorrelativo($sede, $laboratorio, $correlativoInicial) {
         $sql = "INSERT INTO tbl_correlativos_solicitud (sede, laboratorio, ultimo_correlativo) VALUES (?, ?, ?)";
         return $this->save($sql, [$sede, $laboratorio, $correlativoInicial]);
@@ -165,6 +166,23 @@ class ProveidosModel extends Query{
     public function actualizarUltimoCorrelativo($sede, $laboratorio, $nuevoCorrelativo) {
         $sql = "UPDATE tbl_correlativos_solicitud SET ultimo_correlativo = ? WHERE sede = ? AND laboratorio = ?";
         return $this->save($sql, [$nuevoCorrelativo, $sede, $laboratorio]);
+    }
+
+
+    //Funciones para generar numero de caso
+    public function obtenerUltimoCorrelativoCaso($sede) {
+        $sql = "SELECT ultimo_correlativo FROM tbl_correlativo_caso WHERE sede = ? FOR UPDATE";
+        return $this->getSingleValue($sql, [$sede]);
+    }
+
+    public function insertarNuevoCorrelativoCaso($sede, $correlativoInicial) {
+        $sql = "INSERT INTO tbl_correlativo_caso (sede, ultimo_correlativo) VALUES (?, ?)";
+        return $this->save($sql, [$sede,$correlativoInicial]);
+    }
+
+    public function actualizarUltimoCorrelativoCaso($sede, $nuevoCorrelativo) {
+        $sql = "UPDATE tbl_correlativo_caso SET ultimo_correlativo = ? WHERE sede = ?";
+        return $this->save($sql, [$nuevoCorrelativo, $sede]);
     }
 
     public function iniciarTransaccion() {

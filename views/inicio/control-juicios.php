@@ -54,56 +54,55 @@
 						</div>
 						<!-- Contenedor-->
 						<div class="container-fluid">
-							<form action="" class="form-neon" autocomplete="off">
+							<form id="formulario" class="form-neon" autocomplete="off">
+								<input type="hidden" class="" name="id" id="id">
 								<fieldset>
 									<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DE LA CITACION</legend>
 									<div class="container-fluid">
 										<div class="row">
 											<div class="col-12 col-md-5">
 												<div class="form-group">
-													<label for="cliente_dni" class="bmd-label-floating">Numero del Caso</label>
-													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label for="item_estado" class="bmd-label-floating">Tipo de Citacion</label>
-													<select class="form-control" name="item_estado_reg" id="item_estado">
-														<option value="" selected="" disabled="">Seleccione la Citacion</option>
-														<option value="Habilitado">Juicio</option>
-														<option value="Habilitado">Juramentacion</option>
+													<label for="num_caso" class="bmd-label-floating">Numero del Caso</label>
+													<select class="form-control" name="num_caso" id="num_caso">
+														<option value="">Seleccione una opción</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="prestamo_fecha_inicio">Fecha que se recibe la citacion</label>
-													<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion_id">
+													<label for="tipo_citacion" class="bmd-label-floating">Tipo de Citacion</label>
+													<select class="form-control" name="tipo_citacion" id="tipo_citacion">
+														<option value="" selected="" disabled="">Seleccione la Citacion</option>
+														<option value="Juicio">Juicio</option>
+														<option value="Juramentacion">Juramentacion</option>
+													</select>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="prestamo_fecha_inicio">Fecha de la citacion</label>
-													<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion_id">
+													<label for="fecha_rec_citacion">Fecha que se recibe la citacion</label>
+													<input type="date" class="form-control" name="fecha_rec_citacion" id="fecha_rec_citacion">
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="item_estado" class="bmd-label-floating">Medico</label>
-													<select class="form-control" name="item_estado_reg" id="item_estado">
+													<label for="fecha_citacion">Fecha de la citacion</label>
+													<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion">
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label for="medico" class="bmd-label-floating">Medico</label>
+													<select class="form-control" name="medico" id="medico">
 														<option value="" selected="" disabled="">Seleccione al Medico</option>
-														<option value="Habilitado">Fernando Flores</option>
-														<option value="Deshabilitado">Raul Aguilar</option>
-														<option value="Deshabilitado">Claudia Lagos</option>
-														<option value="Deshabilitado">Arnoldo Castillo</option>
-														<option value="Deshabilitado">Jose Lobo</option>
+														
 													</select>
 												</div>
 											</div>
 											<div class="col-12 col-md-8">
 												<div class="form-group">
-													<label for="cliente_dni" class="bmd-label-floating">Lugar de la citacion</label>
-													<input type="text" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="50">
+													<label for="lugar_citacion" class="bmd-label-floating">Lugar de la citacion</label>
+													<input type="text" class="form-control" name="lugar_citacion" id="lugar_citacion" maxlength="50">
 												</div>
 											</div>
 										</div>
@@ -126,7 +125,7 @@
 			<!-- Content here-->
 			<div class="container-fluid">
 				<div class="table-responsive">
-					<table class="table table-dark table-sm">
+					<table class="table table-dark table-sm text-center" id="tabla_citaciones">
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
@@ -135,112 +134,18 @@
 								<th>FECHA DE RECEPCION DE CITACION</th>
 								<th>FECHA DE LA CITACION</th>
 								<th>NOMBRE DEL MEDICO</th>
+								<th>APELLIDO DEL MEDICO</th>
 								<th>LUGAR DE LA CITACION</th>
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-center">
-								<td>1</td>
-								<td>4250-2017</td>
-								<td>Juicio</td>
-								<td>25/03/2024</td>
-								<td>14/04/2024</td>
-								<td>juan fernando</td>
-								<td>tribunal de setencias tegucigalpa</td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center">
-								<td>2</td>
-								<td>8520-2023</td>
-								<td>Juramentacion</td>
-								<td>26/01/2024</td>
-								<td>14/04/2024</td>
-								<td>jose argueta</td>
-								<td>jusgado de la comyagaua</td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center">
-								<td>3</td>
-								<td>5628-2023</td>
-								<td>Juramentacion</td>
-								<td>18/12/2023</td>
-								<td>15/06/2024</td>
-								<td>julio fernandez</td>
-								<td>tribunal de sentencias tegucigalpa</td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center">
-								<td>4</td>
-								<td>4230-2022</td>
-								<td>Juicio</td>
-								<td>24/06s/2024</td>
-								<td>25/06/2024</td>
-								<td>julio fernandez</td>
-								<td>tribunal de sentencias juticalpa</td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalCitacion">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item disabled">
-							<a class="page-link" href="#" tabindex="-1">Previous</a>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item">
-							<a class="page-link" href="#">Next</a>
-						</li>
-					</ul>
-				</nav>
+				
 			</div>
 
 		</section>
@@ -251,7 +156,8 @@
 	=            Include JavaScript files           =
 	==============================================-->
 	<?php include "views/templates/archivosJS.php"; ?>
-
+	<script src="<?php echo BASE_URL; ?>assets/js/modulos/citaciones.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
 </html>
