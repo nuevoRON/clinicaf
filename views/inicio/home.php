@@ -87,6 +87,6 @@
 	</main>
 	
 	<?php include "views/templates/archivosJS.php"; ?>
-	
+	<script src="<?php echo BASE_URL; ?>assets/js/modulos/inicio.js"></script>
 </body>
 </html>

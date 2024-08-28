@@ -5,7 +5,22 @@ const selectipuesto = document.querySelector("#puesto");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
-  
+  let permisoConsulta = "http://localhost/clinicaf/permisos/validarPermisos";
+
+  axios
+    .post(permisoConsulta, {
+      consulta: 1,
+      modulo: 11,
+    })
+    .then(function (response) {
+      if (response.data.consulta == 0 || response.data == false) {
+        window.location.href = "../inicio/error";
+      }
+    })
+    .catch(function (error) {
+      console.error("Ocurrió un error:", error);
+    });
+
   /* Mostrar Tabla */
   //Se extraen los datos de la base de datos para llenar el datatable
   let urlListarPuestos = "http://localhost/clinicaf/Puestos/listarPuestos";
@@ -151,19 +166,79 @@ document.addEventListener("DOMContentLoaded", function () {
 /*Eliminar registros*/
 //esta funcion recibe el id del registro para realizar la eliminación
 function eliminarPuestos(id_puesto) {
+  let permisoEliminacion = "http://localhost/clinicaf/permisos/validarPermisos";
 
-  Swal.fire({
-    title: "¿Estas seguro de eliminar este puesto?",
-    text: "Esta acción no se puede deshacer",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Si",
-    cancelButtonText: "No",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      let url = "http://localhost/clinicaf/puestos/eliminarPuestos/" + id_puesto;
+  axios
+    .post(permisoEliminacion, {
+      consulta: 4,
+      modulo: 11,
+    })
+    .then(function (response) {
+      if (response.data.eliminacion == 0 || response.data == false) {
+        Swal.fire({
+          title: "Error",
+          text: "No tiene los permisos para eliminar datos",
+          icon: "error",
+        });
+      } else {
+        Swal.fire({
+          title: "¿Estas seguro de eliminar este puesto?",
+          text: "Esta acción no se puede deshacer",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si",
+          cancelButtonText: "No",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let url = "http://localhost/clinicaf/puestos/eliminarPuestos/" + id_puesto;
+            //hacer una instancia del objeto CMLHttoRequest
+            const http = new XMLHttpRequest();
+            //Abrir una Conexion - POST - GET
+            http.open("GET", url, true);
+            //Enviar Datos
+            http.send();
+            //Verificar estados
+            http.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+      
+                Swal.fire({
+                  title: res.titulo,
+                  text: res.desc,
+                  icon: res.type
+                });
+              }
+            };
+          }
+        });
+      }
+    })
+ 
+}
+
+
+/* Obtener datos de un registro para edición */
+function editarPuestos(id_puesto) {
+  let permisoActualizacion =
+  "http://localhost/clinicaf/permisos/validarPermisos";
+
+axios
+  .post(permisoActualizacion, {
+    consulta: 3,
+    modulo: 11,
+  })
+  .then(function (response) {
+    console.log(response.data);
+    if (response.data.actualizacion == 0 || response.data == false) {
+      Swal.fire({
+        title: "Error",
+        text: "No cuenta con los permisos para actualizar datos",
+        icon: "error",
+      });
+    } else {
+      const url = "http://localhost/clinicaf/puestos/obtenerPuestos/" + id_puesto;
       //hacer una instancia del objeto CMLHttoRequest
       const http = new XMLHttpRequest();
       //Abrir una Conexion - POST - GET
@@ -172,50 +247,26 @@ function eliminarPuestos(id_puesto) {
       http.send();
       //Verificar estados
       http.onreadystatechange = function () {
+        //si se obtienen los datos de la base de datos se deben ingresar en los inputs
+        //usando los id para asignar los datos en los mismos
         if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
           const res = JSON.parse(this.responseText);
-
-          Swal.fire({
-            title: res.titulo,
-            text: res.desc,
-            icon: res.type
+          id.value = res.id_puesto;
+          id_puesto.value = res.id_puesto;
+          selectipuesto.value = res.nom_puesto;
+    
+          
+          $("#estado option[value=" + res.estado + "]").attr({
+            selected: true,
           });
+    
+          //Se abre el modal usando su id
+          $('#ModalPuestos').modal('show');
+          
         }
       };
     }
-  });
-}
-
-
-/* Obtener datos de un registro para edición */
-function editarPuestos(id_puesto) {
-  const url = "http://localhost/clinicaf/puestos/obtenerPuestos/" + id_puesto;
-  //hacer una instancia del objeto CMLHttoRequest
-  const http = new XMLHttpRequest();
-  //Abrir una Conexion - POST - GET
-  http.open("GET", url, true);
-  //Enviar Datos
-  http.send();
-  //Verificar estados
-  http.onreadystatechange = function () {
-    //si se obtienen los datos de la base de datos se deben ingresar en los inputs
-    //usando los id para asignar los datos en los mismos
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
-      const res = JSON.parse(this.responseText);
-      id.value = res.id_puesto;
-      id_puesto.value = res.id_puesto;
-      selectipuesto.value = res.nom_puesto;
-
-      
-      $("#estado option[value=" + res.estado + "]").attr({
-        selected: true,
-      });
-
-      //Se abre el modal usando su id
-      $('#ModalPuestos').modal('show');
-      
-    }
-  };
+  })
 
 }

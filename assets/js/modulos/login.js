@@ -40,11 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             window.location = 'http://localhost/clinicaf/inicio/';
           } else {
-            Swal.fire(
-              'Error',
-              res.msg,
-              res.type
-            )
+            const errorMessage = document.querySelector('#error-message');
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = res.msg;
           } 
         }
       }

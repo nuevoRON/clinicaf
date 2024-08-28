@@ -35,8 +35,8 @@ class Sexos extends Controller
     
                 $data = $this->model->insertarSexo($nombre);
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 3, 'CREACION', 'Se creó un sexo en el sistema', date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Sexo Registrado', 
                             'desc' => 'El sexo se ha registrado exitosamente', 
                             'type' => 'success');

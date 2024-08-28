@@ -5,6 +5,21 @@ const selectCasos = document.querySelector("#num_caso");
 const selectMedico = document.querySelector("#medico");
 
 document.addEventListener("DOMContentLoaded", function () {
+  let permisoConsulta = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoConsulta, {
+    consulta: 1,
+    modulo: 5
+  })
+    .then(function (response) {
+      if (response.data.consulta == 0 || response.data == false) {
+        window.location.href = "../inicio/error";
+      }
+    })
+    .catch(function (error) {
+      console.error("Ocurrió un error:", error);
+    });
+
   //Inicializar Select2 para select de casos
   /* $(document).ready(function() {
     $('#num_caso').select2({
@@ -186,73 +201,107 @@ document.addEventListener("DOMContentLoaded", function () {
 /*Eliminar registros*/
 //esta funcion recibe el id del registro para realizar la eliminación
 function eliminarCitacion(idCitacion) {
-
-  Swal.fire({
-    title: "¿Estas seguro de eliminar esta citación?",
-    text: "Esta acción no se puede deshacer",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Si",
-    cancelButtonText: "No",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      let url = "http://localhost/clinicaf/citaciones/eliminarCitacion/" + idCitacion;
-      //hacer una instancia del objeto CMLHttoRequest
-      const http = new XMLHttpRequest();
-      //Abrir una Conexion - POST - GET
-      http.open("GET", url, true);
-      //Enviar Datos
-      http.send();
-      //Verificar estados
-      http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          const res = JSON.parse(this.responseText);
-
-          Swal.fire({
-            title: res.titulo,
-            text: res.desc,
-            icon: res.type
-          }).then((result) => {
-            if (this.responseText.includes('"type":"success"')) {
-              location.reload();
-            }
+  let permisoEliminacion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoEliminacion, {
+    consulta: 4,
+    modulo: 5
+  })
+    .then(function (response) {
+      if (response.data.eliminacion == 0 || response.data == false) {
+        Swal.fire({
+          title: "Error",
+          text: "No tiene los permisos para eliminar datos",
+          icon: "error",
         });
-        }
-      };
-    }
-  });
+      } else {
+        Swal.fire({
+          title: "¿Estas seguro de eliminar esta citación?",
+          text: "Esta acción no se puede deshacer",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si",
+          cancelButtonText: "No",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let url = "http://localhost/clinicaf/citaciones/eliminarCitacion/" + idCitacion;
+            //hacer una instancia del objeto CMLHttoRequest
+            const http = new XMLHttpRequest();
+            //Abrir una Conexion - POST - GET
+            http.open("GET", url, true);
+            //Enviar Datos
+            http.send();
+            //Verificar estados
+            http.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+      
+                Swal.fire({
+                  title: res.titulo,
+                  text: res.desc,
+                  icon: res.type
+                }).then((result) => {
+                  if (this.responseText.includes('"type":"success"')) {
+                    location.reload();
+                  }
+              });
+              }
+            };
+          }
+        });
+      }
+    })
 }
 
 
 
 // funcion para recuperar los datos del proveido
 function editarCitacion(idCitacion) {
-
-  const url = "http://localhost/clinicaf/citaciones/obtenerCitacion/" + idCitacion;
-  //hacer una instancia del objeto CMLHttoRequest
-  const http = new XMLHttpRequest();
-  //Abrir una Conexion - POST - GET
-  http.open("GET", url, true);
-  //Enviar Datos
-  http.send();
-  //Verificar estados
-  http.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      const res = JSON.parse(this.responseText);
-      document.getElementById('id').value = idCitacion;
+  let permisoActualizacion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoActualizacion, {
+    consulta: 3,
+    modulo: 5
+  })
+    .then(function (response) {
+      console.log(response.data)
+      if (response.data.actualizacion == 0 || response.data == false) {
+        Swal.fire({
+          title: "Error",
+          text: "No cuenta con los permisos para actualizar datos",
+          icon: "error",
+        });
+      } else {
+        const url = "http://localhost/clinicaf/citaciones/obtenerCitacion/" + idCitacion;
+        //hacer una instancia del objeto CMLHttoRequest
+        const http = new XMLHttpRequest();
+        //Abrir una Conexion - POST - GET
+        http.open("GET", url, true);
+        //Enviar Datos
+        http.send();
+        //Verificar estados
+        http.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            document.getElementById('id').value = idCitacion;
+            
+            document.getElementById('fecha_rec_citacion').value = res.fecha_recep_citacion;
+            document.getElementById('fecha_citacion').value = res.fecha_citacion;
+            document.getElementById('lugar_citacion').value = res.lugar_citacion;
+            document.getElementById('modal-title').textContent = "Editar Citación"
       
-      document.getElementById('fecha_rec_citacion').value = res.fecha_recep_citacion;
-      document.getElementById('fecha_citacion').value = res.fecha_citacion;
-      document.getElementById('lugar_citacion').value = res.lugar_citacion;
-      $("#num_caso option[value=" + res.numero_caso + "]").attr({selected: true,});
-      $("#tipo_citacion option[value=" + res.tipo_citacion + "]").attr({selected: true,});
-      $("#medico option[value=" + res.medico + "]").attr({selected: true,});
-
-     //Se abre el modal usando su id
-     $('#ModalCitacion').modal('show'); 
-    }
-  }
+            $("#num_caso option[value=" + res.numero_caso + "]").attr({selected: true,});
+            $("#tipo_citacion option[value=" + res.tipo_citacion + "]").attr({selected: true,});
+            $("#medico option[value=" + res.medico + "]").attr({selected: true,});
+      
+           //Se abre el modal usando su id
+           $('#ModalCitacion').modal('show'); 
+          }
+        }
+      }
+    })
+  
   
 }

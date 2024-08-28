@@ -4,6 +4,22 @@ const nombre = document.querySelector("#reconocimiento");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
+  let permisoConsulta = "http://localhost/clinicaf/permisos/validarPermisos";
+
+  axios
+    .post(permisoConsulta, {
+      consulta: 1,
+      modulo: 12,
+    })
+    .then(function (response) {
+      if (response.data.consulta == 0 || response.data == false) {
+        window.location.href = "../inicio/error";
+      }
+    })
+    .catch(function (error) {
+      console.error("Ocurrió un error:", error);
+    });
+
 
   //Se extraen los datos de la base de datos para llenar el datatable
   let urlListarReconocimiento = "http://localhost/clinicaf/Reconocimiento/listarReconocimientos";
@@ -136,19 +152,79 @@ formulario.addEventListener('submit', function(e) {
 
 //funcion para eliminar usuario
 function eliminarReconocimientos(idreconocimiento) {
+  let permisoEliminacion = "http://localhost/clinicaf/permisos/validarPermisos";
 
-  Swal.fire({
-    title: "¿Estas seguro de eliminar este sexo?",
-    text: "Esta acción no se puede deshacer",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Si",
-    cancelButtonText: "No",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      let url = "http://localhost/clinicaf/Reconocimiento/eliminarReconocimientos/" + idreconocimiento;
+  axios
+    .post(permisoEliminacion, {
+      consulta: 4,
+      modulo: 12,
+    })
+    .then(function (response) {
+      if (response.data.eliminacion == 0 || response.data == false) {
+        Swal.fire({
+          title: "Error",
+          text: "No tiene los permisos para eliminar datos",
+          icon: "error",
+        });
+      } else {
+        Swal.fire({
+          title: "¿Estas seguro de eliminar este sexo?",
+          text: "Esta acción no se puede deshacer",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si",
+          cancelButtonText: "No",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let url = "http://localhost/clinicaf/Reconocimiento/eliminarReconocimientos/" + idreconocimiento;
+            //hacer una instancia del objeto CMLHttoRequest
+            const http = new XMLHttpRequest();
+            //Abrir una Conexion - POST - GET
+            http.open("GET", url, true);
+            //Enviar Datos
+            http.send();
+            //Verificar estados
+            http.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+      
+                Swal.fire({
+                  title: res.titulo,
+                  text: res.desc,
+                  icon: res.type
+                });
+              }
+            };
+          }
+        });
+      }
+    })  
+ 
+}
+
+
+// funcion para recuperar los datos del sexo
+function editarReconocimientos(idreconocimiento) {
+  let permisoActualizacion =
+  "http://localhost/clinicaf/permisos/validarPermisos";
+
+axios
+  .post(permisoActualizacion, {
+    consulta: 3,
+    modulo: 12,
+  })
+  .then(function (response) {
+    console.log(response.data);
+    if (response.data.actualizacion == 0 || response.data == false) {
+      Swal.fire({
+        title: "Error",
+        text: "No cuenta con los permisos para actualizar datos",
+        icon: "error",
+      });
+    } else {
+      const url = "http://localhost/clinicaf/Reconocimiento/obtenerReconocimientos/" + idreconocimiento;
       //hacer una instancia del objeto CMLHttoRequest
       const http = new XMLHttpRequest();
       //Abrir una Conexion - POST - GET
@@ -158,42 +234,19 @@ function eliminarReconocimientos(idreconocimiento) {
       //Verificar estados
       http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
+          console.log(this.responseText);
           const res = JSON.parse(this.responseText);
-
-          Swal.fire({
-            title: res.titulo,
-            text: res.desc,
-            icon: res.type
-          });
+          id.value = res.id_reconocimiento;
+          nombre.value = res.nom_reconocimiento;
+          
+          document.getElementById('btn-enviar').textContent = "Actualizar";
+    
+          $('#ModalReconocimiento').modal('show'); 
+          
         }
       };
     }
-  });
-}
-
-
-// funcion para recuperar los datos del sexo
-function editarReconocimientos(idreconocimiento) {
-  const url = "http://localhost/clinicaf/Reconocimiento/obtenerReconocimientos/" + idreconocimiento;
-  //hacer una instancia del objeto CMLHttoRequest
-  const http = new XMLHttpRequest();
-  //Abrir una Conexion - POST - GET
-  http.open("GET", url, true);
-  //Enviar Datos
-  http.send();
-  //Verificar estados
-  http.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
-      const res = JSON.parse(this.responseText);
-      id.value = res.id_reconocimiento;
-      nombre.value = res.nom_reconocimiento;
-      
-      document.getElementById('btn-enviar').textContent = "Actualizar";
-
-      $('#ModalReconocimiento').modal('show'); 
-      
-    }
-  };
+  })
+  
 
 }

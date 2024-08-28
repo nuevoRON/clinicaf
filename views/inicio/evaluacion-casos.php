@@ -11,200 +11,183 @@
 </head>
 
 <body>
-    <!-- Main container -->
     <main class="full-box main-container">
-        <!-- INICIO Nav lateral -->
         <?php include "views/templates/NavBar.php"; ?>
-        <!-- FIN Nav lateral -->
-
         <section class="full-box page-content">
             <?php include "views/templates/NavSup.php"; ?>
-
-            <!-- Page header -->
             <h3 class="text-left">
                 <i class="fas fa-plus fa-fw"></i> &nbsp; CONTROL DE REVISIÓN DE CASOS
             </h3>
 
-            <div class="container-fluid">
-                <div class="container-fluid form-neon">
-                    <div class="container-fluid">
-                        <p class="text-center roboto-medium">EVALUACION DE CASOS</p>
-                        <p class="text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCaso"><i class="fas fa-user-plus"></i> &nbsp; Agregar Caso</button>
-                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalItem"><i class="fas fa-box-open"></i> &nbsp; Agregar item</button> -->
-                        </p>
+            <p class="text-center">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCaso"><i class="fas fa-user-plus"></i> &nbsp; Agregar Caso</button>
+            </p>
 
-                    </div>
+            <div class="container-fluid">
+                <div class="table-responsive">
+                    <table class="table table-dark table-sm" id="tabla_revisiones">
+                        <thead>
+                            <tr class="text-center roboto-medium">
+                                <th>#</th>
+                                <th>MEDICO</th>
+                                <th>ENVIADO PARA</th>
+                                <th>FECHA DE REVISION</th>
+                                <th>TIPO DE DICTAMEN</th>
+                                <th>N° DICTAMEN</th>
+                                <th>NOMBRE EVALUADO</th>
+                                <th>FECHA DE EVALUACION</th>
+                                <th>TIPO DE RECONOCIMIENTO</th>
+                                <th>OBSERVACION RECONOCIMIENTO</th>
+                                <th>ESTADO DE DICTAMEN</th>
+                                <th>OBSERVACION DICTAMEN</th>
+                                <th>SEDE MEDICO</th>
+                                <th>CLINICA</th>
+                                <th>MODIFICAR</th>
+                                <th>ELIMINAR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-
-            <!-- MODAL EVALUACION -->
             <div class="modal fade" id="ModalCaso" tabindex="-1" role="dialog" aria-labelledby="ModalCaso" data-backdrop="static" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ModalCaso">Agregar Caso</h5>
+                            <h5 class="modal-title" id="modal-title">Agregar Caso</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Medico que Realizo la Revision</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Seleccione el Medico</option>
-                                        <option value="Habilitado">Carlos Alberto</option>
-                                        <option value="Deshabilitado">Teresa de Jesus Barahona</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Enviado para</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Seleccione para que fue enviado</option>
-                                        <option value="Habilitado">Revision</option>
-                                        <option value="Deshabilitado">Descargo</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="container-fluid" id="tabla_clientes">
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-bordered table-sm">
-                                        <div class="form-group">
-                                            <label for="prestamo_fecha_inicio">Fecha de Revision</label>
-                                            <input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
-                                        </div>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Tipo de Dictamen a Revisar</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Seleccione el Tipo de Dictamen</option>
-                                        <option value="Habilitado">Clinica Forense</option>
-                                        <option value="Deshabilitado">Levantamiento</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="cliente_dni" class="bmd-label-floating">Numero de Dictamen</label>
-                                    <input type="text" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
-                                </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="cliente_dni" class="bmd-label-floating">Nombre del Evaluado</label>
-                                    <input type="text" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
-                                </div>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-hover table-bordered table-sm">
+                            <form action="" class="form-neon" id="formulario">
+                                <input type="hidden" name="id" id="id">
+                                <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="prestamo_fecha_inicio">Fecha que se Realizo la Evaluacion</label>
-                                        <input type="date" class="form-control" name="prestamo_fecha_inicio_reg" id="prestamo_fecha_inicio">
+                                        <label for="medico" class="bmd-label-floating">Medico que Realizo la Revision</label>
+                                        <select class="form-control" name="medico" id="medico">
+                                            <option value="" selected="" disabled="">Seleccione el Medico</option>
+
+                                        </select>
                                     </div>
-                                </table>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Tipo de Reconocimiento</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Seleccione el Tipo de Reconocimiento</option>
-                                        <option value="Habilitado">Levantamiento</option>
-                                        <option value="Deshabilitado">Delito Sexual</option>
-                                        <option value="Deshabilitado">Estado de Salud</option>
-                                        <option value="Deshabilitado">Mala Praxis</option>
-                                        <option value="Deshabilitado">Maltrato Familiar</option>
-                                        <option value="Deshabilitado">Violencia Domenstica</option>
-                                        <option value="Deshabilitado">Revision de Expediente</option>
-                                    </select>
                                 </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="cliente_dni" class="bmd-label-floating">Observaciones</label>
-                                    <input type="text" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="enviado_para" class="bmd-label-floating">Enviado para</label>
+                                        <select class="form-control" name="enviado_para" id="enviado_para">
+                                            <option value="" selected="" disabled="">Seleccione para que fue enviado</option>
+                                            <option value="Revision">Revision</option>
+                                            <option value="Descargo">Descargo</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Estado del Dictamen</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Seleccione el Estado</option>
-                                        <option value="Habilitado">Completo</option>
-                                        <option value="Deshabilitado">Incompleto, Sin Resultado de Laboratorio</option>
-                                        <option value="Deshabilitado">Incompleto, Pendiente de Revision de Expediente</option>
-                                        <option value="Deshabilitado">Levantamiento Enviado a Autopsia</option>
-                                        <option value="Deshabilitado">Levantamiento Entregado a Familiar</option>
-                                    </select>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="fecha_revision">Fecha de Revision</label>
+                                        <input type="date" class="form-control" name="fecha_revision" id="fecha_revision">
+                                    </div>
+
                                 </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="cliente_dni" class="bmd-label-floating">Observaciones</label>
-                                    <input type="text" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="tipo_dictamen" class="bmd-label-floating">Tipo de Dictamen a Revisar</label>
+                                        <select class="form-control" name="tipo_dictamen" id="tipo_dictamen">
+                                            <option value="" selected="" disabled="">Seleccione el Tipo de Dictamen</option>
+                                            <option value="Clinica Forense">Clinica Forense</option>
+                                            <option value="Levantamiento">Levantamiento</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Sede del Medico Evaluador</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Seleccione la Sede</option>
-                                        <option value="Habilitado">Centro Sur Oriente</option>
-                                        <option value="Deshabilitado">Noroccidental</option>
-                                    </select>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="num_dictamen" class="bmd-label-floating">Numero de Dictamen</label>
+                                        <input type="text" class="form-control" name="num_dictamen" id="num_dictamen" maxlength="27">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="container-fluid">
-                                <div class="form-group">
-                                    <label for="item_estado" class="bmd-label-floating">Clinica Regional/local Que Realiza la Evaluacion</label>
-                                    <select class="form-control" name="item_estado_reg" id="item_estado">
-                                        <option value="" selected="" disabled="">Elija la oficina a la que pertenece</option>
-                                        <option value="Habilitado">Comayagua</option>
-                                        <option value="Deshabilitado">Choluteca</option>
-                                        <option value="Deshabilitado">Siguatepeque</option>
-                                        <option value="Deshabilitado">Juticalpa</option>
-                                        <option value="Deshabilitado">Catacamas</option>
-                                        <option value="Deshabilitado">La Esperanza</option>
-                                        <option value="Deshabilitado">Marcala</option>
-                                        <option value="Deshabilitado">La Paz</option>
-                                        <option value="Deshabilitado">Nacaome</option>
-                                        <option value="Deshabilitado">Danli</option>
-                                        <option value="Deshabilitado">Yuscaran</option>
-                                        <option value="Deshabilitado">Talanga</option>
-                                    </select>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="nombre_evaluado" class="bmd-label-floating">Nombre del Evaluado</label>
+                                        <input type="text" class="form-control" name="nombre_evaluado" id="nombre_evaluado" maxlength="27">
+                                    </div>
                                 </div>
-                            </div>
-                            <p class="text-center" style="margin-top: 40px;">
-                                <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
-                                &nbsp; &nbsp;
-                                <button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
-                            </p>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="fecha_realizacion">Fecha que se Realizo la Evaluacion</label>
+                                        <input type="date" class="form-control" name="fecha_realizacion" id="fecha_realizacion">
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="tipo_reconocimiento" class="bmd-label-floating">Tipo de Reconocimiento</label>
+                                        <select class="form-control" name="tipo_reconocimiento" id="tipo_reconocimiento">
+                                            <option value="" selected="" disabled="">Seleccione el Tipo de Reconocimiento</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="observaciones_rec" class="bmd-label-floating">Observaciones Reconocimiento</label>
+                                        <input type="text" class="form-control" name="observaciones_rec" id="observaciones_rec" maxlength="255">
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="estado_dictamen" class="bmd-label-floating">Estado del Dictamen</label>
+                                        <select class="form-control" name="estado_dictamen" id="estado_dictamen">
+                                            <option value="" selected="" disabled="">Seleccione el Estado</option>
+                                            <option value="Completo">Completo</option>
+                                            <option value="Incompleto, Sin Resultado de Laboratorio">Incompleto, Sin Resultado de Laboratorio</option>
+                                            <option value="Incompleto, Pendiente de Revision de Expediente">Incompleto, Pendiente de Revision de Expediente</option>
+                                            <option value="Levantamiento Enviado a Autopsia">Levantamiento Enviado a Autopsia</option>
+                                            <option value="Levantamiento Entregado a Familiar">Levantamiento Entregado a Familiar</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="obs_dictamen" class="bmd-label-floating">Observaciones Dictamen</label>
+                                        <input type="text" class="form-control" name="obs_dictamen" id="obs_dictamen" maxlength="255">
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="sede_medico" class="bmd-label-floating">Sede del Medico Evaluador</label>
+                                        <select class="form-control" name="sede_medico" id="sede_medico">
+                                            <option value="" selected="" disabled="">Seleccione la Sede</option>
+                                            <option value="Centro Sur Oriente">Centro Sur Oriente</option>
+                                            <option value="Noroccidental">Noroccidental</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label for="sede_clinica" class="bmd-label-floating">Clinica Regional/local Que Realiza la Evaluacion</label>
+                                        <select class="form-control" name="sede_clinica" id="sede_clinica">
+                                            <option value="" selected="" disabled="">Elija la oficina a la que pertenece</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <p class="text-center" style="margin-top: 40px;">
+                                    <button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+                                    &nbsp; &nbsp;
+                                    <button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+                                </p>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-
-
-
-
-
-
+        </div>
         </section>
     </main>
 
-
-    <!--=============================================
-	=            Include JavaScript files           =
-	==============================================-->
     <?php include "views/templates/archivosJS.php"; ?>
-
+    <script src="<?php echo BASE_URL; ?>assets/js/modulos/revision-casos.js"></script>
 </body>
 
 </html>

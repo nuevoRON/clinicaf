@@ -2,7 +2,7 @@
     <a href="" class="float-left show-nav-lateral">
         <i class="fas fa-exchange-alt"></i>
     </a>
-    <a href="user-update.html">
+    <a href="<?php echo BASE_URL . 'inicio/perfil'; ?>">
         <i class="fas fa-user-cog"></i>
     </a>
     <a href="" class="btn-exit-system">

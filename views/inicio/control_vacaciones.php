@@ -6,97 +6,80 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Personal de Vacaciones</title>
+	<title>Vacaciones</title>
 	<?php include "views/templates/archivosCss.php"; ?>
 </head>
 
 <body>
-
-	<!-- Main container -->
 	<main class="full-box main-container">
-		<!-- INICIO Nav lateral -->
 		<?php include "views/templates/NavBar.php"; ?>
-		<!-- FIN Nav lateral -->
-
-		<!-- Page content -->
 		<section class="full-box page-content">
 			<?php include "views/templates/NavSup.php"; ?>
-
-			<!-- Page header -->
 			<h3 class="text-left">
 				<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE VACACIONES
 			</h3>
-
-			<!--=====================================================================================================================================================================================
-	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
-	======================================================================================================================================================================================-->
-
-			<!-- MODAL VACAIONES -->
-
 			<div class="container-fluid">
 				<p class="text-center">
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalVacacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Vacacion</button>
 				</p>
-
 			</div>
-
-
 
 			<div class="modal fade" id="ModalVacacion" tabindex="-1" role="dialog" aria-labelledby="ModalVacacion" data-backdrop="static" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="ModalVacacion">Agregar Vacaciones</h5>
+							<h5 class="modal-title" id="modal-title">Agregar Vacaciones</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<!-- Contenedor-->
 						<div class="container-fluid">
-							<form action="" class="form-neon" autocomplete="off">
+							<form id="formulario" class="form-neon" autocomplete="off">
+								<input type="hidden" name="id" id="id">
 								<fieldset>
 									<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES</legend>
 									<div class="container-fluid">
 										<div class="row">
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="cliente_dni" class="bmd-label-floating">Nº de Empleado</label>
-													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
-												</div>
-											</div>
-											<div class="col-12 col-md-4">
-												<div class="form-group">
-													<label for="cliente_dni" class="bmd-label-floating">Nombre</label>
-													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label for="item_estado" class="bmd-label-floating">Estado</label>
-													<select class="form-control" name="item_estado_reg" id="item_estado">
-														<option value="" selected="" disabled="">Seleccione el Estado</option>>
-														<option value="Deshabilitado">incapacitado</option>
-														<option value="Deshabilitado">Vacaciones</option>
-														<option value="Deshabilitado">Otras</option>
+													<label for="num_empleado" class="bmd-label-floating">Nº de Empleado</label>
+													<select name="num_empleado" id="num_empleado" class="form-control">
+														<option value="">Seleccione una opcion</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="vacaciones_fecha_inicio">Fecha de Inicio</label>
-													<input type="date" class="form-control" name="Fecha_inicio" id="fecha_inicio">
+													<label for="nombre_empleado" class="bmd-label-floating">Nombre</label>
+													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="nombre_empleado" id="nombre_empleado" maxlength="27" readonly>
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label for="item_estado" class="bmd-label-floating">Estado</label>
+													<select class="form-control" name="item_estado" id="item_estado">
+														<option value="" selected="" disabled="">Seleccione el Estado</option>>
+														<option value="3">Incapacitado</option>
+														<option value="4">Vacaciones</option>
+													</select>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="vacaciones_fecha_final">Fecha de Inicio</label>
-													<input type="date" class="form-control" name="Fecha_final" id="fecha_final">
+													<label for="fecha_inicio">Fecha de Inicio</label>
+													<input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="cliente_dni" class="bmd-label-floating">observaciones</label>
-													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="cliente_dni_reg" id="cliente_dni" maxlength="27">
+													<label for="fecha_final">Fecha de Inicio</label>
+													<input type="date" class="form-control" name="fecha_final" id="fecha_final">
+												</div>
+											</div>
+											<div class="col-12 col-md-4">
+												<div class="form-group">
+													<label for="observaciones" class="bmd-label-floating">observaciones</label>
+													<input type="text" class="form-control" name="observaciones" id="observaciones" maxlength="27">
 												</div>
 											</div>
 
@@ -114,19 +97,10 @@
 					</div>
 				</div>
 			</div>
-			<!--=====================================================================================================================================================================================
-	=                      ==                      ==                      ==                      ==                      ==                      ==                      ==               =
-======================================================================================================================================================================================-->
 
-			</div>
-			</div>
-			</div>
-
-
-			<!-- Content here-->
 			<div class="container-fluid">
 				<div class="table-responsive">
-					<table class="table table-dark table-sm">
+					<table class="table table-dark table-sm" id="tabla_vacaciones">
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>#</th>
@@ -142,121 +116,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="text-center">
-								<td>1</td>
-								<td>4530</td>
-								<td>Alvarez</td>
-								<th>Vacaciones</th>
-								<td>14/5/2024</td>
-								<td>14/6/2024</td>
-								<td>31</td>
-								<td></td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center">
-								<td>2</td>
-								<td>4530</td>
-								<td>Alvarez</td>
-								<th>Vacaciones</th>
-								<td>14/5/2024</td>
-								<td>14/6/2024</td>
-								<td>31</td>
-								<td></td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center">
-								<td>3</td>
-								<td>4530</td>
-								<td>Alvarez</td>
-								<th>Incapacidad</th>
-								<td>14/5/2024</td>
-								<td>14/6/2024</td>
-								<td>31</td>
-								<td></td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-							<tr class="text-center">
-								<td>4</td>
-								<td>4530</td>
-								<td>Alvarez</td>
-								<th>Vacaciones</th>
-								<td>14/5/2024</td>
-								<td>14/6/2024</td>
-								<td>31</td>
-								<td></td>
-								<td>
-									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalVacacion">
-										<i class="fas fa-sync-alt"></i>
-									</button>
-								</td>
-								<td>
-									<form action="">
-										<button type="button" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
+
 						</tbody>
 					</table>
 				</div>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item disabled">
-							<a class="page-link" href="#" tabindex="-1">Previous</a>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item">
-							<a class="page-link" href="#">Next</a>
-						</li>
-					</ul>
-				</nav>
 			</div>
-
 		</section>
 	</main>
-
-
-	<!--=============================================
-	=            Include JavaScript files           =
-	==============================================-->
+	
 	<?php include "views/templates/archivosJS.php"; ?>
-
+	<script src="<?php echo BASE_URL; ?>assets/js/modulos/vacaciones.js"></script>
 </body>
 
 </html>

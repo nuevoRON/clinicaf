@@ -12,16 +12,10 @@ class BitacoraModel extends Query
         return $this->selectAll($sql);
     }
 
-    public function crearEvento($idUser, $idObjeto, $accion, $descripcion, $tipo)
+    public function crearEvento($idUser, $idObjeto, $accion, $descripcion, $fecha)
     {
-        // Establecer la zona horaria a 'America/Tegucigalpa' (Honduras)
-        date_default_timezone_set('America/Tegucigalpa');
-
-
-        $sql = "INSERT INTO tbl_bitacora (FECHA, ID_USUARIO, ID_OBJETO, ACCION, DESCRIPCION, TIPO) VALUES (?,?,?,?,?,?)";
-        $fechaActual = new DateTime();
-        $fechaFormateada = $fechaActual->format('Y-m-d H:i:s');
-        $array = array($fechaFormateada, $idUser, $idObjeto, $accion, $descripcion, $tipo);
+        $sql = "INSERT INTO tbl_bitacora (id_usuario, id_modulo, accion, descripcion, fecha_accion) VALUES (?,?,?,?,?)";
+        $array = array($idUser, $idObjeto, $accion, $descripcion, $fecha);
         return $this->insertar($sql, $array);
     }
 }

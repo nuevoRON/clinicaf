@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Login</title>
 	<?php include "templates/archivosCssLogin.php"; ?>
+
+	<style>
+		body {
+			background-image: url('http://localhost/clinicaf/assets/images/lgclinica.png');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-attachment: fixed;
+		}
+	</style>
 </head>
+
 <body>
 
 	<div class="login-container">
@@ -16,7 +28,12 @@
 			<p class="text-center">
 				Inicia sesión con tu cuenta
 			</p>
-			<form id="formulario" method="POST" autocomplete="off" >
+			<form id="formulario" method="POST" autocomplete="off">
+				<div class="col-12">
+					<div id="error-message" class="alert alert-danger text-center" style="display: none;">
+
+					</div>
+				</div>
 				<div class="form-group">
 					<label for="UserName" class="bmd-label-floating"><i class="fas fa-user-secret"></i> &nbsp; Usuario</label>
 					<input type="text" class="form-control" id="usuario" name="usuario" pattern="[a-zA-Z0-9]{1,35}" maxlength="35">
@@ -31,11 +48,21 @@
 		</div>
 	</div>
 
-	
-	<!--=============================================
-	=            Include JavaScript files           =
-	==============================================-->
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const params = new URLSearchParams(window.location.search);
+			const sessionStatus = params.get('session');
+
+			if (sessionStatus === 'closed') {
+				const errorMessage = document.querySelector('#error-message');
+				errorMessage.style.display = 'block';
+				errorMessage.textContent = 'Su sesión ha sido cerrada por inactividad. Por favor ingrese nuevamente';
+			}
+		});
+	</script>
+
 	<?php include "templates/archivosJSLogin.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/login.js?<?php echo time(); ?>"></script>
 </body>
+
 </html>

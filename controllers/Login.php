@@ -34,14 +34,21 @@ class Login extends Controller{
                 $data = $this->model->getDatos($usuario);
                 
                 if (empty($data)){
-                    $res = array('msg' => 'EL USUARIO NO EXISTE', 'type' => 'warning');
+                    $res = array('msg' => 'Usuario o contraseña incorrecta', 'type' => 'warning');
                 }else{
                     if(password_verify($clave, $data['contrasena'])){
+                        session_regenerate_id(true);
+
                         $_SESSION['id_usuario'] = $data['id_usu'];
-                        $_SESSION['nombre_usuario'] = $data['nombre'] . ' ' .$data['apellido'];
+                        $_SESSION['nombre_usuario'] = $data['nombre'] . ' ' . $data['apellido'];
                         $_SESSION['usuario'] = $data['usuario'];
                         $_SESSION['estado'] = $data['estado'];
                         $_SESSION['sede'] = $data['ubicacion'];
+                        $_SESSION['puesto'] = $data['nom_puesto'];
+                        $_SESSION['id_puesto'] = $data['puesto'];
+                        $_SESSION['last_activity'] = time();
+                        $_SESSION['user_ip'] = $_SERVER['REMOTE_ADDR'];
+                        $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
                         
                         //$rol = $this->model->getRol($data['id']);
                         //$_SESSION['permisos'] = $rol['permisos'];
@@ -65,7 +72,7 @@ class Login extends Controller{
                             $this->model->bloquearUsuario($data['ID_USUARIO']);
                             $res = array('msg' => 'CONTRASEÑA INCORRECTA, USUARIO BLOQUEADO', 'type' => 'warning');
                         } else { */
-                            $res = array('msg' => 'CONTRASEÑA INCORRECTA', 'type' => 'warning');
+                            $res = array('msg' => 'Usuario o contraseña incorrecta', 'type' => 'warning');
                         //}
                     }
                 }
@@ -79,7 +86,16 @@ class Login extends Controller{
 
 
     public function cerrarSesion(){
-	    session_unset();
+        $_SESSION = array();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
         session_destroy();
 
         //se envía un objeto para validar el cierre de sesión y redirigir al login

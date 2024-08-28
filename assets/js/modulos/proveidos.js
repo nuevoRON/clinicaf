@@ -1,5 +1,3 @@
-/* let tblUsuarios; */
-
 //Datos generales del Proveido
 const formulario = document.querySelector("#formulario");
 const numeroSolicitud = document.querySelector("#numero_solicitud_reg");
@@ -15,6 +13,22 @@ const selectDepartamento = document.querySelector("#item_departamento_reg");
 const selectMunicipio = document.querySelector("#item_municipio_reg");
 
 document.addEventListener("DOMContentLoaded", function () {
+  let permisoConsulta = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoConsulta, {
+    consulta: 1,
+    modulo: 3
+  })
+    .then(function (response) {
+      if (response.data.consulta == 0 || response.data == false) {
+        window.location.href = "../inicio/error";
+      }
+    })
+    .catch(function (error) {
+      console.error("Ocurrió un error:", error);
+    });
+
+
   //Cargar médicos
   let url = "http://localhost/clinicaf/usuarios/getMedicos";
   axios
@@ -275,134 +289,167 @@ document.addEventListener("DOMContentLoaded", function () {
 /*Eliminar registros*/
 //esta funcion recibe el id del registro para realizar la eliminación
 function eliminarProveido(idProveido) {
-
-  Swal.fire({
-    title: "¿Estas seguro de eliminar este proveído?",
-    text: "Esta acción no se puede deshacer",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Si",
-    cancelButtonText: "No",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      let url = "http://localhost/clinicaf/proveidos/eliminarProveido/" + idProveido;
-      //hacer una instancia del objeto CMLHttoRequest
-      const http = new XMLHttpRequest();
-      //Abrir una Conexion - POST - GET
-      http.open("GET", url, true);
-      //Enviar Datos
-      http.send();
-      //Verificar estados
-      http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          const res = JSON.parse(this.responseText);
-
-          Swal.fire({
-            title: res.titulo,
-            text: res.desc,
-            icon: res.type
-          }).then((result) => {
-            if (this.responseText.includes('"type":"success"')) {
-              location.reload();
-            }
+  let permisoEliminacion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoEliminacion, {
+    consulta: 4,
+    modulo: 3
+  })
+    .then(function (response) {
+      if (response.data.eliminacion == 0 || response.data == false) {
+        Swal.fire({
+          title: "Error",
+          text: "No tiene los permisos para eliminar datos",
+          icon: "error",
         });
-        }
-      };
-    }
-  });
+      }else{
+        Swal.fire({
+          title: "¿Estas seguro de eliminar este proveído?",
+          text: "Esta acción no se puede deshacer",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Si",
+          cancelButtonText: "No",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let url = "http://localhost/clinicaf/proveidos/eliminarProveido/" + idProveido;
+            //hacer una instancia del objeto CMLHttoRequest
+            const http = new XMLHttpRequest();
+            //Abrir una Conexion - POST - GET
+            http.open("GET", url, true);
+            //Enviar Datos
+            http.send();
+            //Verificar estados
+            http.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+      
+                Swal.fire({
+                  title: res.titulo,
+                  text: res.desc,
+                  icon: res.type
+                }).then((result) => {
+                  if (this.responseText.includes('"type":"success"')) {
+                    location.reload();
+                  }
+              });
+              }
+            };
+          }
+        });
+      }
+    })
 }
 
 
 
 // funcion para recuperar los datos del proveido
 function editarProveido(idProveido) {
-
-  const url = "http://localhost/clinicaf/proveidos/editarProveido/" + idProveido;
-  //hacer una instancia del objeto CMLHttoRequest
-  const http = new XMLHttpRequest();
-  //Abrir una Conexion - POST - GET
-  http.open("GET", url, true);
-  //Enviar Datos
-  http.send();
-  //Verificar estados
-  http.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      const res = JSON.parse(this.responseText);
-      document.getElementById('id').value = idProveido;
-      document.getElementById('numero_solicitud_reg').value = res.num_caso;
-      document.getElementById('numero_externo_reg').value = res.num_caso_ext;
-      document.getElementById('fecha_emision').value = res.fech_emi_soli;
-      document.getElementById('fecha_recepcion').value = res.fech_recep_soli;
-      document.getElementById('nombre').value = res.nombre_evaluado;
-      document.getElementById('apellido').value = res.apellido_evaluado;
-      document.getElementById('dni').value = res.dni_evaluado;
-      document.getElementById('aldea_barrio').value = res.localidad;
-      document.getElementById('lugar').value = res.lugar_hecho;
-      document.getElementById('fecha_hecho').value = res.fecha_hecho;
-      document.getElementById('fecha_citacion').value = res.fecha_citacion;
-      $("#item_departamento_reg option[value=" + res.id_departamento + "]").attr({selected: true,});
-      $("#item_dependencia_reg option[value=" + res.fiscalia_remitente + "]").attr({selected: true,});
-      $("#item_recon_reg option[value=" + res.tipo_reconocimiento + "]").attr({selected: true,});
-      $("#medico option[value=" + res.medico + "]").attr({selected: true,});
-
-      //Cargar municipios
-      if(res.fk_departamento != 0){
-        const selectDepartamento = document.querySelector("#item_departamento_reg");
-        const selectMunicipio = document.querySelector("#item_municipio_reg");
-
-          //se llama a la funcion getMunicipios para obtener los municipios
-          //La variable idDepartamento obtiene el valor que se asignó con option.value en la funcion anterior
-          let idDepartamento= selectDepartamento.options[selectDepartamento.selectedIndex].value
-          let urlMunicipio = "http://localhost/clinicaf/dependencias/getMunicipios/"+ idDepartamento;
+  let permisoActualizacion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoActualizacion, {
+    consulta: 3,
+    modulo: 3
+  })
+    .then(function (response) {
+      console.log(response.data)
+      if (response.data.actualizacion == 0 || response.data == false) {
+        Swal.fire({
+          title: "Error",
+          text: "No cuenta con los permisos para actualizar datos",
+          icon: "error",
+        });
+      }else{
+        const url = "http://localhost/clinicaf/proveidos/editarProveido/" + idProveido;
+        //hacer una instancia del objeto CMLHttoRequest
+        const http = new XMLHttpRequest();
+        //Abrir una Conexion - POST - GET
+        http.open("GET", url, true);
+        //Enviar Datos
+        http.send();
+        //Verificar estados
+        http.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            document.getElementById('id').value = idProveido;
+            document.getElementById('numero_solicitud_reg').value = res.num_caso;
+            document.getElementById('numero_externo_reg').value = res.num_caso_ext;
+            document.getElementById('fecha_emision').value = res.fech_emi_soli;
+            document.getElementById('fecha_recepcion').value = res.fech_recep_soli;
+            document.getElementById('nombre').value = res.nombre_evaluado;
+            document.getElementById('apellido').value = res.apellido_evaluado;
+            document.getElementById('dni').value = res.dni_evaluado;
+            document.getElementById('aldea_barrio').value = res.localidad;
+            document.getElementById('lugar').value = res.lugar_hecho;
+            document.getElementById('fecha_hecho').value = res.fecha_hecho;
+            document.getElementById('fecha_citacion').value = res.fecha_citacion;
+            document.getElementById('modal-title').textContent = "Editar Proveido"
       
-          // Eliminar opciones existentes del select de municipios
-          /* Para manejar de forma dinamica el select de municipios cada vez que se selecciona un departamento
-          el select de municipios se borra y se vuelve a recrear con los datos del nuevo departamento */
-          while (selectMunicipio.firstChild) {
-              selectMunicipio.removeChild(selectMunicipio.firstChild);
-          }
-
-          axios
-          //si no hay problemas con la consulta se reciben los datos y se construyen las opciones del select
-          .get(urlMunicipio)
-          .then(function (response) {
-            // Llenar Select
-            console.log(response);
-            //se recorre el response con un forEach para ir creando las opciones
-            response.data.forEach((opcion) => {
-              //se crea un elemento de la clase option
-              let option = document.createElement("option");
-
-              //dentro del option se agregan los datos de la base de datos
-            //option.text muestra el nombre guardado en base de datos y option.value el id del registro en la base de datos
-              option.text = opcion.nombre_municipio;
-              option.value = opcion.id_municipio;
-
-              //se usa la funcion appendChild para crear las opciones dentro del select
-            //el select ya esta definido como variable en la parte de arriba
-              selectMunicipio.appendChild(option);
-            });
-
-            console.log(res.id_municipio)
-            if(res.id_municipio != 0){
-              $("#item_municipio_reg option[value=" + res.id_municipio + "]").attr({
-                selected: true,
-              });
+            $("#item_departamento_reg option[value=" + res.id_departamento + "]").attr({selected: true,});
+            $("#item_dependencia_reg option[value=" + res.fiscalia_remitente + "]").attr({selected: true,});
+            $("#item_recon_reg option[value=" + res.tipo_reconocimiento + "]").attr({selected: true,});
+            $("#medico option[value=" + res.medico + "]").attr({selected: true,});
       
+            //Cargar municipios
+            if(res.fk_departamento != 0){
+              const selectDepartamento = document.querySelector("#item_departamento_reg");
+              const selectMunicipio = document.querySelector("#item_municipio_reg");
+      
+                //se llama a la funcion getMunicipios para obtener los municipios
+                //La variable idDepartamento obtiene el valor que se asignó con option.value en la funcion anterior
+                let idDepartamento= selectDepartamento.options[selectDepartamento.selectedIndex].value
+                let urlMunicipio = "http://localhost/clinicaf/dependencias/getMunicipios/"+ idDepartamento;
+            
+                // Eliminar opciones existentes del select de municipios
+                /* Para manejar de forma dinamica el select de municipios cada vez que se selecciona un departamento
+                el select de municipios se borra y se vuelve a recrear con los datos del nuevo departamento */
+                while (selectMunicipio.firstChild) {
+                    selectMunicipio.removeChild(selectMunicipio.firstChild);
+                }
+      
+                axios
+                //si no hay problemas con la consulta se reciben los datos y se construyen las opciones del select
+                .get(urlMunicipio)
+                .then(function (response) {
+                  // Llenar Select
+                  console.log(response);
+                  //se recorre el response con un forEach para ir creando las opciones
+                  response.data.forEach((opcion) => {
+                    //se crea un elemento de la clase option
+                    let option = document.createElement("option");
+      
+                    //dentro del option se agregan los datos de la base de datos
+                  //option.text muestra el nombre guardado en base de datos y option.value el id del registro en la base de datos
+                    option.text = opcion.nombre_municipio;
+                    option.value = opcion.id_municipio;
+      
+                    //se usa la funcion appendChild para crear las opciones dentro del select
+                  //el select ya esta definido como variable en la parte de arriba
+                    selectMunicipio.appendChild(option);
+                  });
+      
+                  console.log(res.id_municipio)
+                  if(res.id_municipio != 0){
+                    $("#item_municipio_reg option[value=" + res.id_municipio + "]").attr({
+                      selected: true,
+                    });
+            
+                  }
+                })
+                .catch(function (error) {
+                  //Se ejecuta un console.log en caso de que haya un error en la logica del controlador y modelo
+                  console.error("Ocurrió un error:", error);
+                });
+            
             }
-          })
-          .catch(function (error) {
-            //Se ejecuta un console.log en caso de que haya un error en la logica del controlador y modelo
-            console.error("Ocurrió un error:", error);
-          });
       
+           //Se abre el modal usando su id
+           $('#Modalproveído').modal('show'); 
+          }
+        }
       }
-
-     //Se abre el modal usando su id
-     $('#Modalproveído').modal('show'); 
-    }
-  }
+    })
   
 }

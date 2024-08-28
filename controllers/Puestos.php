@@ -23,6 +23,13 @@ class Puestos extends Controller
         die();
     }
 
+    public function getPuestosSelect()
+    {
+        $data = $this->model->getPuestosSelect();
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
 
     public function getEstados(){
         $data = $this->model->getEstados();

@@ -26,7 +26,8 @@ class Bitacora extends Controller
     public function crearEvento() {
         $datosEnBruto = file_get_contents("php://input");
         $datosDecodificados = json_decode($datosEnBruto, true); 
-        $this->model->crearEvento($datosDecodificados['idUser'], $datosDecodificados['idObjeto'], $datosDecodificados['accion'], $datosDecodificados['descripcion'], true);
+        $this->model->crearEvento($datosDecodificados['idUser'], $datosDecodificados['idObjeto'], $datosDecodificados['accion'], 
+        $datosDecodificados['descripcion'], $datosDecodificados['fecha']);
         echo json_encode($datosDecodificados, JSON_UNESCAPED_UNICODE);
         die();
     }

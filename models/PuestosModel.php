@@ -22,7 +22,11 @@ class PuestosModel extends Query{
         return $this->selectAll($sql);
     }
     
-
+    public function getPuestosSelect()
+    {
+        $sql = "SELECT id_puesto, nom_puesto FROM tbl_puestos";
+        return $this->selectAll($sql);
+    }
 
     public function getEstados()
     {

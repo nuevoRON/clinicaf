@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
      });
 
 
-     //Cargar estado civil
+     //Cargar sedes
    let urlSede = "http://localhost/clinicaf/sedes/listarSedes";
    axios
      .get(urlSede)

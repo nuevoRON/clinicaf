@@ -11,9 +11,12 @@ class LoginModel extends Query{
                        u.contrasena,
                        u.apellido,
                        u.estado,
-                       s.ubicacion 
+                       s.ubicacion,
+                       p.nom_puesto,
+                       u.puesto 
                 FROM tbl_usu u
                 INNER JOIN tbl_sedes s ON s.id_sede = u.sede 
+                INNER JOIN tbl_puestos p ON p.id_puesto = u.puesto
                 WHERE u.usuario = '$correo'";
         return $this->select($sql);
     }

@@ -7,97 +7,99 @@ class Inicio extends Controller{
 
     public function index()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'home.js';
-        $this->views->getView('inicio', 'home', $data);
+        $this->views->getView('inicio', 'home');
     }
 
     public function proveidos()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'lista-proveido', $data);
+        $this->views->getView('inicio', 'lista-proveido');
     }
 
        public function controlDictamenes()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'control_dictamenes', $data);
+        $this->views->getView('inicio', 'control_dictamenes');
     }
 
     public function controlVacaciones()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'control_vacaciones', $data);
+        $this->views->getView('inicio', 'control_vacaciones');
     }
 
 
     public function controlJuicios()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'control-juicios', $data);
+        $this->views->getView('inicio', 'control-juicios');
     }
 
 
     public function evaluacionCasos()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'evaluacion-casos', $data);
+        $this->views->getView('inicio', 'evaluacion-casos');
     }
 
     public function clinicaForense()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'evaluado', $data);
+        $this->views->getView('inicio', 'evaluado');
     }
 
 
     public function listaEvaluacion()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'lista-evaluacion', $data);
+        $this->views->getView('inicio', 'lista-evaluacion');
     }
 
 
     public function sexos()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'sexos', $data);
+        $this->views->getView('inicio', 'sexos');
     }
 
     public function personal()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'personal', $data);
+        $this->views->getView('inicio', 'personal');
     }
 
     public function agregarsedes()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'agregar-sedes', $data);
+        $this->views->getView('inicio', 'agregar-sedes');
     }
 
     public function puestos()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'agragar_puestos', $data);
+        $this->views->getView('inicio', 'agragar_puestos');
     }
 
     public function reconocmientos()
     {
-        $data['title'] = 'Panel Administrativo'; 
-        $data['script'] = 'proveidos.js';
-        $this->views->getView('inicio', 'lista_reconocimiento', $data);
+        $this->views->getView('inicio', 'lista_reconocimiento');
+    }
+
+    public function modulos()
+    {
+        $this->views->getView('inicio', 'modulos');
+    }
+
+
+    public function permisos()
+    {
+        $this->views->getView('inicio', 'permisos');
+    }
+
+    public function error()
+    {
+        $this->views->getView('inicio', '404');
+    }
+
+
+    public function perfil()
+    {
+        $this->views->getView('inicio', 'perfil');
+    }
+
+
+    public function plantillas()
+    {
+        $this->views->getView('inicio', 'plantillas');
     }
 
 }
