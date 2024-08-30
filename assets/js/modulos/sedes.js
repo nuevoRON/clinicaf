@@ -305,7 +305,7 @@ function editarSede(idSede) {
   axios
     .post(permisoActualizacion, {
       consulta: 3,
-      modulo: 7,
+      modulo: 8,
     })
     .then(function (response) {
       console.log(response.data);
@@ -332,6 +332,7 @@ function editarSede(idSede) {
             const res = JSON.parse(this.responseText);
             id.value = res.id_sede;
             ubicacion.value = res.ubicacion;
+            document.getElementById('modal-title').textContent = "Editar Sede"
             document.getElementById("cod_alfabetico").value =
               res.cod_alfabetico;
             document.getElementById("cod_numerico").value = res.cod_numerico;
@@ -404,3 +405,37 @@ function editarSede(idSede) {
       }
     });
 }
+
+
+/* Funcion que valida si el puesto al que pertenece el usuario conectado cuenta con
+permisos para insertar datos */
+function mostrarModal(){
+  let permisoInsercion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoInsercion, {
+    consulta: 2,
+    modulo: 8
+  })
+  .then(function (response) {
+    if (response.data.insercion == 0 || response.data == false) {
+      Swal.fire({
+        title: "Error",
+        text: "No cuenta con los permisos para guardar datos",
+        icon: "error",
+      });
+    } else {
+      document.getElementById('formulario').reset();
+      document.getElementById('departamento').selectedIndex = 0;
+      document.getElementById('municipio').selectedIndex = '';
+
+      document.getElementById('modal-title').textContent = "Agregar Nueva Sede"
+      $("#ModalSedes").modal("show");
+    }
+  })
+  .catch(function (error) {
+    console.error("Ocurrió un error:", error);
+  });
+}
+
+document.getElementById("btnModalSedes").addEventListener("click", mostrarModal);
+

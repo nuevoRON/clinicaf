@@ -12,7 +12,7 @@ class Inicio extends Controller{
 
     public function proveidos()
     {
-        $this->views->getView('inicio', 'lista-proveido');
+        $this->views->getView('inicio', 'proveidos');
     }
 
        public function controlDictamenes()
@@ -45,7 +45,7 @@ class Inicio extends Controller{
 
     public function listaEvaluacion()
     {
-        $this->views->getView('inicio', 'lista-evaluacion');
+        $this->views->getView('inicio', 'evaluaciones');
     }
 
 
@@ -59,19 +59,19 @@ class Inicio extends Controller{
         $this->views->getView('inicio', 'personal');
     }
 
-    public function agregarsedes()
+    public function sedes()
     {
-        $this->views->getView('inicio', 'agregar-sedes');
+        $this->views->getView('inicio', 'sedes');
     }
 
     public function puestos()
     {
-        $this->views->getView('inicio', 'agragar_puestos');
+        $this->views->getView('inicio', 'puestos');
     }
 
-    public function reconocmientos()
+    public function reconocimientos()
     {
-        $this->views->getView('inicio', 'lista_reconocimiento');
+        $this->views->getView('inicio', 'reconocimientos');
     }
 
     public function modulos()

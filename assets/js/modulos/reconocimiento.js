@@ -238,8 +238,7 @@ axios
           const res = JSON.parse(this.responseText);
           id.value = res.id_reconocimiento;
           nombre.value = res.nom_reconocimiento;
-          
-          document.getElementById('btn-enviar').textContent = "Actualizar";
+          document.getElementById('modal-title').textContent = "Editar Reconocimiento"
     
           $('#ModalReconocimiento').modal('show'); 
           
@@ -247,6 +246,35 @@ axios
       };
     }
   })
-  
-
 }
+
+
+/* Funcion que valida si el puesto al que pertenece el usuario conectado cuenta con
+permisos para insertar datos */
+function mostrarModal(){
+  let permisoInsercion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoInsercion, {
+    consulta: 2,
+    modulo: 11
+  })
+  .then(function (response) {
+    if (response.data.insercion == 0 || response.data == false) {
+      Swal.fire({
+        title: "Error",
+        text: "No cuenta con los permisos para guardar datos",
+        icon: "error",
+      });
+    } else {
+      document.getElementById('formulario').reset();
+
+      document.getElementById('modal-title').textContent = "Agregar Nuevo Reconocimiento"
+      $("#ModalReconocimiento").modal("show");
+    }
+  })
+  .catch(function (error) {
+    console.error("Ocurrió un error:", error);
+  });
+}
+
+document.getElementById("btnModalReconocimiento").addEventListener("click", mostrarModal);

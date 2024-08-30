@@ -126,14 +126,16 @@ if (isset($_GET['id'])) {
 											</div>
 										</div>
 										<div class="col-12 col-md-3">
-											<div class="form-group">
-												<label for="nacionalidad" class="bmd-label-floating">Nacionalidad</label>
-												<select class="form-control" name="nacionalidad" id="nacionalidad" required>
-													<option value="" selected="" disabled="">Seleccione la Nacionalidad</option>
-													<option value="1">Hondureña</option>
-													<option value="2">Desconocida</option>
-													<option value="3">Otra</option>
-												</select>
+											<div class="form-group d-flex align-items-end">
+												<div class="flex-grow-1">
+													<label for="nacionalidad" class="bmd-label-floating">Nacionalidad</label>
+													<select class="form-control" name="nacionalidad" id="nacionalidad" required>
+														<option value="" selected disabled>Seleccione la Nacionalidad</option>
+													</select>
+												</div>
+												<button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#ModalNacionalidad">
+													<i class="fas fa-plus"></i>
+												</button>
 											</div>
 										</div>
 
@@ -165,21 +167,18 @@ if (isset($_GET['id'])) {
 											</div>
 										</div>
 
-										<div class="col-12 col-md-2">
-											<div class="form-group">
-												<label for="ocupacion" class="bmd-label-floating">Ocupacion</label>
+										<div class="col-12 col-md-4 d-flex align-items-end">
+											<div class="form-group flex-grow-1">
+												<label for="ocupacion" class="bmd-label-floating">Ocupación</label>
 												<select class="form-control" name="ocupacion" id="ocupacion" style="margin-top:1rem;" required>
-													<option value="" selected="" disabled="">Seleccione la Ocupacion</option>
-
+													<option value="" selected disabled>Seleccione la Ocupación</option>
 												</select>
 											</div>
-										</div>
-								
-										<div class="">
-											<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalOcupacion">
+											<button type="button" class="btn btn-success ml-2 mt-2" data-toggle="modal" data-target="#ModalOcupacion">
 												<i class="fas fa-plus"></i>
 											</button>
 										</div>
+
 
 										<div class="col-12 col-md-3">
 											<div class="form-group">
@@ -343,20 +342,18 @@ if (isset($_GET['id'])) {
 										<br>
 										<legend><i class="fas fa-user"></i> &nbsp; EVALUACION MEDICA</legend>
 
-										<div class="col-12 col-md-3">
-											<div class="form-group">
-												<label for="instrumento" class="bmd-label-floating">Instrumemto Utilizado</label>
+										<div class="col-12 col-md-3 d-flex align-items-end">
+											<div class="form-group flex-grow-1">
+												<label for="instrumento" class="bmd-label-floating">Instrumento Utilizado</label>
 												<select class="form-control" name="instrumento" id="instrumento">
-													<option value="" selected="" disabled="">Seleccione el Instrumento</option>
-
+													<option value="" selected disabled>Seleccione el Instrumento</option>
 												</select>
 											</div>
-											<div class="">
-												<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalInstru">
-													<i class="fas fa-plus"></i>
-												</button>
-											</div>
+											<button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#ModalInstru">
+												<i class="fas fa-plus"></i>
+											</button>
 										</div>
+
 										<div class="col-12 col-md-3">
 											<div class="form-group">
 												<label for="relacion_agresor" class="bmd-label-floating">Relacion Con el Agresor</label>
@@ -468,6 +465,40 @@ if (isset($_GET['id'])) {
 										<div class="form-group">
 											<label for="instrumento_nuevo" class="bmd-label-floating">Instrumento</label>
 											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="instrumento_nuevo" id="instrumento_nuevo" maxlength="27">
+										</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+
+						<p class="text-center" style="margin-top: 40px;">
+							&nbsp; &nbsp;
+							<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="ModalNacionalidad" tabindex="-1" role="dialog" aria-labelledby="ModalNacionalidad" data-backdrop="static" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="ModalNacionalidad">Agregar Nueva Nacionalidad</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="container-fluid">
+					<form action="" class="form-neon" id="formularioNacionalidad" autocomplete="off">
+						<fieldset>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-12 col-md-8">
+										<div class="form-group">
+											<label for="nacionalidad_nuevo" class="bmd-label-floating">Nacionalidad</label>
+											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="nacionalidad_nuevo" id="nacionalidad_nuevo" maxlength="27">
 										</div>
 									</div>
 								</div>

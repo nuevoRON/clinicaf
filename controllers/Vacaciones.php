@@ -144,15 +144,29 @@ class Vacaciones extends Controller
 
 
     private function calcularDiasEntreFechas($fechaInicio, $fechaFin) {
-        // Crear objetos DateTime
         $inicio = new DateTime($fechaInicio);
         $fin = new DateTime($fechaFin);
     
-        // Calcular la diferencia entre las dos fechas
-        $diferencia = $inicio->diff($fin);
+        if ($inicio > $fin) {
+            return 0;
+        }
     
-        // Retornar el número de días de diferencia
-        return $diferencia->days;
+        $diasHabiles = 0;
+    
+        while ($inicio <= $fin) {
+            // Obtener el día de la semana (1 = Lunes, 7 = Domingo)
+            $diaSemana = $inicio->format('N');
+    
+            // Contar solo si es un día hábil (Lunes-Viernes)
+            if ($diaSemana >= 1 && $diaSemana <= 5) {
+                $diasHabiles++;
+            }
+    
+            $inicio->modify('+1 day');
+        }
+    
+        return $diasHabiles;
     }
+    
 
 }

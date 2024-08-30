@@ -302,6 +302,38 @@ function editarCitacion(idCitacion) {
         }
       }
     })
-  
-  
 }
+
+
+/* Funcion que valida si el puesto al que pertenece el usuario conectado cuenta con
+permisos para insertar datos */
+function mostrarModal(){
+  let permisoInsercion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoInsercion, {
+    consulta: 2,
+    modulo: 5
+  })
+  .then(function (response) {
+    if (response.data.insercion == 0 || response.data == false) {
+      Swal.fire({
+        title: "Error",
+        text: "No cuenta con los permisos para guardar datos",
+        icon: "error",
+      });
+    } else {
+      document.getElementById('formulario').reset();
+      document.getElementById('num_caso').selectedIndex = 0;
+      document.getElementById('tipo_citacion').selectedIndex = 0;
+      document.getElementById('medico').selectedIndex = 0;
+
+      document.getElementById('modal-title').textContent = "Agregar Citación"
+      $("#ModalCitacion").modal("show");
+    }
+  })
+  .catch(function (error) {
+    console.error("Ocurrió un error:", error);
+  });
+}
+
+document.getElementById("btnModalCitacion").addEventListener("click", mostrarModal);

@@ -22,7 +22,7 @@
 			<div class="container-fluid">
 				<div class="container-fluid">
 					<p class="text-center">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalModulo"><i class="fas fa-user-plus"></i> &nbsp; Agregar Módulo</button>
+						<button type="button" class="btn btn-primary" id="btnModalModulo"><i class="fas fa-user-plus"></i> &nbsp; Agregar Módulo</button>
 					</p>
 				</div>
 			</div>

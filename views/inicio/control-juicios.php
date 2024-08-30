@@ -20,7 +20,7 @@
 			</div>
 			<div class="container-fluid">
 				<p class="text-center">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCitacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Citacion</button>
+					<button type="button" class="btn btn-primary" id="btnModalCitacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Citacion</button>
 				</p>
 			</div>
 
@@ -34,7 +34,7 @@
 							</button>
 						</div>
 						<div class="container-fluid">
-							<form id="formulario" class="form-neon" autocomplete="off">
+							<form id="formulario" class="form-neon" >
 								<input type="hidden" class="" name="id" id="id">
 								<fieldset>
 									<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DE LA CITACION</legend>

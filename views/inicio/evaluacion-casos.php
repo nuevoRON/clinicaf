@@ -20,7 +20,7 @@
             </h3>
 
             <p class="text-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCaso"><i class="fas fa-user-plus"></i> &nbsp; Agregar Caso</button>
+                <button type="button" class="btn btn-primary" id="btnModalCaso"><i class="fas fa-user-plus"></i> &nbsp; Agregar Caso</button>
             </p>
 
             <div class="container-fluid">

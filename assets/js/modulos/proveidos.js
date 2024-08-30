@@ -453,3 +453,39 @@ function editarProveido(idProveido) {
     })
   
 }
+
+
+/* Funcion que valida si el puesto al que pertenece el usuario conectado cuenta con
+permisos para insertar datos */
+function mostrarModal(){
+  let permisoInsercion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoInsercion, {
+    consulta: 2,
+    modulo: 3
+  })
+  .then(function (response) {
+    if (response.data.insercion == 0 || response.data == false) {
+      Swal.fire({
+        title: "Error",
+        text: "No cuenta con los permisos para guardar datos",
+        icon: "error",
+      });
+    } else {
+      document.getElementById('formulario').reset();
+      document.getElementById('item_departamento_reg').selectedIndex = 0;
+      document.getElementById('item_municipio_reg').selectedIndex = 0;
+      document.getElementById('item_recon_reg').selectedIndex = 0;
+      document.getElementById('medico').selectedIndex = 0;
+      document.getElementById('item_dependencia_reg').selectedIndex = 0;
+
+      document.getElementById('modal-title').textContent = "Agregar Proveido"
+      $("#Modalproveído").modal("show");
+    }
+  })
+  .catch(function (error) {
+    console.error("Ocurrió un error:", error);
+  });
+}
+
+document.getElementById("btnModalproveído").addEventListener("click", mostrarModal);

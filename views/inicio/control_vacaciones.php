@@ -20,7 +20,7 @@
 			</h3>
 			<div class="container-fluid">
 				<p class="text-center">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalVacacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Vacacion</button>
+					<button type="button" class="btn btn-primary" id="btnModalVacacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Vacacion</button>
 				</p>
 			</div>
 

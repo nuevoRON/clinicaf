@@ -21,7 +21,7 @@
 			
 			<div class="container-fluid">
 				<p class="text-center">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalmedico"><i class="fas fa-user-plus"></i> &nbsp; Agregar Nuevo Personal</button>
+					<button type="button" class="btn btn-primary" id="btnModalPersonal"><i class="fas fa-user-plus"></i> &nbsp; Agregar Nuevo Personal</button>
 				</p>
 			</div>
 

@@ -2,6 +2,7 @@
 const formulario = document.querySelector("#formulario");
 const formularioOcupacion = document.querySelector("#formularioOcupacion");
 const formularioInstrumento = document.querySelector("#formularioInstrumento");
+const formularioNacionalidad = document.querySelector("#formularioNacionalidad");
 
 const selectOcupacion = document.querySelector("#ocupacion");
 const selectSexo = document.querySelector("#sexo");
@@ -12,6 +13,7 @@ const selectInstrumento = document.querySelector("#instrumento");
 const selectEstadoCivil = document.querySelector("#estadoCivil");
 const selectSede = document.querySelector("#sede_evaluacion");
 const sedeConsentimiento = document.getElementById('permiso_evaluacion')
+const selectNacionalidad = document.getElementById('nacionalidad')
 const idEvaluado = document.querySelector("#id_evaluado").value;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -82,6 +84,27 @@ document.addEventListener("DOMContentLoaded", function () {
         option.text = `${opcion.nom_escolaridad}`;
         option.value = opcion.id_escolaridad;
         selectEscolaridad.appendChild(option);
+      });
+    })
+    .catch(function (error) {
+      // Maneja errores
+      console.error("Ocurrió un error:", error);
+    }); 
+
+
+     //Cargar nacionalidad
+  let urlNacional = "http://localhost/clinicaf/evaluados/listarNacionalidad";
+  axios
+    .get(urlNacional)
+    .then(function (response) {
+      // Llenar Select
+      console.log(response);
+      response.data.forEach((opcion) => {
+        let option = document.createElement("option");
+
+        option.text = opcion.nom_nacionalidad;
+        option.value = opcion.id_nacionalidad;
+        selectNacionalidad.appendChild(option);
       });
     })
     .catch(function (error) {
@@ -438,6 +461,51 @@ formularioInstrumento.addEventListener('submit', function(event) {
       }
     };
 });
+
+
+/* Añadir nuevas nacionalidades */
+formularioNacionalidad.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevenir la acción por defecto del formulario
+    const url = "http://localhost/clinicaf/evaluados/insertarNacionalidad";
+    const method = "POST";
+    const data = new FormData(this);
+  
+    const http = new XMLHttpRequest();
+    http.open(method, url, true);
+    http.send(data);
+
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        $('#ModalNacionalidad').modal('hide'); 
+
+        let urlNacionalidad = "http://localhost/clinicaf/evaluados/listarNacionalidad";
+            // Eliminar opciones existentes del select de municipios
+            while (selectNacionalidad.firstChild) {
+              selectNacionalidad.removeChild(selectNacionalidad.firstChild);
+            }
+
+            axios
+            .get(urlNacionalidad)
+            .then(function (response) {
+              // Llenar Select
+              console.log(response);
+              response.data.forEach((opcion) => {
+                let option = document.createElement("option");
+
+                option.text = opcion.nom_nacionalidad;
+                option.value = opcion.id_nacionalidad;
+                selectNacionalidad.appendChild(option);
+              });
+
+            })
+            .catch(function (error) {
+              // Maneja errores
+              console.error("Ocurrió un error:", error);
+            })
+      }
+    };
+});
+
 
 
 /*Eliminar registros*/

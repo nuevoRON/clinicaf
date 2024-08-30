@@ -251,6 +251,7 @@ function mostrarModal(){
         icon: "error",
       });
     } else {
+      document.getElementById('formulario').reset();
       $("#ModalSexo").modal("show");
     }
   })

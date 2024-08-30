@@ -67,13 +67,13 @@
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 							<ul>
 								<li>
-									<a href="<?php echo BASE_URL . 'inicio/agregarsedes'; ?>"><i class="fas fa-clinic-medical"></i> &nbsp; Nuevas Sedes</a>
+									<a href="<?php echo BASE_URL . 'inicio/sedes'; ?>"><i class="fas fa-clinic-medical"></i> &nbsp; Sedes</a>
 								</li>
 								<li>
-									<a href="<?php echo BASE_URL . 'inicio/personal'; ?>"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Nuevo Personal</a>
+									<a href="<?php echo BASE_URL . 'inicio/personal'; ?>"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Personal</a>
 								</li>
 								<li>
-									<a href="<?php echo BASE_URL . 'inicio/controlVacaciones'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; vacaciones</a>
+									<a href="<?php echo BASE_URL . 'inicio/controlVacaciones'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Vacaciones</a>
 								</li>
 								<li>
 									<a href="<?php echo BASE_URL . 'inicio/sexos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Sexo</a>
@@ -82,7 +82,7 @@
 									<a href="<?php echo BASE_URL . 'inicio/puestos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Puesto</a>
 								</li>
 								<li>
-									<a href="<?php echo BASE_URL . 'inicio/reconocmientos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Reconocimientos</a>
+									<a href="<?php echo BASE_URL . 'inicio/reconocimientos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Reconocimientos</a>
 								</li>
 								<li>
 									<a href="<?php echo BASE_URL . 'inicio/modulos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Modulos</a>

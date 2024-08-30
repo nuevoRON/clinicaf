@@ -22,7 +22,7 @@
 			<div class="container-fluid">
 				<div class="container-fluid">
 					<p class="text-center">
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalproveído"><i class="fas fa-user-plus"></i> &nbsp; Agregar Proveído</button>
+						<button type="button" class="btn btn-primary" id="btnModalproveído"><i class="fas fa-user-plus"></i> &nbsp; Agregar Proveído</button>
 					</p>
 				</div>
 			</div>

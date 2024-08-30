@@ -255,7 +255,7 @@ axios
           id.value = res.id_puesto;
           id_puesto.value = res.id_puesto;
           selectipuesto.value = res.nom_puesto;
-    
+          document.getElementById('modal-title').textContent = "Editar Puesto"
           
           $("#estado option[value=" + res.estado + "]").attr({
             selected: true,
@@ -270,3 +270,35 @@ axios
   })
 
 }
+
+
+/* Funcion que valida si el puesto al que pertenece el usuario conectado cuenta con
+permisos para insertar datos */
+function mostrarModal(){
+  let permisoInsercion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoInsercion, {
+    consulta: 2,
+    modulo: 11
+  })
+  .then(function (response) {
+    if (response.data.insercion == 0 || response.data == false) {
+      Swal.fire({
+        title: "Error",
+        text: "No cuenta con los permisos para guardar datos",
+        icon: "error",
+      });
+    } else {
+      document.getElementById('formulario').reset();
+      document.getElementById('estado').selectedIndex = 0;
+
+      document.getElementById('modal-title').textContent = "Agregar Nuevo Puesto"
+      $("#ModalPuestos").modal("show");
+    }
+  })
+  .catch(function (error) {
+    console.error("Ocurrió un error:", error);
+  });
+}
+
+document.getElementById("btnModalPuestos").addEventListener("click", mostrarModal);

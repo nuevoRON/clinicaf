@@ -22,7 +22,7 @@
 			</div>
 			<div class="container-fluid">
 				<p class="text-center">
-					<button type="button" class="btn btn-primary" data-bs-backdrop="static" data-toggle="modal" data-target="#ModalReconocimiento"><i class="fas fa-user-plus"></i> &nbsp; Agregar Reconocimientos</button>
+					<button type="button" class="btn btn-primary" id="btnModalReconocimiento"><i class="fas fa-user-plus"></i> &nbsp; Agregar Reconocimientos</button>
 				</p>
 			</div>
 
@@ -30,7 +30,7 @@
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="ModalPuestos">Agregar Nuevo Reconocimiento</h5>
+							<h5 class="modal-title" id="modal-title">Agregar Nuevo Reconocimiento</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>

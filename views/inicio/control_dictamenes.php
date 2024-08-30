@@ -22,7 +22,7 @@
 			</div>
 			<div class="container-fluid">
 				<p class="text-center">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalDictamen"><i class="fas fa-user-plus"></i> &nbsp; Nuevo Control</button>
+					<button type="button" class="btn btn-primary" id="btnModalDictamen"><i class="fas fa-user-plus"></i> &nbsp; Nuevo Control</button>
 				</p>
 			</div>
 

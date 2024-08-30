@@ -1,7 +1,10 @@
 <?php
+require './middleware/CorsMiddleware.php';
+
 class Controller {
     protected $views, $model;
     public function __construct() {
+        CorsMiddleware::handle();
         $this->views = new Views();
         $this->cargarModel();
     }

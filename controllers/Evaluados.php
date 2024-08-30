@@ -50,6 +50,13 @@ class Evaluados extends Controller
      }
 
 
+     public function listarNacionalidad()
+     {
+         $data = $this->model->listarNacionalidad();
+         echo json_encode($data, JSON_UNESCAPED_UNICODE);
+         die();
+     }
+
      //Cargar datos en tabla
      public function listarEvaluados()
      {
@@ -102,6 +109,28 @@ class Evaluados extends Controller
                     //$bitacora = new Bitacora();
                     //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
                     $res = array('titulo' => 'Instrumento Registrado', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
+                } else {
+                    $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al registrar el proveido', 'type' => 'error');
+                }
+            }
+            echo json_encode($res, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
+
+    public function insertarNacionalidad() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (empty($_POST['nacionalidad_nuevo'])) {
+                $res = array('msg' => 'EL NOMBRE DE INSTRUMENTO ES REQUERIDO', 'type' => 'warning');
+            }else {
+                $nacionalidad = strClean($_POST['nacionalidad_nuevo']);
+                $data = $this->model->insertarNacionalidad($nacionalidad);
+
+                if ($data > 0) {
+                    //$bitacora = new Bitacora();
+                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $res = array('titulo' => 'Nacionalidad Registrada', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al registrar el proveido', 'type' => 'error');
                 }

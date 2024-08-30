@@ -350,3 +350,41 @@ function editarRevision(id) {
     })
   
 }
+
+
+/* Funcion que valida si el puesto al que pertenece el usuario conectado cuenta con
+permisos para insertar datos */
+function mostrarModal(){
+  let permisoInsercion = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoInsercion, {
+    consulta: 2,
+    modulo: 7
+  })
+  .then(function (response) {
+    if (response.data.insercion == 0 || response.data == false) {
+      Swal.fire({
+        title: "Error",
+        text: "No cuenta con los permisos para guardar datos",
+        icon: "error",
+      });
+    } else {
+      document.getElementById('formulario').reset();
+      document.getElementById('enviado_para').selectedIndex = 0;
+      document.getElementById('tipo_dictamen').selectedIndex = 0;
+      document.getElementById('medico').selectedIndex = 0;
+      document.getElementById('tipo_reconocimiento').selectedIndex = 0;
+      document.getElementById('estado_dictamen').selectedIndex = 0;
+      document.getElementById('sede_medico').selectedIndex = 0;
+      document.getElementById('sede_clinica').selectedIndex = 0;
+
+      document.getElementById('modal-title').textContent = "Agregar Caso"
+      $("#ModalCaso").modal("show");
+    }
+  })
+  .catch(function (error) {
+    console.error("Ocurrió un error:", error);
+  });
+}
+
+document.getElementById("btnModalCaso").addEventListener("click", mostrarModal);

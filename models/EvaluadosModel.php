@@ -31,6 +31,13 @@ class EvaluadosModel extends Query{
         return $this->selectAll($sql);
     }
 
+
+    public function listarNacionalidad()
+    {
+        $sql = "SELECT * from tbl_nacionalidad";
+        return $this->selectAll($sql);
+    }
+
     public function getPuestos()
     {
         $sql = "SELECT * from tbl_puesto";
@@ -121,6 +128,13 @@ class EvaluadosModel extends Query{
     public function insertarOcupacion($ocupacion) {
         $sql = "INSERT INTO tbl_ocupaciones (nom_ocupacion) VALUES(?)";
         $array = array($ocupacion);
+        return $this->insertar($sql, $array);
+    }
+
+
+    public function insertarNacionalidad($nacionalidad) {
+        $sql = "INSERT INTO tbl_nacionalidad (nom_nacionalidad) VALUES(?)";
+        $array = array($nacionalidad);
         return $this->insertar($sql, $array);
     }
 
