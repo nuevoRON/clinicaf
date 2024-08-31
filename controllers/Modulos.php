@@ -41,8 +41,8 @@ class Modulos extends Controller
 
             $data = $this->model->insertarModulo($nombre,$descripcion,$fechaCreacion,$creadoPor);
             if ($data > 0) {
-                //$bitacora = new Bitacora();
-                //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                $bitacora = new Bitacora();
+                $bitacora->model->crearEvento($_SESSION['id_usuario'], 13, 'CREACION', 'Se creó un nuevo módulo en el sistema', date('Y-m-d H:i:s'));
                 $res = array('titulo' => 'Módulo Registrado', 
                         'desc' => 'El módulo se ha registrado exitosamente', 
                         'type' => 'success');
@@ -73,8 +73,8 @@ class Modulos extends Controller
     
                 $data = $this->model->actualizarModulo($nombre,$descripcion,$fechaModificacion,$modificadoPor, $id);
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 13, 'ACTUALIZACION', 'Se actualizó la información del módulo con id '.$id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Módulo Actualizado', 
                                  'desc' => 'El módulo se ha actualizado exitosamente', 
                                  'type' => 'success');
@@ -109,9 +109,8 @@ class Modulos extends Controller
                 $data = $this->model->eliminarModulo($id);
                 
                 if ($data > 0) {
-                    // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 13, 'ELIMINACION', 'Se eliminó el módulo con id '.$id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Modulo Eliminado', 
                                 'desc' => 'El modulo se ha eliminado exitosamente', 

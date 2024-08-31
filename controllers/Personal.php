@@ -116,8 +116,8 @@ class Personal extends Controller
                             $telefono,$jornada,$puesto,$sede,$estado,$usuario,$clave,$clinica);
             
             if ($data > 0) {
-                //$bitacora = new Bitacora();
-                //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                $bitacora = new Bitacora();
+                $bitacora->model->crearEvento($_SESSION['id_usuario'], 9, 'CREACION', 'Se creó un nuevo empleado', date('Y-m-d H:i:s'));
                 $res = array('titulo' => 'Empleado Registrado', 
                         'desc' => 'El empleado se ha registrado exitosamente', 
                         'type' => 'success');
@@ -156,8 +156,8 @@ class Personal extends Controller
                 $data = $this->model->actualizarPersonal($nombre,$apellido,$numColegiacion,$numEmpleado,$email,
                 $telefono,$jornada,$puesto,$sede,$estado,$usuario,$clinica,$id);
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 9, 'ACTUALIZACION', 'Se actualizó la información del empleado con id '.$id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Empleado Actualizado', 
                                  'desc' => 'El empleado se ha actualizado exitosamente', 
                                  'type' => 'success');
@@ -186,8 +186,8 @@ class Personal extends Controller
 
             $data = $this->model->actualizarPerfil($nombre,$apellido,$email,$telefono,$id);
             if ($data > 0) {
-                //$bitacora = new Bitacora();
-                //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                $bitacora = new Bitacora();
+                $bitacora->model->crearEvento($_SESSION['id_usuario'], 9, 'ELIMINACION', 'Se eliminó el empleado con id '.$id, date('Y-m-d H:i:s'));
                 $res = array('titulo' => 'Perfil Actualizado', 
                              'desc' => 'Se actualizaron los datos del perfil', 
                              'type' => 'success');

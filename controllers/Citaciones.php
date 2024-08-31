@@ -43,8 +43,8 @@ class Citaciones extends Controller
             $data = $this->model->insertarCitacion($numeroCaso,$tipoCitacion,$fechaRecibe,$fechaCitacion,$medico,$lugarCitacion);
             
             if ($data > 0) {
-                //$bitacora = new Bitacora();
-                //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                $bitacora = new Bitacora();
+                $bitacora->model->crearEvento($_SESSION['id_usuario'], 5, 'CREACION', 'Se creó una nueva citación en el sistema', date('Y-m-d H:i:s'));
                 $res = array('titulo' => 'Citación Registrada', 
                         'desc' => 'La citación se ha registrado exitosamente', 
                         'type' => 'success');
@@ -76,8 +76,8 @@ class Citaciones extends Controller
     
                 $data = $this->model->actualizarCitacion($numeroCaso,$tipoCitacion,$fechaRecibe,$fechaCitacion,$medico,$lugarCitacion, $id);
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 5, 'ACTUALIZACION', 'Se actualizó la citación con id '.$id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Citación Actualizada', 
                                  'desc' => 'La citación se ha actualizado exitosamente', 
                                  'type' => 'success');
@@ -113,8 +113,8 @@ class Citaciones extends Controller
                 
                 if ($data > 0) {
                     // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 5, 'CREACION', 'Se eliminó la citación con id '.$id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Citación Eliminada', 
                                 'desc' => 'La citación se ha eliminado exitosamente', 

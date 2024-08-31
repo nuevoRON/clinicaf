@@ -40,8 +40,8 @@ class Sedes extends Controller
                 $data = $this->model->insertarSede($depatamento,$municipio,$ubicacion, $cod_alfabetico, $cod_numerico);
                 
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 8, 'CREACION', 'Se creó una nueva sede', date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Sede Registrada', 
                             'desc' => 'La sede se ha registrado exitosamente', 
                             'type' => 'success');
@@ -75,8 +75,8 @@ class Sedes extends Controller
     
                 $data = $this->model->actualizarSede($departamento, $municipio, $ubicacion, $cod_alfabetico, $cod_numerico, $id);
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 8, 'ACTUALIZACION', 'Se actualizó la sede con id '.$id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Sede Actualizada', 
                                  'desc' => 'La sede se ha actualizado exitosamente', 
                                  'type' => 'success');
@@ -112,8 +112,8 @@ class Sedes extends Controller
                 
                 if ($data > 0) {
                     // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 8, 'ELIMINACION', 'Se eliminó la sede con id '.$id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Sede Eliminada', 
                                 'desc' => 'La sede se ha eliminado exitosamente', 

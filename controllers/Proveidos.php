@@ -87,8 +87,8 @@ class Proveidos extends Controller
                 $dataEvaluacion = $this->model->insertarEvaluacion($dataProveido);
 
                 if ($dataEvaluacion > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 3, 'CREACION', 'Se creó un proveido en el sistema', date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Proveido Registrado', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al registrar el proveido', 'type' => 'error');
@@ -137,8 +137,8 @@ class Proveidos extends Controller
                 $dataReconocimiento = $this->model->actualizarReconocimiento($tipoReconocimiento, $medico, $fechaCitacion, $id);
                 $dataReconocimiento = $this->model->actualizarReconocimiento($tipoReconocimiento, $medico, $fechaCitacion, $id);
                 if ($dataReconocimiento > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 3, 'ACTUALIZCION', 'Se actualizó el proveido con id  ' . $id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Proveido Actualizado', 'desc' => 'Los datos del proveido se actualizaron exitosamente', 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al actualizar el proveido', 'type' => 'error');
@@ -161,9 +161,9 @@ class Proveidos extends Controller
                 $data = $this->model->eliminarProveido($id);
                 
                 if ($data > 0) {
-                    // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    //Registro de evento en la bitácora (ejemplo)
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 3, 'ELIMINACION', 'SE eliminó el proveido con id ' . $id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Proveido Eliminado', 
                                 'desc' => 'El proveido se ha eliminado exitosamente', 

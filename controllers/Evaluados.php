@@ -84,8 +84,8 @@ class Evaluados extends Controller
                 $data = $this->model->insertarOcupacion($ocupacion);
 
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 15, 'CREACION', 'Se creó una nueva ocupacion', date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Ocupacion Registrada', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al registrar el proveido', 'type' => 'error');
@@ -106,8 +106,8 @@ class Evaluados extends Controller
                 $data = $this->model->insertarInstrumento($instrumento);
 
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 15, 'CREACION', 'Se creó un nuevo instrumento en el sistema', date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Instrumento Registrado', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al registrar el proveido', 'type' => 'error');
@@ -128,8 +128,8 @@ class Evaluados extends Controller
                 $data = $this->model->insertarNacionalidad($nacionalidad);
 
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 15, 'CREACION', 'Se creó una nueva nacionalidad en el sistema', date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Nacionalidad Registrada', 'desc' => 'Los datos del proveido se guardaron exitosamente', 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al registrar el proveido', 'type' => 'error');
@@ -197,8 +197,8 @@ class Evaluados extends Controller
                 $dataHechos = $this->model->actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id);
             
                 if ($dataHechos > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 15, 'ACTUALIZACION', 'Se actualizó la evaluación del proveido '. $id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Evaluación Actualizada', 'desc' => 'Los datos de la evaluación se actualizaron exitosamente', 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al actualizar la evaluación', 'type' => 'error');

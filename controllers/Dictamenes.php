@@ -39,8 +39,8 @@ class Dictamenes extends Controller
             $autoridadSolicitante,$medico,$datosExtra);
             
             if ($data > 0) {
-                //$bitacora = new Bitacora();
-                //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                $bitacora = new Bitacora();
+                $bitacora->model->crearEvento($_SESSION['id_usuario'], 6, 'CREACION', 'Se creó un nuevo dictamen en el sistema', date('Y-m-d H:i:s'));
                 $res = array('titulo' => 'Dictamen Registrado', 
                         'desc' => 'El dictamen se ha registrado exitosamente', 
                         'type' => 'success');
@@ -74,8 +74,8 @@ class Dictamenes extends Controller
                 $data = $this->model->actualizarDictamen($numeroCaso,$tipoDocumento,$fechaEvaluacion,$fechaEntrega,
                 $autoridadSolicitante,$medico,$datosExtra, $id);
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 6, 'ACTUALIZACION', 'Se actualizó el dictamen con id '.$id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Dictamen Actualizado', 
                                  'desc' => 'El dictamen se ha actualizado exitosamente', 
                                  'type' => 'success');
@@ -111,8 +111,8 @@ class Dictamenes extends Controller
                 
                 if ($data > 0) {
                     // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 6, 'ELIMINACION', 'Se eliminó el dictamen con id '.$id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Dictamen Eliminado', 
                                 'desc' => 'El dictamen se ha eliminado exitosamente', 

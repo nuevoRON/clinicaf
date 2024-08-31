@@ -33,13 +33,12 @@ class Reconocimiento extends Controller
                             'type' => 'warning');
             }else {
                 $nom_reco = strClean($_POST['reconocimiento']);//reconocimiento viene de la vista
-                // $estado = strClean($_POST['estado']);
     
                 $data = $this->model->insertarReconocimientos($nom_reco);
                 
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'Se creó un nuevo tipo de reconocimiento en el sistema ', date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Reconocimiento Registrado', 
                             'desc' => 'El reconocimiento se ha registrado exitosamente', 
                             'type' => 'success');
@@ -69,8 +68,8 @@ class Reconocimiento extends Controller
     
                 $data = $this->model->actualizarReconocimientos($nom_reco, $id);
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACION', 'Se actualizó la información del reconocimiento con id '.$id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Reconocimiento Actualizado', 
                                  'desc' => 'El reconocimiento se ha actualizado exitosamente', 
                                  'type' => 'success');
@@ -106,8 +105,8 @@ class Reconocimiento extends Controller
                 
                 if ($data > 0) {
                     // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'Se eliminó el reconocimiento con id '.$id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Reconocimiento Eliminado', 
                                 'desc' => 'El reconocimiento se ha eliminado exitosamente', 

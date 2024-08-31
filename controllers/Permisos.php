@@ -35,8 +35,8 @@ class Permisos extends Controller
         
             $data = $this->model->insertarPermiso($puesto,$modulo,$consulta,$insercion,$actualizacion,$eliminacion);
             if ($data > 0) {
-                //$bitacora = new Bitacora();
-                //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                $bitacora = new Bitacora();
+                $bitacora->model->crearEvento($_SESSION['id_usuario'], 14, 'CREACION', 'Se creó un permiso en el sistema', date('Y-m-d H:i:s'));
                 $res = array('titulo' => 'Permiso Registrado', 
                         'desc' => 'El permiso se ha registrado exitosamente', 
                         'type' => 'success');
@@ -68,8 +68,8 @@ class Permisos extends Controller
     
                 $data = $this->model->actualizarPermiso($puesto,$modulo,$consulta,$insercion,$actualizacion,$eliminacion, $id);
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 10, 'ACTUALIZACION', 'Se actualizó la información del permiso con id '.$id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Permiso Actualizado', 
                                  'desc' => 'El permiso se ha actualizado exitosamente', 
                                  'type' => 'success');
@@ -105,8 +105,8 @@ class Permisos extends Controller
                 
                 if ($data > 0) {
                     // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 14, 'ELIMINACON', 'Se eliminó el permiso con id '.$id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Permiso Eliminado', 
                                 'desc' => 'El permiso se ha eliminado exitosamente', 

@@ -25,6 +25,7 @@
 					<button type="button" class="btn btn-primary" id="btnModalDictamen"><i class="fas fa-user-plus"></i> &nbsp; Nuevo Control</button>
 				</p>
 			</div>
+			
 
 			<div class="modal fade" id="ModalDictamen" tabindex="-1" role="dialog" aria-labelledby="ModalDictamen" data-backdrop="static" aria-hidden="true">
 				<div class="modal-dialog" role="document">

@@ -52,8 +52,8 @@ class Puestos extends Controller
                 $data = $this->model->insertarPuestos($nom_puesto,$estado);
                 
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 11, 'CREACION', 'Se creó un nuevo puesto en el sistema', date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Puesto Registrado', 
                             'desc' => 'El puesto se ha registrado exitosamente', 
                             'type' => 'success');
@@ -84,8 +84,8 @@ class Puestos extends Controller
     
                 $data = $this->model->actualizarPuestos($puesto, $estado, $id);
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 11, 'ACTUALIZACION', 'Se actualizó la información del puesto con id '.$id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Puesto Actualizado', 
                                  'desc' => 'El puesto se ha actualizado exitosamente', 
                                  'type' => 'success');
@@ -120,9 +120,8 @@ class Puestos extends Controller
                 $data = $this->model->eliminarPuestos($id);
                 
                 if ($data > 0) {
-                    // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 11, 'ELIMINACION', 'Se eliminó el puesto con id '.$id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Sede Eliminada', 
                                 'desc' => 'El puesto se ha eliminado exitosamente', 

@@ -51,8 +51,8 @@ class Vacaciones extends Controller
             $dataUsuario = $this->model->actualizarEstado($idEmpleado,$estado);
 
             if ($dataUsuario > 0) {
-                //$bitacora = new Bitacora();
-                //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                $bitacora = new Bitacora();
+                $bitacora->model->crearEvento($_SESSION['id_usuario'], 10, 'CREACION', 'Se crearon nuevas vacaciones', date('Y-m-d H:i:s'));
                 $res = array('titulo' => 'Vacaciones Registradas', 
                         'desc' => 'Las vacaciones se han registrado exitosamente', 
                         'type' => 'success');
@@ -86,8 +86,8 @@ class Vacaciones extends Controller
                 $dataUsuario = $this->model->actualizarEstado($idEmpleado,$estado);
 
                 if ($dataUsuario > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 10, 'ACTUALIZACION', 'Se actualizó la información de las vacaciones con id '.$id, date('Y-m-d H:i:s'));
                     $res = array('titulo' => 'Vacaciones Actualizadas', 
                                  'desc' => 'Las vacaciones se han actualizado exitosamente', 
                                  'type' => 'success');
@@ -123,8 +123,8 @@ class Vacaciones extends Controller
                 
                 if ($data > 0) {
                     // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 10, 'ELIMINACION', 'Se elimiaron las vacaciones con id '.$id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Vacaciones Eliminadas', 
                                 'desc' => 'Las vacaciones se han eliminado exitosamente', 

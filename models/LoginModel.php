@@ -13,19 +13,13 @@ class LoginModel extends Query{
                        u.estado,
                        s.ubicacion,
                        p.nom_puesto,
-                       u.puesto 
+                       u.puesto,
+                       u.intentos 
                 FROM tbl_usu u
                 INNER JOIN tbl_sedes s ON s.id_sede = u.sede 
                 INNER JOIN tbl_puestos p ON p.id_puesto = u.puesto
                 WHERE u.usuario = '$correo'";
         return $this->select($sql);
-    }
-
-    public function actualizarIntentos($intento, $id)
-    {
-        $sql = "UPDATE tbl_usuario SET INTENTOS=? WHERE ID_USUARIO=?";
-        $array = array($intento, $id);
-        return $this->save($sql, $array);
     }
 
     public function getRol($idRol)
@@ -36,17 +30,23 @@ class LoginModel extends Query{
 
     public function bloquearUsuario($id)
     {
-        $sql = "UPDATE tbl_usuario SET ESTADO_USUARIO=? WHERE ID_USUARIO=?";
-        $array = array(3, $id);
+        $sql = "UPDATE tbl_usu SET estado=? WHERE id_usu=?";
+        $array = array(7, $id);
         return $this->save($sql, $array);
     }
 
-    /* public function getParametro($parametro)
+    public function resetearIntentos($id)
     {
-        $sql = "SELECT p.ID_PARAMETRO, p.PARAMETROS, p.VALOR, p.ID_USUARIO, u.USUARIO, p.FECHA_CREACION, p.FECHA_MODIFICACION
-        FROM tbl_parametro p
-        JOIN tbl_usuario u ON p.ID_USUARIO = u.ID_USUARIO WHERE p.PARAMETROS = $parametro;";
-        return $this->select($sql);
-    } */
+        $sql = "UPDATE tbl_usu SET intentos = 0 WHERE id_usu=?";
+        $array = array($id);
+        return $this->save($sql, $array);
+    }
+
+    public function actualizarIntentos($id)
+    {
+        $sql = "UPDATE tbl_usu SET intentos = intentos + 1 WHERE id_usu=?";
+        $array = array($id);
+        return $this->save($sql, $array);
+    }
 }
 ?>

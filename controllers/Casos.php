@@ -58,8 +58,8 @@ class Casos extends Controller
             );
 
             if ($data > 0) {
-                //$bitacora = new Bitacora();
-                //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'CREACION', 'SE HA CREADO EL AREA ' . $nombres, 1);
+                $bitacora = new Bitacora();
+                $bitacora->model->crearEvento($_SESSION['id_usuario'], 7, 'CREACION', 'Se creó una nueva revisión de caso en el sistema', date('Y-m-d H:i:s'));
                 $res = array(
                     'titulo' => 'Revisón Registrada',
                     'desc' => 'La revisión del caso se ha registrado exitosamente',
@@ -118,8 +118,8 @@ class Casos extends Controller
                     $id
                 );
                 if ($data > 0) {
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ACTUALIZACIÓN', 'SE HA ACTUALIZADO EL AREA ' . $nombres, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 7, 'ACTUALIZACION', 'Se actualizó la revisión de caso con id '.$id, date('Y-m-d H:i:s'));
                     $res = array(
                         'titulo' => 'Revisón Actualizada',
                         'desc' => 'La revisión del caso se ha actualizado exitosamente',
@@ -160,8 +160,8 @@ class Casos extends Controller
 
                 if ($data > 0) {
                     // Registro de evento en la bitácora (ejemplo)
-                    //$bitacora = new Bitacora();
-                    //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 7, 'ELIMINACION', 'Se eliminó la revisión de caso con id '.$id, date('Y-m-d H:i:s'));
 
                     $res = array(
                         'titulo' => 'Revisión Eliminada',

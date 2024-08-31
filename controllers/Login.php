@@ -1,4 +1,6 @@
 <?php
+require 'Bitacora.php';
+
 class Login extends Controller{
     public function __construct() {
         parent ::__construct();
@@ -35,45 +37,51 @@ class Login extends Controller{
                 
                 if (empty($data)){
                     $res = array('msg' => 'Usuario o contraseña incorrecta', 'type' => 'warning');
-                }else{
-                    if(password_verify($clave, $data['contrasena'])){
-                        session_regenerate_id(true);
+                    die();
+                }
+                
+                if (($data['estado'] == 2)){
+                    $res = array('msg' => 'Usuario inactivo. Contacte al administrador del sistema', 'type' => 'warning');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
 
-                        $_SESSION['id_usuario'] = $data['id_usu'];
-                        $_SESSION['nombre_usuario'] = $data['nombre'] . ' ' . $data['apellido'];
-                        $_SESSION['usuario'] = $data['usuario'];
-                        $_SESSION['estado'] = $data['estado'];
-                        $_SESSION['sede'] = $data['ubicacion'];
-                        $_SESSION['puesto'] = $data['nom_puesto'];
-                        $_SESSION['id_puesto'] = $data['puesto'];
-                        $_SESSION['last_activity'] = time();
-                        $_SESSION['user_ip'] = $_SERVER['REMOTE_ADDR'];
-                        $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
-                        
-                        //$rol = $this->model->getRol($data['id']);
-                        //$_SESSION['permisos'] = $rol['permisos'];
+                if (($data['estado'] == 7)){
+                    $res = array('msg' => 'Usuario bloqueado por multiples intentos de sesión fallidos', 'type' => 'warning');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+                
+                if(password_verify($clave, $data['contrasena'])){
+                    session_regenerate_id(true);
+                    $_SESSION['id_usuario'] = $data['id_usu'];
+                    $_SESSION['nombre_usuario'] = $data['nombre'] . ' ' . $data['apellido'];
+                    $_SESSION['usuario'] = $data['usuario'];
+                    $_SESSION['estado'] = $data['estado'];
+                    $_SESSION['sede'] = $data['ubicacion'];
+                    $_SESSION['puesto'] = $data['nom_puesto'];
+                    $_SESSION['id_puesto'] = $data['puesto'];
+                    $_SESSION['last_activity'] = time();
+                    $_SESSION['user_ip'] = $_SERVER['REMOTE_ADDR'];
+                    $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 
-                        //if($data['ESTADO_USUARIO'] == 3) {
-                        //    $res = array('msg' => 'USUARIO BLOQUEADO', 'type' => 'warning');
-                        //} else if ($data['ESTADO_USUARIO'] == 4){
-//
-                        //    $res = array('msg' => 'USUARIO INHABILITADO', 'type' => 'warning');
-                        //} else {
-//
-                        //    $this->model->actualizarIntentos(0, $data['ID_USUARIO']);
-                        $res = array('msg' => 'DATOS CORRECTOS', 'id_usuario' => $data['id_usu'], 'type' => 'success');
-                        //}
-                    }else {
-                        /* $intentos = $this->model->getParametro("'ADMIN_INTENTOS'");
-                        $valorIntentos = $intentos['VALOR'];
-                        // Actualizar intentos del usuario
-                        $this->model->actualizarIntentos(($data['INTENTOS']+1), $data['ID_USUARIO']);
-                        if ($data['INTENTOS'] == $valorIntentos && $data['ID_USUARIO'] != 1) {
-                            $this->model->bloquearUsuario($data['ID_USUARIO']);
-                            $res = array('msg' => 'CONTRASEÑA INCORRECTA, USUARIO BLOQUEADO', 'type' => 'warning');
-                        } else { */
-                            $res = array('msg' => 'Usuario o contraseña incorrecta', 'type' => 'warning');
-                        //}
+                    //Restablecer intentos de sesion
+                    $this->model->resetearIntentos($data['id_usu']);
+
+                    $res = array('msg' => 'DATOS CORRECTOS', 'id_usuario' => $_SESSION['id_usuario'], 'type' => 'success');
+
+                    $bitacora = new Bitacora();
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 1, 'INICIO DE SESION', 'El usuario inició sesión en el sistema', date('Y-m-d H:i:s'));
+                }else {
+                    // Actualizar intentos del usuario
+                    $this->model->actualizarIntentos($data['id_usu']);
+
+                    $data = $this->model->getDatos($usuario);
+                    if ($data['intentos'] == 3) {
+                        $this->model->bloquearUsuario($data['id_usu']);
+                        $res = array('msg' => 'Usuario bloqueado por multiples intentos de sesión fallidos', 'type' => 'warning');
+                    } else { 
+                        $res = array('msg' => 'Usuario o contraseña incorrecta', 'type' => 'warning');
                     }
                 }
             }     
@@ -86,6 +94,9 @@ class Login extends Controller{
 
 
     public function cerrarSesion(){
+        $bitacora = new Bitacora();
+        $bitacora->model->crearEvento($_SESSION['id_usuario'], 1, 'CIERRE DE SESION', 'El usuario cerró sesión', date('Y-m-d H:i:s'));
+
         $_SESSION = array();
 
         if (ini_get("session.use_cookies")) {
