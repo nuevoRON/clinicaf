@@ -8,6 +8,49 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Control de Dictamenes</title>
 	<?php include "views/templates/archivosCss.php"; ?>
+	<style>
+.tab-container {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+	margin-top:2rem;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ccc;
+}
+
+.tab-button {
+    flex-grow: 1;
+    padding: 10px;
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+}
+
+.tab-button.active {
+    background-color: #ccc;
+}
+
+.tab-button:hover {
+    background-color: #ddd;
+}
+
+.tab-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+	</style>
 </head>
 
 <body>
@@ -20,12 +63,75 @@
 					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; CONTROL DE DICTAMENES
 				</h4>
 			</div>
-			<div class="container-fluid">
-				<p class="text-center">
-					<button type="button" class="btn btn-primary" id="btnModalDictamen"><i class="fas fa-user-plus"></i> &nbsp; Nuevo Control</button>
-				</p>
+
+			<div class="tab-container">
+				<div class="tabs">
+					<button class="tab-button active" onclick="openTab(event, 'tab1')">Dictamenes</button>
+					<button class="tab-button" onclick="openTab(event, 'tab2')">Ampliaciones y Transcripciones</button>
+				</div>
+
+				<div id="tab1" class="tab-content">
+					<div class="container-fluid">
+						<p class="text-center">
+							<button type="button" class="btn btn-primary" id="btnModalDictamen"><i class="fas fa-user-plus"></i> &nbsp; Nuevo Control</button>
+						</p>
+					</div>
+					<div class="container-fluid">
+						<div class="table-responsive">
+							<table class="table table-dark table-sm" id="tabla-dictamenes">
+								<thead>
+									<tr class="text-center roboto-medium">
+										<th>#</th>
+										<th>NUMERO DEL CASO</th>
+										<th>NOMBRE DEL MEDICO</th>
+										<th>FECHA DE EVALUACION</th>
+										<th>AUTORIDAD SOLICITANTE</th>
+										<th>FECHA DE ENTREGA</th>
+										<th>DATOS EXTRA</th>
+										<th>MODIFICAR</th>
+										<th>ELIMINAR</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div id="tab2" class="tab-content" style="display:none;">
+					<div class="container-fluid">
+						<p class="text-center">
+							<button type="button" class="btn btn-primary" id="btnModalTranscripcion"><i class="fas fa-user-plus"></i> &nbsp; Nueva Transcripcion / Ampliacion</button>
+						</p>
+					</div>
+
+					<div class="container-fluid">
+						<div class="table-responsive">
+							<table class="table table-dark table-sm" id="tabla-dictamenesTranscripcion">
+								<thead>
+									<tr class="text-center roboto-medium">
+										<th>#</th>
+										<th>NUMERO DEL CASO</th>
+										<th>TIPO DE DOCUMENTO</th>
+										<th>NOMBRE DEL MEDICO</th>
+										<th>FECHA DE EVALUACION</th>
+										<th>AUTORIDAD SOLICITANTE</th>
+										<th>FECHA DE ENTREGA</th>
+										<th>DATOS EXTRA</th>
+										<th>MODIFICAR</th>
+										<th>ELIMINAR</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
-			
 
 			<div class="modal fade" id="ModalDictamen" tabindex="-1" role="dialog" aria-labelledby="ModalDictamen" data-backdrop="static" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -42,7 +148,7 @@
 								<fieldset>
 									<div class="container-fluid">
 										<div class="row">
-											<div class="col-12 col-md-5">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="num_caso" class="bmd-label-floating">Numero del Caso</label>
 													<select class="form-control" name="num_caso" id="num_caso">
@@ -50,7 +156,7 @@
 													</select>
 												</div>
 											</div>
-											<div class="col-12 col-md-5">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="medico" class="bmd-label-floating">Nombre del medico</label>
 													<select class="form-control" name="medico" id="medico">
@@ -64,21 +170,10 @@
 													<input type="date" class="form-control" name="fecha_evaluacion" id="fecha_evaluacion">
 												</div>
 											</div>
-											<div class="col-12 col-md-5">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="autoridad_soli" class="bmd-label-floating">Autoridad Solicitante </label>
 													<input type="text" class="form-control" name="autoridad_soli" id="autoridad_soli" maxlength="27">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label for="tipo_documento" class="bmd-label-floating">Tipo de Docuemnto</label>
-													<select class="form-control" name="tipo_documento" id="tipo_documento">
-														<option value="" selected="" disabled="">Selecciones su Opcion</option>
-														<option value="Dictamen">Dictamen</option>
-														<option value="Transcripcion">Transcripcion</option>
-														<option value="Ampliacion">Ampliacion</option>
-													</select>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
@@ -87,7 +182,7 @@
 													<input type="date" class="form-control" name="fecha_entrega" id="fecha_entrega">
 												</div>
 											</div>
-											<div class="col-12 col-md-10">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="datos_extra" class="bmd-label-floating">Datos extra</label>
 													<input type="text" class="form-control" name="datos_extra" id="datos_extra" maxlength="27">
@@ -106,36 +201,113 @@
 					</div>
 				</div>
 			</div>
-			
-			<div class="container-fluid">
-				<div class="table-responsive">
-					<table class="table table-dark table-sm" id="tabla-dictamenes">
-						<thead>
-							<tr class="text-center roboto-medium">
-								<th>#</th>
-								<th>NUMERO DEL CASO</th>
-								<th>TIPO DE DOCUMENTO</th>
-								<th>NOMBRE DEL MEDICO</th>
-								<th>FECHA DE EVALUACION</th>
-								<th>AUTORIDAD SOLICITANTE</th>
 
-								<th>FECHA DE ENTREGA</th>
-								<th>DATOS EXTRA</th>
-								<th>MODIFICAR</th>
-								<th>ELIMINAR</th>
-							</tr>
-						</thead>
-						<tbody>
+			<div class="modal fade" id="ModalTranscripcion" tabindex="-1" role="dialog" aria-labelledby="ModalTranscripcion" data-backdrop="static" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="modal-titleTranscripcion">Agregar</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="container-fluid">
+							<form id="formularioTranscripcion" class="form-neon" autocomplete="off">
+								<input type="hidden" name="idTranscripcion" id="idTranscripcion">
+								<fieldset>
+									<div class="container-fluid">
+										<div class="row">
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label for="num_casoTranscripcion" class="bmd-label-floating">Numero del Caso</label>
+													<select class="form-control" name="num_casoTranscripcion" id="num_casoTranscripcion">
+														<option value="">Seleccione una opción</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label for="medicoTranscripcion" class="bmd-label-floating">Nombre del medico</label>
+													<select class="form-control" name="medicoTranscripcion" id="medicoTranscripcion">
+														<option value="">Seleccione una opción</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label for="fecha_evaluacionTranscripcion">Fecha de Evaluacion</label>
+													<input type="date" class="form-control" name="fecha_evaluacionTranscripcion" id="fecha_evaluacionTranscripcion">
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label for="autoridad_soliTranscripcion" class="bmd-label-floating">Autoridad Solicitante </label>
+													<input type="text" class="form-control" name="autoridad_soliTranscripcion" id="autoridad_soliTranscripcion" maxlength="27">
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label for="tipo_documentoTranscripcion" class="bmd-label-floating">Tipo de Docuemnto</label>
+													<select class="form-control" name="tipo_documentoTranscripcion" id="tipo_documentoTranscripcion">
+														<option value="" selected="" disabled="">Seleccione su Opcion</option>
+														<option value="Transcripcion">Transcripcion</option>
+														<option value="Ampliacion">Ampliacion</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label for="fecha_entregaTranscripcion">Fecha de Entrega</label>
+													<input type="date" class="form-control" name="fecha_entregaTranscripcion" id="fecha_entregaTranscripcion">
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label for="datos_extraTranscripcion" class="bmd-label-floating">Datos extra</label>
+													<input type="text" class="form-control" name="datos_extraTranscripcion" id="datos_extraTranscripcion" maxlength="27">
+												</div>
+											</div>
+										</div>
+								</fieldset>
 
-						</tbody>
-					</table>
+								<p class="text-center" style="margin-top: 40px;">
+									<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+									&nbsp; &nbsp;
+									<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+								</p>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
+			
 		</section>
 	</main>
 
 	<?php include "views/templates/archivosJS.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/dictamenes.js"></script>
+	<script>
+		function openTab(event, tabName) {
+    var i, tabcontent, tabbuttons;
+
+    // Ocultar todas las pestañas
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Remover la clase "active" de todos los botones
+    tabbuttons = document.getElementsByClassName("tab-button");
+    for (i = 0; i < tabbuttons.length; i++) {
+        tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+    }
+
+    // Mostrar la pestaña actual y añadir la clase "active" al botón
+    document.getElementById(tabName).style.display = "block";
+    event.currentTarget.className += " active";
+}
+
+	</script>
 </body>
 
 </html>

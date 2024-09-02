@@ -18,7 +18,7 @@ class Bitacora extends Controller
     }
     public function listar()
     {
-        $data = $this->model->getBitacora(0);
+        $data = $this->model->getBitacora();
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         exit();
     }

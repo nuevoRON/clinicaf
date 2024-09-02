@@ -178,6 +178,7 @@
 								<th>SEDE</th>
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
+								<th>DESBLOQUEAR</th>
 							</tr>
 						</thead>
 						<tbody>

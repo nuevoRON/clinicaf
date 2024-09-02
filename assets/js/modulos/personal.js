@@ -193,7 +193,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     return `<button class="btn btn-warning">
                     <i class="fas fa-trash-alt"></i></button>`;
                 }
-            }, 
+            },
+            {
+              render: function(data, type, row) {
+                  return `<button class="btn btn-primary">
+                  <i class="fas fa-user-lock"></i></button>`;
+                }
+            },  
         ],
         //estas dos funciones contienen las referencias a las funciones que realizan edicion y eliminacion
         //se usa una funcion find para encontrar un boton en especifico usando su clase y asi asignarle 
@@ -206,7 +212,11 @@ document.addEventListener("DOMContentLoaded", function () {
   
             $(row).find('.btn-warning').click(function() {
               eliminarEmpleado(data.id_usu);
-          });
+            });
+
+            $(row).find('.btn-primary').click(function() {
+              resetearClaveUsuario(data.id_usu);
+            });
         },
   
       });
@@ -390,8 +400,33 @@ function editarEmpleado(idEmpleado) {
         }
       } 
     })
-  
-  
+}
+
+
+function resetearClaveUsuario(id) {
+  let url = "http://localhost/clinicaf/personal/resetearClave/" + id;
+  //hacer una instancia del objeto CMLHttoRequest
+  const http = new XMLHttpRequest();
+  //Abrir una Conexion - POST - GET
+  http.open("GET", url, true);
+  //Enviar Datos
+  http.send();
+  //Verificar estados
+  http.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const res = JSON.parse(this.responseText);
+
+      Swal.fire({
+        title: res.titulo,
+        text: res.desc,
+        icon: res.type
+      }).then((result) => {
+        if (this.responseText.includes('"type":"success"')) {
+          location.reload();
+        }
+    });
+    }
+  };
 }
 
 

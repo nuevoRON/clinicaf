@@ -227,4 +227,22 @@ class PersonalModel extends Query
                 WHERE correo = '$email'";
         return $this->select($sql);
     }
+
+
+    public function revisarUsuarioBloqueado($id)
+    {
+        $sql = "SELECT id_usu 
+                FROM tbl_usu
+                WHERE id_usu = $id AND estado = 7";
+        return $this->select($sql);
+    }
+
+
+    public function resetearClave($clave, $id){
+        $claveEncriptada = password_hash($clave, PASSWORD_DEFAULT, ['cost' => 12]);
+
+        $sql = "UPDATE tbl_usu SET contrasena=?, estado = 1, intentos = 0 WHERE id_usu=?";
+        $array = array($claveEncriptada,$id);
+        return $this->save($sql, $array);
+    }
 }

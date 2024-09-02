@@ -102,4 +102,9 @@ class Inicio extends Controller{
         $this->views->getView('inicio', 'plantillas');
     }
 
+    public function bitacora()
+    {
+        $this->views->getView('inicio', 'bitacora');
+    }
+
 }

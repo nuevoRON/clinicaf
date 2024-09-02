@@ -90,6 +90,9 @@
 								<li>
 									<a href="<?php echo BASE_URL . 'inicio/permisos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Permisos</a>
 								</li>
+								<li>
+									<a href="<?php echo BASE_URL . 'inicio/bitacora'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Bitácora</a>
+								</li>
 							</ul>
 						</li>
 					<?php }?>

@@ -6,9 +6,18 @@ class BitacoraModel extends Query
     {
         parent::__construct();
     }
-    public function getBitacora($tipo)
+    public function getBitacora()
     {
-        $sql = "SELECT b.FECHA, u.USUARIO, o.OBJETOS, b.ACCION, b.DESCRIPCION, b.TIPO FROM tbl_bitacora b JOIN tbl_objetos o ON b.ID_OBJETO = o.ID_OBJETOS JOIN tbl_usuario u ON u.ID_USUARIO = b.ID_USUARIO WHERE TIPO != $tipo";
+        $sql = "SELECT 
+                    u.usuario,
+                    m.nombre,
+                    b.accion,
+                    b.descripcion,
+                    b.fecha_accion
+                FROM tbl_bitacora b
+                INNER JOIN tbl_usu u on u.id_usu = b.id_usuario 
+                INNER JOIN tbl_modulos m on m.id = b.id_modulo
+                ORDER BY b.id_bitacora DESC";
         return $this->selectAll($sql);
     }
 

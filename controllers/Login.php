@@ -9,17 +9,7 @@ class Login extends Controller{
 
     public function index()
     {
-        $data['title'] = 'Iniciar Sesion';
-        $data['script'] = 'login.js';
-        $this->views->getView('principal', 'login', $data);
-    }
-
-    
-    public function home()
-    {
-        $data['title'] = 'Home';
-        $data['script'] = 'home.js';
-        $this->views->getView('principal', 'home', $data);
+        $this->views->getView('principal', 'login');
     }
 
 

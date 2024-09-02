@@ -266,4 +266,65 @@ class Personal extends Controller
         }
     }
 
+
+        public function resetearClave($id){
+            if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+                if ($id == 1){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'No se puede resetear la clave del usuario administrador', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+    
+                $validarUsuarioBloqueado = $this->model->revisarUsuarioBloqueado($id);
+                if ($validarUsuarioBloqueado == 0){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'El usuario seleccionado no se encuentra bloqueado', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+                
+                if ($id === null) {
+                    $res = array('msg' => 'ID inválido o no proporcionado', 'type' => 'error');
+                } else {
+                    // Realizar la eliminación en la base de datos
+                    $clave = $this->generarClaveAleatoria();
+                    $data = $this->model->resetearClave($clave, $id);
+                    
+                    if ($data > 0) {
+                        // Registro de evento en la bitácora (ejemplo)
+                        //$bitacora = new Bitacora();
+                        //$bitacora->model->crearEvento($_SESSION['id_usuario'], 12, 'ELIMINACION', 'SE HA ELIMINADO EL AREA ' . $id, 1);
+                        
+                        $res = array('titulo' => 'Contraseña de Usuario Reseteada', 
+                                    'desc' => "Se ha generado la siguiente contraseña temporal para este usuario: $clave ", 
+                                    'type' => 'success');
+                    } else {
+                        $res = array('titulo' => 'Error', 
+                                    'desc' => 'Hubo un error al resetear la clave de este usuario', 
+                                    'type' => 'warning');
+                    }
+                }
+                
+                // Devolver respuesta en formato JSON
+                echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                die();
+            }
+        }
+
+
+        private function generarClaveAleatoria($longitud = 9) {
+            $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()';
+            $claveAleatoria = '';
+            $max = strlen($caracteres) - 1;
+        
+            for ($i = 0; $i < $longitud; $i++) {
+                $claveAleatoria .= $caracteres[random_int(0, $max)];
+            }
+        
+            return $claveAleatoria;
+        }
+
 }
