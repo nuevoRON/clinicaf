@@ -489,7 +489,7 @@ function mostrarModal(){
   });
 }
 
-document.getElementById("btnModalproveído").addEventListener("click", mostrarModal);
+document.getElementById("btnModalProveido1").addEventListener("click", mostrarModal);
 
 
 function exportarPDF() {

@@ -49,16 +49,11 @@ class exportacionPDFModel extends Query
     {
         $sql = "SELECT  r.id_revision,
                         CONCAT(u.nombre, ' ', u.apellido) AS nombre_completo,
-                        r.enviado_para,
                         r.fecha_revision,
-                        r.tipo_dictamen,
                         r.numero_dictamen,
                         r.nombre_evaluado,
                         r.fecha_evaluacion,
                         t.nom_reconocimiento,
-                        r.obs_reconocimiento,
-                        r.estado_dictamen,
-                        r.obs_dictamen,
                         r.sede_medico,
                         s.ubicacion
                 FROM tbl_revision_casos r

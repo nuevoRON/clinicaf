@@ -302,16 +302,11 @@ class exportacionPDF extends Controller
               <thead>
                 <tr>
                   <th>Medico</th>
-                  <th>Enviado para</th>
                   <th>Fecha de Revisión</th>
-                  <th>Tipo de Dictamen</th>
                   <th>N° Dictamen</th>
                   <th>Nombre Evaluado</th>
                   <th>Fecha de Evaluacion</th>
                   <th>Tipo de Reconocimiento</th>
-                  <th>Observaciones Reconocimiento</th>
-                  <th>Estado de Dictamen</th>
-                  <th>Observaciones Dictamen</th>
                   <th>Sede Medico</th>
                   <th>Clinica</th>
                 </tr>
@@ -321,16 +316,11 @@ class exportacionPDF extends Controller
               foreach($data as $val){
                 $contenido .='<tr>';
                 $contenido .= '<td>' . $val["nombre_completo"] . '</td>';
-                $contenido .= '<td>' . $val["enviado_para"] . '</td>';
                 $contenido .= '<td>' . $val["fecha_revision"] . '</td>';
-                $contenido .= '<td>' . $val["tipo_dictamen"] . '</td>';
                 $contenido .= '<td>' . $val["numero_dictamen"] . '</td>';
                 $contenido .= '<td>' . $val["nombre_evaluado"] . '</td>';
                 $contenido .= '<td>' . $val["fecha_evaluacion"] . '</td>';
                 $contenido .= '<td>' . $val["nom_reconocimiento"] . '</td>';
-                $contenido .= '<td>' . $val["obs_reconocimiento"] . '</td>';
-                $contenido .= '<td>' . $val["estado_dictamen"] . '</td>';
-                $contenido .= '<td>' . $val["obs_dictamen"] . '</td>';
                 $contenido .= '<td>' . $val["sede_medico"] . '</td>';
                 $contenido .= '<td>' . $val["ubicacion"] . '</td>';
 

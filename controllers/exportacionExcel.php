@@ -252,50 +252,35 @@ class exportacionExcel extends Controller
 
       $hojaDeProductos->setTitle("Reporte de Casos");
       $hojaDeProductos->setCellValue('A5','Medico');
-      $hojaDeProductos->setCellValue('B5','Enviado para');
-      $hojaDeProductos->setCellValue('C5','Fecha de Revisión');
-      $hojaDeProductos->setCellValue('D5','Tipo de Dictamen');
-      $hojaDeProductos->setCellValue('E5','N° Dictamen');
-      $hojaDeProductos->setCellValue('F5','Nombre Evaluado');
-      $hojaDeProductos->setCellValue('G5','Fecha de Evaluacion');
-      $hojaDeProductos->setCellValue('H5','Tipo de Reconocimiento');
-      $hojaDeProductos->setCellValue('I5','Observaciones Reconocimiento');
-      $hojaDeProductos->setCellValue('J5','Estado de Dictamen');
-      $hojaDeProductos->setCellValue('K5','Observaciones Dictamen');
-      $hojaDeProductos->setCellValue('L5','Sede Medico');
-      $hojaDeProductos->setCellValue('M5','Clinica');
+      $hojaDeProductos->setCellValue('B5','Fecha de Revisión');
+      $hojaDeProductos->setCellValue('C5','N° Dictamen');
+      $hojaDeProductos->setCellValue('D5','Nombre Evaluado');
+      $hojaDeProductos->setCellValue('E5','Fecha de Evaluacion');
+      $hojaDeProductos->setCellValue('F5','Tipo de Reconocimiento');
+      $hojaDeProductos->setCellValue('G5','Sede Medico');
+      $hojaDeProductos->setCellValue('H5','Clinica');
       
       # Comenzamos en la fila 2
       $numeroDeFila = 6;
       foreach($data as $val){
         $nombre_completo = $val['nombre_completo'];
-        $enviado_para = $val['enviado_para'];
         $fecha_revision = $val['fecha_revision'];
-        $tipo_dictamen = $val['tipo_dictamen'];
         $numero_dictamen = $val['numero_dictamen'];
         $nombre_evaluado = $val['nombre_evaluado'];
         $fecha_evaluacion = $val['fecha_evaluacion'];
         $nom_reconocimiento = $val['nom_reconocimiento'];
-        $obs_reconocimiento = $val['obs_reconocimiento'];
-        $estado_dictamen = $val['estado_dictamen'];
-        $obs_dictamen = $val['obs_dictamen'];
         $sede_medico = $val['sede_medico'];
         $ubicacion = $val['ubicacion'];
 
         # Escribir registros en el documento
         $hojaDeProductos->setCellValue('A'. $numeroDeFila, $nombre_completo);
-        $hojaDeProductos->setCellValue('B'. $numeroDeFila, $enviado_para);
-        $hojaDeProductos->setCellValue('C'. $numeroDeFila, $fecha_revision);
-        $hojaDeProductos->setCellValue('D'. $numeroDeFila, $tipo_dictamen);
-        $hojaDeProductos->setCellValue('E'. $numeroDeFila, $numero_dictamen);
-        $hojaDeProductos->setCellValue('F'. $numeroDeFila, $nombre_evaluado);
-        $hojaDeProductos->setCellValue('G'. $numeroDeFila, $fecha_evaluacion);
-        $hojaDeProductos->setCellValue('H'. $numeroDeFila, $nom_reconocimiento);
-        $hojaDeProductos->setCellValue('I'. $numeroDeFila, $obs_reconocimiento);
-        $hojaDeProductos->setCellValue('J'. $numeroDeFila, $estado_dictamen);
-        $hojaDeProductos->setCellValue('K'. $numeroDeFila, $obs_dictamen);
-        $hojaDeProductos->setCellValue('L'. $numeroDeFila, $sede_medico);
-        $hojaDeProductos->setCellValue('M'. $numeroDeFila, $ubicacion);
+        $hojaDeProductos->setCellValue('B'. $numeroDeFila, $fecha_revision);
+        $hojaDeProductos->setCellValue('C'. $numeroDeFila, $numero_dictamen);
+        $hojaDeProductos->setCellValue('D'. $numeroDeFila, $nombre_evaluado);
+        $hojaDeProductos->setCellValue('E'. $numeroDeFila, $fecha_evaluacion);
+        $hojaDeProductos->setCellValue('F'. $numeroDeFila, $nom_reconocimiento);
+        $hojaDeProductos->setCellValue('G'. $numeroDeFila, $sede_medico);
+        $hojaDeProductos->setCellValue('H'. $numeroDeFila, $ubicacion);
 
          $numeroDeFila++;
       }
@@ -317,32 +302,22 @@ class exportacionExcel extends Controller
       setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
       $documento->getActiveSheet()->getStyle('H5:H'.$numeroDeFila)->getBorders()->getLeft()->
       setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
-      $documento->getActiveSheet()->getStyle('I5:I'.$numeroDeFila)->getBorders()->getLeft()->
-      setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
-      $documento->getActiveSheet()->getStyle('J5:J'.$numeroDeFila)->getBorders()->getLeft()->
-      setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
-      $documento->getActiveSheet()->getStyle('K5:K'.$numeroDeFila)->getBorders()->getLeft()->
-      setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
-      $documento->getActiveSheet()->getStyle('L5:L'.$numeroDeFila)->getBorders()->getLeft()->
-      setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
-      $documento->getActiveSheet()->getStyle('M5:M'.$numeroDeFila)->getBorders()->getLeft()->
-      setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
 
           
-      $documento->getActiveSheet()->getStyle('A5:M5')->getBorders()->getTop()->
+      $documento->getActiveSheet()->getStyle('A5:H5')->getBorders()->getTop()->
       setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
-      $documento->getActiveSheet()->getStyle('A6:M6')->getBorders()->getTop()->
-      setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
-          
-      $documento->getActiveSheet()->getStyle('M5:M'.$numeroDeFila)->getBorders()->getRight()->
+      $documento->getActiveSheet()->getStyle('A6:H6')->getBorders()->getTop()->
       setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
           
-      $documento->getActiveSheet()->getStyle('A'.$numeroDeFila.':M'.$numeroDeFila)->getBorders()->getBottom()->
+      $documento->getActiveSheet()->getStyle('H5:H'.$numeroDeFila)->getBorders()->getRight()->
       setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
           
-      $documento->getActiveSheet()->getStyle('A5:M'.$numeroDeFila)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
-      $documento->getActiveSheet()->getStyle('A5:M5')->getFont()->setBold(true);
-      $documento->getActiveSheet()->getStyle('A5:M5')->getFill()
+      $documento->getActiveSheet()->getStyle('A'.$numeroDeFila.':H'.$numeroDeFila)->getBorders()->getBottom()->
+      setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+          
+      $documento->getActiveSheet()->getStyle('A5:H'.$numeroDeFila)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+      $documento->getActiveSheet()->getStyle('A5:H5')->getFont()->setBold(true);
+      $documento->getActiveSheet()->getStyle('A5:H5')->getFill()
           ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
           ->getStartColor()->setARGB('FFCB27');
       /* Here there will be some code where you create $spreadsheet */
