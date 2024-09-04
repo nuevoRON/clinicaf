@@ -45,7 +45,7 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="departamento" class="bmd-label-floating">Departamnto</label>
-													<select class="form-control" name="departamento" id="departamento">
+													<select class="form-control" name="departamento" id="departamento" required>
 														<option value="" selected="" disabled="">Seleccione el Departamento</option>
 
 													</select>
@@ -54,7 +54,7 @@
 											<div class="col-12 col-md-8">
 												<div class="form-group">
 													<label for="municipio" class="bmd-label-floating">Municipio</label>
-													<select class="form-control" name="municipio" id="municipio">
+													<select class="form-control" name="municipio" id="municipio" required>
 
 													</select>
 												</div>
@@ -62,19 +62,19 @@
 											<div class="col-12 col-md-8">
 												<div class="form-group">
 													<label for="ubicacion" class="bmd-label-floating">Lugar de Ubicacion</label>
-													<input type="text" class="form-control" name="ubicacion" id="ubicacion" maxlength="50">
+													<input type="text" class="form-control" name="ubicacion" id="ubicacion" maxlength="50" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-8">
 												<div class="form-group">
 													<label for="ubicacion" class="bmd-label-floating">Codigo Alfábetico</label>
-													<input type="text" class="form-control" name="cod_alfabetico" id="cod_alfabetico" maxlength="5">
+													<input type="text" class="form-control" name="cod_alfabetico" id="cod_alfabetico" maxlength="5" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-8">
 												<div class="form-group">
 													<label for="ubicacion" class="bmd-label-floating">Código Numérico</label>
-													<input type="number" class="form-control" name="cod_numerico" id="cod_numerico" maxlength="5">
+													<input type="number" class="form-control" name="cod_numerico" id="cod_numerico" maxlength="5" required>
 												</div>
 											</div>
 

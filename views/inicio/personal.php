@@ -45,7 +45,8 @@
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="nombre" class="bmd-label-floating">Nombre</label>
-													<input type="text" class="form-control" name="nombre" id="nombre" maxlength="27">
+													<input type="text" class="form-control" name="nombre" id="nombre">
+													<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 												</div>
 												<div class="col-12 col-md-4">
 												</div>
@@ -53,31 +54,33 @@
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="apellido" class="bmd-label-floating">Apellido</label>
-													<input type="text" class="form-control" name="apellido" id="apellido" maxlength="27">
+													<input type="text" class="form-control" name="apellido" id="apellido">
+													<span id="spanApellido" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="numero_colegiacion" class="bmd-label-floating">Numero de Colegiación</label>
-													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="numero_colegiacion" id="numero_colegiacion" maxlength="27">
+													<input type="text" class="form-control" name="numero_colegiacion" id="numero_colegiacion" maxlength="27">
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="numero_empleado" class="bmd-label-floating">Nº de Empleado</label>
-													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="numero_empleado" id="numero_empleado" maxlength="27">
+													<input type="text" class="form-control" name="numero_empleado" id="numero_empleado" maxlength="27">
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="usuario" class="bmd-label-floating">Usuario</label>
-													<input type="text" class="form-control" name="usuario" id="usuario" maxlength="27">
+													<input type="text" class="form-control" name="usuario" id="usuario">
+													<span id="spanUsuario" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="telefono" class="bmd-label-floating">Nº de Telefono</label>
-													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="telefono" id="telefono" maxlength="27">
+													<input type="number" class="form-control" name="telefono" id="telefono" maxlength="8">
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
@@ -192,6 +195,7 @@
 
 	<?php include "views/templates/archivosJS.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/personal.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/validaciones/validacionPersonal.js"></script>
 </body>
 
 </html>

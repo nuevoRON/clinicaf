@@ -51,6 +51,7 @@ class Proveidos extends Controller
                 $fechaRecepcion = strClean($_POST['fecha_recepcion']);
                 $fiscalia = strClean($_POST['item_dependencia_reg']);
                 $numeroExterno = strClean($_POST['numero_externo_reg']);
+                $especificar = isset($_POST['especificar']) ? strClean($_POST['especificar']) : null;
 
                 /* Datos para la tabla de Evaluado */
                 $nombre = strClean($_POST['nombre']);
@@ -80,7 +81,8 @@ class Proveidos extends Controller
                 $numeroSolicitudCorrelativo = $this->generarNumeroSolicitudCorrelativo($sede, $laboratorio);
                 $numeroCasoCorrelativo = $this->generarNumeroCasoCorrelativo($sede);
 
-                $dataProveido = $this->model->insertarProveido($numeroSolicitudCorrelativo, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$numeroCasoCorrelativo);
+                $dataProveido = $this->model->insertarProveido($numeroSolicitudCorrelativo, $fechaEmision, $fechaRecepcion, $fiscalia, 
+                $numeroExterno,$numeroCasoCorrelativo,$especificar);
                 $dataEvaluado = $this->model->insertarEvaluado($nombre, $apellido, $dni, $dataProveido);
                 $dataHechos = $this->model->insertarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido);
                 $dataReconocimiento = $this->model->insertarReconocimiento($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion);
@@ -112,6 +114,7 @@ class Proveidos extends Controller
                 $fechaRecepcion = strClean($putData['fecha_recepcion']);
                 $fiscalia = strClean($putData['item_dependencia_reg']);
                 $numeroExterno = strClean($putData['numero_externo_reg']);
+                $especificar = strClean($putData['especificar']);
 
                 /* Datos para la tabla de Evaluado */
                 $nombre = strClean($putData['nombre']);
@@ -131,7 +134,7 @@ class Proveidos extends Controller
                 $fechaCitacion = strClean($putData['fecha_citacion']);
                 $id = strClean($putData['id']);
 
-                $dataProveido = $this->model->actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, $id);
+                $dataProveido = $this->model->actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, $especificar, $id);
                 $dataEvaluado = $this->model->actualizarEvaluado($nombre, $apellido, $dni, $id);
                 $dataHechos = $this->model->actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id);
                 $dataReconocimiento = $this->model->actualizarReconocimiento($tipoReconocimiento, $medico, $fechaCitacion, $id);

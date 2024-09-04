@@ -378,6 +378,7 @@ function editarProveido(idProveido) {
             document.getElementById('numero_externo_reg').value = res.num_caso_ext;
             document.getElementById('fecha_emision').value = res.fech_emi_soli;
             document.getElementById('fecha_recepcion').value = res.fech_recep_soli;
+            document.getElementById('especificar').value = res.especifique_cual;
             document.getElementById('nombre').value = res.nombre_evaluado;
             document.getElementById('apellido').value = res.apellido_evaluado;
             document.getElementById('dni').value = res.dni_evaluado;
@@ -489,3 +490,17 @@ function mostrarModal(){
 }
 
 document.getElementById("btnModalproveído").addEventListener("click", mostrarModal);
+
+
+function exportarPDF() {
+  let urlDescarga = "http://localhost/clinicaf/exportacionPDF/exportarProveidos";
+    
+  window.location.href = urlDescarga;
+}
+
+
+function exportarExcel() {
+  let urlDescarga = "http://localhost/clinicaf/exportacionExcel/exportarProveidos";
+    
+  window.location.href = urlDescarga;
+}

@@ -20,10 +20,16 @@
 				<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDO
 			</h3>
 			<div class="container-fluid">
-				<div class="container-fluid">
-					<p class="text-center">
-						<button type="button" class="btn btn-primary" id="btnModalproveído"><i class="fas fa-user-plus"></i> &nbsp; Agregar Proveído</button>
-					</p>
+				<div class="text-center">
+					<button type="button" class="btn btn-primary" id="btnModalProveido1">
+						<i class="fas fa-user-plus"></i> &nbsp; Agregar Proveído
+					</button>
+					<button type="button" class="btn btn-danger" id="btnPDFProveido" onclick="exportarPDF()">
+						<i class="fas fa-file-pdf"></i> &nbsp; Exportar PDF
+					</button>
+					<button type="button" class="btn btn-success" id="btnModalProveido3" onclick="exportarExcel()">
+						<i class="fas fa-file-excel"></i> &nbsp; ExportarExcel
+					</button>
 				</div>
 			</div>
 			<div class="container-fluid">
@@ -108,7 +114,8 @@
 
 											<div class="form-group">
 												<label for="especificar" class="bmd-label-floating">Especifique Cual</label>
-												<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="especificar" id="especificar" maxlength="27">
+												<input type="text" class="form-control" name="especificar" id="especificar" maxlength="30">
+												<span id="spanEspecificar" style="color: red; font-size:1rem;"></span>
 											</div>
 										</div>
 										&nbsp; &nbsp; &nbsp; &nbsp;
@@ -118,22 +125,22 @@
 												<div class="col-12 col-md-4">
 													<div class="form-group">
 														<label for="nombre" class="bmd-label-floating">Nombre</label>
-														<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" title="Este campo solo acepta letras"
-															class="form-control" name="nombre" id="nombre" required>
+														<input type="text" class="form-control" name="nombre" id="nombre" required>
+														<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 													</div>
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
 														<label for="apellido" class="bmd-label-floating">Apellido</label>
-														<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" class="form-control" title="Este campo solo acepta letras"
-															name="apellido" id="apellido" required>
+														<input type="text" class="form-control" name="apellido" id="apellido" required>
+														<span id="spanApellido" style="color: red; font-size:1rem;"></span>
 													</div>
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
-														<label for="cliente_apellido" class="bmd-label-floating">DNI</label>
-														<input type="text" pattern="[0-9]{1,15}" title="Este campo solo acepta números"
-															class="form-control" name="dni" id="dni" required>
+														<label for="dni" class="bmd-label-floating">DNI</label>
+														<input type="text" pattern="[0-9]{1,13}" title="Este campo solo acepta números"
+															class="form-control" name="dni" id="dni" required maxlength="13">
 													</div>
 												</div>
 
@@ -167,15 +174,15 @@
 																<div class="col-12 col-md-6">
 																	<div class="form-group">
 																		<label for="aldea_barrio" class="bmd-label-floating">Caserío, Aldea o Barrio, del Hecho</label>
-																		<input type="text" class="form-control" name="aldea_barrio" id="aldea_barrio"
-																			pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,100}" title="Este campo solo acepta letras" required>
+																		<input type="text" class="form-control" name="aldea_barrio" id="aldea_barrio" required>
+																		<span id="spanBarrio" style="color: red; font-size:1rem;"></span>
 																	</div>
 																</div>
 																<div class="col-12 col-md-6">
 																	<div class="form-group">
 																		<label for="lugar" class="bmd-label-floating">Lugar Donde Ocurrió el Hecho</label>
-																		<input type="text" class="form-control" name="lugar" id="lugar" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,30}"
-																			title="Este campo solo acepta letras" required>
+																		<input type="text" class="form-control" name="lugar" id="lugar" required>
+																		<span id="spanLugar" style="color: red; font-size:1rem;"></span>
 																	</div>
 																</div>
 																<div class="col-12 col-md-6">
@@ -235,7 +242,7 @@
 									<p class="text-center" style="margin-top: 40px;">
 										<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
 										&nbsp; &nbsp;
-										<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+										<button type="submit" class="btn btn-raised btn-info btn-sm" id="btn-enviar"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
 									</p>
 						</form>
 					</div>
@@ -243,6 +250,7 @@
 				
 	<?php include "views/templates/archivosJS.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/proveidos.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/validaciones/validacionProveidos.js"></script>
 </body>
 
 </html>

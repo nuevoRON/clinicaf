@@ -45,14 +45,14 @@
 											<div class="col-12 col-md-8">
 												<div class="form-group">
 													<label for="puesto" class="bmd-label-floating">Nombre de Puesto</label>
-													<input type="text" class="form-control" name="puesto" id="puesto" maxlength="50">
+													<input type="text" class="form-control" name="puesto" id="puesto" maxlength="50" required>
 													<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-8">
 												<div class="form-group">
-													<label for="estado" class="bmd-label-floating">ESTADO</label>
-													<select class="form-control" name="estado" id="estado">
+													<label for="estado" class="bmd-label-floating">Estado</label>
+													<select class="form-control" name="estado" id="estado" required>
 														<option value="" disabled selected>Seleccione una opción</option>
 														<option value="Activo">Activo</option>
 														<option value="Inactivo">Inactivo</option>

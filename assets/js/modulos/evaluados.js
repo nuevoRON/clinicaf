@@ -249,6 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('numero_caso_ext').value = res.num_caso_ext;
         document.getElementById('fecha_emision').value = res.fech_emi_soli;
         document.getElementById('fecha_recepcion').value = res.fech_recep_soli;
+        document.getElementById('especifique').value = res.especifique_cual;
         document.getElementById('nombre').value = res.nombre_evaluado;
         document.getElementById('apellido').value = res.apellido_evaluado;
         document.getElementById('dni').value = res.dni_evaluado;
@@ -272,13 +273,13 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#nacionalidad option[value=" + res.nacionalidad + "]").attr({ selected: true });
         $("#sexo option[value=" + res.id_sexo + "]").attr({ selected: true });
         $("#estadoCivil option[value=" + res.estado_civil + "]").attr({ selected: true });
-        $("#ocupacion option[value=" + res.ocupacion + "]").attr({ selected: true });
+        $("#ocupacion option[value='" + res.ocupacion + "']").attr({ selected: true });
         $("#escolaridad option[value=" + res.escolaridad + "]").attr({ selected: true });
         $("#tiempo option[value=" + res.tiempo + "]").attr({ selected: true });
         $("#relacion option[value='" + res.relacion_acompanante + "']").attr({ selected: true });
-        $("#permiso_evaluacion option[value=" + res.consentimiento_informado + "]").attr({ selected: true });
-        $("#instrumento option[value=" + res.instrumento_agresion + "]").attr({ selected: true });
-        $("#relacion_agresor option[value=" + res.relacion_agresor + "]").attr({ selected: true });
+        $("#permiso_evaluacion option[value='" + res.consentimiento_informado + "']").attr({ selected: true });
+        $("#instrumento option[value='" + res.instrumento_agresion + "']").attr({ selected: true });
+        $("#relacion_agresor option[value='" + res.relacion_agresor + "']").attr({ selected: true });
         $("#sede_evaluacion option[value=" + res.sede_evaluacion + "]").attr({ selected: true });
   
         if (res.consentimiento_informado === 'Si') {
@@ -549,3 +550,33 @@ function eliminarProveido(idProveido) {
     }
   });
 }
+
+//Funcion para limitar cantidad de caracteres en campos
+function limitarCaracteres(elemento, maximo) {
+    if (elemento.value.length > maximo) {
+        elemento.value = elemento.value.slice(0, maximo);
+    }
+}
+
+document.getElementById("dni").addEventListener("input", function () {
+  const valor = document.getElementById("dni");
+  limitarCaracteres(valor, 13);
+});
+
+document.getElementById("dni_acomp").addEventListener("input", function () {
+  const valor = document.getElementById("dni_acomp");
+  limitarCaracteres(valor, 13);
+});
+
+
+document.getElementById("edad").addEventListener("input", function () {
+  const valor = document.getElementById("edad");
+  limitarCaracteres(valor, 3);
+});
+
+
+document.getElementById("telefono").addEventListener("input", function () {
+  const valor = document.getElementById("telefono");
+  limitarCaracteres(valor, 8);
+});
+

@@ -45,7 +45,7 @@
 											<div class="col-12 col-md-8">
 												<div class="form-group">
 													<label for="reconocimiento" class="bmd-label-floating">Nombre de Reconocimiento</label>
-													<input type="text" class="form-control" name="reconocimiento" id="reconocimiento" maxlength="50">
+													<input type="text" class="form-control" name="reconocimiento" id="reconocimiento" maxlength="50" required>
 													<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>

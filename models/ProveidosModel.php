@@ -1,6 +1,8 @@
 <?php
-class ProveidosModel extends Query{
-    public function __construct() {
+class ProveidosModel extends Query
+{
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -29,35 +31,42 @@ class ProveidosModel extends Query{
         return $this->selectAll($sql);
     }
 
-    public function insertarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$numeroCasoCorrelativo) {
+    public function insertarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, 
+    $numeroCasoCorrelativo,$especificar)
+    {
         $sql = "INSERT INTO tbl_proveidos (num_caso,num_caso_ext,fech_emi_soli, fech_recep_soli,
-        fiscalia_remitente, registro_borrado, num_solicitud) VALUES(?,?,?,?,?,?,?)";
-        $array = array($numeroCasoCorrelativo,  $numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, 'A',$numeroSolicitud);
+        fiscalia_remitente, registro_borrado, num_solicitud, especifique_cual) VALUES(?,?,?,?,?,?,?,?)";
+        $array = array($numeroCasoCorrelativo,  $numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, 'A',
+         $numeroSolicitud,$especificar);
         return $this->insertar($sql, $array);
     }
 
-    public function insertarEvaluado($nombre, $apellido, $dni, $dataProveido) {
+    public function insertarEvaluado($nombre, $apellido, $dni, $dataProveido)
+    {
         $sql = "INSERT INTO tbl_evaluado (nombre_evaluado,apellido_evaluado,dni_evaluado, id_proveido, estado_evaluacion) 
         VALUES(?,?,?,?,?)";
         $array = array($nombre,  $apellido, $dni, $dataProveido, 'Nuevo');
         return $this->insertar($sql, $array);
     }
 
-    public function insertarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido) {
+    public function insertarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido)
+    {
         $sql = "INSERT INTO tbl_hecho (id_departamento,id_municipio,localidad, lugar_hecho,fecha_hecho,
         id_proveido) VALUES(?,?,?,?,?,?)";
         $array = array($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido);
         return $this->insertar($sql, $array);
     }
 
-    public function insertarReconocimiento($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion) {
+    public function insertarReconocimiento($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion)
+    {
         $sql = "INSERT INTO tbl_proveido_reconocimiento (id_proveido_reconocimiento,tipo_reconocimiento,medico, fecha_citacion) 
         VALUES(?,?,?,?)";
         $array = array($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion);
         return $this->insertar($sql, $array);
     }
 
-    public function insertarEvaluacion($dataProveido) {
+    public function insertarEvaluacion($dataProveido)
+    {
         $sql = "INSERT INTO tbl_evaluacion (id_proveido) VALUES(?)";
         $array = array($dataProveido);
         return $this->insertar($sql, $array);
@@ -70,6 +79,7 @@ class ProveidosModel extends Query{
                         p.fech_emi_soli,
                         p.fech_recep_soli,
                         p.fiscalia_remitente,
+                        p.especifique_cual,
                         e.nombre_evaluado,
                         e.apellido_evaluado,
                         e.dni_evaluado,
@@ -91,28 +101,28 @@ class ProveidosModel extends Query{
         return $this->select($sql);
     }
 
-    public function actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$id)
+    public function actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$especificar, $id)
     {
         $sql = "UPDATE tbl_proveidos SET num_caso_ext = ?, fech_emi_soli=?, fech_recep_soli=?,
-        fiscalia_remitente=? WHERE id_proveidos=?";
-        $array = array($numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, $id);
+        fiscalia_remitente=?, especifique_cual=? WHERE id_proveidos=?";
+        $array = array($numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, $especificar,$id);
         return $this->save($sql, $array);
     }
 
 
-    public function actualizarEvaluado($nombre, $apellido, $dni,$id)
+    public function actualizarEvaluado($nombre, $apellido, $dni, $id)
     {
         $sql = "UPDATE tbl_evaluado SET nombre_evaluado=?, apellido_evaluado=?, dni_evaluado=?
         WHERE id_proveido=?";
-        $array = array($nombre, $apellido, $dni,$id);
+        $array = array($nombre, $apellido, $dni, $id);
         return $this->save($sql, $array);
     }
 
-    public function actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho,$id)
+    public function actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id)
     {
         $sql = "UPDATE tbl_hecho SET id_departamento=?, id_municipio=?, localidad=?, lugar_hecho=?, fecha_hecho=? 
         WHERE id_proveido=?";
-        $array = array($departamento, $municipio, $localidad, $lugar, $fechaHecho,$id);
+        $array = array($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id);
         return $this->save($sql, $array);
     }
 
@@ -145,56 +155,65 @@ class ProveidosModel extends Query{
     }
 
 
-    public function insertarNumeroSolicitud($numeroSolicitud) {
+    public function insertarNumeroSolicitud($numeroSolicitud)
+    {
         $sql = "INSERT INTO tbl_numero_solicitud_temp (numero_solicitud) VALUES(?)";
         $array = array($numeroSolicitud);
         return $this->insertar($sql, $array);
     }
 
 
-    public function obtenerUltimoCorrelativo($sede, $laboratorio) {
+    public function obtenerUltimoCorrelativo($sede, $laboratorio)
+    {
         $sql = "SELECT ultimo_correlativo FROM tbl_correlativos_solicitud WHERE sede = ? AND laboratorio = ? FOR UPDATE";
         return $this->getSingleValue($sql, [$sede, $laboratorio]);
     }
 
     //Funciones para generar numero de solicitud
-    public function insertarNuevoCorrelativo($sede, $laboratorio, $correlativoInicial) {
+    public function insertarNuevoCorrelativo($sede, $laboratorio, $correlativoInicial)
+    {
         $sql = "INSERT INTO tbl_correlativos_solicitud (sede, laboratorio, ultimo_correlativo) VALUES (?, ?, ?)";
         return $this->save($sql, [$sede, $laboratorio, $correlativoInicial]);
     }
 
-    public function actualizarUltimoCorrelativo($sede, $laboratorio, $nuevoCorrelativo) {
+    public function actualizarUltimoCorrelativo($sede, $laboratorio, $nuevoCorrelativo)
+    {
         $sql = "UPDATE tbl_correlativos_solicitud SET ultimo_correlativo = ? WHERE sede = ? AND laboratorio = ?";
         return $this->save($sql, [$nuevoCorrelativo, $sede, $laboratorio]);
     }
 
 
     //Funciones para generar numero de caso
-    public function obtenerUltimoCorrelativoCaso($sede) {
+    public function obtenerUltimoCorrelativoCaso($sede)
+    {
         $sql = "SELECT ultimo_correlativo FROM tbl_correlativo_caso WHERE sede = ? FOR UPDATE";
         return $this->getSingleValue($sql, [$sede]);
     }
 
-    public function insertarNuevoCorrelativoCaso($sede, $correlativoInicial) {
+    public function insertarNuevoCorrelativoCaso($sede, $correlativoInicial)
+    {
         $sql = "INSERT INTO tbl_correlativo_caso (sede, ultimo_correlativo) VALUES (?, ?)";
-        return $this->save($sql, [$sede,$correlativoInicial]);
+        return $this->save($sql, [$sede, $correlativoInicial]);
     }
 
-    public function actualizarUltimoCorrelativoCaso($sede, $nuevoCorrelativo) {
+    public function actualizarUltimoCorrelativoCaso($sede, $nuevoCorrelativo)
+    {
         $sql = "UPDATE tbl_correlativo_caso SET ultimo_correlativo = ? WHERE sede = ?";
         return $this->save($sql, [$nuevoCorrelativo, $sede]);
     }
 
-    public function iniciarTransaccion() {
+    public function iniciarTransaccion()
+    {
         $this->beginTransaction();
     }
 
-    public function confirmarTransaccion() {
+    public function confirmarTransaccion()
+    {
         $this->commit();
     }
 
-    public function revertirTransaccion() {
+    public function revertirTransaccion()
+    {
         $this->rollback();
     }
-
 }

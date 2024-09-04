@@ -345,3 +345,17 @@ function mostrarModal(){
 }
 
 document.getElementById("btnModalVacacion").addEventListener("click", mostrarModal);
+
+
+function exportarPDF() {
+  let urlDescarga = "http://localhost/clinicaf/exportacionPDF/exportarVacaciones";
+    
+  window.location.href = urlDescarga;
+}
+
+
+function exportarExcel() {
+  let urlDescarga = "http://localhost/clinicaf/exportacionExcel/exportarVacaciones";
+    
+  window.location.href = urlDescarga;
+}

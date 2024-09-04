@@ -1,7 +1,15 @@
 <?php
 class EvaluadosModel extends Query{
+    private $id_usuario;
+    private $puesto;
+
     public function __construct() {
         parent::__construct();
+        session_start();
+        if (!empty($_SESSION['id_usuario'])) {
+            $this->id_usuario = $_SESSION['id_usuario'];
+            $this->puesto = $_SESSION['puesto'];
+        }
     }
 
 
@@ -46,7 +54,13 @@ class EvaluadosModel extends Query{
 
     public function listarEvaluados()
     {
-        $sql = "SELECT  p.id_proveidos,
+        $puesto = $this->puesto;
+        $id = $this->id_usuario;
+
+        if($puesto == 'Medico Especialista' 
+            || $puesto == 'Perito Medico Forense'
+            || $puesto == 'Odontologo'){
+            $sql = "SELECT  p.id_proveidos,
                         p.num_caso,
                         e.dni_evaluado,
                         e.nombre_evaluado, 
@@ -55,11 +69,28 @@ class EvaluadosModel extends Query{
                         r.nom_reconocimiento,
                         e.estado_evaluacion
                         FROM tbl_proveidos p
-                INNER JOIN tbl_evaluado e on e.id_proveido = p.id_proveidos
-                INNER JOIN tbl_dependencia d on d.id_dependencia = p.fiscalia_remitente
-                INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
-                INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
-                WHERE p.registro_borrado = 'A';";
+            INNER JOIN tbl_evaluado e on e.id_proveido = p.id_proveidos
+            INNER JOIN tbl_dependencia d on d.id_dependencia = p.fiscalia_remitente
+            INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
+            INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
+            WHERE p.registro_borrado = 'A' AND pr.medico = $id";
+        }else{
+            $sql = "SELECT  p.id_proveidos,
+                p.num_caso,
+                e.dni_evaluado,
+                e.nombre_evaluado, 
+                e.apellido_evaluado,
+                d.nom_dependencia,
+                r.nom_reconocimiento,
+                e.estado_evaluacion
+            FROM tbl_proveidos p
+            INNER JOIN tbl_evaluado e on e.id_proveido = p.id_proveidos
+            INNER JOIN tbl_dependencia d on d.id_dependencia = p.fiscalia_remitente
+            INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
+            INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
+            WHERE p.registro_borrado = 'A'";
+        }
+        
         return $this->selectAll($sql);
     }
 
@@ -70,6 +101,7 @@ class EvaluadosModel extends Query{
                         p.fech_emi_soli,
                         p.fech_recep_soli,
                         p.num_solicitud,
+                        p.especifique_cual,
                         d.nom_dependencia,
                         r.nom_reconocimiento,
                         e.nombre_evaluado,

@@ -18,11 +18,20 @@
             <h3 class="text-left">
                 <i class="fas fa-plus fa-fw"></i> &nbsp; CONTROL DE REVISIÓN DE CASOS
             </h3>
-
-            <p class="text-center">
-                <button type="button" class="btn btn-primary" id="btnModalCaso"><i class="fas fa-user-plus"></i> &nbsp; Agregar Caso</button>
-            </p>
-
+            <div class="container-fluid">
+				<div class="text-center">
+                    <p class="text-center">
+                        <button type="button" class="btn btn-primary" id="btnModalCaso"><i class="fas fa-user-plus"></i> &nbsp; Agregar Caso</button>
+                    </p>
+					<button type="button" class="btn btn-danger" id="btnPDFProveido" onclick="exportarPDF()">
+						<i class="fas fa-file-pdf"></i> &nbsp; Exportar PDF
+					</button>
+					<button type="button" class="btn btn-success" id="btnModalProveido3" onclick="exportarExcel()">
+						<i class="fas fa-file-excel"></i> &nbsp; Exportar Excel
+					</button>
+				</div>
+			</div>
+            
             <div class="container-fluid">
                 <div class="table-responsive">
                     <table class="table table-dark table-sm" id="tabla_revisiones">
@@ -68,7 +77,7 @@
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="medico" class="bmd-label-floating">Medico que Realizo la Revision</label>
-                                        <select class="form-control" name="medico" id="medico">
+                                        <select class="form-control" name="medico" id="medico" required>
                                             <option value="" selected="" disabled="">Seleccione el Medico</option>
 
                                         </select>
@@ -77,7 +86,7 @@
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="enviado_para" class="bmd-label-floating">Enviado para</label>
-                                        <select class="form-control" name="enviado_para" id="enviado_para">
+                                        <select class="form-control" name="enviado_para" id="enviado_para" required>
                                             <option value="" selected="" disabled="">Seleccione para que fue enviado</option>
                                             <option value="Revision">Revision</option>
                                             <option value="Descargo">Descargo</option>
@@ -87,14 +96,14 @@
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="fecha_revision">Fecha de Revision</label>
-                                        <input type="date" class="form-control" name="fecha_revision" id="fecha_revision">
+                                        <input type="date" class="form-control" name="fecha_revision" id="fecha_revision" required>
                                     </div>
 
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="tipo_dictamen" class="bmd-label-floating">Tipo de Dictamen a Revisar</label>
-                                        <select class="form-control" name="tipo_dictamen" id="tipo_dictamen">
+                                        <select class="form-control" name="tipo_dictamen" id="tipo_dictamen" required>
                                             <option value="" selected="" disabled="">Seleccione el Tipo de Dictamen</option>
                                             <option value="Clinica Forense">Clinica Forense</option>
                                             <option value="Levantamiento">Levantamiento</option>
@@ -104,25 +113,25 @@
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="num_dictamen" class="bmd-label-floating">Numero de Dictamen</label>
-                                        <input type="text" class="form-control" name="num_dictamen" id="num_dictamen" maxlength="27">
+                                        <input type="text" class="form-control" name="num_dictamen" id="num_dictamen" required>
                                     </div>
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="nombre_evaluado" class="bmd-label-floating">Nombre del Evaluado</label>
-                                        <input type="text" class="form-control" name="nombre_evaluado" id="nombre_evaluado" maxlength="27">
+                                        <input type="text" class="form-control" name="nombre_evaluado" id="nombre_evaluado" required>
                                     </div>
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="fecha_realizacion">Fecha que se Realizo la Evaluacion</label>
-                                        <input type="date" class="form-control" name="fecha_realizacion" id="fecha_realizacion">
+                                        <input type="date" class="form-control" name="fecha_realizacion" id="fecha_realizacion" required>
                                     </div>
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="tipo_reconocimiento" class="bmd-label-floating">Tipo de Reconocimiento</label>
-                                        <select class="form-control" name="tipo_reconocimiento" id="tipo_reconocimiento">
+                                        <select class="form-control" name="tipo_reconocimiento" id="tipo_reconocimiento" required>
                                             <option value="" selected="" disabled="">Seleccione el Tipo de Reconocimiento</option>
 
                                         </select>
@@ -137,7 +146,7 @@
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="estado_dictamen" class="bmd-label-floating">Estado del Dictamen</label>
-                                        <select class="form-control" name="estado_dictamen" id="estado_dictamen">
+                                        <select class="form-control" name="estado_dictamen" id="estado_dictamen" required>
                                             <option value="" selected="" disabled="">Seleccione el Estado</option>
                                             <option value="Completo">Completo</option>
                                             <option value="Incompleto, Sin Resultado de Laboratorio">Incompleto, Sin Resultado de Laboratorio</option>
@@ -156,7 +165,7 @@
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="sede_medico" class="bmd-label-floating">Sede del Medico Evaluador</label>
-                                        <select class="form-control" name="sede_medico" id="sede_medico">
+                                        <select class="form-control" name="sede_medico" id="sede_medico" required>
                                             <option value="" selected="" disabled="">Seleccione la Sede</option>
                                             <option value="Centro Sur Oriente">Centro Sur Oriente</option>
                                             <option value="Noroccidental">Noroccidental</option>
@@ -166,7 +175,7 @@
                                 <div class="container-fluid">
                                     <div class="form-group">
                                         <label for="sede_clinica" class="bmd-label-floating">Clinica Regional/local Que Realiza la Evaluacion</label>
-                                        <select class="form-control" name="sede_clinica" id="sede_clinica">
+                                        <select class="form-control" name="sede_clinica" id="sede_clinica" required>
                                             <option value="" selected="" disabled="">Elija la oficina a la que pertenece</option>
 
                                         </select>

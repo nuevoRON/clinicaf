@@ -43,7 +43,7 @@
 											<div class="col-12 col-md-12">
 												<div class="form-group">
 													<label for="puesto" class="bmd-label-floating">Puesto</label>
-													<select name="puesto" id="puesto" class="form-control">
+													<select name="puesto" id="puesto" class="form-control" required>
 														<option value="">Seleccione una opción</option>
 													</select>
 												</div>
@@ -52,7 +52,7 @@
 											<div class="col-12 col-md-12">
 												<div class="form-group">
 													<label for="modulo" class="bmd-label-floating">Modulo</label>
-													<select name="modulo" id="modulo" class="form-control">
+													<select name="modulo" id="modulo" class="form-control" required>
 														<option value="">Seleccione una opción</option>
 													</select>
 												</div>

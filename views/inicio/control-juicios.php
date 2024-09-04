@@ -43,7 +43,7 @@
 											<div class="col-12 col-md-5">
 												<div class="form-group">
 													<label for="num_caso" class="bmd-label-floating">Numero del Caso</label>
-													<select class="form-control" name="num_caso" id="num_caso">
+													<select class="form-control" name="num_caso" id="num_caso" required>
 														<option value="">Seleccione una opción</option>
 													</select>
 												</div>
@@ -51,7 +51,7 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="tipo_citacion" class="bmd-label-floating">Tipo de Citacion</label>
-													<select class="form-control" name="tipo_citacion" id="tipo_citacion">
+													<select class="form-control" name="tipo_citacion" id="tipo_citacion" required>
 														<option value="" selected="" disabled="">Seleccione la Citacion</option>
 														<option value="Juicio">Juicio</option>
 														<option value="Juramentacion">Juramentacion</option>
@@ -61,19 +61,19 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="fecha_rec_citacion">Fecha que se recibe la citacion</label>
-													<input type="date" class="form-control" name="fecha_rec_citacion" id="fecha_rec_citacion">
+													<input type="date" class="form-control" name="fecha_rec_citacion" id="fecha_rec_citacion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="fecha_citacion">Fecha de la citacion</label>
-													<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion">
+													<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="medico" class="bmd-label-floating">Medico</label>
-													<select class="form-control" name="medico" id="medico">
+													<select class="form-control" name="medico" id="medico" required>
 														<option value="" selected="" disabled="">Seleccione al Medico</option>
 
 													</select>
@@ -82,7 +82,7 @@
 											<div class="col-12 col-md-8">
 												<div class="form-group">
 													<label for="lugar_citacion" class="bmd-label-floating">Lugar de la citacion</label>
-													<input type="text" class="form-control" name="lugar_citacion" id="lugar_citacion" maxlength="50">
+													<input type="text" class="form-control" name="lugar_citacion" id="lugar_citacion" maxlength="50" required>
 												</div>
 											</div>
 										</div>

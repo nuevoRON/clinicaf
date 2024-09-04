@@ -9,7 +9,6 @@ class Evaluados extends Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
         if (!empty($_SESSION['id_usuario'])) {
             $this->id_usuario = $_SESSION['id_usuario'];
         }
@@ -157,7 +156,7 @@ class Evaluados extends Controller
                 $sexo = strClean($putData['sexo']);
                 $diversidad = strClean($putData['diversidad']);
                 $estadoCivil = strClean($putData['estadoCivil']);
-                $ocupacion = strClean($putData['ocupacion']);
+                $ocupacion = isset($putData['ocupacion']) ? strClean($putData['ocupacion']) : null;
                 $escolaridad = strClean($putData['escolaridad']);
                 $edad = strClean($putData['edad']);
                 $tiempo = strClean($putData['tiempo']);
@@ -169,8 +168,8 @@ class Evaluados extends Controller
 
                 /* Datos para la tabla de Evaluacion */
                 $consentimiento = strClean($putData['permiso_evaluacion']);
-                $instrumento = strClean($putData['instrumento']);
-                $relacionAgresor = strClean($putData['relacion_agresor']);
+                $instrumento = isset($putData['instrumento']) ? strClean($putData['instrumento']) : null;
+                $relacionAgresor = isset($putData['relacion_agresor']) ? strClean($putData['relacion_agresor']) : null;
                 $conocido = $putData['agresor_conocido'] != '' ? strClean($putData['agresor_conocido']) :'';
                 $descripcion = strClean($putData['descripcion_evaluacion']);
                 $sede = strClean($putData['sede_evaluacion']);
@@ -182,7 +181,6 @@ class Evaluados extends Controller
                 $localidad = strClean($putData['aldea_barrio']);
                 $lugar = strClean($putData['lugar_hecho']);
                 $fechaHecho = strClean($putData['fecha_hecho']);
-                $estado = 
 
                 $id = strClean($putData['id_evaluado']);
                 $estadoEvaluacion = $putData['fecha_finalizacion'] != '' ? 'Realizado' : 'Pendiente';

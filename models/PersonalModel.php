@@ -67,7 +67,7 @@ class PersonalModel extends Query
         $claveEncriptada = password_hash($clave, PASSWORD_DEFAULT, ['cost' => 10]);
 
         $sql = "INSERT INTO tbl_usu (usuario, nombre,apellido,correo,contrasena,telefono,num_colegiacion,num_empleado,
-        estado,jornada,puesto,sede,laboratorio,registro_borrado) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        estado,jornada,puesto,sede,laboratorio,registro_borrado,intentos) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $array = array(
             $usuario,
             $nombre,
@@ -82,7 +82,8 @@ class PersonalModel extends Query
             $puesto,
             $sede,
             $clinica,
-            'A'
+            'A',
+            0
         );
         return $this->insertar($sql, $array);
     }

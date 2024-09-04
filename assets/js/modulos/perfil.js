@@ -37,7 +37,7 @@ const formularioClave = document.querySelector("#formularioClave");
     });
 
 
-  formularioClave.addEventListener('submit', function(event) {
+  formulario.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevenir la acción por defecto del formulario
 
       const url = "http://localhost/clinicaf/personal/actualizarPerfil";

@@ -83,14 +83,14 @@ if (isset($_GET['id'])) {
 								<div class="col-12 col-md-6">
 
 									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">Especifique Cual</label>
-										<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="especifique" id="especifique" maxlength="27" readonly>
+										<label for="especifique" class="bmd-label-floating">Especifique Cual</label>
+										<input type="text" class="form-control" name="especifique" id="especifique" maxlength="30" readonly>
 									</div>
 								</div>
 								<div class="col-12 col-md-6">
 									<div class="form-group">
 										<label for="item_estado" class="bmd-label-floating">Evaluación</label>
-										<input type="text" class="form-control" name="tipo_evaluacion" id="tipo_evaluacion" disabled>
+										<input type="text" class="form-control" name="tipo_evaluacion" id="tipo_evaluacion" readonly>
 									</div>
 								</div>
 								<hr>
@@ -100,29 +100,27 @@ if (isset($_GET['id'])) {
 										<div class="col-12 col-md-4">
 											<div class="form-group">
 												<label for="nombre" class="bmd-label-floating">Nombre</label>
-												<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" title="Este campo solo acepta letras"
-													class="form-control" name="nombre" id="nombre" required>
+												<input type="text" class="form-control" name="nombre" id="nombre" required>
+												<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 											</div>
 										</div>
 										<div class="col-12 col-md-4">
 											<div class="form-group">
 												<label for="apellido" class="bmd-label-floating">Apellido</label>
-												<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" title="Este campo solo acepta letras"
-													class="form-control" name="apellido" id="apellido" required>
+												<input type="text" class="form-control" name="apellido" id="apellido" required>
+												<span id="spanApellido" style="color: red; font-size:1rem;"></span>
 											</div>
 										</div>
 										<div class="col-12 col-md-4">
 											<div class="form-group">
 												<label for="dni" class="bmd-label-floating">DNI</label>
-												<input type="number" pattern="[0-9]{1,13}" title="Este campo solo acepta numeros"
-													class="form-control" name="dni" id="dni" required>
+												<input type="number" class="form-control" name="dni" id="dni" maxlength="13" required >
 											</div>
 										</div>
 										<div class="col-12 col-md-4">
 											<div class="form-group">
 												<label for="telefono" class="bmd-label-floating">Nº de Telefono</label>
-												<input type="number" pattern="[0-9]{1,15}" title="Este campo solo acepta numeros"
-													class="form-control" name="telefono" id="telefono" required>
+												<input type="number" class="form-control" name="telefono" id="telefono" required>
 											</div>
 										</div>
 										<div class="col-12 col-md-3">
@@ -130,7 +128,7 @@ if (isset($_GET['id'])) {
 												<div class="flex-grow-1">
 													<label for="nacionalidad" class="bmd-label-floating">Nacionalidad</label>
 													<select class="form-control" name="nacionalidad" id="nacionalidad" required>
-														<option value="" selected disabled>Seleccione la Nacionalidad</option>
+														
 													</select>
 												</div>
 												<button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#ModalNacionalidad">
@@ -153,7 +151,7 @@ if (isset($_GET['id'])) {
 
 										<div class="col-12 col-md-3">
 											<div class="form-group">
-												<label for="diversidad" class="bmd-label-floating">diversidad</label>
+												<label for="diversidad" class="bmd-label-floating">Diversidad</label>
 												<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="diversidad" id="diversidad" maxlength="20">
 											</div>
 										</div>
@@ -178,8 +176,6 @@ if (isset($_GET['id'])) {
 												<i class="fas fa-plus"></i>
 											</button>
 										</div>
-
-
 										<div class="col-12 col-md-3">
 											<div class="form-group">
 												<label for="escolaridad" class="bmd-label-floating">Escolaridad</label>
@@ -192,7 +188,7 @@ if (isset($_GET['id'])) {
 										<div class="col-12 col-md-2">
 											<div class="form-group">
 												<label for="edad" class="bmd-label-floating">Edad</label>
-												<input type="number" pattern="[0-9]{1,3}" class="form-control" name="edad" id="edad" required>
+												<input type="number" class="form-control" name="edad" id="edad" maxlength="3" required >
 											</div>
 										</div>
 										<div class="col-12 col-md-3">
@@ -211,8 +207,8 @@ if (isset($_GET['id'])) {
 										<div class="col-12 col-md-2">
 											<div class="form-group">
 												<label for="lugar_procedencia" class="bmd-label-floating">Lugar de Procdencia del Evaluado</label>
-												<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" class="form-control" name="lugar_procedencia"
-													id="lugar_procedencia" required>
+												<input type="text" class="form-control" name="lugar_procedencia" id="lugar_procedencia" required>
+												<span id="spanLugarProcedencia" style="color: red; font-size:1rem;"></span>
 											</div>
 										</div>
 									</div>
@@ -226,21 +222,21 @@ if (isset($_GET['id'])) {
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="nombre_acomp" class="bmd-label-floating">Nombre</label>
-													<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,50}" title="Este campo solo acepta letras" class="form-control" name="nombre_acomp"
-														id="nombre_acomp" required>
+													<input type="text" class="form-control" name="nombre_acomp" id="nombre_acomp" required>
+													<span id="spanNombreAcomp" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="apellido_acomp" class="bmd-label-floating">Apellido</label>
-													<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" title="Este campo solo acepta letras" class="form-control"
-														name="apellido_acomp" id="apellido_acomp" required>
+													<input type="text" class="form-control" name="apellido_acomp" id="apellido_acomp" required>
+													<span id="spanApellidoAcomp" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="dni_acomp" class="bmd-label-floating">DNI</label>
-													<input type="number" pattern="[0-9]{1,13}" class="form-control" name="dni_acomp" id="dni_acomp" required>
+													<input type="number" class="form-control" name="dni_acomp" id="dni_acomp" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
@@ -314,13 +310,15 @@ if (isset($_GET['id'])) {
 												<div class="col-12 col-md-4">
 													<div class="form-group">
 														<label for="aldea_barrio" class="bmd-label-floating">Caserio, Aldea o Barrio, del Hecho</label>
-														<input type="text" class="form-control" name="aldea_barrio" id="aldea_barrio" maxlength="40">
+														<input type="text" class="form-control" name="aldea_barrio" id="aldea_barrio">
+														<span id="spanBarrio" style="color: red; font-size:1rem;"></span>
 													</div>
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
 														<label for="lugar_hecho" class="bmd-label-floating">Lugar Donde Ocurrio el Hecho</label>
 														<input type="text" class="form-control" name="lugar_hecho" id="lugar_hecho" maxlength="40">
+														<span id="spanLugar" style="color: red; font-size:1rem;"></span>
 													</div>
 												</div>
 												<div class="col-12 col-md-4">
@@ -369,7 +367,8 @@ if (isset($_GET['id'])) {
 										<div class="col-12 col-md-4">
 											<div class="form-group">
 												<label for="agresor_conocido" class="bmd-label-floating">En Caso de ser Conocido Especifique</label>
-												<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="agresor_conocido" id="agresor_conocido" maxlength="20">
+												<input type="text" class="form-control" name="agresor_conocido" id="agresor_conocido">
+												<span id="spanAgresorConocido" style="color: red; font-size:1rem;"></span>
 											</div>
 										</div>
 									</div>
@@ -381,6 +380,7 @@ if (isset($_GET['id'])) {
 						<div class="form-group">
 							<label for="descripcion_evaluacion" class="bmd-label-floating">Descripcion de la Evaluacion</label>
 							<textarea name="descripcion_evaluacion" id="descripcion_evaluacion" cols="80" rows="4"></textarea><!--  /*/*/*/  ESTA ES LA CAJA DE TEXTO   /*/*/*/ -->
+							
 						</div>
 					</div>
 
@@ -405,7 +405,7 @@ if (isset($_GET['id'])) {
 					<p class="text-center" style="margin-top: 40px;">
 						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
 						&nbsp; &nbsp;
-						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+						<button type="submit" class="btn btn-raised btn-info btn-sm" id="btn-enviar"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
 					</p>
 				</form>
 			</div>
@@ -517,6 +517,7 @@ if (isset($_GET['id'])) {
 
 	<?php include "views/templates/archivosJS.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/evaluados.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/validaciones/validacionEvaluado.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 

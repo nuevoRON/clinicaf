@@ -151,7 +151,7 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="num_caso" class="bmd-label-floating">Numero del Caso</label>
-													<select class="form-control" name="num_caso" id="num_caso">
+													<select class="form-control" name="num_caso" id="num_caso" required>
 														<option value="">Seleccione una opción</option>
 													</select>
 												</div>
@@ -159,7 +159,7 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="medico" class="bmd-label-floating">Nombre del medico</label>
-													<select class="form-control" name="medico" id="medico">
+													<select class="form-control" name="medico" id="medico" required>
 														<option value="">Seleccione una opción</option>
 													</select>
 												</div>
@@ -167,25 +167,25 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="fecha_evaluacion">Fecha de Evaluacion</label>
-													<input type="date" class="form-control" name="fecha_evaluacion" id="fecha_evaluacion">
+													<input type="date" class="form-control" name="fecha_evaluacion" id="fecha_evaluacion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="autoridad_soli" class="bmd-label-floating">Autoridad Solicitante </label>
-													<input type="text" class="form-control" name="autoridad_soli" id="autoridad_soli" maxlength="27">
+													<input type="text" class="form-control" name="autoridad_soli" id="autoridad_soli" maxlength="100" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="fecha_entrega">Fecha de Entrega</label>
-													<input type="date" class="form-control" name="fecha_entrega" id="fecha_entrega">
+													<input type="date" class="form-control" name="fecha_entrega" id="fecha_entrega" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="datos_extra" class="bmd-label-floating">Datos extra</label>
-													<input type="text" class="form-control" name="datos_extra" id="datos_extra" maxlength="27">
+													<input type="text" class="form-control" name="datos_extra" id="datos_extra" maxlength="255" required>
 												</div>
 											</div>
 										</div>
@@ -220,7 +220,7 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="num_casoTranscripcion" class="bmd-label-floating">Numero del Caso</label>
-													<select class="form-control" name="num_casoTranscripcion" id="num_casoTranscripcion">
+													<select class="form-control" name="num_casoTranscripcion" id="num_casoTranscripcion" required>
 														<option value="">Seleccione una opción</option>
 													</select>
 												</div>
@@ -228,7 +228,7 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="medicoTranscripcion" class="bmd-label-floating">Nombre del medico</label>
-													<select class="form-control" name="medicoTranscripcion" id="medicoTranscripcion">
+													<select class="form-control" name="medicoTranscripcion" id="medicoTranscripcion" required>
 														<option value="">Seleccione una opción</option>
 													</select>
 												</div>
@@ -236,19 +236,20 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="fecha_evaluacionTranscripcion">Fecha de Evaluacion</label>
-													<input type="date" class="form-control" name="fecha_evaluacionTranscripcion" id="fecha_evaluacionTranscripcion">
+													<input type="date" class="form-control" name="fecha_evaluacionTranscripcion" id="fecha_evaluacionTranscripcion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="autoridad_soliTranscripcion" class="bmd-label-floating">Autoridad Solicitante </label>
-													<input type="text" class="form-control" name="autoridad_soliTranscripcion" id="autoridad_soliTranscripcion" maxlength="27">
+													<input type="text" class="form-control" name="autoridad_soliTranscripcion" id="autoridad_soliTranscripcion" 
+													maxlength="100" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="tipo_documentoTranscripcion" class="bmd-label-floating">Tipo de Docuemnto</label>
-													<select class="form-control" name="tipo_documentoTranscripcion" id="tipo_documentoTranscripcion">
+													<select class="form-control" name="tipo_documentoTranscripcion" id="tipo_documentoTranscripcion" required>
 														<option value="" selected="" disabled="">Seleccione su Opcion</option>
 														<option value="Transcripcion">Transcripcion</option>
 														<option value="Ampliacion">Ampliacion</option>
@@ -258,13 +259,14 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="fecha_entregaTranscripcion">Fecha de Entrega</label>
-													<input type="date" class="form-control" name="fecha_entregaTranscripcion" id="fecha_entregaTranscripcion">
+													<input type="date" class="form-control" name="fecha_entregaTranscripcion" id="fecha_entregaTranscripcion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="datos_extraTranscripcion" class="bmd-label-floating">Datos extra</label>
-													<input type="text" class="form-control" name="datos_extraTranscripcion" id="datos_extraTranscripcion" maxlength="27">
+													<input type="text" class="form-control" name="datos_extraTranscripcion" id="datos_extraTranscripcion" 
+													maxlength="255" required>
 												</div>
 											</div>
 										</div>

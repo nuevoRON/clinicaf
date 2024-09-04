@@ -19,9 +19,17 @@
 				<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE VACACIONES
 			</h3>
 			<div class="container-fluid">
-				<p class="text-center">
-					<button type="button" class="btn btn-primary" id="btnModalVacacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Vacacion</button>
-				</p>
+				<div class="text-center">
+					<p class="text-center">
+						<button type="button" class="btn btn-primary" id="btnModalVacacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Vacacion</button>
+					</p>
+					<button type="button" class="btn btn-danger" id="btnPDFProveido" onclick="exportarPDF()">
+						<i class="fas fa-file-pdf"></i> &nbsp; Exportar PDF
+					</button>
+					<button type="button" class="btn btn-success" id="btnModalProveido3" onclick="exportarExcel()">
+						<i class="fas fa-file-excel"></i> &nbsp; Exportar Excel
+					</button>
+				</div>
 			</div>
 
 			<div class="modal fade" id="ModalVacacion" tabindex="-1" role="dialog" aria-labelledby="ModalVacacion" data-backdrop="static" aria-hidden="true">
@@ -43,7 +51,7 @@
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="num_empleado" class="bmd-label-floating">Nº de Empleado</label>
-													<select name="num_empleado" id="num_empleado" class="form-control">
+													<select name="num_empleado" id="num_empleado" class="form-control" required>
 														<option value="">Seleccione una opcion</option>
 													</select>
 												</div>
@@ -57,7 +65,7 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="item_estado" class="bmd-label-floating">Estado</label>
-													<select class="form-control" name="item_estado" id="item_estado">
+													<select class="form-control" name="item_estado" id="item_estado" required>
 														<option value="" selected="" disabled="">Seleccione el Estado</option>>
 														<option value="3">Incapacitado</option>
 														<option value="4">Vacaciones</option>
@@ -67,18 +75,18 @@
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="fecha_inicio">Fecha de Inicio</label>
-													<input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">
+													<input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="fecha_final">Fecha de Inicio</label>
-													<input type="date" class="form-control" name="fecha_final" id="fecha_final">
+													<input type="date" class="form-control" name="fecha_final" id="fecha_final" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="observaciones" class="bmd-label-floating">observaciones</label>
+													<label for="observaciones" class="bmd-label-floating">Observaciones</label>
 													<input type="text" class="form-control" name="observaciones" id="observaciones" maxlength="27">
 												</div>
 											</div>

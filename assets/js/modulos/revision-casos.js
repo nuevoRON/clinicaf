@@ -388,3 +388,17 @@ function mostrarModal(){
 }
 
 document.getElementById("btnModalCaso").addEventListener("click", mostrarModal);
+
+
+function exportarPDF() {
+  let urlDescarga = "http://localhost/clinicaf/exportacionPDF/exportarRevisionCasos";
+    
+  window.location.href = urlDescarga;
+}
+
+
+function exportarExcel() {
+  let urlDescarga = "http://localhost/clinicaf/exportacionExcel/exportarRevisionCasos";
+    
+  window.location.href = urlDescarga;
+}

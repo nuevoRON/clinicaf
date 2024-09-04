@@ -23,111 +23,33 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Ocurrió un error:", error);
     });
 
-  //Cargar jornadas
-  let url = "http://localhost/clinicaf/personal/getJornadas";
-  axios
-    .get(url)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nom_jornada;
-        option.value = opcion.id_jornada;
-        selectJornada.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
 
 
-  //Cargar estados
-  let urlEstado = "http://localhost/clinicaf/personal/getEstados";
-  axios
-    .get(urlEstado)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
+    function cargarOpcionesSelect(url, selectElement, optionText, optionValue) {
+      axios
+        .get(url)
+        .then(function (response) {
+          // Recorrer los datos y agregar las opciones al select
+          response.data.forEach((opcion) => {
+            let option = document.createElement("option");
+    
+            option.text = opcion[optionText];
+            option.value = opcion[optionValue]; 
+            selectElement.appendChild(option);
+          });
+        })
+        .catch(function (error) {
+          // Manejar errores
+          console.error("Ocurrió un error:", error);
+        });
+    }
 
-        option.text = opcion.nom_estado;
-        option.value = opcion.id_estado;
-        selectEstado.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
-
-
-  //Cargar puestos
-  let urlPuestos = "http://localhost/clinicaf/personal/getPuestos";
-  axios
-    .get(urlPuestos)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nom_puesto;
-        option.value = opcion.id_puesto;
-        selectPuestos.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
-
-
-   //Cargar sedes
-   let urlSede = "http://localhost/clinicaf/sedes/listarSedes";
-   axios
-     .get(urlSede)
-     .then(function (response) {
-       // Llenar Select
-       console.log(response);
-       response.data.forEach((opcion) => {
-         let option = document.createElement("option");
- 
-         option.text = opcion.ubicacion;
-         option.value = opcion.id_sede;
-         selectSede.appendChild(option);
-       });
-     })
-     .catch(function (error) {
-       console.error("Ocurrió un error:", error);
-     });
-
-
-
-    //Cargar clinicas
-  let urlClinica = "http://localhost/clinicaf/personal/getClinicas";
-  axios
-    .get(urlClinica)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nombre;
-        option.value = opcion.id_clinica;
-        selectClinica.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
-  
-  });
+  cargarOpcionesSelect("http://localhost/clinicaf/personal/getJornadas",selectJornada, "nom_jornada", "id_jornada");
+  cargarOpcionesSelect("http://localhost/clinicaf/personal/getEstados",selectEstado, "nom_estado", "id_estado");
+  cargarOpcionesSelect("http://localhost/clinicaf/personal/getPuestos",selectPuestos, "nom_puesto", "id_puesto");
+  cargarOpcionesSelect("http://localhost/clinicaf/sedes/listarSedes",selectSede, "ubicacion", "id_sede");
+  cargarOpcionesSelect("http://localhost/clinicaf/personal/getClinicas",selectClinica, "nombre", "id_clinica");
+})
 
 
   /* Mostrar Tabla */
@@ -138,8 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .get(urlListarEmpleados)
     //si no hay problemas con la consulta se reciben los datos y se construye la tabla
     .then(function (response) {
-      //se muestran los datos obtenidos
-      console.log(response.data);
       //los datos a mostrar en la tabla se encuentran en response.data
       //se define una variable que pueda ser usada dentro del datatable
       let datos = response.data;
@@ -259,7 +179,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
       http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
           const res = JSON.parse(this.responseText);
 
           Swal.fire({
@@ -394,7 +313,6 @@ function editarEmpleado(idEmpleado) {
             }
             
            //Se abre el modal usando su id
-      
            $('#Modalmedico').modal('show'); 
           }
         }

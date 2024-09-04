@@ -64,7 +64,7 @@
 									<div class="col-12 col-md-8">
 										<div class="form-group">
 											<label for="nombre_sexo" class="bmd-label-floating">Nombre</label>
-											<input type="text" class="form-control" name="nombre_sexo" id="nombre_sexo" maxlength="27">
+											<input type="text" class="form-control" name="nombre_sexo" id="nombre_sexo" required>
 										</div>
 									</div>
 								</div>
