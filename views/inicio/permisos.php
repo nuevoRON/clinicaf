@@ -118,7 +118,7 @@
 	</main>
 
 	<?php include "views/templates/archivosJS.php"; ?>
-	<script src="<?php echo BASE_URL; ?>assets/js/modulos/permisos.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/modulos/permisos.js"></script>
 </body>
 
 </html>

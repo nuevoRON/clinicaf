@@ -1,3 +1,5 @@
+import { cargarOpcionesSelect } from "../helpers/funciones.js";
+
 const formulario = document.querySelector("#formulario");
 
 const selectMedico = document.querySelector("#medico");
@@ -20,67 +22,29 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Ocurrió un error:", error);
     });
 
+    //Cargar selects de modal
+    cargarOpcionesSelect(
+      "http://localhost/clinicaf/usuarios/getMedicos",
+      selectMedico,
+      "nombre_completo",
+      "id_usu"
+    );
 
-  //Cargar médicos
-  let url = "http://localhost/clinicaf/usuarios/getMedicos";
-  axios
-    .get(url)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.medicos.forEach((opcion) => {
-        let option = document.createElement("option");
+    cargarOpcionesSelect(
+      "http://localhost/clinicaf/reconocimiento/listarReconocimientos",
+      selectReconocimiento,
+      "nom_reconocimiento",
+      "id_reconocimiento"
+    );
 
-        option.text = `${opcion.nombre} ${opcion.apellido}`;
-        option.value = opcion.id_usu;
-        selectMedico.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
+    cargarOpcionesSelect(
+      "http://localhost/clinicaf/sedes/listarSedes",
+      selectSede,
+      "ubicacion",
+      "id_sede"
+    );
 
-  ///Cargar reconocimientos
-  let urlReconocimiento =
-    "http://localhost/clinicaf/reconocimiento/listarReconocimientos";
-  axios
-    .get(urlReconocimiento)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nom_reconocimiento;
-        option.value = opcion.id_reconocimiento;
-        selectReconocimiento.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
 });
-
-//Cargar sedes
-let urlSede = "http://localhost/clinicaf/sedes/listarSedes";
-axios
-  .get(urlSede)
-  .then(function (response) {
-    // Llenar Select
-    console.log(response);
-    response.data.forEach((opcion) => {
-      let option = document.createElement("option");
-
-      option.text = opcion.ubicacion;
-      option.value = opcion.id_sede;
-      selectSede.appendChild(option);
-    });
-  })
-  .catch(function (error) {
-    console.error("Ocurrió un error:", error);
-  });
 
 /* Mostrar Tabla */
 //Se extraen los datos de la base de datos para llenar el datatable

@@ -18,16 +18,14 @@ class Dependencias extends Controller
 
     public function getDependencias(){
         $data = $this->model->getDependencias();
-        $res = array('dependencias'=>$data, 'type'=>'success');
-        echo json_encode($res, JSON_UNESCAPED_UNICODE);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 
 
     public function getDepartamentos(){
         $data = $this->model->getDepartamentos();
-        $res = array('departamentos'=>$data, 'type'=>'success');
-        echo json_encode($res, JSON_UNESCAPED_UNICODE);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 

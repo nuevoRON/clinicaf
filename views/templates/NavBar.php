@@ -20,9 +20,6 @@
 				<ul>
 					<?php if ($_SESSION['puesto'] == 'Administrador' 
 								|| $_SESSION['puesto'] == 'Jefe'
-								|| $_SESSION['puesto'] == 'Medico Especialista'
-								|| $_SESSION['puesto'] == 'Perito Medico Forense'
-								|| $_SESSION['puesto'] == 'Odontologo'
 								|| $_SESSION['puesto'] == 'Enfermera'
 								|| $_SESSION['puesto'] == 'Secretaria'){?>
 								
@@ -51,7 +48,7 @@
 							<a href="<?php echo BASE_URL . 'inicio/controlJuicios'; ?>"><i class="fas fa-balance-scale"></i> &nbsp; Control de Citaciones</a>
 						</li>
 						<li>
-							<a href="<?php echo BASE_URL . 'inicio/controlDictamenes'; ?>"><i class="fas fa-copy"></i> &nbsp; Control de Dictameness</a>
+							<a href="<?php echo BASE_URL . 'inicio/controlDictamenes'; ?>"><i class="fas fa-copy"></i> &nbsp; Control de Dictamenes</a>
 						</li>
 					<?php }?>
 				<ul>

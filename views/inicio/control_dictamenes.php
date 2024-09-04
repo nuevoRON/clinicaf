@@ -287,7 +287,7 @@
 	</main>
 
 	<?php include "views/templates/archivosJS.php"; ?>
-	<script src="<?php echo BASE_URL; ?>assets/js/modulos/dictamenes.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/modulos/dictamenes.js"></script>
 	<script>
 		function openTab(event, tabName) {
     var i, tabcontent, tabbuttons;

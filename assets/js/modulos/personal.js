@@ -1,3 +1,5 @@
+import { cargarOpcionesSelect } from "../helpers/funciones.js";
+
 const formulario = document.querySelector("#formulario");
 
 const selectJornada = document.querySelector("#jornada");
@@ -23,32 +25,12 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Ocurrió un error:", error);
     });
 
-
-
-    function cargarOpcionesSelect(url, selectElement, optionText, optionValue) {
-      axios
-        .get(url)
-        .then(function (response) {
-          // Recorrer los datos y agregar las opciones al select
-          response.data.forEach((opcion) => {
-            let option = document.createElement("option");
-    
-            option.text = opcion[optionText];
-            option.value = opcion[optionValue]; 
-            selectElement.appendChild(option);
-          });
-        })
-        .catch(function (error) {
-          // Manejar errores
-          console.error("Ocurrió un error:", error);
-        });
-    }
-
-  cargarOpcionesSelect("http://localhost/clinicaf/personal/getJornadas",selectJornada, "nom_jornada", "id_jornada");
-  cargarOpcionesSelect("http://localhost/clinicaf/personal/getEstados",selectEstado, "nom_estado", "id_estado");
-  cargarOpcionesSelect("http://localhost/clinicaf/personal/getPuestos",selectPuestos, "nom_puesto", "id_puesto");
-  cargarOpcionesSelect("http://localhost/clinicaf/sedes/listarSedes",selectSede, "ubicacion", "id_sede");
-  cargarOpcionesSelect("http://localhost/clinicaf/personal/getClinicas",selectClinica, "nombre", "id_clinica");
+    //Creación de los selects del modal
+    cargarOpcionesSelect("http://localhost/clinicaf/personal/getJornadas",selectJornada, "nom_jornada", "id_jornada");
+    cargarOpcionesSelect("http://localhost/clinicaf/personal/getEstados",selectEstado, "nom_estado", "id_estado");
+    cargarOpcionesSelect("http://localhost/clinicaf/personal/getPuestos",selectPuestos, "nom_puesto", "id_puesto");
+    cargarOpcionesSelect("http://localhost/clinicaf/sedes/listarSedes",selectSede, "ubicacion", "id_sede");
+    cargarOpcionesSelect("http://localhost/clinicaf/personal/getClinicas",selectClinica, "nombre", "id_clinica");
 })
 
 

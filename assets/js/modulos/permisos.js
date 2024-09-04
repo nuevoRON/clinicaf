@@ -1,3 +1,5 @@
+import { cargarOpcionesSelect } from "../helpers/funciones.js";
+
 const formulario = document.querySelector("#formulario");
 const selectPuesto = document.querySelector("#puesto");
 const selectModulo = document.querySelector("#modulo");
@@ -5,46 +7,20 @@ const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
   //Cargar puestos
-  let url = "http://localhost/clinicaf/puestos/getPuestosSelect";
-  axios
-    .get(url)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nom_puesto;
-        option.value = opcion.id_puesto;
-        selectPuesto.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
-
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/puestos/getPuestosSelect",
+    selectPuesto,
+    "nom_puesto",
+    "id_puesto"
+  );
 
   //Cargar modulos
-  let urlModulo = "http://localhost/clinicaf/modulos/getModulosSelect";
-  axios
-    .get(urlModulo)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nombre;
-        option.value = opcion.id;
-        selectModulo.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
-
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/modulos/getModulosSelect",
+    selectModulo,
+    "nombre",
+    "id"
+  );
 
   //Se extraen los datos de la base de datos para llenar el datatable
   let urlListar = "http://localhost/clinicaf/permisos/listarPermisos";

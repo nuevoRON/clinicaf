@@ -196,7 +196,7 @@
     </main>
 
     <?php include "views/templates/archivosJS.php"; ?>
-    <script src="<?php echo BASE_URL; ?>assets/js/modulos/revision-casos.js"></script>
+    <script type="module" src="<?php echo BASE_URL; ?>assets/js/modulos/revision-casos.js"></script>
 </body>
 
 </html>

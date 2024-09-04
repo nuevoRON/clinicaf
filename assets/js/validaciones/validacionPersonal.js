@@ -1,4 +1,4 @@
-import { validarCampo } from "./funcionValidacion.js";
+import { validarCampo } from "../helpers/funciones.js";
 
 /* Llamados a la función de validarCampo
 Se usa un evento que detecte si el campo ha sido llenado */

@@ -1,4 +1,5 @@
-//Datos generales del Proveido
+import { cargarOpcionesSelect } from "../helpers/funciones.js";
+
 const formulario = document.querySelector("#formulario");
 const formularioOcupacion = document.querySelector("#formularioOcupacion");
 const formularioInstrumento = document.querySelector("#formularioInstrumento");
@@ -17,122 +18,62 @@ const selectNacionalidad = document.getElementById('nacionalidad')
 const idEvaluado = document.querySelector("#id_evaluado").value;
 
 document.addEventListener("DOMContentLoaded", function () {
-  
-  $(document).ready(function() {
-    $('#ocupacion').select2({
-      selectionCssClass: "",
-      language:"SpanishTranslation"
-    });
-  });
+  //Creación de los selects del modal
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/sexos/listarSexos",
+    selectSexo,
+    "nom_sexo",
+    "id_sexo"
+  );
 
-  $(document).ready(function() {
-    $('#instrumento').select2();
-  });
-  
-  //Cargar sexos
-  let url = "http://localhost/clinicaf/sexos/listarSexos";
-  axios
-    .get(url)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/evaluados/listarOcupaciones",
+    selectOcupacion,
+    "nom_ocupacion",
+    "id_ocupacion"
+  );
 
-        option.text = `${opcion.nom_sexo}`;
-        option.value = opcion.id_sexo;
-        selectSexo.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    }); 
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/evaluados/listarEscolaridad",
+    selectEscolaridad,
+    "nom_escolaridad",
+    "id_escolaridad"
+  );
 
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/evaluados/listarNacionalidad",
+    selectNacionalidad,
+    "nom_nacionalidad",
+    "id_nacionalidad"
+  );
 
-    //Cargar ocupaciones
-  let urlOcupacion = "http://localhost/clinicaf/evaluados/listarOcupaciones";
-  axios
-    .get(urlOcupacion)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/dependencias/getDepartamentos",
+    selectDepartamento,
+    "nombre_departamento",
+    "id_departamento"
+  );
 
-        option.text = `${opcion.nom_ocupacion}`;
-        option.value = opcion.id_ocupacion;
-        selectOcupacion.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    }); 
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/evaluados/listarInstrumentos",
+    selectInstrumento,
+    "nom_instrumento",
+    "id_instrumento"
+  );
 
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/evaluados/listarEstadoCivil",
+    selectEstadoCivil,
+    "nom_estado",
+    "id_estado_civil"
+  );
 
-    //Cargar escolaridad
-  let urlEscolaridad = "http://localhost/clinicaf/evaluados/listarEscolaridad";
-  axios
-    .get(urlEscolaridad)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = `${opcion.nom_escolaridad}`;
-        option.value = opcion.id_escolaridad;
-        selectEscolaridad.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    }); 
-
-
-     //Cargar nacionalidad
-  let urlNacional = "http://localhost/clinicaf/evaluados/listarNacionalidad";
-  axios
-    .get(urlNacional)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nom_nacionalidad;
-        option.value = opcion.id_nacionalidad;
-        selectNacionalidad.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    }); 
-
-
-  //Cargar departamentos
-  let urlDepartamento = "http://localhost/clinicaf/dependencias/getDepartamentos";
-  axios
-    .get(urlDepartamento)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.departamentos.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.nombre_departamento;
-        option.value = opcion.id_departamento;
-        selectDepartamento.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
- 
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/sedes/listarSedes",
+    selectSede,
+    "ubicacion",
+    "id_sede"
+  );
 
     //Cargar municipios
     selectDepartamento.addEventListener("change", function() {
@@ -171,66 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }); 
 
 
-   //Cargar instrumentos
-   let urlInstrumentos = "http://localhost/clinicaf/evaluados/listarInstrumentos";
-   axios
-     .get(urlInstrumentos)
-     .then(function (response) {
-       // Llenar Select
-       console.log(response);
-       response.data.forEach((opcion) => {
-         let option = document.createElement("option");
- 
-         option.text = `${opcion.nom_instrumento}`;
-         option.value = opcion.id_instrumento;
-         selectInstrumento.appendChild(option);
-       });
-     })
-     .catch(function (error) {
-       // Maneja errores
-       console.error("Ocurrió un error:", error);
-     });
-
-
-     //Cargar estado civil
-   let urlEstadoCivil = "http://localhost/clinicaf/evaluados/listarEstadoCivil";
-   axios
-     .get(urlEstadoCivil)
-     .then(function (response) {
-       // Llenar Select
-       console.log(response);
-       response.data.forEach((opcion) => {
-         let option = document.createElement("option");
- 
-         option.text = opcion.nom_estado;
-         option.value = opcion.id_estado_civil;
-         selectEstadoCivil.appendChild(option);
-       });
-     })
-     .catch(function (error) {
-       // Maneja errores
-       console.error("Ocurrió un error:", error);
-     });
-
-
-     //Cargar sedes
-   let urlSede = "http://localhost/clinicaf/sedes/listarSedes";
-   axios
-     .get(urlSede)
-     .then(function (response) {
-       // Llenar Select
-       console.log(response);
-       response.data.forEach((opcion) => {
-         let option = document.createElement("option");
- 
-         option.text = opcion.ubicacion;
-         option.value = opcion.id_sede;
-         selectSede.appendChild(option);
-       });
-     })
-     .catch(function (error) {
-       console.error("Ocurrió un error:", error);
-     });
+   
 
   sedeConsentimiento.addEventListener("change", function() {
     sedeConsentimiento.value == 'Si' ? $(".contenedor-consentimiento").show() : $(".contenedor-consentimiento").hide();
@@ -273,12 +155,12 @@ document.addEventListener("DOMContentLoaded", function () {
         $("#nacionalidad option[value=" + res.nacionalidad + "]").attr({ selected: true });
         $("#sexo option[value=" + res.id_sexo + "]").attr({ selected: true });
         $("#estadoCivil option[value=" + res.estado_civil + "]").attr({ selected: true });
-        $("#ocupacion option[value='" + res.ocupacion + "']").attr({ selected: true });
+        $("#ocupacion").val(res.ocupacion).trigger('change'); 
         $("#escolaridad option[value=" + res.escolaridad + "]").attr({ selected: true });
         $("#tiempo option[value=" + res.tiempo + "]").attr({ selected: true });
         $("#relacion option[value='" + res.relacion_acompanante + "']").attr({ selected: true });
         $("#permiso_evaluacion option[value='" + res.consentimiento_informado + "']").attr({ selected: true });
-        $("#instrumento option[value='" + res.instrumento_agresion + "']").attr({ selected: true });
+        $("#instrumento").val(res.instrumento_agresion).trigger('change'); 
         $("#relacion_agresor option[value='" + res.relacion_agresor + "']").attr({ selected: true });
         $("#sede_evaluacion option[value=" + res.sede_evaluacion + "]").attr({ selected: true });
   
@@ -321,6 +203,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
   
+  $(document).ready(function() {
+    $('#ocupacion').select2({
+      selectionCssClass: "",
+      language:"SpanishTranslation"
+    });
+  });
+
+  $(document).ready(function() {
+    $('#instrumento').select2();
+  });
 
   cargarFormulario();
   
@@ -390,31 +282,17 @@ formularioOcupacion.addEventListener('submit', function(event) {
     http.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         $('#ModalOcupacion').modal('hide'); 
-
-        let urlOcupacion = "http://localhost/clinicaf/evaluados/listarOcupaciones";
             // Eliminar opciones existentes del select de municipios
             while (selectOcupacion.firstChild) {
               selectOcupacion.removeChild(selectOcupacion.firstChild);
             }
 
-            axios
-            .get(urlOcupacion)
-            .then(function (response) {
-              // Llenar Select
-              console.log(response);
-              response.data.forEach((opcion) => {
-                let option = document.createElement("option");
-
-                option.text = opcion.nom_ocupacion;
-                option.value = opcion.id_ocupacion;
-                selectOcupacion.appendChild(option);
-              });
-
-            })
-            .catch(function (error) {
-              // Maneja errores
-              console.error("Ocurrió un error:", error);
-            })
+            cargarOpcionesSelect(
+              "http://localhost/clinicaf/evaluados/listarOcupaciones",
+              selectOcupacion,
+              "nom_ocupacion",
+              "id_ocupacion"
+            );
       }
     };
 });
@@ -434,31 +312,16 @@ formularioInstrumento.addEventListener('submit', function(event) {
     http.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         $('#ModalInstru').modal('hide'); 
-
-        let urlInstrumentos = "http://localhost/clinicaf/evaluados/listarInstrumentos";
-            // Eliminar opciones existentes del select de municipios
-            while (selectInstrumento.firstChild) {
-              selectInstrumento.removeChild(selectInstrumento.firstChild);
-            }
-
-            axios
-            .get(urlInstrumentos)
-            .then(function (response) {
-              // Llenar Select
-              console.log(response);
-              response.data.forEach((opcion) => {
-                let option = document.createElement("option");
-
-                option.text = opcion.nom_instrumento;
-                option.value = opcion.id_instrumento;
-                selectInstrumento.appendChild(option);
-              });
-
-            })
-            .catch(function (error) {
-              // Maneja errores
-              console.error("Ocurrió un error:", error);
-            })
+          // Eliminar opciones existentes del select de municipios
+          while (selectInstrumento.firstChild) {
+            selectInstrumento.removeChild(selectInstrumento.firstChild);
+          }
+          cargarOpcionesSelect(
+            "http://localhost/clinicaf/evaluados/listarInstrumentos",
+            selectInstrumento,
+            "nom_instrumento",
+            "id_instrumento"
+          );
       }
     };
 });
@@ -478,31 +341,17 @@ formularioNacionalidad.addEventListener('submit', function(event) {
     http.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         $('#ModalNacionalidad').modal('hide'); 
-
-        let urlNacionalidad = "http://localhost/clinicaf/evaluados/listarNacionalidad";
-            // Eliminar opciones existentes del select de municipios
-            while (selectNacionalidad.firstChild) {
-              selectNacionalidad.removeChild(selectNacionalidad.firstChild);
-            }
-
-            axios
-            .get(urlNacionalidad)
-            .then(function (response) {
-              // Llenar Select
-              console.log(response);
-              response.data.forEach((opcion) => {
-                let option = document.createElement("option");
-
-                option.text = opcion.nom_nacionalidad;
-                option.value = opcion.id_nacionalidad;
-                selectNacionalidad.appendChild(option);
-              });
-
-            })
-            .catch(function (error) {
-              // Maneja errores
-              console.error("Ocurrió un error:", error);
-            })
+          // Eliminar opciones existentes del select de municipios
+          while (selectNacionalidad.firstChild) {
+            selectNacionalidad.removeChild(selectNacionalidad.firstChild);
+          }
+          
+          cargarOpcionesSelect(
+            "http://localhost/clinicaf/evaluados/listarNacionalidad",
+            selectNacionalidad,
+            "nom_nacionalidad",
+            "id_nacionalidad"
+          );
       }
     };
 });

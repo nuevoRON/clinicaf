@@ -1,4 +1,5 @@
-//Datos generales del Proveido
+import { cargarOpcionesSelect } from "../helpers/funciones.js";
+
 const formulario = document.querySelector("#formulario");
 
 const selectCasos = document.querySelector("#num_caso");
@@ -27,49 +28,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });  */
 
-  //Cargar casos
-  let url = "http://localhost/clinicaf/citaciones/getNumerosCasos";
-  axios
-    .get(url)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/citaciones/getNumerosCasos",
+    selectCasos,
+    "num_caso",
+    "id_proveidos"
+  );
 
-        option.text = opcion.num_caso;
-        option.value = opcion.id_proveidos;
-        selectCasos.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
-
-
-  //Cargar médicos
-  let urlMedico = "http://localhost/clinicaf/usuarios/getMedicos";
-  axios
-    .get(urlMedico)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.medicos.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = `${opcion.nombre} ${opcion.apellido}`;
-        option.value = opcion.id_usu;
-        selectMedico.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
-
-
-
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/usuarios/getMedicos",
+    selectMedico,
+    "nombre_completo",
+    "id_usu"
+  );
+  
 /* Mostrar Tabla */
 //Se extraen los datos de la base de datos para llenar el datatable
   let urlListarCitaciones = "http://localhost/clinicaf/citaciones/getCitaciones";

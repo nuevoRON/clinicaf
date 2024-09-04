@@ -1,3 +1,5 @@
+import { cargarOpcionesSelect } from "../helpers/funciones.js";
+
 const formulario = document.querySelector("#formulario");
 const formularioTranscripcion = document.querySelector("#formularioTranscripcion");
 
@@ -29,89 +31,36 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });  */
 
-  //Cargar casos
-  let url = "http://localhost/clinicaf/citaciones/getNumerosCasos";
-  axios
-    .get(url)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/citaciones/getNumerosCasos",
+    selectCasos,
+    "num_caso",
+    "id_proveidos"
+  );
 
-        option.text = opcion.num_caso;
-        option.value = opcion.id_proveidos;
-        selectCasos.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/usuarios/getMedicos",
+    selectMedico,
+    "nombre_completo",
+    "id_usu"
+  );
 
 
-  //Cargar médicos
-  let urlMedico = "http://localhost/clinicaf/usuarios/getMedicos";
-  axios
-    .get(urlMedico)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.medicos.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = `${opcion.nombre} ${opcion.apellido}`;
-        option.value = opcion.id_usu;
-        selectMedico.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
-
-
-  //Cargar casos oara ampliaciones y transcripciones
+  //Cargar casos para ampliaciones y transcripciones
   //Se cargan solo los casos que se encuentran guardados en dictamenes
-  let urlTranscripcion = "http://localhost/clinicaf/dictamenes/getNumerosCasosTranscripcion";
-  axios
-    .get(urlTranscripcion)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = opcion.num_caso;
-        option.value = opcion.id_dictamen;
-        selectCasosTranscripcion.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
-
-
-    //Cargar médicos
-  let urlMedicoTranscripcion = "http://localhost/clinicaf/usuarios/getMedicos";
-  axios
-    .get(urlMedicoTranscripcion)
-    .then(function (response) {
-      // Llenar Select
-      console.log(response);
-      response.data.medicos.forEach((opcion) => {
-        let option = document.createElement("option");
-
-        option.text = `${opcion.nombre} ${opcion.apellido}`;
-        option.value = opcion.id_usu;
-        selectMedicoTranscripcion.appendChild(option);
-      });
-    })
-    .catch(function (error) {
-      // Maneja errores
-      console.error("Ocurrió un error:", error);
-    });
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/dictamenes/getNumerosCasosTranscripcion",
+    selectCasosTranscripcion,
+    "num_caso",
+    "id_dictamen"
+  );
+ 
+  cargarOpcionesSelect(
+    "http://localhost/clinicaf/usuarios/getMedicos",
+    selectMedicoTranscripcion,
+    "nombre_completo",
+    "id_usu"
+  );
 
 
 

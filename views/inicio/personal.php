@@ -194,7 +194,7 @@
 	</main>
 
 	<?php include "views/templates/archivosJS.php"; ?>
-	<script src="<?php echo BASE_URL; ?>assets/js/modulos/personal.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/modulos/personal.js"></script>
 	<script type="module" src="<?php echo BASE_URL; ?>assets/js/validaciones/validacionPersonal.js"></script>
 </body>
 

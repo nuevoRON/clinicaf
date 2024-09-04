@@ -13,8 +13,7 @@ class Usuarios extends Controller
     public function getMedicos()
     {
         $data = $this->model->getMedicos();
-        $res = array('medicos' => $data, 'type' => 'success');
-        echo json_encode($res, JSON_UNESCAPED_UNICODE);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 

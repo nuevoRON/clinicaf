@@ -24,6 +24,51 @@ if (isset($_GET['id'])) {
 		line-height: 1.15;
 		margin: 0;
 	}
+
+	.custom-select {
+  position: relative;
+  width: 200px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.custom-select-selected {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.custom-select-selected span {
+  margin: 2px;
+  padding: 5px;
+  background-color: #eee;
+  border-radius: 3px;
+}
+
+.custom-select-dropdown {
+  display: none;
+  position: absolute;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.custom-select-dropdown div {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.custom-select-dropdown div:hover {
+  background-color: #ddd;
+}
+
+.custom-select.open .custom-select-dropdown {
+  display: block;
+}
+
 </style>
 
 <body>
@@ -516,7 +561,7 @@ if (isset($_GET['id'])) {
 	</div>
 
 	<?php include "views/templates/archivosJS.php"; ?>
-	<script src="<?php echo BASE_URL; ?>assets/js/modulos/evaluados.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/modulos/evaluados.js"></script>
 	<script type="module" src="<?php echo BASE_URL; ?>assets/js/validaciones/validacionEvaluado.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>

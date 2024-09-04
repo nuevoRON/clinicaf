@@ -249,7 +249,7 @@
 				</div>
 				
 	<?php include "views/templates/archivosJS.php"; ?>
-	<script src="<?php echo BASE_URL; ?>assets/js/modulos/proveidos.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/modulos/proveidos.js"></script>
 	<script type="module" src="<?php echo BASE_URL; ?>assets/js/validaciones/validacionProveidos.js"></script>
 </body>
 

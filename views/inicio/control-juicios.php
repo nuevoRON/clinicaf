@@ -128,7 +128,7 @@
 	</main>
 
 	<?php include "views/templates/archivosJS.php"; ?>
-	<script src="<?php echo BASE_URL; ?>assets/js/modulos/citaciones.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/modulos/citaciones.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
