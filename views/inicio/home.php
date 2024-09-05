@@ -1,5 +1,3 @@
-<?php include "views/templates/sesion.php"; ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,19 +24,11 @@
 			
 			<!-- Content -->
 			<div class="full-box tile-container">
-				<a href="client-new.html" class="tile">
-					<div class="tile-tittle">Paciente</div>
-					<div class="tile-icon">
-						<i class="fas fa-users fa-fw"></i>
-						<p>5 Registrados</p>
-					</div>
-				</a>
-				
 				<a href="item-list.html" class="tile">
-					<div class="tile-tittle">Medicos</div>
+					<div class="tile-tittle">Empleados</div>
 					<div class="tile-icon">
 						<i class="fas fa-pallet fa-fw"></i>
-						<p>9 Registrados</p>
+						<p id="span-empleados"></p>
 					</div>
 				</a>
 
@@ -46,23 +36,23 @@
 					<div class="tile-tittle">Evaluaciones</div>
 					<div class="tile-icon">
 						<i class="far fa-calendar-alt fa-fw"></i>
-						<p>30 Registradas</p>
+						<p id="span-evaluaciones"></p>
 					</div>
 				</a>
 
 				<a href="reservation-pending.html" class="tile">
-					<div class="tile-tittle">Pendientes</div>
+					<div class="tile-tittle">Citaciones</div>
 					<div class="tile-icon">
 						<i class="fas fa-hand-holding-usd fa-fw"></i>
-						<p>200 Registrados</p>
+						<p id="span-citaciones"></p>
 					</div>
 				</a>
 
 				<a href="reservation-list.html" class="tile">
-					<div class="tile-tittle">Entregados</div>
+					<div class="tile-tittle">Dictamenes</div>
 					<div class="tile-icon">
 						<i class="fas fa-clipboard-list fa-fw"></i>
-						<p>700 Registrados</p>
+						<p id="span-dictamenes"></p>
 					</div>
 				</a>
 
@@ -70,19 +60,10 @@
 					<div class="tile-tittle">Plantillas Disponibles</div>
 					<div class="tile-icon">
 						<i class="fas fa-user-secret fa-fw"></i>
-						<p>50 Registrados</p>
+						<p id="span-plantillas"></p>
 					</div>
 				</a>
-
-				<!-- <a href="company.html" class="tile">
-					<div class="tile-tittle">********</div>
-					<div class="tile-icon">
-						<i class="fas fa-store-alt fa-fw"></i>
-						<p>1 Registrada</p>
-					</div>
-				</a> -->
 			</div>
-
 		</section>
 	</main>
 	

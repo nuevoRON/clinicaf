@@ -15,31 +15,57 @@ class Puestos extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //Cargar datos en tabla
     public function listarPuestos()
     {
-        $data = $this->model->getPuestos();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getPuestos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     public function getPuestosSelect()
     {
-        $data = $this->model->getPuestosSelect();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getPuestosSelect();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     public function getEstados(){
-        $data = $this->model->getEstados();
-        $res = array('estados'=>$data, 'type'=>'success');
-        echo json_encode($res, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getEstados();
+            $res = array('estados'=>$data, 'type'=>'success');
+            echo json_encode($res, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     //Registrar Puestos
     public function insertarPuestos() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['puesto'])) {//puesto viene de la vista
                 $res = array('titulo' => 'Error', 
@@ -70,6 +96,8 @@ class Puestos extends Controller
 
     //Actualizar Puestos
     public function actualizarPuestos() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -102,6 +130,8 @@ class Puestos extends Controller
     
     //Obtener datos de sexo para edición
     public function obtenerPuestos($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->obtenerPuestos($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -111,6 +141,8 @@ class Puestos extends Controller
     
     //Eliminar Puesto
     public function eliminarPuestos($id){
+        $this->verificarSesion();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {

@@ -1,5 +1,3 @@
-<?php include "views/templates/sesion.php"; ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,7 +15,7 @@
 		<section class="full-box page-content">
 			<?php include "views/templates/NavSup.php"; ?>
 			<h3 class="text-left">
-				<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE MODULOS
+				<i class="fas fa-th-large"></i> &nbsp; MODULOS
 			</h3>
 			<div class="container-fluid">
 				<div class="container-fluid">

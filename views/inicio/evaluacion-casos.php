@@ -1,5 +1,3 @@
-<?php include "views/templates/sesion.php"; ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,7 +14,7 @@
         <section class="full-box page-content">
             <?php include "views/templates/NavSup.php"; ?>
             <h3 class="text-left">
-                <i class="fas fa-plus fa-fw"></i> &nbsp; CONTROL DE REVISIÓN DE CASOS
+                <i class="fas fa-exchange-alt"></i> &nbsp; CONTROL DE REVISIÓN DE CASOS
             </h3>
             <div class="container-fluid">
 				<div class="text-center">

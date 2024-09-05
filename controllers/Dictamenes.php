@@ -15,33 +15,59 @@ class Dictamenes extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
+
     //Cargar datos en tabla
     public function getDictamenes()
     {
-        $data = $this->model->getDictamenes();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getDictamenes();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     public function getTranscripciones()
     {
-        $data = $this->model->getTranscripciones();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getTranscripciones();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     public function getNumerosCasosTranscripcion()
     {
-        $data = $this->model->getNumerosCasosTranscripcion();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getNumerosCasosTranscripcion();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     /* Funciones para la sección de dictamenes */
     public function insertarDictamen() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $numeroCaso = strClean($_POST['num_caso']);
             $fechaEvaluacion = strClean($_POST['fecha_evaluacion']);
@@ -80,6 +106,8 @@ class Dictamenes extends Controller
 
     //Actualizar
     public function actualizarDictamen() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -115,6 +143,8 @@ class Dictamenes extends Controller
     
     //Obtener datos de dictamen para edición
     public function obtenerDictamen($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->getDictamen($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -124,6 +154,8 @@ class Dictamenes extends Controller
     
     //Eliminar 
     public function eliminarDictamen($id){
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {
@@ -156,6 +188,8 @@ class Dictamenes extends Controller
 
     /* Funciones para la sección de transcripciones y ampliaciones */
     public function insertarTranscripcion() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $idDictamen = strClean($_POST['num_casoTranscripcion']);
             $fechaEvaluacion = strClean($_POST['fecha_evaluacionTranscripcion']);
@@ -198,6 +232,8 @@ class Dictamenes extends Controller
 
 
     public function obtenerTranscripcion($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->getTranscripcion($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -207,6 +243,8 @@ class Dictamenes extends Controller
 
 
     public function actualizarTranscripcion() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -253,6 +291,8 @@ class Dictamenes extends Controller
 
 
     public function eliminarTranscripcion($id){
+        $this->verificarSesion();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {

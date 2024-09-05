@@ -1,5 +1,3 @@
-<?php include "views/templates/sesion.php"; ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,8 +14,7 @@
 		<section class="full-box page-content">
 			<?php include "views/templates/NavSup.php"; ?>
 			<h3 class="text-left">
-				<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PERMISOS
-			
+				<i class="fas fa-user-shield"></i> &nbsp; LISTA DE PERMISOS
 			<div class="container-fluid">
 				<p class="text-center">
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalPermisos"><i class="fas fa-user-plus"></i> &nbsp; Agregar Permiso</button>

@@ -15,16 +15,34 @@ class Sedes extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //Cargar datos en tabla
     public function listarSedes()
     {
-        $data = $this->model->getSedes();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getSedes();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     //Registrar sexos
     public function insertarSede() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['ubicacion'])) {
                 $res = array('titulo' => 'Error', 
@@ -58,6 +76,8 @@ class Sedes extends Controller
 
     //Actualizar sexos
     public function actualizarSede() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -93,6 +113,8 @@ class Sedes extends Controller
     
     //Obtener datos de sexo para edición
     public function obtenerSede($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->obtenerSede($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -102,6 +124,8 @@ class Sedes extends Controller
     
     //Eliminar sede
     public function eliminarSede($id){
+        $this->verificarSesion();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {

@@ -15,17 +15,35 @@ class Personal extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //Cargar datos en tabla
     public function listarEmpleados()
     {
-        $data = $this->model->listarEmpleados();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->listarEmpleados();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     public function listarPerfilEmpleado()
     {
+        $this->verificarSesion();
+
         $id = $_SESSION['id_usuario'];
         $data = $this->model->listarPerfilEmpleado($id);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -34,32 +52,50 @@ class Personal extends Controller
 
 
     public function getJornadas(){
-        $data = $this->model->getJornadas();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getJornadas();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     public function getPuestos(){
-        $data = $this->model->getPuestos();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getPuestos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     public function getEstados(){
-        $data = $this->model->getEstados();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getEstados();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     public function getClinicas(){
-        $data = $this->model->getClinicas();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getClinicas();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     //Registrar Puestos
     public function insertarPersonal() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nombre = strClean($_POST['nombre']);//puesto viene de la vista
             $apellido = strClean($_POST['apellido']);
@@ -133,6 +169,8 @@ class Personal extends Controller
 
     //Actualizar Puestos
     public function actualizarPersonal() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -175,6 +213,8 @@ class Personal extends Controller
 
     
     public function actualizarPerfil() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -203,6 +243,8 @@ class Personal extends Controller
 
 
     public function actualizarClave() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -228,6 +270,8 @@ class Personal extends Controller
     
     //Obtener datos de empleado para edición
     public function obtenerEmpleado($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->obtenerEmpleado($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -237,6 +281,8 @@ class Personal extends Controller
     
     //Eliminar Puesto
     public function eliminarEmpleado($id){
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {
@@ -267,8 +313,9 @@ class Personal extends Controller
     }
 
 
-        public function resetearClave($id){
-            if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+    public function resetearClave($id){
+        $this->verificarSesion();
+        if ($_SERVER['REQUEST_METHOD'] === 'GET'){
                 if ($id == 1){
                     $res = array('titulo' => 'Error', 
                                 'desc' => 'No se puede resetear la clave del usuario administrador', 
@@ -311,20 +358,19 @@ class Personal extends Controller
                 // Devolver respuesta en formato JSON
                 echo json_encode($res, JSON_UNESCAPED_UNICODE);
                 die();
-            }
         }
+    }
 
-
-        private function generarClaveAleatoria($longitud = 9) {
-            $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()';
-            $claveAleatoria = '';
-            $max = strlen($caracteres) - 1;
-        
-            for ($i = 0; $i < $longitud; $i++) {
-                $claveAleatoria .= $caracteres[random_int(0, $max)];
-            }
-        
-            return $claveAleatoria;
+    private function generarClaveAleatoria($longitud = 9) {
+        $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()';
+        $claveAleatoria = '';
+        $max = strlen($caracteres) - 1;
+    
+        for ($i = 0; $i < $longitud; $i++) {
+            $claveAleatoria .= $caracteres[random_int(0, $max)];
         }
+    
+        return $claveAleatoria;
+    }
 
 }

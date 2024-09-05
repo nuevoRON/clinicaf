@@ -12,6 +12,18 @@ class ProveidosModel extends Query
         return $this->selectAll($sql);
     }
 
+    public function getMedicos()
+    {
+        $sql = "SELECT 
+                    id_usu, 
+                    CONCAT(nombre, ' ', apellido) AS nombre_completo 
+                FROM tbl_usu 
+                WHERE puesto IN (1,2,3) 
+                AND estado = 1
+                AND registro_borrado = 'A'";
+        return $this->selectAll($sql);
+    }
+
     public function listarProveidos()
     {
         $sql = "SELECT  p.id_proveidos,

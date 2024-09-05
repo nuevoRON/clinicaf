@@ -1,8 +1,7 @@
 <?php
-require_once 'config/config.php';
+require_once 'config/Config.php';
 require_once 'config/Helpers.php';
 
-// Establecer la zona horaria a 'America/Tegucigalpa' (Honduras)
 date_default_timezone_set('America/Tegucigalpa');
 
 $ruta = (!empty($_GET['url'])) ? $_GET['url'] : 'login/index' ;

@@ -1,5 +1,3 @@
-<?php include "views/templates/sesion.php"; ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,7 +14,7 @@
 		<section class="full-box page-content">
 			<?php include "views/templates/NavSup.php"; ?>
 			<h3 class="text-center">
-				<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE EVALUACION
+				<i class="fas fa-pallet fa-fw"></i> &nbsp; LISTA DE EVALUACION
 			</h3>
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">

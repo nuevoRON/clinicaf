@@ -15,17 +15,35 @@ class Proveidos extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
      //Cargar datos en tabla
      public function listarProveidos()
      {
-         $data = $this->model->listarProveidos();
-         echo json_encode($data, JSON_UNESCAPED_UNICODE);
-         die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->listarProveidos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
      }
 
 
      //Obtener datos de proveido para edición
     public function editarProveido($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->editarProveido($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -33,8 +51,21 @@ class Proveidos extends Controller
         }
     }
 
+    public function getMedicos()
+    {
+        $this->verificarSesion();
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getMedicos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //metodo para registrar y modificar
     public function insertarProveido() {
+        $this->verificarSesion();
+
         $sede = '';
         $laboratorio = '';
 
@@ -103,6 +134,8 @@ class Proveidos extends Controller
 
 
     public function actualizarProveido() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
 
@@ -155,6 +188,8 @@ class Proveidos extends Controller
 
     //Eliminar proveido
     public function eliminarProveido($id){
+        $this->verificarSesion();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {

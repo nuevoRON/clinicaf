@@ -1,8 +1,7 @@
-<?php include "views/templates/sesion.php";
-
-if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-}
+<?php 
+	if (isset($_GET['id'])) {
+		$id = $_GET['id'];
+	}
 ?>
 
 

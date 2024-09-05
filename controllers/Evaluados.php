@@ -14,59 +14,97 @@ class Evaluados extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
      //Cargar datos en tabla
      public function listarOcupaciones()
      {
-         $data = $this->model->listarOcupaciones();
-         echo json_encode($data, JSON_UNESCAPED_UNICODE);
-         die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->listarOcupaciones();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
      }
      
 
      //Cargar datos en tabla
      public function listarEscolaridad()
      {
-         $data = $this->model->listarEscolaridad();
-         echo json_encode($data, JSON_UNESCAPED_UNICODE);
-         die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->listarEscolaridad();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
      }
 
 
      //Cargar datos en tabla
      public function listarInstrumentos()
      {
-         $data = $this->model->listarInstrumentos();
-         echo json_encode($data, JSON_UNESCAPED_UNICODE);
-         die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->listarInstrumentos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
      }
 
 
      public function listarEstadoCivil()
      {
-         $data = $this->model->listarEstadoCivil();
-         echo json_encode($data, JSON_UNESCAPED_UNICODE);
-         die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->listarEstadoCivil();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
      }
 
 
      public function listarNacionalidad()
      {
-         $data = $this->model->listarNacionalidad();
-         echo json_encode($data, JSON_UNESCAPED_UNICODE);
-         die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->listarNacionalidad();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
      }
 
      //Cargar datos en tabla
      public function listarEvaluados()
      {
-         $data = $this->model->listarEvaluados();
-         echo json_encode($data, JSON_UNESCAPED_UNICODE);
-         die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->listarEvaluados();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
      }
 
 
      //Obtener datos de proveido para edición
     public function editarEvaluado($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->editarEvaluado($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -75,6 +113,8 @@ class Evaluados extends Controller
     }
 
     public function insertarOcupacion() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['ocupacion_nueva'])) {
                 $res = array('msg' => 'EL NOMBRE DE OCUPACION ES REQUERIDO', 'type' => 'warning');
@@ -97,6 +137,8 @@ class Evaluados extends Controller
 
 
     public function insertarInstrumento() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['instrumento_nuevo'])) {
                 $res = array('msg' => 'EL NOMBRE DE INSTRUMENTO ES REQUERIDO', 'type' => 'warning');
@@ -119,6 +161,8 @@ class Evaluados extends Controller
 
 
     public function insertarNacionalidad() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['nacionalidad_nuevo'])) {
                 $res = array('msg' => 'EL NOMBRE DE INSTRUMENTO ES REQUERIDO', 'type' => 'warning');
@@ -141,6 +185,8 @@ class Evaluados extends Controller
 
 
     public function actualizarEvaluado() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
 
@@ -210,6 +256,8 @@ class Evaluados extends Controller
 
     //Eliminar proveido
     public function eliminarProveido($id){
+        $this->verificarSesion();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {

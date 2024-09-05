@@ -1,11 +1,10 @@
 <?php
-//require 'Bitacora.php';
+require 'Bitacora.php';
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 class Dependencias extends Controller
 {
-
     private $id_usuario;
     public function __construct()
     {
@@ -16,29 +15,56 @@ class Dependencias extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
+
     public function getDependencias(){
-        $data = $this->model->getDependencias();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getDependencias();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     public function getDepartamentos(){
-        $data = $this->model->getDepartamentos();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getDepartamentos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     public function getMunicipios($id)
     {   
-        $data = $this->model->getMunicipios($id);
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getMunicipios($id);
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     //metodo para registrar y modificar
     public function registrarPuesto(){
+        $this->verificarSesion();
+
         if (isset($_POST)) {
             if (empty($_POST['nombres'])) {
                 $res = array('msg' => 'EL NOMBRE ES REQUERIDO', 'type' => 'warning');
@@ -83,6 +109,8 @@ class Dependencias extends Controller
 
     public function editarPuesto($id)
     {
+        $this->verificarSesion();
+
         $data = $this->model->editarPuesto($id);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
@@ -90,6 +118,8 @@ class Dependencias extends Controller
 
     public function eliminarPuesto($id)
     {
+        $this->verificarSesion();
+
         $data = $this->model->eliminarPuesto($id);
         if ($data == 0) {
             $res = array('msg' => 'PUESTO ELIMINADO', 'type' => 'success');

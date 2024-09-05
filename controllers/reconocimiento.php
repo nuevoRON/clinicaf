@@ -15,17 +15,35 @@ class Reconocimiento extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //Cargar datos en tabla
     public function listarReconocimientos()
     {
-        $data = $this->model->getReconocimientos();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getReconocimientos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     //Registrar reconocimiento
     public function insertarReconocimientos() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($_POST['reconocimiento'])) {//recocnocimiento viene de la vista
                 $res = array('titulo' => 'Error', 
@@ -55,6 +73,8 @@ class Reconocimiento extends Controller
 
     //Actualizar Puestos
     public function actualizarReconocimientos() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -86,6 +106,8 @@ class Reconocimiento extends Controller
     
     //Obtener datos de sexo para edición
     public function obtenerReconocimientos($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->obtenerReconocimientos($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -95,6 +117,8 @@ class Reconocimiento extends Controller
     
     //Eliminar Puesto
     public function eliminarReconocimientos($id){
+        $this->verificarSesion();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {

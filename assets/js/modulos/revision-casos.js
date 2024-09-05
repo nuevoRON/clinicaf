@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Cargar selects de modal
     cargarOpcionesSelect(
-      "http://localhost/clinicaf/usuarios/getMedicos",
+      "http://localhost/clinicaf/proveidos/getMedicos",
       selectMedico,
       "nombre_completo",
       "id_usu"

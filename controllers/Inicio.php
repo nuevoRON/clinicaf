@@ -1,8 +1,12 @@
 <?php
+require 'middleware/SessionMiddleware.php';
+
 class Inicio extends Controller{
     public function __construct() {
         parent ::__construct();
         session_start();
+
+        new SessionMiddleware();
     }
 
     public function index()
@@ -106,5 +110,42 @@ class Inicio extends Controller{
     {
         $this->views->getView('inicio', 'bitacora');
     }
+
+
+    public function countEmpleados()
+    {
+        $data = $this->model->countEmpleados();
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function countEvaluaciones()
+    {
+        $data = $this->model->countEvaluaciones();
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function countCitaciones()
+    {
+        $data = $this->model->countCitaciones();
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function countDictamenes()
+    {
+        $data = $this->model->countDictamenes();
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function countPlantillas()
+    {
+        $data = $this->model->countPlantillas();
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
 
 }

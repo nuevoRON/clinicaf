@@ -15,17 +15,36 @@ class Casos extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
+
     //Cargar datos en tabla
     public function listarRevisiones()
     {
-        $data = $this->model->getRevisiones();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getRevisiones();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     //Registrar Casos
     public function insertarRevision()
     {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $medico = strClean($_POST['medico']);
             $enviadoPara = strClean($_POST['enviado_para']);
@@ -80,6 +99,8 @@ class Casos extends Controller
     //Actualizar Casos
     public function actualizarRevision()
     {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
 
@@ -141,6 +162,8 @@ class Casos extends Controller
     //Obtener datos de empleado para edición
     public function obtenerRevision($id)
     {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->obtenerRevision($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -150,6 +173,8 @@ class Casos extends Controller
 
     public function eliminarRevision($id)
     {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             if ($id === null) {

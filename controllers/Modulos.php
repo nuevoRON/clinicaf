@@ -15,23 +15,45 @@ class Modulos extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //Cargar datos en tabla
     public function listarModulos()
     {
-        $data = $this->model->getModulos();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getModulos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     public function getModulosSelect()
     {
-        $data = $this->model->getModulosSelect();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getModulosSelect();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     public function insertarModulo() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $nombre = strClean($_POST['nombre']);
@@ -59,6 +81,8 @@ class Modulos extends Controller
 
     //Actualizar sexos
     public function actualizarModulo() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -91,6 +115,8 @@ class Modulos extends Controller
     
     //Obtener datos de sexo para edición
     public function obtenerModulo($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->obtenerModulo($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -100,6 +126,8 @@ class Modulos extends Controller
    
 
     public function eliminarModulo($id){
+        $this->verificarSesion();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {

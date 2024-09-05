@@ -15,16 +15,35 @@ class Permisos extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //Cargar datos en tabla
     public function listarPermisos()
     {
-        $data = $this->model->getPermisos();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getPermisos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
     }
 
     //Registrar
     public function insertarPermiso() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $puesto = strClean($_POST['puesto']);
             $modulo = strClean($_POST['modulo']);
@@ -52,6 +71,8 @@ class Permisos extends Controller
 
     //Actualizar sexos
     public function actualizarPermiso() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -86,6 +107,8 @@ class Permisos extends Controller
     
   
     public function obtenerPermisos($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->obtenerPermisos($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -95,6 +118,8 @@ class Permisos extends Controller
     
     //Eliminar 
     public function eliminarPermiso($id){
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {
@@ -130,6 +155,8 @@ class Permisos extends Controller
     - El tipo de permiso a validar (consulta, insercion, actualizacion, eliminacion)
     - La vista o módulo en la que se está en el momento */
     public function validarPermisos() {
+        $this->verificarSesion();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $input = json_decode(file_get_contents('php://input'), true);
             $consulta = isset($input['consulta']) ? intval($input['consulta']) : null;

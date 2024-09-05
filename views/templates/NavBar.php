@@ -73,28 +73,28 @@
 									<a href="<?php echo BASE_URL . 'inicio/controlVacaciones'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Vacaciones</a>
 								</li>
 								<li>
-									<a href="<?php echo BASE_URL . 'inicio/sexos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Sexo</a>
+									<a href="<?php echo BASE_URL . 'inicio/sexos'; ?>"><i class="fas fa-venus-mars"></i> &nbsp; Sexo</a>
 								</li>
 								<li>
-									<a href="<?php echo BASE_URL . 'inicio/puestos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Puesto</a>
+									<a href="<?php echo BASE_URL . 'inicio/puestos'; ?>"><i class="fas fa-user-tie"></i> &nbsp; Puesto</a>
 								</li>
 								<li>
 									<a href="<?php echo BASE_URL . 'inicio/reconocimientos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Reconocimientos</a>
 								</li>
 								<li>
-									<a href="<?php echo BASE_URL . 'inicio/modulos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Modulos</a>
+									<a href="<?php echo BASE_URL . 'inicio/modulos'; ?>"><i class="fas fa-th-large"></i> &nbsp; Modulos</a>
 								</li>
 								<li>
-									<a href="<?php echo BASE_URL . 'inicio/permisos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Permisos</a>
+									<a href="<?php echo BASE_URL . 'inicio/permisos'; ?>"><i class="fas fa-user-shield"></i> &nbsp; Permisos</a>
 								</li>
 								<li>
-									<a href="<?php echo BASE_URL . 'inicio/bitacora'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Bitácora</a>
+									<a href="<?php echo BASE_URL . 'inicio/bitacora'; ?>"><i class="fas fa-list"></i> &nbsp; Bitácora</a>
 								</li>
 							</ul>
 						</li>
 					<?php }?>
 				<li>
-					<a href="<?php echo BASE_URL . 'inicio/plantillas'; ?>"><i class="fas fa-clipboard-list"></i> &nbsp; Plantillas </a>
+					<a href="<?php echo BASE_URL . 'inicio/plantillas'; ?>"><i class="fas fa-save"></i> &nbsp; Plantillas </a>
 				</li>
 			</ul>
 		</nav>

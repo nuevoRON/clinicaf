@@ -1,5 +1,3 @@
-<?php include "views/templates/sesion.php"; ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,10 +11,15 @@
 
 <body>
 	<!-- Main container -->
-	<main class="full-box main-container">
-		<h1>Error 404</h1>
-		<p>La página a la que ha intentado acceder no existe o no está disponible en este momento</p>
-		<button></button>
+	<main class="full-box main-container container-404">
+		<div>
+			<p class="text-center"><i class="fas fa-rocket fa-10x"></i></p>
+			<h1 class="text-center">ERROR 404</h1>
+			<p class="lead text-center">Página no encontrada</p>
+			<a href="../inicio/">
+				<button class="btn btn-primary">Regresar a Inicio</button>
+			</a>
+		</div>
 	</main>
 	<?php include "views/templates/archivosJS.php"; ?>
 </body>

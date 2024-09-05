@@ -15,16 +15,34 @@ class Plantillas extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //Cargar datos en tabla
     public function listarPlantillas()
     {
-        $data = $this->model->listarPlantillas();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->listarPlantillas();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
     
 
     public function descargarArchivo() {
+        $this->verificarSesion();
+        
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
             if (!$id) {

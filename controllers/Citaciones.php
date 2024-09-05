@@ -15,23 +15,45 @@ class Citaciones extends Controller
         }
     }
 
+    private function verificarSesion()
+    {
+        if (empty($this->id_usuario)) {
+            echo json_encode([
+                'titulo' => 'Acceso Denegado',
+                'desc' => 'Debes iniciar sesión para realizar esta acción.',
+                'type' => 'error'
+            ], JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //Cargar datos en tabla
     public function getCitaciones()
     {
-        $data = $this->model->getCitaciones();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getCitaciones();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
 
     public function getNumerosCasos(){
-        $data = $this->model->getNumerosCasos();
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
-        die();
+        $this->verificarSesion();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getNumerosCasos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 
     //Registrar Puestos
     public function insertarCitacion() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $numeroCaso = strClean($_POST['num_caso']);
             $tipoCitacion = strClean($_POST['tipo_citacion']);
@@ -60,6 +82,8 @@ class Citaciones extends Controller
 
     //Actualizar Puestos
     public function actualizarCitacion() {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $putData = json_decode(file_get_contents("php://input"), true);
     
@@ -94,6 +118,8 @@ class Citaciones extends Controller
     
     //Obtener datos de citacion para edición
     public function obtenerCitacion($id) {
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $data = $this->model->getCitacion($id);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -103,6 +129,8 @@ class Citaciones extends Controller
     
     //Eliminar Puesto
     public function eliminarCitacion($id){
+        $this->verificarSesion();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET'){
             
             if ($id === null) {

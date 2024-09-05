@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   cargarOpcionesSelect(
-    "http://localhost/clinicaf/usuarios/getMedicos",
+    "http://localhost/clinicaf/proveidos/getMedicos",
     selectMedico,
     "nombre_completo",
     "id_usu"
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
  
   cargarOpcionesSelect(
-    "http://localhost/clinicaf/usuarios/getMedicos",
+    "http://localhost/clinicaf/proveidos/getMedicos",
     selectMedicoTranscripcion,
     "nombre_completo",
     "id_usu"

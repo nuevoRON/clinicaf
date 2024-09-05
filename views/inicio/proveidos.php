@@ -1,5 +1,3 @@
-<?php include "views/templates/sesion.php"; ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,7 +15,7 @@
 		<section class="full-box page-content">
 			<?php include "views/templates/NavSup.php"; ?>
 			<h3 class="text-left">
-				<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE PROVEÍDO
+				<i class="fas fa-users fa-fw"></i> &nbsp; LISTA DE PROVEÍDOS
 			</h3>
 			<div class="container-fluid">
 				<div class="text-center">
@@ -28,7 +26,7 @@
 						<i class="fas fa-file-pdf"></i> &nbsp; Exportar PDF
 					</button>
 					<button type="button" class="btn btn-success" id="btnModalProveido3" onclick="exportarExcel()">
-						<i class="fas fa-file-excel"></i> &nbsp; ExportarExcel
+						<i class="fas fa-file-excel"></i> &nbsp; Exportar Excel
 					</button>
 				</div>
 			</div>

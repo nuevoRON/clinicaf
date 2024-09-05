@@ -1,5 +1,3 @@
-<?php include "views/templates/sesion.php"; ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,7 +13,7 @@
 			<?php include "views/templates/NavSup.php"; ?>
 			<div class="full-box">
 				<h4 class="text-left">
-					<i class="fas fa-clipboard-list fa-fw"></i> &nbsp; CONTROL DE CITACIONES
+					<i class="fas fa-balance-scale"></i> &nbsp; CONTROL DE CITACIONES
 				</h4>
 			</div>
 			<div class="container-fluid">
