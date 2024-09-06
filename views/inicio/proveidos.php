@@ -22,10 +22,10 @@
 					<button type="button" class="btn btn-primary" id="btnModalProveido1">
 						<i class="fas fa-user-plus"></i> &nbsp; Agregar Proveído
 					</button>
-					<button type="button" class="btn btn-danger" id="btnPDFProveido" onclick="exportarPDF()">
+					<button type="button" class="btn btn-danger" id="btnPDFProveido">
 						<i class="fas fa-file-pdf"></i> &nbsp; Exportar PDF
 					</button>
-					<button type="button" class="btn btn-success" id="btnModalProveido3" onclick="exportarExcel()">
+					<button type="button" class="btn btn-success" id="btnExcelProveido">
 						<i class="fas fa-file-excel"></i> &nbsp; Exportar Excel
 					</button>
 				</div>

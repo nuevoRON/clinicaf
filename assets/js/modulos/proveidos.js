@@ -481,9 +481,17 @@ function exportarPDF() {
   window.location.href = urlDescarga;
 }
 
+document
+  .getElementById("btnPDFProveido")
+  .addEventListener("click", exportarPDF);
+
 function exportarExcel() {
   let urlDescarga =
     "http://localhost/clinicaf/exportacionExcel/exportarProveidos";
 
   window.location.href = urlDescarga;
 }
+
+document
+  .getElementById("btnExcelProveido")
+  .addEventListener("click", exportarExcel);

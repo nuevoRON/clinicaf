@@ -360,9 +360,17 @@ function exportarPDF() {
   window.location.href = urlDescarga;
 }
 
+document
+  .getElementById("btnPDFCaso")
+  .addEventListener("click", exportarPDF);
+
 
 function exportarExcel() {
   let urlDescarga = "http://localhost/clinicaf/exportacionExcel/exportarRevisionCasos";
     
   window.location.href = urlDescarga;
 }
+
+document
+  .getElementById("btnExcelCaso")
+  .addEventListener("click", exportarExcel);
