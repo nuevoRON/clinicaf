@@ -208,6 +208,10 @@ function eliminarPuestos(id_puesto) {
                   title: res.titulo,
                   text: res.desc,
                   icon: res.type
+                }).then((result) => {
+                  if (this.responseText.includes('"type":"success"')) {
+                    location.reload();
+                  }
                 });
               }
             };

@@ -24,7 +24,10 @@ class PersonalModel extends Query
                 INNER JOIN tbl_puestos p ON p.id_puesto = u.puesto
                 INNER JOIN tbl_sedes s ON s.id_sede = u.sede
                 WHERE u.registro_borrado = 'A'";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -45,7 +48,10 @@ class PersonalModel extends Query
                 INNER JOIN tbl_puestos p ON p.id_puesto = u.puesto
                 INNER JOIN tbl_sedes s ON s.id_sede = u.sede
                 WHERE u.id_usu = $id";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -85,38 +91,57 @@ class PersonalModel extends Query
             'A',
             0
         );
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function obtenerEmpleado($id)
     {
         $sql = " SELECT * FROM tbl_usu WHERE id_usu = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getPuestos()
     {
         $sql = "SELECT * FROM tbl_puestos";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getEstados()
     {
         $sql = "SELECT * FROM tbl_estados";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getJornadas()
     {
         $sql = "SELECT * FROM tbl_jornada";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
     public function getClinicas()
     {
         $sql = "SELECT id_clinica, nombre FROM tbl_clinicas";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -125,6 +150,9 @@ class PersonalModel extends Query
         $sql = "UPDATE tbl_usu SET registro_borrado = 'I'  WHERE id_usu=?";
         $array = array($id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarPersonal(
@@ -160,6 +188,9 @@ class PersonalModel extends Query
             $id
         );
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -179,6 +210,9 @@ class PersonalModel extends Query
             $id
         );
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -194,6 +228,9 @@ class PersonalModel extends Query
             $id
         );
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -202,7 +239,10 @@ class PersonalModel extends Query
         $sql = "SELECT * 
                 FROM tbl_usu
                 WHERE usuario = '$usuario'";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function verExistenciaColegiacion($numColegiacion)
@@ -210,7 +250,10 @@ class PersonalModel extends Query
         $sql = "SELECT * 
                 FROM tbl_usu
                 WHERE num_colegiacion = '$numColegiacion'";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function verExistenciaNumEmpleado($numEmpleado)
@@ -218,7 +261,10 @@ class PersonalModel extends Query
         $sql = "SELECT * 
                 FROM tbl_usu
                 WHERE num_empleado = '$numEmpleado'";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function verExistenciaEmail($email)
@@ -226,7 +272,10 @@ class PersonalModel extends Query
         $sql = "SELECT * 
                 FROM tbl_usu
                 WHERE correo = '$email'";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -235,7 +284,10 @@ class PersonalModel extends Query
         $sql = "SELECT id_usu 
                 FROM tbl_usu
                 WHERE id_usu = $id AND estado = 7";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -245,5 +297,8 @@ class PersonalModel extends Query
         $sql = "UPDATE tbl_usu SET contrasena=?, estado = 1, intentos = 0 WHERE id_usu=?";
         $array = array($claveEncriptada,$id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 }

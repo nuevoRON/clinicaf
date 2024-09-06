@@ -9,7 +9,10 @@ class PlantillasModel extends Query{
         $sql = "SELECT id_archivo, 
                        split_part(ruta_archivo, '/',4) as ruta 
                 FROM tbl_plantillas";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function obtenerRutaArchivo($id)
@@ -18,7 +21,9 @@ class PlantillasModel extends Query{
         $params = [$id];
         $types = [PDO::PARAM_INT]; 
 
-        return $this->select($sql, $params, $types);
+        $result =  $this->select($sql, $params, $types);
+        $this->cerrarConexion();
+        return $result;
     }
 
 }

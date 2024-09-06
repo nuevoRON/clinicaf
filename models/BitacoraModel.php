@@ -1,5 +1,4 @@
 <?php
-###################################################################             #########################################################################
 class BitacoraModel extends Query
 {
     public function __construct()
@@ -18,14 +17,19 @@ class BitacoraModel extends Query
                 INNER JOIN tbl_usu u on u.id_usu = b.id_usuario 
                 INNER JOIN tbl_modulos m on m.id = b.id_modulo
                 ORDER BY b.id_bitacora DESC";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function crearEvento($idUser, $idObjeto, $accion, $descripcion, $fecha)
     {
         $sql = "INSERT INTO tbl_bitacora (id_usuario, id_modulo, accion, descripcion, fecha_accion) VALUES (?,?,?,?,?)";
         $array = array($idUser, $idObjeto, $accion, $descripcion, $fecha);
-        return $this->insertar($sql, $array);
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 }
-?>

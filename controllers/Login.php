@@ -27,6 +27,7 @@ class Login extends Controller{
                 
                 if (empty($data)){
                     $res = array('msg' => 'Usuario o contraseña incorrecta', 'type' => 'warning');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
                     die();
                 }
                 

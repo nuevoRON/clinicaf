@@ -177,7 +177,11 @@ function eliminarSexo(idSexo) {
                 Swal.fire({
                   title: res.titulo,
                   text: res.desc,
-                  icon: res.type,
+                  icon: res.type
+                }).then((result) => {
+                  if (this.responseText.includes('"type":"success"')) {
+                    location.reload();
+                  }
                 });
               }
             };

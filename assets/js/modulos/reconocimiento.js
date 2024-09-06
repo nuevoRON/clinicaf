@@ -168,7 +168,7 @@ function eliminarReconocimientos(idreconocimiento) {
         });
       } else {
         Swal.fire({
-          title: "¿Estas seguro de eliminar este sexo?",
+          title: "¿Estas seguro de eliminar este reconocimiento?",
           text: "Esta acción no se puede deshacer",
           icon: "warning",
           showCancelButton: true,

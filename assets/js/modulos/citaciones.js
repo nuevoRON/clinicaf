@@ -21,12 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Ocurrió un error:", error);
     });
 
-  //Inicializar Select2 para select de casos
-  /* $(document).ready(function() {
-    $('#num_caso').select2({
-      language:"SpanishTranslation"
-    });
-  });  */
 
   cargarOpcionesSelect(
     "http://localhost/clinicaf/citaciones/getNumerosCasos",
@@ -116,6 +110,11 @@ document.addEventListener("DOMContentLoaded", function () {
       // Maneja errores
       console.error("Ocurrió un error:", error);
     });
+
+  //Inicializar Select2 para select de casos
+/*   $(document).ready(function() {
+    $('#num_caso').select2();
+  });  */
 
 
 

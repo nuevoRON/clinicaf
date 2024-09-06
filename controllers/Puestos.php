@@ -155,12 +155,12 @@ class Puestos extends Controller
                     $bitacora = new Bitacora();
                     $bitacora->model->crearEvento($_SESSION['id_usuario'], 11, 'ELIMINACION', 'Se eliminó el puesto con id '.$id, date('Y-m-d H:i:s'));
                     
-                    $res = array('titulo' => 'Sede Eliminada', 
+                    $res = array('titulo' => 'Puesto Eliminado', 
                                 'desc' => 'El puesto se ha eliminado exitosamente', 
                                 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 
-                                'desc' => 'Hubo un error al eliminar el puesto seleccionada', 
+                                'desc' => 'Hubo un error al eliminar el puesto seleccionado', 
                                 'type' => 'warning');
                 }
             }

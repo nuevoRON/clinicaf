@@ -7,37 +7,56 @@ class PuestosModel extends Query{
     public function insertarPuestos($puesto,$estado) {
         $sql = "INSERT INTO tbl_puestos (nom_puesto,estado) VALUES(?,?)";
         $array = array($puesto,$estado);
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function obtenerPuestos($id)
     {
         $sql = " SELECT * FROM tbl_puestos WHERE id_puesto = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getPuestos()
     {
         $sql = "SELECT * FROM tbl_puestos";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
     
     public function getPuestosSelect()
     {
         $sql = "SELECT id_puesto, nom_puesto FROM tbl_puestos";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getEstados()
     {
         $sql = "SELECT * FROM tbl_puestos";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function eliminarPuestos($id)
     {
         $sql = " DELETE FROM tbl_puestos WHERE id_puesto = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarPuestos($puesto,$estado, $id)
@@ -45,6 +64,9 @@ class PuestosModel extends Query{
         $sql = "UPDATE tbl_puestos SET nom_puesto=?, estado=?   WHERE id_puesto=?";
         $array = array($puesto,$estado, $id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 }

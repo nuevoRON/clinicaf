@@ -9,7 +9,10 @@ class ProveidosModel extends Query
     public function getPuestos()
     {
         $sql = "SELECT * from tbl_puesto";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getMedicos()
@@ -21,7 +24,10 @@ class ProveidosModel extends Query
                 WHERE puesto IN (1,2,3) 
                 AND estado = 1
                 AND registro_borrado = 'A'";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function listarProveidos()
@@ -40,7 +46,10 @@ class ProveidosModel extends Query
                 INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
                 INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
                 WHERE p.registro_borrado = 'A';";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function insertarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, 
@@ -50,7 +59,11 @@ class ProveidosModel extends Query
         fiscalia_remitente, registro_borrado, num_solicitud, especifique_cual) VALUES(?,?,?,?,?,?,?,?)";
         $array = array($numeroCasoCorrelativo,  $numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, 'A',
          $numeroSolicitud,$especificar);
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function insertarEvaluado($nombre, $apellido, $dni, $dataProveido)
@@ -58,7 +71,11 @@ class ProveidosModel extends Query
         $sql = "INSERT INTO tbl_evaluado (nombre_evaluado,apellido_evaluado,dni_evaluado, id_proveido, estado_evaluacion) 
         VALUES(?,?,?,?,?)";
         $array = array($nombre,  $apellido, $dni, $dataProveido, 'Nuevo');
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function insertarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido)
@@ -66,7 +83,11 @@ class ProveidosModel extends Query
         $sql = "INSERT INTO tbl_hecho (id_departamento,id_municipio,localidad, lugar_hecho,fecha_hecho,
         id_proveido) VALUES(?,?,?,?,?,?)";
         $array = array($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido);
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function insertarReconocimiento($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion)
@@ -74,14 +95,22 @@ class ProveidosModel extends Query
         $sql = "INSERT INTO tbl_proveido_reconocimiento (id_proveido_reconocimiento,tipo_reconocimiento,medico, fecha_citacion) 
         VALUES(?,?,?,?)";
         $array = array($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion);
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function insertarEvaluacion($dataProveido)
     {
         $sql = "INSERT INTO tbl_evaluacion (id_proveido) VALUES(?)";
         $array = array($dataProveido);
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function editarProveido($id)
@@ -110,7 +139,10 @@ class ProveidosModel extends Query
                 INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
                 INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
                where p.id_proveidos = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$especificar, $id)
@@ -119,6 +151,9 @@ class ProveidosModel extends Query
         fiscalia_remitente=?, especifique_cual=? WHERE id_proveidos=?";
         $array = array($numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, $especificar,$id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -128,6 +163,9 @@ class ProveidosModel extends Query
         WHERE id_proveido=?";
         $array = array($nombre, $apellido, $dni, $id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id)
@@ -136,6 +174,9 @@ class ProveidosModel extends Query
         WHERE id_proveido=?";
         $array = array($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarReconocimiento($tipoReconocimiento, $medico, $fechaCitacion, $id)
@@ -144,6 +185,9 @@ class ProveidosModel extends Query
         where id_proveido_reconocimiento = ?";
         $array = array($tipoReconocimiento, $medico, $fechaCitacion, $id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -152,6 +196,9 @@ class ProveidosModel extends Query
         $sql = "UPDATE tbl_proveidos set registro_borrado = 'I' WHERE id_proveidos=?";
         $array = array($id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -163,7 +210,10 @@ class ProveidosModel extends Query
                 inner join tbl_sedes s on s.id_sede = u.sede 
                 inner join tbl_clinicas c on c.id_clinica = u.laboratorio
                 where u.id_usu = $id";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -171,7 +221,11 @@ class ProveidosModel extends Query
     {
         $sql = "INSERT INTO tbl_numero_solicitud_temp (numero_solicitud) VALUES(?)";
         $array = array($numeroSolicitud);
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 

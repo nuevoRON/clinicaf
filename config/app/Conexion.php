@@ -19,5 +19,10 @@ class Conexion {
     {
         return $this->conect;
     }
+
+
+    public function cerrarConexion() {
+        $this->conect = null;
+    }
 }
 ?>

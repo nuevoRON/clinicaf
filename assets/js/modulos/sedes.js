@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Llenar Select
       console.log(response);
       //se recorre el response con un forEach para ir creando las opciones
-      response.data.departamentos.forEach((opcion) => {
+      response.data.forEach((opcion) => {
         //se crea un elemento de la clase option
         let option = document.createElement("option");
 
@@ -287,7 +287,11 @@ function eliminarSede(idSede) {
                 Swal.fire({
                   title: res.titulo,
                   text: res.desc,
-                  icon: res.type,
+                  icon: res.type
+                }).then((result) => {
+                  if (this.responseText.includes('"type":"success"')) {
+                    location.reload();
+                  }
                 });
               }
             };

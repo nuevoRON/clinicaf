@@ -7,13 +7,20 @@ class SedesModel extends Query{
     public function insertarSede($depatamento,$municipio,$ubicacion,$cod_alfabetico, $cod_numerico) {
         $sql = "INSERT INTO tbl_sedes (fk_departamento,fk_municipio,ubicacion,cod_alfabetico,cod_numerico) VALUES(?,?,?,?,?)";
         $array = array($depatamento,$municipio,$ubicacion,$cod_alfabetico, $cod_numerico);
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function obtenerSede($id)
     {
         $sql = " SELECT * FROM tbl_sedes WHERE id_sede = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getSedes()
@@ -27,13 +34,19 @@ class SedesModel extends Query{
                         FROM tbl_sedes s
                 INNER JOIN tbl_departamento d on d.id_departamento = s.fk_departamento
                 INNER JOIN tbl_municipio m on m.id_municipio = s.fk_municipio";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function eliminarSede($id)
     {
         $sql = " DELETE FROM tbl_sedes WHERE id_sede = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarSede($departamento, $municipio, $ubicacion, $cod_alfabetico, $cod_numerico, $id)
@@ -42,6 +55,9 @@ class SedesModel extends Query{
                 cod_alfabetico = ?, cod_numerico = ? WHERE id_sede=?";
         $array = array($departamento, $municipio, $ubicacion, $cod_alfabetico, $cod_numerico, $id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 }

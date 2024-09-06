@@ -19,7 +19,10 @@ class DictamenesModel extends Query
                 INNER JOIN tbl_proveidos p ON p.id_proveidos = d.numero_caso
                 INNER JOIN tbl_usu u ON u.id_usu = d.medico
                 WHERE d.registro_borrado = 'A'";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -31,7 +34,10 @@ class DictamenesModel extends Query
                 from tbl_dictamenes d
                 inner join tbl_proveidos p on p.id_proveidos = d.numero_caso
                 where d.registro_borrado = 'A';";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -54,26 +60,38 @@ class DictamenesModel extends Query
             $datosExtra,
             'A'
         );
-        return $this->insertar($sql, $array);
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getDictamen($id)
     {
         $sql = "SELECT * FROM tbl_dictamenes WHERE id_dictamen = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getNumerosCasos()
     {
         $sql = "SELECT id_proveidos, num_caso FROM tbl_proveidos";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function eliminarDictamen($id)
     {
         $sql = "UPDATE tbl_dictamenes SET registro_borrado = 'I' WHERE id_dictamen = ?";
         $array = array($id);
-        return $this->save($sql, $array);
+        $result = $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarDictamen(
@@ -96,7 +114,10 @@ class DictamenesModel extends Query
             $datosExtra,
             $id
         );
-        return $this->save($sql, $array);
+        $result = $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function verExistenciaCaso($numeroCaso)
@@ -107,7 +128,10 @@ class DictamenesModel extends Query
         $params = [$numeroCaso];
         $types = [PDO::PARAM_INT];
 
-        return $this->select($sql, $params, $types);
+        $result = $this->select($sql, $params, $types);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -126,7 +150,10 @@ class DictamenesModel extends Query
                 INNER JOIN tbl_proveidos p ON p.id_proveidos = td.numero_caso
                 INNER JOIN tbl_usu u ON u.id_usu = d.medico
                 WHERE d.registro_borrado = 'A'";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -151,14 +178,20 @@ class DictamenesModel extends Query
             'A',
             $tipoDocumento
         );
-        return $this->insertar($sql, $array);
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
     public function getTranscripcion($id)
     {
         $sql = "SELECT * FROM tbl_dictamen_transcripcion WHERE id = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -184,7 +217,10 @@ class DictamenesModel extends Query
             $tipoDocumento,
             $id
         );
-        return $this->save($sql, $array);
+        $result = $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -192,6 +228,9 @@ class DictamenesModel extends Query
     {
         $sql = "UPDATE tbl_dictamen_transcripcion SET registro_borrado = 'I' WHERE id = ?";
         $array = array($id);
-        return $this->save($sql, $array);
+        $result = $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 }

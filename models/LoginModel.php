@@ -19,34 +19,49 @@ class LoginModel extends Query{
                 INNER JOIN tbl_sedes s ON s.id_sede = u.sede 
                 INNER JOIN tbl_puestos p ON p.id_puesto = u.puesto
                 WHERE u.usuario = '$correo'";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getRol($idRol)
     {
         $sql = "SELECT * FROM tbl_roles WHERE id = '$idRol'";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function bloquearUsuario($id)
     {
         $sql = "UPDATE tbl_usu SET estado=? WHERE id_usu=?";
         $array = array(7, $id);
-        return $this->save($sql, $array);
+        $result = $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function resetearIntentos($id)
     {
         $sql = "UPDATE tbl_usu SET intentos = 0 WHERE id_usu=?";
         $array = array($id);
-        return $this->save($sql, $array);
+        $result = $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarIntentos($id)
     {
         $sql = "UPDATE tbl_usu SET intentos = intentos + 1 WHERE id_usu=?";
         $array = array($id);
-        return $this->save($sql, $array);
+        $result = $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 }
 ?>

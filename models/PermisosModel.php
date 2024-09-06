@@ -19,13 +19,20 @@ class PermisosModel extends Query
         $sql = "INSERT INTO tbl_permisos (id_modulo, id_puesto, consulta, insercion, actualizacion, eliminacion,
         registro_borrado) VALUES(?,?,?,?,?,?,?)";
         $array = array($modulo, $puesto, $consulta, $insercion, $actualizacion, $eliminacion, 'A');
-        return $this->insertar($sql, $array);
+        
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function obtenerPermisos($id)
     {
         $sql = " SELECT * FROM tbl_permisos WHERE id = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getPermisos()
@@ -42,13 +49,19 @@ class PermisosModel extends Query
                 INNER JOIN tbl_puestos p ON p.id_puesto = pr.id_puesto
                 INNER JOIN tbl_modulos m ON m.id = pr.id_modulo
                 WHERE pr.registro_borrado = 'A'";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function eliminarPermiso($id)
     {
         $sql = "UPDATE tbl_permisos SET registro_borrado = 'I' WHERE id = $id";
-        return $this->select($sql);
+        $result = $this->select($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarPermiso($puesto, $modulo, $consulta, $insercion, $actualizacion, $eliminacion, $id)
@@ -57,6 +70,9 @@ class PermisosModel extends Query
         actualizacion=?, eliminacion=? WHERE id=?";
         $array = array($puesto, $modulo, $consulta, $insercion, $actualizacion, $eliminacion,  $id);
         return $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -79,6 +95,8 @@ class PermisosModel extends Query
         $params = [$modulo, $puesto];
         $types = [PDO::PARAM_INT, PDO::PARAM_INT]; 
 
-        return $this->select($sql, $params, $types);
+        $result =  $this->select($sql, $params, $types);
+        $this->cerrarConexion();
+        return $result;
     }
 }

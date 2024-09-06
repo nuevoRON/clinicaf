@@ -22,7 +22,10 @@ class exportacionPDFModel extends Query
                 INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
                 INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
                 WHERE p.registro_borrado = 'A';";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -41,7 +44,10 @@ class exportacionPDFModel extends Query
                 INNER JOIN tbl_usu u ON u.id_usu = v.id_usu
                 INNER JOIN tbl_estados e ON e.id_estado = u.estado
                 WHERE v.registro_borrado = 'A'";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -61,7 +67,10 @@ class exportacionPDFModel extends Query
                 INNER JOIN tbl_reconocimiento t ON t.id_reconocimiento = r.tipo_reconocimiento
                 INNER JOIN tbl_sedes s ON s.id_sede = r.sede_clinica
                 WHERE r.registro_borrado = 'A'";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 }

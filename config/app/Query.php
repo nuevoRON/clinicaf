@@ -65,5 +65,9 @@ class Query extends Conexion{
         $result->execute($params);
         return $result->fetchColumn();
     }
+
+    public function cerrarConexion() {
+        $this->pdo->cerrarConexion(); 
+    }
 }
 ?>

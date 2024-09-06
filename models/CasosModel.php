@@ -27,7 +27,10 @@ class CasosModel extends Query
                 INNER JOIN tbl_reconocimiento t ON t.id_reconocimiento = r.tipo_reconocimiento
                 INNER JOIN tbl_sedes s ON s.id_sede = r.sede_clinica
                 WHERE r.registro_borrado = 'A'";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
 
@@ -78,38 +81,58 @@ class CasosModel extends Query
             $sedeClinica,
             'A'
         );
-        return $this->insertar($sql, $array);
+        $result = $this->insertar($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function obtenerRevision($id)
     {
-        $sql = " SELECT * FROM tbl_revision_casos WHERE id_revision = $id";
-        return $this->select($sql);
+        $sql = " SELECT * FROM tbl_revision_casos WHERE id_revision = ?";
+        $params = [$id];
+        $types = [PDO::PARAM_INT]; 
+
+        $result =  $this->select($sql, $params, $types);
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getPuestos()
     {
         $sql = "SELECT * FROM tbl_puestos";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getEstados()
     {
         $sql = "SELECT * FROM tbl_estados";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function getJornadas()
     {
         $sql = "SELECT * FROM tbl_jornada";
-        return $this->selectAll($sql);
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function eliminarRevision($id)
     {
         $sql = "UPDATE tbl_revision_casos SET registro_borrado = 'I'  WHERE id_revision=?";
         $array = array($id);
-        return $this->save($sql, $array);
+        $result = $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 
     public function actualizarRevision(
@@ -149,6 +172,9 @@ class CasosModel extends Query
             $sedeClinica,
             $id
         );
-        return $this->save($sql, $array);
+        $result = $this->save($sql, $array);
+
+        $this->cerrarConexion();
+        return $result;
     }
 }
