@@ -40,7 +40,7 @@
 										<div class="row">
 											<div class="col-12 col-md-5">
 												<div class="form-group">
-													<label for="num_caso" class="bmd-label-floating">Numero del Caso</label>
+													<label for="num_caso" class="bmd-label">Numero del Caso</label>
 													<select class="form-control" name="num_caso" id="num_caso" required>
 														<option value="">Seleccione una opción</option>
 													</select>
@@ -48,7 +48,7 @@
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="tipo_citacion" class="bmd-label-floating">Tipo de Citacion</label>
+													<label for="tipo_citacion" class="bmd-label">Tipo de Citacion</label>
 													<select class="form-control" name="tipo_citacion" id="tipo_citacion" required>
 														<option value="" selected="" disabled="">Seleccione la Citacion</option>
 														<option value="Juicio">Juicio</option>
@@ -70,7 +70,7 @@
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="medico" class="bmd-label-floating">Medico</label>
+													<label for="medico" class="bmd-label">Medico</label>
 													<select class="form-control" name="medico" id="medico" required>
 														<option value="" selected="" disabled="">Seleccione al Medico</option>
 
@@ -79,7 +79,7 @@
 											</div>
 											<div class="col-12 col-md-8">
 												<div class="form-group">
-													<label for="lugar_citacion" class="bmd-label-floating">Lugar de la citacion</label>
+													<label for="lugar_citacion" class="bmd-label">Lugar de la citacion</label>
 													<input type="text" class="form-control" name="lugar_citacion" id="lugar_citacion" maxlength="50" required>
 												</div>
 											</div>

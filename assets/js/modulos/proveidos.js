@@ -138,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
           { data: "nom_dependencia" },
           { data: "nom_reconocimiento" },
           { data: "fecha_citacion" },
+          { data: "estado_evaluacion" },
           //estas dos columnas contienen los botones para editar y eliminar
           //de ser necesario se pueden agregar más columnas con otros botones
           {
@@ -155,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
             },
           },
         ],
+        order: [[ 0, "desc" ]],
         //estas dos funciones contienen las referencias a las funciones que realizan edicion y eliminacion
         //se usa una funcion find para encontrar un boton en especifico usando su clase y asi asignarle
         //la función javascript que le corresponde
@@ -462,6 +464,7 @@ function mostrarModal() {
         document.getElementById("item_dependencia_reg").selectedIndex = 0;
 
         document.getElementById("modal-title").textContent = "Agregar Proveido";
+        document.getElementById('id').value = '';
         $("#Modalproveído").modal("show");
       }
     })

@@ -297,6 +297,7 @@ function mostrarModal(){
       document.getElementById('estado').selectedIndex = 0;
 
       document.getElementById('modal-title').textContent = "Agregar Nuevo Puesto"
+      document.getElementById('id').value = '';
       $("#ModalPuestos").modal("show");
     }
   })

@@ -71,26 +71,28 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="nombre_perfil" class="bmd-label-floating">Nombre</label>
-											<input type="text" class="form-control" name="nombre_perfil" id="nombre_perfil">
+											<label for="nombre_perfil" class="bmd-label">Nombre</label>
+											<input type="text" class="form-control" name="nombre_perfil" id="nombre_perfil" required>
+											<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="apellido_perfil" class="bmd-label-floating">Apellido</label>
-											<input type="text" class="form-control" name="apellido_perfil" id="apellido_perfil" maxlength="27">
+											<label for="apellido_perfil" class="bmd-label">Apellido</label>
+											<input type="text" class="form-control" name="apellido_perfil" id="apellido_perfil" required>
+											<span id="spanApellido" style="color: red; font-size:1rem;"></span>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="telefono_perfil" class="bmd-label-floating">Telefono</label>
-											<input type="number" class="form-control" name="telefono_perfil" id="telefono_perfil" maxlength="27">
+											<label for="telefono_perfil" class="bmd-label">Telefono</label>
+											<input type="number" class="form-control" name="telefono_perfil" id="telefono_perfil" required>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="correo_perfil" class="bmd-label-floating">Correo Electrónico</label>
-											<input type="email" class="form-control" name="correo_perfil" id="correo_perfil" maxlength="27">
+											<label for="correo_perfil" class="bmd-label">Correo Electrónico</label>
+											<input type="email" class="form-control" name="correo_perfil" id="correo_perfil" required>
 										</div>
 									</div>
 								</div>
@@ -98,7 +100,7 @@
 
 							<p class="text-center">
 								&nbsp; &nbsp;
-								<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save" id="btnAccion"></i> &nbsp; GUARDAR</button>
+								<button type="submit" class="btn btn-raised btn-info btn-sm" id="btn-enviar"><i class="far fa-save" ></i> &nbsp; GUARDAR</button>
 							</p>
 						</form>
 					</div>
@@ -124,8 +126,8 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="contrasena" class="bmd-label-floating">Contraseña</label>
-											<input type="text" class="form-control" name="contrasena" id="contrasena"
+											<label for="contrasena" class="bmd-label">Contraseña</label>
+											<input type="password" class="form-control" name="contrasena" id="contrasena"
 												pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&_])[A-Za-z\d#@$!%*?&_]{8,}$"
 												title="La contraseña debe contener al menos una letra mayúscula, 
 											un número, un carácter especial (@$!%*?&) y 8 caracteres mínimo">
@@ -133,8 +135,8 @@
 									</div>
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="conf_contrasena" class="bmd-label-floating">Confirmar Contraseña</label>
-											<input type="text" class="form-control" name="conf_contrasena" id="conf_contrasena" maxlength="27">
+											<label for="conf_contrasena" class="bmd-label">Confirmar Contraseña</label>
+											<input type="password" class="form-control" name="conf_contrasena" id="conf_contrasena" maxlength="27">
 											<span id="error-message"></span>
 										</div>
 									</div>
@@ -154,6 +156,7 @@
 
 	<?php include "views/templates/archivosJS.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/perfil.js"></script>
+	<script type="module" src="<?php echo BASE_URL; ?>assets/js/validaciones/validacionPerfil.js"></script>
 </body>
 
 </html>

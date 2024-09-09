@@ -79,6 +79,9 @@
 									<a href="<?php echo BASE_URL . 'inicio/puestos'; ?>"><i class="fas fa-user-tie"></i> &nbsp; Puesto</a>
 								</li>
 								<li>
+									<a href="<?php echo BASE_URL . 'inicio/fiscalias'; ?>"><i class="fas fa-landmark"></i> &nbsp; Fiscalias</a>
+								</li>
+								<li>
 									<a href="<?php echo BASE_URL . 'inicio/reconocimientos'; ?>"><i class="fas fa-calendar-week"></i> &nbsp; Reconocimientos</a>
 								</li>
 								<li>

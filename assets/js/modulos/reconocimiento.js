@@ -269,6 +269,7 @@ function mostrarModal(){
       document.getElementById('formulario').reset();
 
       document.getElementById('modal-title').textContent = "Agregar Nuevo Reconocimiento"
+      document.getElementById('id').value = '';
       $("#ModalReconocimiento").modal("show");
     }
   })

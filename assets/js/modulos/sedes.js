@@ -433,6 +433,7 @@ function mostrarModal(){
       document.getElementById('municipio').selectedIndex = '';
 
       document.getElementById('modal-title').textContent = "Agregar Nueva Sede"
+      document.getElementById('id').value = '';
       $("#ModalSedes").modal("show");
     }
   })

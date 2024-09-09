@@ -1,9 +1,18 @@
 <?php
+
 class ProveidosModel extends Query
 {
+    private $id_sede;
+    private $puesto;
+
     public function __construct()
     {
         parent::__construct();
+        session_start();
+        if (!empty($_SESSION['id_usuario'])) {
+            $this->id_sede = $_SESSION['id_sede'];
+            $this->puesto = $_SESSION['puesto'];
+        }
     }
 
     public function getPuestos()
@@ -17,13 +26,28 @@ class ProveidosModel extends Query
 
     public function getMedicos()
     {
-        $sql = "SELECT 
+        $puesto = $this->puesto;
+        $sede = $this->id_sede;
+
+        if ($puesto == 'Administrador' || $puesto == 'Jefe') {
+            $sql = "SELECT 
+                        id_usu, 
+                        CONCAT(nombre, ' ', apellido) AS nombre_completo 
+                    FROM tbl_usu 
+                    WHERE puesto IN (1,2,3) 
+                    AND estado = 1
+                    AND registro_borrado = 'A'";
+        } else {
+            $sql = "SELECT 
                     id_usu, 
                     CONCAT(nombre, ' ', apellido) AS nombre_completo 
                 FROM tbl_usu 
                 WHERE puesto IN (1,2,3) 
                 AND estado = 1
-                AND registro_borrado = 'A'";
+                AND registro_borrado = 'A'
+                AND sede = $sede";
+        }
+
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();
@@ -32,34 +56,71 @@ class ProveidosModel extends Query
 
     public function listarProveidos()
     {
-        $sql = "SELECT  p.id_proveidos,
-                        p.num_caso,
-                        e.dni_evaluado,
-                        e.nombre_evaluado, 
-                        e.apellido_evaluado,
-                        d.nom_dependencia,
-                        r.nom_reconocimiento,
-                        pr.fecha_citacion
-                        FROM tbl_proveidos p
-                INNER JOIN tbl_evaluado e on e.id_proveido = p.id_proveidos
-                INNER JOIN tbl_dependencia d on d.id_dependencia = p.fiscalia_remitente
-                INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
-                INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
-                WHERE p.registro_borrado = 'A';";
+        $puesto = $this->puesto;
+        $sede = $this->id_sede;
+
+        if ($puesto == 'Administrador' || $puesto == 'Jefe') {
+            $sql = "SELECT  p.id_proveidos,
+                            p.num_caso,
+                            e.dni_evaluado,
+                            e.nombre_evaluado, 
+                            e.apellido_evaluado,
+                            d.nom_dependencia,
+                            r.nom_reconocimiento,
+                            pr.fecha_citacion,
+                            e.estado_evaluacion
+                            FROM tbl_proveidos p
+                    INNER JOIN tbl_evaluado e on e.id_proveido = p.id_proveidos
+                    INNER JOIN tbl_dependencia d on d.id_dependencia = p.fiscalia_remitente
+                    INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
+                    INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
+                    WHERE p.registro_borrado = 'A';";
+        } else {
+            $sql = "SELECT  p.id_proveidos,
+                            p.num_caso,
+                            e.dni_evaluado,
+                            e.nombre_evaluado, 
+                            e.apellido_evaluado,
+                            d.nom_dependencia,
+                            r.nom_reconocimiento,
+                            pr.fecha_citacion,
+                            e.estado_evaluacion
+                            FROM tbl_proveidos p
+                    INNER JOIN tbl_evaluado e on e.id_proveido = p.id_proveidos
+                    INNER JOIN tbl_dependencia d on d.id_dependencia = p.fiscalia_remitente
+                    INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
+                    INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
+                    INNER JOIN tbl_usu u on u.id_usu = pr.medico
+                    WHERE p.registro_borrado = 'A' AND u.sede = $sede";
+        }
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();
         return $result;
     }
 
-    public function insertarProveido($numeroSolicitud, $fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, 
-    $numeroCasoCorrelativo,$especificar)
-    {
+    public function insertarProveido(
+        $numeroSolicitud,
+        $fechaEmision,
+        $fechaRecepcion,
+        $fiscalia,
+        $numeroExterno,
+        $numeroCasoCorrelativo,
+        $especificar
+    ) {
         $sql = "INSERT INTO tbl_proveidos (num_caso,num_caso_ext,fech_emi_soli, fech_recep_soli,
         fiscalia_remitente, registro_borrado, num_solicitud, especifique_cual) VALUES(?,?,?,?,?,?,?,?)";
-        $array = array($numeroCasoCorrelativo,  $numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, 'A',
-         $numeroSolicitud,$especificar);
-        
+        $array = array(
+            $numeroCasoCorrelativo,
+            $numeroExterno,
+            $fechaEmision,
+            $fechaRecepcion,
+            $fiscalia,
+            'A',
+            $numeroSolicitud,
+            $especificar
+        );
+
         $result = $this->insertar($sql, $array);
 
         $this->cerrarConexion();
@@ -71,7 +132,7 @@ class ProveidosModel extends Query
         $sql = "INSERT INTO tbl_evaluado (nombre_evaluado,apellido_evaluado,dni_evaluado, id_proveido, estado_evaluacion) 
         VALUES(?,?,?,?,?)";
         $array = array($nombre,  $apellido, $dni, $dataProveido, 'Nuevo');
-        
+
         $result = $this->insertar($sql, $array);
 
         $this->cerrarConexion();
@@ -83,7 +144,7 @@ class ProveidosModel extends Query
         $sql = "INSERT INTO tbl_hecho (id_departamento,id_municipio,localidad, lugar_hecho,fecha_hecho,
         id_proveido) VALUES(?,?,?,?,?,?)";
         $array = array($departamento, $municipio, $localidad, $lugar, $fechaHecho, $dataProveido);
-        
+
         $result = $this->insertar($sql, $array);
 
         $this->cerrarConexion();
@@ -95,7 +156,7 @@ class ProveidosModel extends Query
         $sql = "INSERT INTO tbl_proveido_reconocimiento (id_proveido_reconocimiento,tipo_reconocimiento,medico, fecha_citacion) 
         VALUES(?,?,?,?)";
         $array = array($dataProveido, $tipoReconocimiento, $medico, $fechaCitacion);
-        
+
         $result = $this->insertar($sql, $array);
 
         $this->cerrarConexion();
@@ -106,7 +167,7 @@ class ProveidosModel extends Query
     {
         $sql = "INSERT INTO tbl_evaluacion (id_proveido) VALUES(?)";
         $array = array($dataProveido);
-        
+
         $result = $this->insertar($sql, $array);
 
         $this->cerrarConexion();
@@ -145,11 +206,11 @@ class ProveidosModel extends Query
         return $result;
     }
 
-    public function actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno,$especificar, $id)
+    public function actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, $especificar, $id)
     {
         $sql = "UPDATE tbl_proveidos SET num_caso_ext = ?, fech_emi_soli=?, fech_recep_soli=?,
         fiscalia_remitente=?, especifique_cual=? WHERE id_proveidos=?";
-        $array = array($numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, $especificar,$id);
+        $array = array($numeroExterno, $fechaEmision, $fechaRecepcion, $fiscalia, $especificar, $id);
         return $this->save($sql, $array);
 
         $this->cerrarConexion();
@@ -217,35 +278,30 @@ class ProveidosModel extends Query
     }
 
 
-    public function insertarNumeroSolicitud($numeroSolicitud)
-    {
-        $sql = "INSERT INTO tbl_numero_solicitud_temp (numero_solicitud) VALUES(?)";
-        $array = array($numeroSolicitud);
-        
-        $result = $this->insertar($sql, $array);
-
-        $this->cerrarConexion();
-        return $result;
-    }
-
-
     public function obtenerUltimoCorrelativo($sede, $laboratorio)
     {
         $sql = "SELECT ultimo_correlativo FROM tbl_correlativos_solicitud WHERE sede = ? AND laboratorio = ? FOR UPDATE";
         return $this->getSingleValue($sql, [$sede, $laboratorio]);
     }
 
-    //Funciones para generar numero de solicitud
-    public function insertarNuevoCorrelativo($sede, $laboratorio, $correlativoInicial)
+
+    public function obtenerAnioCorrelativo($sede, $laboratorio)
     {
-        $sql = "INSERT INTO tbl_correlativos_solicitud (sede, laboratorio, ultimo_correlativo) VALUES (?, ?, ?)";
-        return $this->save($sql, [$sede, $laboratorio, $correlativoInicial]);
+        $sql = "SELECT anio FROM tbl_correlativos_solicitud WHERE sede = ? AND laboratorio = ? FOR UPDATE";
+        return $this->getSingleValue($sql, [$sede, $laboratorio]);
     }
 
-    public function actualizarUltimoCorrelativo($sede, $laboratorio, $nuevoCorrelativo)
+    //Funciones para generar numero de solicitud
+    public function insertarNuevoCorrelativo($sede, $laboratorio, $correlativoInicial, $añoActual)
     {
-        $sql = "UPDATE tbl_correlativos_solicitud SET ultimo_correlativo = ? WHERE sede = ? AND laboratorio = ?";
-        return $this->save($sql, [$nuevoCorrelativo, $sede, $laboratorio]);
+        $sql = "INSERT INTO tbl_correlativos_solicitud (sede, laboratorio, ultimo_correlativo, anio) VALUES (?,?,?,?)";
+        return $this->save($sql, [$sede, $laboratorio, $correlativoInicial, $añoActual]);
+    }
+
+    public function actualizarUltimoCorrelativo($sede, $laboratorio, $nuevoCorrelativo, $añoActual)
+    {
+        $sql = "UPDATE tbl_correlativos_solicitud SET ultimo_correlativo = ?, anio = ? WHERE sede = ? AND laboratorio = ?";
+        return $this->save($sql, [$nuevoCorrelativo, $añoActual, $sede, $laboratorio]);
     }
 
 
@@ -256,16 +312,22 @@ class ProveidosModel extends Query
         return $this->getSingleValue($sql, [$sede]);
     }
 
-    public function insertarNuevoCorrelativoCaso($sede, $correlativoInicial)
+    public function obtenerAnioCorrelativoCaso($sede)
     {
-        $sql = "INSERT INTO tbl_correlativo_caso (sede, ultimo_correlativo) VALUES (?, ?)";
-        return $this->save($sql, [$sede, $correlativoInicial]);
+        $sql = "SELECT anio FROM tbl_correlativo_caso WHERE sede = ? FOR UPDATE";
+        return $this->getSingleValue($sql, [$sede]);
     }
 
-    public function actualizarUltimoCorrelativoCaso($sede, $nuevoCorrelativo)
+    public function insertarNuevoCorrelativoCaso($sede, $correlativoInicial, $añoActual)
     {
-        $sql = "UPDATE tbl_correlativo_caso SET ultimo_correlativo = ? WHERE sede = ?";
-        return $this->save($sql, [$nuevoCorrelativo, $sede]);
+        $sql = "INSERT INTO tbl_correlativo_caso (sede, ultimo_correlativo, anio) VALUES (?,?,?)";
+        return $this->save($sql, [$sede, $correlativoInicial, $añoActual]);
+    }
+
+    public function actualizarUltimoCorrelativoCaso($sede, $nuevoCorrelativo, $añoActual)
+    {
+        $sql = "UPDATE tbl_correlativo_caso SET ultimo_correlativo = ?, anio = ? WHERE sede = ?";
+        return $this->save($sql, [$nuevoCorrelativo, $añoActual ,$sede]);
     }
 
     public function iniciarTransaccion()

@@ -6,7 +6,7 @@ class DependenciasModel extends Query{
 
     public function getDependencias()
     {
-        $sql = "SELECT * from tbl_dependencia";
+        $sql = "SELECT * from tbl_dependencia WHERE registro_borrado = 'A'";
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();

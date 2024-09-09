@@ -430,6 +430,11 @@ table form{
 	color: var(--color-three);
 }
 
+label{
+	margin-top:-8%;
+}
+
+
 
 /*----------  Breakpoints  ----------*/
 @media (max-width: 767px){

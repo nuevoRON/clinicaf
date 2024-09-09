@@ -48,7 +48,7 @@
 										<div class="row">
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="num_empleado" class="bmd-label-floating">Nº de Empleado</label>
+													<label for="num_empleado" class="bmd-label">Nº de Empleado</label>
 													<select name="num_empleado" id="num_empleado" class="form-control" required>
 														<option value="">Seleccione una opcion</option>
 													</select>
@@ -56,13 +56,13 @@
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="nombre_empleado" class="bmd-label-floating">Nombre</label>
+													<label for="nombre_empleado" class="bmd-label">Nombre</label>
 													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="nombre_empleado" id="nombre_empleado" maxlength="27" readonly>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="item_estado" class="bmd-label-floating">Estado</label>
+													<label for="item_estado" class="bmd-label">Estado</label>
 													<select class="form-control" name="item_estado" id="item_estado" required>
 														<option value="" selected="" disabled="">Seleccione el Estado</option>>
 														<option value="3">Incapacitado</option>

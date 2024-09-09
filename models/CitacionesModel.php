@@ -1,25 +1,51 @@
 <?php
 class CitacionesModel extends Query
 {
+    private $id_sede;
+    private $puesto;
+
     public function __construct()
     {
         parent::__construct();
+        session_start();
+        if (!empty($_SESSION['id_usuario'])) {
+            $this->id_sede = $_SESSION['id_sede'];
+            $this->puesto = $_SESSION['puesto'];
+        }
     }
 
     public function getCitaciones()
     {
-        $sql = "SELECT c.id_citacion,
-                       p.num_caso, 
-                       c.tipo_citacion,
-                       c.fecha_recep_citacion,
-                       c.fecha_citacion,
-                       u.nombre,
-                       u.apellido,
-                       c.lugar_citacion
-                FROM tbl_citaciones c
-                INNER JOIN tbl_proveidos p ON p.id_proveidos = c.numero_caso
-                INNER JOIN tbl_usu u ON u.id_usu = c.medico
-                WHERE c.registro_borrado = 'A'";
+        $puesto = $this->puesto;
+        $sede = $this->id_sede;
+
+        if($puesto == 'Administrador' || $puesto == 'Jefe') {
+            $sql = "SELECT c.id_citacion,
+                        p.num_caso, 
+                        c.tipo_citacion,
+                        c.fecha_recep_citacion,
+                        c.fecha_citacion,
+                        u.nombre,
+                        u.apellido,
+                        c.lugar_citacion
+                    FROM tbl_citaciones c
+                    INNER JOIN tbl_proveidos p ON p.id_proveidos = c.numero_caso
+                    INNER JOIN tbl_usu u ON u.id_usu = c.medico
+                    WHERE c.registro_borrado = 'A'";
+        }else{
+            $sql = "SELECT c.id_citacion,
+                        p.num_caso, 
+                        c.tipo_citacion,
+                        c.fecha_recep_citacion,
+                        c.fecha_citacion,
+                        u.nombre,
+                        u.apellido,
+                        c.lugar_citacion
+                    FROM tbl_citaciones c
+                    INNER JOIN tbl_proveidos p ON p.id_proveidos = c.numero_caso
+                    INNER JOIN tbl_usu u ON u.id_usu = c.medico
+                    WHERE c.registro_borrado = 'A' AND u.sede = $sede";
+        }
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();
@@ -52,7 +78,22 @@ class CitacionesModel extends Query
 
     public function getNumerosCasos()
     {
-        $sql = "SELECT id_proveidos, num_caso FROM tbl_proveidos";
+        $puesto = $this->puesto;
+        $sede = $this->id_sede;
+
+        if($puesto == 'Administrador' || $puesto == 'Jefe') {
+            $sql = "SELECT id_proveidos, num_caso FROM tbl_proveidos";
+        }else{
+            $sql = "SELECT 
+                            p.id_proveidos, 
+                            p.num_caso 
+                    FROM tbl_proveidos p
+                    INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
+                    INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
+                    INNER JOIN tbl_usu u on u.id_usu = pr.medico
+                    WHERE p.registro_borrado = 'A' AND u.sede = $sede";
+        }
+
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();

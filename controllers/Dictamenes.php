@@ -6,13 +6,14 @@ require 'vendor/autoload.php';
 class Dictamenes extends Controller
 {
     private $id_usuario;
+
     public function __construct()
     {
         parent::__construct();
-        session_start();
         if (!empty($_SESSION['id_usuario'])) {
             $this->id_usuario = $_SESSION['id_usuario'];
         }
+        
     }
 
     private function verificarSesion()

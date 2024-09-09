@@ -553,6 +553,7 @@ function mostrarModalDictamen(){
       document.getElementById('medico').selectedIndex = 0;
 
       document.getElementById('modal-title').textContent = "Crear Dictamen"
+      document.getElementById('id').value = '';
       $("#ModalDictamen").modal("show");
     }
   })
@@ -587,6 +588,7 @@ function mostrarModalTranscripcion(){
       document.getElementById('medicoTranscripcion').selectedIndex = 0;
 
       document.getElementById('modal-titleTranscripcion').textContent = "Crear Transcripcion / Ampliación"
+      document.getElementById('idTranscripcion').value = '';
       $("#ModalTranscripcion").modal("show");
     }
   })

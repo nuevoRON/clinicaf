@@ -10,6 +10,7 @@ class PersonalModel extends Query
     {
         $sql = "SELECT  u.id_usu,
                         CONCAT(u.nombre, ' ', u.apellido) AS nombre_completo,
+                        u.usuario,
                         u.num_colegiacion,
                         u.num_empleado,
                         u.correo,
@@ -109,7 +110,7 @@ class PersonalModel extends Query
 
     public function getPuestos()
     {
-        $sql = "SELECT * FROM tbl_puestos";
+        $sql = "SELECT * FROM tbl_puestos WHERE estado = 'Activo'";
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();

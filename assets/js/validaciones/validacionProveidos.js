@@ -1,4 +1,4 @@
-import { validarCampo } from "../helpers/funciones.js";
+import { validarCampo, limitarCaracteresNumericos } from "../helpers/funciones.js";
 
 /* Llamados a la función de validarCampo
 Se usa un evento que detecte si el campo ha sido llenado */
@@ -44,9 +44,9 @@ document.getElementById("aldea_barrio").addEventListener("change", function () {
   //se envian los datos a la función
   validarCampo(
     valor,
-    /^[A-ZÁÉÍÓÚÑa-zñáéíóú ]{1,100}$/,
+    /^[A-ZÁÉÍÓÚÑa-zñáéíóú., ]{1,100}$/,
     "spanBarrio",
-    "Solo puede ingresar letras en el campo de Caserio, Aldea o Barrio"
+    "Solo puede ingresar letras, comas y puntos en el campo de Caserio, Aldea o Barrio"
   );
 });
 
@@ -60,4 +60,12 @@ document.getElementById("lugar").addEventListener("change", function () {
     "spanLugar",
     "Solo puede ingresar letras y números en el campo de Lugar"
   );
+});
+
+
+document.getElementById("dni").addEventListener("input", function() {
+  //se obtiene el valor del input
+  const valor = document.getElementById("dni");
+  //se envian los datos a la función
+  limitarCaracteresNumericos(valor, 13);
 });

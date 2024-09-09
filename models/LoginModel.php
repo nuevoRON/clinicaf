@@ -11,6 +11,7 @@ class LoginModel extends Query{
                        u.contrasena,
                        u.apellido,
                        u.estado,
+                       u.sede,
                        s.ubicacion,
                        p.nom_puesto,
                        u.puesto,

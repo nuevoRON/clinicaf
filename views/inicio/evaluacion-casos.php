@@ -74,7 +74,7 @@
                                 <input type="hidden" name="id" id="id">
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="medico" class="bmd-label-floating">Medico que Realizo la Revision</label>
+                                        <label for="medico" class="bmd-label">Medico que Realizo la Revision</label>
                                         <select class="form-control" name="medico" id="medico" required>
                                             <option value="" selected="" disabled="">Seleccione el Medico</option>
 
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="enviado_para" class="bmd-label-floating">Enviado para</label>
+                                        <label for="enviado_para" class="bmd-label">Enviado para</label>
                                         <select class="form-control" name="enviado_para" id="enviado_para" required>
                                             <option value="" selected="" disabled="">Seleccione para que fue enviado</option>
                                             <option value="Revision">Revision</option>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="tipo_dictamen" class="bmd-label-floating">Tipo de Dictamen a Revisar</label>
+                                        <label for="tipo_dictamen" class="bmd-label">Tipo de Dictamen a Revisar</label>
                                         <select class="form-control" name="tipo_dictamen" id="tipo_dictamen" required>
                                             <option value="" selected="" disabled="">Seleccione el Tipo de Dictamen</option>
                                             <option value="Clinica Forense">Clinica Forense</option>
@@ -110,13 +110,13 @@
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="num_dictamen" class="bmd-label-floating">Numero de Dictamen</label>
+                                        <label for="num_dictamen" class="bmd-label">Numero de Dictamen</label>
                                         <input type="text" class="form-control" name="num_dictamen" id="num_dictamen" required>
                                     </div>
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="nombre_evaluado" class="bmd-label-floating">Nombre del Evaluado</label>
+                                        <label for="nombre_evaluado" class="bmd-label">Nombre del Evaluado</label>
                                         <input type="text" class="form-control" name="nombre_evaluado" id="nombre_evaluado" required>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="tipo_reconocimiento" class="bmd-label-floating">Tipo de Reconocimiento</label>
+                                        <label for="tipo_reconocimiento" class="bmd-label">Tipo de Reconocimiento</label>
                                         <select class="form-control" name="tipo_reconocimiento" id="tipo_reconocimiento" required>
                                             <option value="" selected="" disabled="">Seleccione el Tipo de Reconocimiento</option>
 
@@ -137,13 +137,13 @@
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="observaciones_rec" class="bmd-label-floating">Observaciones Reconocimiento</label>
+                                        <label for="observaciones_rec" class="bmd-label">Observaciones Reconocimiento</label>
                                         <input type="text" class="form-control" name="observaciones_rec" id="observaciones_rec" maxlength="255">
                                     </div>
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="estado_dictamen" class="bmd-label-floating">Estado del Dictamen</label>
+                                        <label for="estado_dictamen" class="bmd-label">Estado del Dictamen</label>
                                         <select class="form-control" name="estado_dictamen" id="estado_dictamen" required>
                                             <option value="" selected="" disabled="">Seleccione el Estado</option>
                                             <option value="Completo">Completo</option>
@@ -156,13 +156,13 @@
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="obs_dictamen" class="bmd-label-floating">Observaciones Dictamen</label>
+                                        <label for="obs_dictamen" class="bmd-label">Observaciones Dictamen</label>
                                         <input type="text" class="form-control" name="obs_dictamen" id="obs_dictamen" maxlength="255">
                                     </div>
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="sede_medico" class="bmd-label-floating">Sede del Medico Evaluador</label>
+                                        <label for="sede_medico" class="bmd-label">Sede del Medico Evaluador</label>
                                         <select class="form-control" name="sede_medico" id="sede_medico" required>
                                             <option value="" selected="" disabled="">Seleccione la Sede</option>
                                             <option value="Centro Sur Oriente">Centro Sur Oriente</option>
@@ -172,7 +172,7 @@
                                 </div>
                                 <div class="container-fluid">
                                     <div class="form-group">
-                                        <label for="sede_clinica" class="bmd-label-floating">Clinica Regional/local Que Realiza la Evaluacion</label>
+                                        <label for="sede_clinica" class="bmd-label">Clinica Regional/local Que Realiza la Evaluacion</label>
                                         <select class="form-control" name="sede_clinica" id="sede_clinica" required>
                                             <option value="" selected="" disabled="">Elija la oficina a la que pertenece</option>
 

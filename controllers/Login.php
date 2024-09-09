@@ -50,6 +50,7 @@ class Login extends Controller{
                     $_SESSION['usuario'] = $data['usuario'];
                     $_SESSION['estado'] = $data['estado'];
                     $_SESSION['sede'] = $data['ubicacion'];
+                    $_SESSION['id_sede'] = $data['sede'];
                     $_SESSION['puesto'] = $data['nom_puesto'];
                     $_SESSION['id_puesto'] = $data['puesto'];
                     $_SESSION['last_activity'] = time();

@@ -402,10 +402,13 @@ function eliminarProveido(idProveido) {
 
 //Funcion para limitar cantidad de caracteres en campos
 function limitarCaracteres(elemento, maximo) {
-    if (elemento.value.length > maximo) {
-        elemento.value = elemento.value.slice(0, maximo);
-    }
+  elemento.value = elemento.value.replace(/[^0-9]/g, '');
+  
+  if (elemento.value.length > maximo) {
+      elemento.value = elemento.value.slice(0, maximo);
+  }
 }
+
 
 document.getElementById("dni").addEventListener("input", function () {
   const valor = document.getElementById("dni");

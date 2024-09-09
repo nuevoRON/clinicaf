@@ -336,6 +336,7 @@ function mostrarModal(){
       document.getElementById('item_estado').selectedIndex = '';
 
       document.getElementById('modal-title').textContent = "Agregar Vacaciones"
+      document.getElementById('id').value = '';
       $("#ModalVacacion").modal("show");
     }
   })

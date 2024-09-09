@@ -9,7 +9,6 @@ class Citaciones extends Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
         if (!empty($_SESSION['id_usuario'])) {
             $this->id_usuario = $_SESSION['id_usuario'];
         }

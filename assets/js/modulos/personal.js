@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
         columns: [
             { data: 'nombre_completo' },
+            { data: 'usuario' },
             { data: 'num_colegiacion' },
             { data: 'num_empleado' },
             { data: 'correo' },
@@ -350,7 +351,10 @@ function mostrarModal(){
       document.getElementById('formulario').reset();
 
       document.getElementById('modal-title').textContent = "Agregar Nuevo Personal"
+      $("#password").show();
+      $("#label-password").show();
       $("#Modalmedico").modal("show");
+      document.getElementById('id').value = '';
     }
   })
   .catch(function (error) {

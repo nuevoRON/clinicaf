@@ -42,6 +42,7 @@
 								<th>DEPENDIA SOLICITANTE</th>
 								<th>TIPO RECONOCIMINETO</th>
 								<th>FECHA PARA LA CUAL FUE CITADO</th>
+								<th>ESTADO</th>
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
 							</tr>
@@ -75,13 +76,13 @@
 									<div class="row">
 										<div class="col-12 col-md-6">
 											<div class="form-group">
-												<label for="numero_solicitud_reg" class="bmd-label-floating">Numero de solicitud</label>
+												<label for="numero_solicitud_reg" class="bmd-label">Numero de solicitud</label>
 												<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="numero_solicitud_reg" id="numero_solicitud_reg" readonly>
 											</div>
 										</div>
 										<div class="col-12 col-md-6">
 											<div class="form-group">
-												<label for="numero_externo_reg" class="bmd-label-floating">Numero Externos (Oficios, Denuncias, Expediente.)</label>
+												<label for="numero_externo_reg" class="bmd-label">Numero Externos (Oficios, Denuncias, Expediente.)</label>
 												<input type="text" class="form-control" name="numero_externo_reg" id="numero_externo_reg" maxlength="27">
 											</div>
 										</div>
@@ -101,7 +102,7 @@
 										</div>
 										<div class="col-12 col-md-6">
 											<div class="form-group">
-												<label for="item_dependencia_reg" class="bmd-label-floating">Fiscalía que Remite</label>
+												<label for="item_dependencia_reg" class="bmd-label">Fiscalía que Remite</label>
 												<select class="form-control" name="item_dependencia_reg" id="item_dependencia_reg" required>
 													<option value="" selected="" disabled="">Seleccione la Fiscalía</option>
 
@@ -111,7 +112,7 @@
 										<div class="col-12 col-md-6">
 
 											<div class="form-group">
-												<label for="especificar" class="bmd-label-floating">Especifique Cual</label>
+												<label for="especificar" class="bmd-label">Especifique Cual</label>
 												<input type="text" class="form-control" name="especificar" id="especificar" maxlength="30">
 												<span id="spanEspecificar" style="color: red; font-size:1rem;"></span>
 											</div>
@@ -122,23 +123,24 @@
 											<div class="row">
 												<div class="col-12 col-md-4">
 													<div class="form-group">
-														<label for="nombre" class="bmd-label-floating">Nombre</label>
+														<label for="nombre" class="bmd-label">Nombre</label>
 														<input type="text" class="form-control" name="nombre" id="nombre" required>
 														<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 													</div>
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
-														<label for="apellido" class="bmd-label-floating">Apellido</label>
+														<label for="apellido" class="bmd-label">Apellido</label>
 														<input type="text" class="form-control" name="apellido" id="apellido" required>
 														<span id="spanApellido" style="color: red; font-size:1rem;"></span>
 													</div>
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
-														<label for="dni" class="bmd-label-floating">DNI</label>
+														<label for="dni" class="bmd-label">DNI</label>
 														<input type="text" pattern="[0-9]{1,13}" title="Este campo solo acepta números"
 															class="form-control" name="dni" id="dni" required maxlength="13">
+														<span id="spanDNI" style="color: red; font-size:1rem;"></span>
 													</div>
 												</div>
 
@@ -152,7 +154,7 @@
 
 																<div class="col-12 col-md-6">
 																	<div class="form-group">
-																		<label for="item_departamento_reg" class="bmd-label-floating">Departamento</label>
+																		<label for="item_departamento_reg" class="bmd-label">Departamento del hecho</label>
 																		<select class="form-control" name="item_departamento_reg" id="item_departamento_reg" required>
 																			<option value="" selected="" disabled="">Seleccione el Departamento</option>
 
@@ -162,7 +164,7 @@
 																&nbsp; &nbsp;
 																<div class="col-12 col-md-5">
 																	<div class="form-group">
-																		<label for="item_municipio_reg" class="bmd-label-floating">Municipio</label>
+																		<label for="item_municipio_reg" class="bmd-label">Municipio del hecho</label>
 																		<select class="form-control" name="item_municipio_reg" id="item_municipio_reg" required>
 																			<option value="" selected="" disabled="">Seleccione el Municipio</option>
 
@@ -171,14 +173,14 @@
 																</div>
 																<div class="col-12 col-md-6">
 																	<div class="form-group">
-																		<label for="aldea_barrio" class="bmd-label-floating">Caserío, Aldea o Barrio, del Hecho</label>
+																		<label for="aldea_barrio" class="bmd-label">Caserío, Aldea o Barrio, del Hecho</label>
 																		<input type="text" class="form-control" name="aldea_barrio" id="aldea_barrio" required>
 																		<span id="spanBarrio" style="color: red; font-size:1rem;"></span>
 																	</div>
 																</div>
 																<div class="col-12 col-md-6">
 																	<div class="form-group">
-																		<label for="lugar" class="bmd-label-floating">Lugar Donde Ocurrió el Hecho</label>
+																		<label for="lugar" class="bmd-label">Lugar Donde Ocurrió el Hecho</label>
 																		<input type="text" class="form-control" name="lugar" id="lugar" required>
 																		<span id="spanLugar" style="color: red; font-size:1rem;"></span>
 																	</div>
@@ -214,7 +216,7 @@
 										</div>
 										<div class="col-12 col-md-6">
 											<div class="form-group">
-												<label for="item_recon_reg" class="bmd-label-floating">Reconocimiento</label>
+												<label for="item_recon_reg" class="bmd-label">Reconocimiento</label>
 												<select class="form-control" name="item_recon_reg" id="item_recon_reg" required>
 													<option value="" selected="" disabled="">Seleccione el Tipo de Reconocimiento</option>
 												</select>
@@ -222,7 +224,7 @@
 										</div>
 										<div class="col-12 col-md-6">
 											<div class="form-group">
-												<label for="medico" class="bmd-label-floating">Medico</label>
+												<label for="medico" class="bmd-label">Medico</label>
 												<select class="form-control" name="medico" id="medico" required>
 													<option value="" selected="" disabled="">Seleccione al Medico</option>
 

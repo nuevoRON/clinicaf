@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<title>Sexos</title>
+	<title>Fiscalias</title>
 	<?php include "views/templates/archivosCss.php"; ?>
 
 </head>
@@ -15,18 +15,18 @@
 		<section class="full-box page-content">
 			<?php include "views/templates/NavSup.php"; ?>
 			<h3 class="text-left">
-				<i class="fas fa-venus-mars"></i> &nbsp; SEXOS
+				<i class="fas fa-landmark"></i> &nbsp; FISCALIAS
 			</h3>
 			<div class="container-fluid">
 				<div class="container-fluid">
 					<p class="text-center">
-						<button type="button" class="btn btn-primary" id="btnModalSexo"><i class="fas fa-user-plus"></i> &nbsp; Agregar Sexo</button>
+						<button type="button" class="btn btn-primary" id="btnModalFiscalia"><i class="fas fa-user-plus"></i> &nbsp; Agregar Fiscalia</button>
 					</p>
 				</div>
 			</div>
 			<div class="container">
 				<div class="table-responsive">
-					<table class="table table-dark" id="tblSexos">
+					<table class="table table-dark" id="tblFiscalias">
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>ID</th>
@@ -44,11 +44,11 @@
 		</section>
 	</main>
 
-	<div class="modal fade" id="ModalSexo" tabindex="-1" role="dialog" aria-labelledby="ModalSexo" data-backdrop="static" aria-hidden="true">
+	<div class="modal fade" id="ModalFiscalia" tabindex="-1" role="dialog" aria-labelledby="ModalFiscalia" data-backdrop="static" aria-hidden="true">
 		<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="">Agregar Sexo</h5>
+					<h5 class="modal-title" id="modal-title">Agregar Fiscalia</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -61,8 +61,8 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="nombre_sexo" class="bmd-label">Nombre</label>
-											<input type="text" class="form-control" name="nombre_sexo" id="nombre_sexo" required>
+											<label for="nombre" class="bmd-label">Nombre</label>
+											<input type="text" class="form-control" name="nombre" id="nombre" required>
 										</div>
 									</div>
 								</div>
@@ -80,7 +80,7 @@
 	</div>
 
 	<?php include "views/templates/archivosJS.php"; ?>
-	<script src="<?php echo BASE_URL; ?>assets/js/modulos/sexos.js"></script>
+	<script src="<?php echo BASE_URL; ?>assets/js/modulos/fiscalias.js"></script>
 </body>
 
 </html>

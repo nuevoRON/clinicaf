@@ -299,6 +299,7 @@ function mostrarModal(){
       document.getElementById('medico').selectedIndex = 0;
 
       document.getElementById('modal-title').textContent = "Agregar Citación"
+      document.getElementById('id').value = '';
       $("#ModalCitacion").modal("show");
     }
   })

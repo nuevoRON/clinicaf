@@ -18,16 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   //Se extraen los datos de la base de datos para llenar el datatable
-  let urlListarSexo = "http://localhost/clinicaf/sexos/listarSexos";
+  let urlListar = "http://localhost/clinicaf/fiscalias/listarFiscalias";
 
   axios
-    .get(urlListarSexo)
+    .get(urlListar)
     .then(function (response) {
       //se muestran los datos obtenidos
       console.log(response.data);
       let datos = response.data;
 
-      $("#tblSexos").DataTable({
+      $("#tblFiscalias").DataTable({
         language: {
           decimal: ",",
           thousands: ".",
@@ -50,8 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
         data: datos,
         paging: true,
         columns: [
-          { data: "id_sexo" },
-          { data: "nom_sexo" },
+          { data: "id_dependencia" },
+          { data: "nom_dependencia" },
           {
             render: function (data, type, row) {
               return `<button class="btn btn-success">
@@ -69,13 +69,13 @@ document.addEventListener("DOMContentLoaded", function () {
           $(row)
             .find(".btn-success", "btn")
             .click(function () {
-              editarSexo(data.id_sexo);
+              editarFiscalia(data.id_dependencia);
             });
 
           $(row)
             .find(".btn-warning")
             .click(function () {
-              eliminarSexo(data.id_sexo);
+              eliminarFiscalia(data.id_dependencia);
             });
         },
       });
@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
 
     //Rutas a las funciones para crear y actualizar registros
-    const urlInsertar = "http://localhost/clinicaf/sexos/insertarSexo";
-    const urlActualizar = "http://localhost/clinicaf/sexos/actualizarSexo";
+    const urlInsertar = "http://localhost/clinicaf/fiscalias/insertarFiscalia";
+    const urlActualizar = "http://localhost/clinicaf/fiscalias/actualizarFiscalia";
     const data = new FormData(this);
     // Verificar si el campo 'id' está presente en los datos del formulario
     const id = data.get("id");
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-function eliminarSexo(idSexo) {
+function eliminarFiscalia(id) {
   let permisoEliminacion = "http://localhost/clinicaf/permisos/validarPermisos";
   
   axios.post(permisoEliminacion, {
@@ -152,7 +152,7 @@ function eliminarSexo(idSexo) {
         });
       } else {
         Swal.fire({
-          title: "¿Estas seguro de eliminar este sexo?",
+          title: "¿Estas seguro de eliminar esta fiscalia?",
           text: "Esta acción no se puede deshacer",
           icon: "warning",
           showCancelButton: true,
@@ -162,7 +162,7 @@ function eliminarSexo(idSexo) {
           cancelButtonText: "No",
         }).then((result) => {
           if (result.isConfirmed) {
-            let url = "http://localhost/clinicaf/sexos/eliminarSexo/" + idSexo;
+            let url = "http://localhost/clinicaf/fiscalias/eliminarFiscalia/" + id;
             //hacer una instancia del objeto CMLHttoRequest
             const http = new XMLHttpRequest();
             //Abrir una Conexion - POST - GET
@@ -194,8 +194,8 @@ function eliminarSexo(idSexo) {
     });
 }
 
-// funcion para recuperar los datos del sexo
-function editarSexo(idSexo) {
+// funcion para recuperar los datos 
+function editarFiscalia(id) {
   let permisoActualizacion = "http://localhost/clinicaf/permisos/validarPermisos";
   
   axios.post(permisoActualizacion, {
@@ -211,7 +211,7 @@ function editarSexo(idSexo) {
           icon: "error",
         });
       } else {
-        const url = "http://localhost/clinicaf/sexos/obtenerSexo/" + idSexo;
+        const url = "http://localhost/clinicaf/fiscalias/obtenerFiscalia/" + id;
         //hacer una instancia del objeto CMLHttoRequest
         const http = new XMLHttpRequest();
         //Abrir una Conexion - POST - GET
@@ -223,12 +223,11 @@ function editarSexo(idSexo) {
           if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
             const res = JSON.parse(this.responseText);
-            id.value = res.id_sexo;
-            document.getElementById('nombre_sexo').value = res.nom_sexo;
+            document.getElementById('id').value = id;
+            document.getElementById('nombre').value = res.nom_dependencia;
+            document.getElementById('modal-title').textContent = "Editar Fiscalía"
 
-            btnAccion.textContent = "Actualizar";
-
-            $("#ModalSexo").modal("show");
+            $("#ModalFiscalia").modal("show");
           }
         };
       }
@@ -257,7 +256,7 @@ function mostrarModal(){
     } else {
       document.getElementById('formulario').reset();
       document.getElementById('id').value = '';
-      $("#ModalSexo").modal("show");
+      $("#ModalFiscalia").modal("show");
     }
   })
   .catch(function (error) {
@@ -265,5 +264,5 @@ function mostrarModal(){
   });
 }
 
-document.getElementById("btnModalSexo").addEventListener("click", mostrarModal);
+document.getElementById("btnModalFiscalia").addEventListener("click", mostrarModal);
 

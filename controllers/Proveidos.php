@@ -9,7 +9,6 @@ class Proveidos extends Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
         if (!empty($_SESSION['id_usuario'])) {
             $this->id_usuario = $_SESSION['id_usuario'];
         }
@@ -101,6 +100,25 @@ class Proveidos extends Controller
                 $medico = strClean($_POST['medico']);
                 $fechaCitacion = strClean($_POST['fecha_citacion']);
 
+                //Validar que la fecha de emision no sea mayor que la de recepcion
+                $validacionFechas = $this->validarFechas($fechaEmision,$fechaRecepcion);
+                if($validacionFechas == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de emisión no puede ser mayor que la fecha de recepción', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
+                $validacionFechaCita = $this->validarFechaCitacion($fechaCitacion);
+                if($validacionFechaCita == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de citación no puede ser menor que la fecha actual', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
                 $data = $this->model->obtenerDatosSedes($medico);
 
                 foreach($data as $val){
@@ -167,6 +185,16 @@ class Proveidos extends Controller
                 $fechaCitacion = strClean($putData['fecha_citacion']);
                 $id = strClean($putData['id']);
 
+                //Validar que la fecha de emision no sea mayor que la de recepcion
+                $validacionFechas = $this->validarFechas($fechaEmision,$fechaRecepcion);
+                if($validacionFechas == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de emisión no puede ser mayor que la fecha de recepción', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
                 $dataProveido = $this->model->actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, $especificar, $id);
                 $dataEvaluado = $this->model->actualizarEvaluado($nombre, $apellido, $dni, $id);
                 $dataHechos = $this->model->actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id);
@@ -178,7 +206,7 @@ class Proveidos extends Controller
                     $res = array('titulo' => 'Proveido Actualizado', 'desc' => 'Los datos del proveido se actualizaron exitosamente', 'type' => 'success');
                 } else {
                     $res = array('titulo' => 'Error', 'desc' => 'Hubo un problema al actualizar el proveido', 'type' => 'error');
-                }
+                } 
             }
             echo json_encode($res, JSON_UNESCAPED_UNICODE);
             die();
@@ -195,13 +223,11 @@ class Proveidos extends Controller
             if ($id === null) {
                 $res = array('msg' => 'ID inválido o no proporcionado', 'type' => 'error');
             } else {
-                // Realizar la eliminación en la base de datos
                 $data = $this->model->eliminarProveido($id);
                 
                 if ($data > 0) {
-                    //Registro de evento en la bitácora (ejemplo)
                     $bitacora = new Bitacora();
-                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 3, 'ELIMINACION', 'SE eliminó el proveido con id ' . $id, date('Y-m-d H:i:s'));
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 3, 'ELIMINACION', 'Se eliminó el proveido con id ' . $id, date('Y-m-d H:i:s'));
                     
                     $res = array('titulo' => 'Proveido Eliminado', 
                                 'desc' => 'El proveido se ha eliminado exitosamente', 
@@ -221,71 +247,101 @@ class Proveidos extends Controller
 
 
     private function generarNumeroSolicitudCorrelativo($sede, $laboratorio) {
-        // Iniciar una transacción desde el modelo
         $this->model->iniciarTransaccion();
     
         try {
-            // Obtener el último correlativo desde el modelo
+            // Obtener el último correlativo y el año registrado desde el modelo
             $ultimoCorrelativo = $this->model->obtenerUltimoCorrelativo($sede, $laboratorio);
-
+            $añoActual = date("Y");
+    
+            // Verificar si hay un registro previo
             if ($ultimoCorrelativo === false) {
                 $ultimoCorrelativo = 0;
-                $this->model->insertarNuevoCorrelativo($sede, $laboratorio, $ultimoCorrelativo);
+                $this->model->insertarNuevoCorrelativo($sede, $laboratorio, $ultimoCorrelativo, $añoActual);
+            } else {
+                $ultimoAño = $this->model->obtenerAnioCorrelativo($sede, $laboratorio);
+    
+                // Si el año actual es diferente al último año registrado, reiniciar el correlativo a 1
+                if ($añoActual != $ultimoAño) {
+                    $ultimoCorrelativo = 0; 
+                }
             }
     
-    
-            // Incrementar el correlativo
             $nuevoCorrelativo = $ultimoCorrelativo + 1;
     
-            // Actualizar el último correlativo en la tabla de control
-            $this->model->actualizarUltimoCorrelativo($sede, $laboratorio, $nuevoCorrelativo);
+            $this->model->actualizarUltimoCorrelativo($sede, $laboratorio, $nuevoCorrelativo, $añoActual);
     
-            // Confirmar la transacción desde el modelo
             $this->model->confirmarTransaccion();
     
             // Formatear el número de solicitud
-            $añoActual = date("Y");
-            return "{$añoActual}-{$sede}-{$laboratorio}-" . str_pad($nuevoCorrelativo, 5, "0", STR_PAD_LEFT); 
+            return "{$añoActual}-{$sede}-{$laboratorio}-" . str_pad($nuevoCorrelativo, 5, "0", STR_PAD_LEFT);
     
         } catch (Exception $e) {
-            // Revertir la transacción en caso de error desde el modelo
             $this->model->revertirTransaccion();
             throw new Exception("Error al generar el número de solicitud: " . $e->getMessage());
         }
     }
+    
 
 
     private function generarNumeroCasoCorrelativo($sede) {
-        // Iniciar una transacción desde el modelo
         $this->model->iniciarTransaccion();
     
         try {
-            // Obtener el último correlativo desde el modelo
+            // Obtener el último correlativo y el último año registrado desde el modelo
             $ultimoCorrelativo = $this->model->obtenerUltimoCorrelativoCaso($sede);
-
+            $añoActual = date("Y");
+    
             if ($ultimoCorrelativo === false) {
+                // Si no hay registro previo, establecer correlativo en 0 y guardar el nuevo año
                 $ultimoCorrelativo = 0;
-                $this->model->insertarNuevoCorrelativoCaso($sede, $ultimoCorrelativo);
+                $this->model->insertarNuevoCorrelativoCaso($sede, $ultimoCorrelativo, $añoActual);
+            } else {
+                $ultimoAño = $this->model->obtenerAnioCorrelativoCaso($sede);
+    
+                // Si el año actual es diferente al último año registrado, reiniciar el correlativo a 1
+                if ($añoActual != $ultimoAño) {
+                    $ultimoCorrelativo = 0; 
+                }
             }
     
-    
-            // Incrementar el correlativo
             $nuevoCorrelativo = $ultimoCorrelativo + 1;
     
-            // Actualizar el último correlativo en la tabla de control
-            $this->model->actualizarUltimoCorrelativoCaso($sede,$nuevoCorrelativo);
+            $this->model->actualizarUltimoCorrelativoCaso($sede, $nuevoCorrelativo, $añoActual);
     
-            // Confirmar la transacción desde el modelo
             $this->model->confirmarTransaccion();
     
             // Formatear el número de solicitud
-            $añoActual = date("Y");
-            return "{$añoActual}-{$sede}-" . str_pad($nuevoCorrelativo, 5, "0", STR_PAD_LEFT); 
+            return "{$añoActual}-{$sede}-" . str_pad($nuevoCorrelativo, 5, "0", STR_PAD_LEFT);
     
         } catch (Exception $e) {
-            // Revertir la transacción en caso de error desde el modelo
             $this->model->revertirTransaccion();
             throw new Exception("Error al generar el número de solicitud: " . $e->getMessage());
+        }
+    }
+    
+
+    private function validarFechas($fechaEmision, $fechaRecepcion){
+        $dateEmision = new DateTime($fechaEmision);
+        $dateRecepcion = new DateTime($fechaRecepcion);
+
+        // Validar que la fecha de emisión no sea mayor que la fecha de recepción
+        if ($dateEmision > $dateRecepcion) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    private function validarFechaCitacion($fechaCitacion) {
+        $fechaCitacion = new DateTime($fechaCitacion);
+        $fechaActual = new DateTime(); 
+    
+        if ($fechaCitacion < $fechaActual) {
+            return false; 
+        }else{
+            return true;
         }
     }
     

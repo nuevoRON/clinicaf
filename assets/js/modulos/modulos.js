@@ -270,6 +270,7 @@ function mostrarModal(){
       document.getElementById('formulario').reset();
 
       document.getElementById('modal-title').textContent = "Agregar Modulo"
+      document.getElementById('id').value = '';
       $("#ModalModulo").modal("show");
     }
   })

@@ -343,6 +343,7 @@ function mostrarModal(){
       document.getElementById('sede_clinica').selectedIndex = 0;
 
       document.getElementById('modal-title').textContent = "Agregar Caso"
+      document.getElementById('id').value = '';
       $("#ModalCaso").modal("show");
     }
   })

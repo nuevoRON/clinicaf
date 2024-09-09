@@ -67,7 +67,6 @@
 .custom-select.open .custom-select-dropdown {
   display: block;
 }
-
 </style>
 
 <body>
@@ -84,7 +83,7 @@
 							<div class="row">
 								<div class="col-12 col-md-2">
 									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">Numero de Solicitud</label>
+										<label for="cliente_dni" class="bmd-label">Numero de Solicitud</label>
 										<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="numero_solicitud" id="numero_solicitud" maxlength="27" readonly>
 									</div>
 									<div class="col-12 col-md-4">
@@ -92,7 +91,7 @@
 								</div>
 								<div class="col-12 col-md-2">
 									<div class="form-group">
-										<label for="cliente_dni" class="bmd-label-floating">Numero de Caso</label>
+										<label for="cliente_dni" class="bmd-label">Numero de Caso</label>
 										<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="numero_caso" id="numero_caso" readonly>
 									</div>
 									<div class="col-12 col-md-4">
@@ -120,20 +119,20 @@
 								</div>
 								<div class="col-12 col-md-6">
 									<div class="form-group">
-										<label for="item_estado" class="bmd-label-floating">Fiscalía que Remite</label>
+										<label for="item_estado" class="bmd-label">Fiscalía que Remite</label>
 										<input type="text" class="form-control" name="fiscalia" id="fiscalia" readonly>
 									</div>
 								</div>
 								<div class="col-12 col-md-6">
 
 									<div class="form-group">
-										<label for="especifique" class="bmd-label-floating">Especifique Cual</label>
+										<label for="especifique" class="bmd-label">Especifique Cual</label>
 										<input type="text" class="form-control" name="especifique" id="especifique" maxlength="30" readonly>
 									</div>
 								</div>
 								<div class="col-12 col-md-6">
 									<div class="form-group">
-										<label for="item_estado" class="bmd-label-floating">Evaluación</label>
+										<label for="item_estado" class="bmd-label">Evaluación</label>
 										<input type="text" class="form-control" name="tipo_evaluacion" id="tipo_evaluacion" readonly>
 									</div>
 								</div>
@@ -143,34 +142,34 @@
 									<div class="row">
 										<div class="col-12 col-md-4">
 											<div class="form-group">
-												<label for="nombre" class="bmd-label-floating">Nombre</label>
+												<label for="nombre" class="bmd-label">Nombre</label>
 												<input type="text" class="form-control" name="nombre" id="nombre" required>
 												<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 											</div>
 										</div>
 										<div class="col-12 col-md-4">
 											<div class="form-group">
-												<label for="apellido" class="bmd-label-floating">Apellido</label>
+												<label for="apellido" class="bmd-label">Apellido</label>
 												<input type="text" class="form-control" name="apellido" id="apellido" required>
 												<span id="spanApellido" style="color: red; font-size:1rem;"></span>
 											</div>
 										</div>
 										<div class="col-12 col-md-4">
 											<div class="form-group">
-												<label for="dni" class="bmd-label-floating">DNI</label>
-												<input type="number" class="form-control" name="dni" id="dni" maxlength="13" required >
+												<label for="dni" class="bmd-label">DNI</label>
+												<input type="number" class="form-control" name="dni" id="dni" required >
 											</div>
 										</div>
 										<div class="col-12 col-md-4">
 											<div class="form-group">
-												<label for="telefono" class="bmd-label-floating">Nº de Telefono</label>
+												<label for="telefono" class="bmd-label">Nº de Telefono</label>
 												<input type="number" class="form-control" name="telefono" id="telefono" required>
 											</div>
 										</div>
 										<div class="col-12 col-md-3">
 											<div class="form-group d-flex align-items-end">
 												<div class="flex-grow-1">
-													<label for="nacionalidad" class="bmd-label-floating">Nacionalidad</label>
+													<label for="nacionalidad" class="bmd-label">Nacionalidad</label>
 													<select class="form-control" name="nacionalidad" id="nacionalidad" required>
 														
 													</select>
@@ -183,7 +182,7 @@
 
 										<div class="col-12 col-md-3">
 											<div class="form-group">
-												<label for="sexo" class="bmd-label-floating">Sexo</label>
+												<label for="sexo" class="bmd-label">Sexo</label>
 												<select class="form-control" name="sexo" id="sexo" required>
 													<option value="" selected="" disabled="">Seleccione el Sexo</option>
 
@@ -195,13 +194,13 @@
 
 										<div class="col-12 col-md-3">
 											<div class="form-group">
-												<label for="diversidad" class="bmd-label-floating">Diversidad</label>
+												<label for="diversidad" class="bmd-label">Diversidad</label>
 												<input type="text" pattern="[0-9()+]{8,20}" class="form-control" name="diversidad" id="diversidad" maxlength="20">
 											</div>
 										</div>
 										<div class="col-12 col-md-3">
 											<div class="form-group">
-												<label for="estadoCivil" class="bmd-label-floating">Estado Civil</label>
+												<label for="estadoCivil" class="bmd-label">Estado Civil</label>
 												<select class="form-control" name="estadoCivil" id="estadoCivil" required>
 													<option value="" selected="" disabled="">Seleccione el Estado Civil</option>
 
@@ -211,7 +210,7 @@
 
 										<div class="col-12 col-md-4 d-flex align-items-end">
 											<div class="form-group flex-grow-1">
-												<label for="ocupacion" class="bmd-label-floating">Ocupación</label>
+												<label for="ocupacion" class="bmd-label">Ocupación</label>
 												<select class="form-control" name="ocupacion" id="ocupacion" style="margin-top:1rem;" required>
 													<option value="" selected disabled>Seleccione la Ocupación</option>
 												</select>
@@ -222,7 +221,7 @@
 										</div>
 										<div class="col-12 col-md-3">
 											<div class="form-group">
-												<label for="escolaridad" class="bmd-label-floating">Escolaridad</label>
+												<label for="escolaridad" class="bmd-label">Escolaridad</label>
 												<select class="form-control" name="escolaridad" id="escolaridad" required>
 													<option value="" selected="" disabled="">Seleccione la Escolaridad</option>
 
@@ -231,13 +230,13 @@
 										</div>
 										<div class="col-12 col-md-2">
 											<div class="form-group">
-												<label for="edad" class="bmd-label-floating">Edad</label>
-												<input type="number" class="form-control" name="edad" id="edad" maxlength="3" required >
+												<label for="edad" class="bmd-label">Edad</label>
+												<input type="number" class="form-control" name="edad" id="edad" required >
 											</div>
 										</div>
 										<div class="col-12 col-md-3">
 											<div class="form-group">
-												<label for="tiempo" class="bmd-label-floating">Tiempo</label>
+												<label for="tiempo" class="bmd-label">Tiempo</label>
 												<select class="form-control" name="tiempo" id="tiempo" required>
 													<option value="" selected="" disabled="">Seleccione el Tiempo</option>
 													<option value="Horas">Horas</option>
@@ -250,7 +249,7 @@
 										</div>
 										<div class="col-12 col-md-2">
 											<div class="form-group">
-												<label for="lugar_procedencia" class="bmd-label-floating">Lugar de Procdencia del Evaluado</label>
+												<label for="lugar_procedencia" class="bmd-label">Lugar de Procdencia del Evaluado</label>
 												<input type="text" class="form-control" name="lugar_procedencia" id="lugar_procedencia" required>
 												<span id="spanLugarProcedencia" style="color: red; font-size:1rem;"></span>
 											</div>
@@ -265,27 +264,27 @@
 										<div class="row">
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="nombre_acomp" class="bmd-label-floating">Nombre</label>
+													<label for="nombre_acomp" class="bmd-label">Nombre</label>
 													<input type="text" class="form-control" name="nombre_acomp" id="nombre_acomp" required>
 													<span id="spanNombreAcomp" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="apellido_acomp" class="bmd-label-floating">Apellido</label>
+													<label for="apellido_acomp" class="bmd-label">Apellido</label>
 													<input type="text" class="form-control" name="apellido_acomp" id="apellido_acomp" required>
 													<span id="spanApellidoAcomp" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="dni_acomp" class="bmd-label-floating">DNI</label>
+													<label for="dni_acomp" class="bmd-label">DNI</label>
 													<input type="number" class="form-control" name="dni_acomp" id="dni_acomp" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="relacion" class="bmd-label-floating">Relacion</label>
+													<label for="relacion" class="bmd-label">Relacion</label>
 													<select class="form-control" name="relacion" id="relacion" required>
 														<option value="" selected="" disabled="">Seleccione el Tipo de Relacion</option>
 														<option value="Familiar">Familiar</option>
@@ -309,7 +308,7 @@
 											<div class="row">
 												<div class="col-12 col-md-3">
 													<div class="form-group">
-														<label for="permiso_evaluacion" class="bmd-label-floating">PERMITE LA EVALUACION</label>
+														<label for="permiso_evaluacion" class="bmd-label">PERMITE LA EVALUACION</label>
 														<select class="form-control" name="permiso_evaluacion" id="permiso_evaluacion">
 															<option value="" selected="" disabled="">Seleccione el Estado</option>
 															<option value="Si">Si</option>
@@ -335,7 +334,7 @@
 
 												<div class="col-12 col-md-3">
 													<div class="form-group">
-														<label for="departamento" class="bmd-label-floating">Departamento</label>
+														<label for="departamento" class="bmd-label">Departamento</label>
 														<select class="form-control" name="departamento" id="departamento">
 															<option value="" selected="" disabled="">Seleccione el Departamento</option>
 
@@ -344,7 +343,7 @@
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
-														<label for="municipio" class="bmd-label-floating">Municipio</label>
+														<label for="municipio" class="bmd-label">Municipio</label>
 														<select class="form-control" name="municipio" id="municipio">
 															<option value="" selected="" disabled="">Seleccione el Departamento</option>
 
@@ -353,14 +352,14 @@
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
-														<label for="aldea_barrio" class="bmd-label-floating">Caserio, Aldea o Barrio, del Hecho</label>
+														<label for="aldea_barrio" class="bmd-label">Caserio, Aldea o Barrio, del Hecho</label>
 														<input type="text" class="form-control" name="aldea_barrio" id="aldea_barrio">
 														<span id="spanBarrio" style="color: red; font-size:1rem;"></span>
 													</div>
 												</div>
 												<div class="col-12 col-md-4">
 													<div class="form-group">
-														<label for="lugar_hecho" class="bmd-label-floating">Lugar Donde Ocurrio el Hecho</label>
+														<label for="lugar_hecho" class="bmd-label">Lugar Donde Ocurrio el Hecho</label>
 														<input type="text" class="form-control" name="lugar_hecho" id="lugar_hecho" maxlength="40">
 														<span id="spanLugar" style="color: red; font-size:1rem;"></span>
 													</div>
@@ -386,7 +385,7 @@
 
 										<div class="col-12 col-md-3 d-flex align-items-end">
 											<div class="form-group flex-grow-1">
-												<label for="instrumento" class="bmd-label-floating">Instrumento Utilizado</label>
+												<label for="instrumento" class="bmd-label">Instrumento Utilizado</label>
 												<select class="form-control" name="instrumento" id="instrumento">
 													<option value="" selected disabled>Seleccione el Instrumento</option>
 												</select>
@@ -398,7 +397,7 @@
 
 										<div class="col-12 col-md-3">
 											<div class="form-group">
-												<label for="relacion_agresor" class="bmd-label-floating">Relacion Con el Agresor</label>
+												<label for="relacion_agresor" class="bmd-label">Relacion Con el Agresor</label>
 												<select class="form-control" name="relacion_agresor" id="relacion_agresor">
 													<option value="" selected="" disabled="">Seleccione</option>
 													<option value="Conocido">Conocido</option>
@@ -410,7 +409,7 @@
 										</div>
 										<div class="col-12 col-md-4">
 											<div class="form-group">
-												<label for="agresor_conocido" class="bmd-label-floating">En Caso de ser Conocido Especifique</label>
+												<label for="agresor_conocido" class="bmd-label">En Caso de ser Conocido Especifique</label>
 												<input type="text" class="form-control" name="agresor_conocido" id="agresor_conocido">
 												<span id="spanAgresorConocido" style="color: red; font-size:1rem;"></span>
 											</div>
@@ -422,7 +421,7 @@
 					<hr>
 					<div class="col-12 col-md-4">
 						<div class="form-group">
-							<label for="descripcion_evaluacion" class="bmd-label-floating">Descripcion de la Evaluacion</label>
+							<label for="descripcion_evaluacion" class="bmd-label">Descripcion de la Evaluacion</label>
 							<textarea name="descripcion_evaluacion" id="descripcion_evaluacion" cols="80" rows="4"></textarea><!--  /*/*/*/  ESTA ES LA CAJA DE TEXTO   /*/*/*/ -->
 							
 						</div>
@@ -432,8 +431,8 @@
 
 					<div class="col-12 col-md-4">
 						<div class="form-group">
-							<label for="sede_evaluacion" class="bmd-label-floating">Sede de Evaluacion</label>
-							<select class="form-control" name="sede_evaluacion" id="sede_evaluacion">
+							<label for="sede_evaluacion" class="bmd-label">Sede de Evaluacion</label>
+							<select class="form-control" name="sede_evaluacion" id="sede_evaluacion" required>
 								<option value="" selected="" disabled="">Elija la Sede</option>
 
 							</select>
@@ -473,8 +472,9 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="ocupacion_nueva" class="bmd-label-floating">Ocupacion</label>
-											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="ocupacion_nueva" id="ocupacion_nueva	" maxlength="27">
+											<label for="ocupacion_nueva" class="bmd-label">Ocupacion</label>
+											<input type="text" class="form-control" name="ocupacion_nueva" id="ocupacion_nueva">
+											<span id="spanOcupacion" style="color: red; font-size:1rem;"></span>
 										</div>
 									</div>
 								</div>
@@ -483,7 +483,7 @@
 
 						<p class="text-center" style="margin-top: 40px;">
 							&nbsp; &nbsp;
-							<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+							<button type="submit" class="btn btn-raised btn-info btn-sm" id="guardarOcupacion"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
 						</p>
 					</form>
 				</div>
@@ -507,8 +507,9 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="instrumento_nuevo" class="bmd-label-floating">Instrumento</label>
-											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="instrumento_nuevo" id="instrumento_nuevo" maxlength="27">
+											<label for="instrumento_nuevo" class="bmd-label">Instrumento</label>
+											<input type="text" class="form-control" name="instrumento_nuevo" id="instrumento_nuevo">
+											<span id="spanInstrumento" style="color: red; font-size:1rem;"></span>
 										</div>
 									</div>
 								</div>
@@ -517,7 +518,7 @@
 
 						<p class="text-center" style="margin-top: 40px;">
 							&nbsp; &nbsp;
-							<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+							<button type="submit" class="btn btn-raised btn-info btn-sm" id="guardarInstrumento"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
 						</p>
 					</form>
 				</div>
@@ -541,8 +542,9 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="nacionalidad_nuevo" class="bmd-label-floating">Nacionalidad</label>
-											<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="nacionalidad_nuevo" id="nacionalidad_nuevo" maxlength="27">
+											<label for="nacionalidad_nuevo" class="bmd-label">Nacionalidad</label>
+											<input type="text" class="form-control" name="nacionalidad_nuevo" id="nacionalidad_nuevo">
+											<span id="spanNacionalidad" style="color: red; font-size:1rem;"></span>
 										</div>
 									</div>
 								</div>
@@ -551,7 +553,7 @@
 
 						<p class="text-center" style="margin-top: 40px;">
 							&nbsp; &nbsp;
-							<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+							<button type="submit" class="btn btn-raised btn-info btn-sm" id="guardarNacionalidad"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
 						</p>
 					</form>
 				</div>

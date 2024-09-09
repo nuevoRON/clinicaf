@@ -1,24 +1,49 @@
 <?php
 class DictamenesModel extends Query
 {
+    private $id_sede;
+    private $puesto;
+
     public function __construct()
     {
         parent::__construct();
+        session_start();
+        if (!empty($_SESSION['id_usuario'])) {
+            $this->id_sede = $_SESSION['id_sede'];
+            $this->puesto = $_SESSION['puesto'];
+        }
     }
 
     public function getDictamenes()
     {
-        $sql = "SELECT d.id_dictamen,
-                       p.num_caso, 
-                       CONCAT(u.nombre, ' ', u.apellido) AS nombre_completo,
-                       d.fecha_evaluacion,
-                       d.autoridad_solicitante,
-                       d.fecha_entrega,
-                       d.datos_extra
-                FROM tbl_dictamenes d
-                INNER JOIN tbl_proveidos p ON p.id_proveidos = d.numero_caso
-                INNER JOIN tbl_usu u ON u.id_usu = d.medico
-                WHERE d.registro_borrado = 'A'";
+        $puesto = $this->puesto;
+        $sede = $this->id_sede;
+
+        if($puesto == 'Administrador' || $puesto == 'Jefe') {
+            $sql = "SELECT d.id_dictamen,
+                        p.num_caso, 
+                        CONCAT(u.nombre, ' ', u.apellido) AS nombre_completo,
+                        d.fecha_evaluacion,
+                        d.autoridad_solicitante,
+                        d.fecha_entrega,
+                        d.datos_extra
+                    FROM tbl_dictamenes d
+                    INNER JOIN tbl_proveidos p ON p.id_proveidos = d.numero_caso
+                    INNER JOIN tbl_usu u ON u.id_usu = d.medico
+                    WHERE d.registro_borrado = 'A'";
+        }else{
+            $sql = "SELECT d.id_dictamen,
+                p.num_caso, 
+                CONCAT(u.nombre, ' ', u.apellido) AS nombre_completo,
+                d.fecha_evaluacion,
+                d.autoridad_solicitante,
+                d.fecha_entrega,
+                d.datos_extra
+            FROM tbl_dictamenes d
+            INNER JOIN tbl_proveidos p ON p.id_proveidos = d.numero_caso
+            INNER JOIN tbl_usu u ON u.id_usu = d.medico
+            WHERE d.registro_borrado = 'A' AND u.sede = $sede";
+        }
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();
@@ -28,12 +53,27 @@ class DictamenesModel extends Query
 
     public function getNumerosCasosTranscripcion()
     {
-        $sql = "SELECT 
+        $puesto = $this->puesto;
+        $sede = $this->id_sede;
+
+        if($puesto == 'Administrador' || $puesto == 'Jefe') {
+            $sql = "SELECT 
+                    d.id_dictamen, 
+                    p.num_caso 
+            from tbl_dictamenes d
+            inner join tbl_proveidos p on p.id_proveidos = d.numero_caso
+            where d.registro_borrado = 'A';";
+        }else{
+            $sql = "SELECT 
                         d.id_dictamen, 
                         p.num_caso 
                 from tbl_dictamenes d
                 inner join tbl_proveidos p on p.id_proveidos = d.numero_caso
-                where d.registro_borrado = 'A';";
+                inner join tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
+                INNER JOIN tbl_usu u on u.id_usu = pr.medico
+                WHERE d.registro_borrado = 'A' AND u.sede = $sede";
+        }
+        
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();
@@ -77,7 +117,22 @@ class DictamenesModel extends Query
 
     public function getNumerosCasos()
     {
-        $sql = "SELECT id_proveidos, num_caso FROM tbl_proveidos";
+        $puesto = $this->puesto;
+        $sede = $this->id_sede;
+
+        if($puesto == 'Administrador' || $puesto == 'Jefe') {
+            $sql = "SELECT id_proveidos, num_caso FROM tbl_proveidos";
+        }else{
+            $sql = "SELECT 
+                    p.id_proveidos, 
+                    p.num_caso 
+            FROM tbl_proveidos p
+            INNER JOIN tbl_proveido_reconocimiento pr on pr.id_proveido_reconocimiento = p.id_proveidos
+            INNER JOIN tbl_reconocimiento r on r.id_reconocimiento = pr.tipo_reconocimiento
+            INNER JOIN tbl_usu u on u.id_usu = pr.medico
+            WHERE p.registro_borrado = 'A' AND u.sede = $sede";
+        }
+        
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();
@@ -137,19 +192,38 @@ class DictamenesModel extends Query
 
     public function getTranscripciones()
     {
-        $sql = "SELECT d.id,
-                       p.num_caso, 
-                       d.tipo_documento,
-                       CONCAT(u.nombre, ' ', u.apellido) AS nombre_completo,
-                       d.fecha_evaluacion,
-                       d.autoridad_solicitante,
-                       d.fecha_entrega,
-                       d.datos_extra
-                FROM tbl_dictamen_transcripcion d
-                inner join tbl_dictamenes td on td.id_dictamen = d.id_dictamen 
-                INNER JOIN tbl_proveidos p ON p.id_proveidos = td.numero_caso
-                INNER JOIN tbl_usu u ON u.id_usu = d.medico
-                WHERE d.registro_borrado = 'A'";
+        $puesto = $this->puesto;
+        $sede = $this->id_sede;
+
+        if($puesto == 'Administrador' || $puesto == 'Jefe') {
+            $sql = "SELECT d.id,
+                        p.num_caso, 
+                        d.tipo_documento,
+                        CONCAT(u.nombre, ' ', u.apellido) AS nombre_completo,
+                        d.fecha_evaluacion,
+                        d.autoridad_solicitante,
+                        d.fecha_entrega,
+                        d.datos_extra
+                    FROM tbl_dictamen_transcripcion d
+                    inner join tbl_dictamenes td on td.id_dictamen = d.id_dictamen 
+                    INNER JOIN tbl_proveidos p ON p.id_proveidos = td.numero_caso
+                    INNER JOIN tbl_usu u ON u.id_usu = d.medico
+                    WHERE d.registro_borrado = 'A'";
+        }else{
+            $sql = "SELECT d.id,
+                        p.num_caso, 
+                        d.tipo_documento,
+                        CONCAT(u.nombre, ' ', u.apellido) AS nombre_completo,
+                        d.fecha_evaluacion,
+                        d.autoridad_solicitante,
+                        d.fecha_entrega,
+                        d.datos_extra
+                    FROM tbl_dictamen_transcripcion d
+                    inner join tbl_dictamenes td on td.id_dictamen = d.id_dictamen 
+                    INNER JOIN tbl_proveidos p ON p.id_proveidos = td.numero_caso
+                    INNER JOIN tbl_usu u ON u.id_usu = d.medico
+                    WHERE d.registro_borrado = 'A' AND u.sede = $sede";
+        }
         $result = $this->selectAll($sql);
 
         $this->cerrarConexion();
