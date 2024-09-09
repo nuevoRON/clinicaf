@@ -117,6 +117,11 @@ class Inicio extends Controller{
         $this->views->getView('inicio', 'fiscalias');
     }
 
+    public function reportes()
+    {
+        $this->views->getView('inicio', 'reportes');
+    }
+
 
     public function countEmpleados()
     {

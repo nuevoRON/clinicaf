@@ -99,6 +99,9 @@
 				<li>
 					<a href="<?php echo BASE_URL . 'inicio/plantillas'; ?>"><i class="fas fa-save"></i> &nbsp; Plantillas </a>
 				</li>
+				<li>
+					<a href="<?php echo BASE_URL . 'inicio/reportes'; ?>"><i class="fas fa-poll-h"></i> &nbsp; Reportes </a>
+				</li>
 			</ul>
 		</nav>
 	</div>

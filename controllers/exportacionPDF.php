@@ -15,10 +15,16 @@ class exportacionPDF extends Controller
 {
     public function exportarProveidos(){
       // Opciones para prevenir errores con carga de imágenes
+      $fechaInicio = !empty($_GET['fechaInicio']) ? strClean($_GET['fechaInicio']) : null;
+      $fechaFinal = !empty($_GET['fechaFinal']) ? strClean($_GET['fechaFinal']) : null;
+      $reconocimiento = !empty($_GET['reconocimiento']) ? strClean($_GET['reconocimiento']) : null;
+      $medico = !empty($_GET['medico']) ? strClean($_GET['medico']) : null;
+      $sexo = !empty($_GET['sexo']) ? strClean($_GET['sexo']) : null;
+
       $options = new Options();
       $options->set('isRemoteEnabled', true);
 
-      $data = $this->model->listarProveidos();
+      $data = $this->model->listarProveidos($fechaInicio,$fechaFinal,$reconocimiento,$medico,$sexo);
       $fecha_actual=date('Y-m-d H:i:s');
 
       //codigo para obtener la imagen de logo de la empresa
@@ -245,6 +251,7 @@ class exportacionPDF extends Controller
 
     public function exportarRevisionCasos(){
       // Opciones para prevenir errores con carga de imágenes
+      
       $options = new Options();
       $options->set('isRemoteEnabled', true);
 

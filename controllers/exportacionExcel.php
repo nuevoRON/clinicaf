@@ -17,7 +17,13 @@ use PhpOffice\PhpSpreadsheet\Style\Font;
 class exportacionExcel extends Controller
 {
     public function exportarProveidos(){
-      $data = $this->model->listarProveidos();
+      $fechaInicio = !empty($_GET['fechaInicio']) ? strClean($_GET['fechaInicio']) : null;
+      $fechaFinal = !empty($_GET['fechaFinal']) ? strClean($_GET['fechaFinal']) : null;
+      $reconocimiento = !empty($_GET['reconocimiento']) ? strClean($_GET['reconocimiento']) : null;
+      $medico = !empty($_GET['medico']) ? strClean($_GET['medico']) : null;
+      $sexo = !empty($_GET['sexo']) ? strClean($_GET['sexo']) : null;
+
+      $data = $this->model->listarProveidos($fechaInicio,$fechaFinal,$reconocimiento,$medico,$sexo);
 
       $documento = new Spreadsheet();
       $documento

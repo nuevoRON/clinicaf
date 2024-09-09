@@ -19,12 +19,25 @@ class Query extends Conexion{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
-    public function selectAll($sql)
+    public function selectAll($sql, $params = [])
     {
-        $result = $this->con->prepare($sql);
-        $result->execute();
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->con->prepare($sql);
+
+            if (!empty($params)) {
+                foreach ($params as $index => $value) {
+                    $stmt->bindValue($index + 1, $value);
+                }
+            }
+
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
     }
+
+
     public function insertar($sql, $array)
     {
         $result = $this->con->prepare($sql);

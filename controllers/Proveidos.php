@@ -337,11 +337,15 @@ class Proveidos extends Controller
     private function validarFechaCitacion($fechaCitacion) {
         $fechaCitacion = new DateTime($fechaCitacion);
         $fechaActual = new DateTime(); 
+        
+        // Normalizar ambas fechas al día, eliminando la parte de la hora
+        $fechaCitacion->setTime(0, 0, 0);
+        $fechaActual->setTime(0, 0, 0);
     
-        if ($fechaCitacion < $fechaActual) {
-            return false; 
-        }else{
+        if ($fechaCitacion >= $fechaActual) {
             return true;
+        } else {
+            return false;
         }
     }
     
