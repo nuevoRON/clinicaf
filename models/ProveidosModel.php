@@ -54,6 +54,32 @@ class ProveidosModel extends Query
         return $result;
     }
 
+    public function getEmpleados()
+    {
+        $puesto = $this->puesto;
+        $sede = $this->id_sede;
+
+        if ($puesto == 'Administrador' || $puesto == 'Jefe') {
+            $sql = "SELECT 
+                        id_usu, 
+                        CONCAT(nombre, ' ', apellido) AS nombre_completo 
+                    FROM tbl_usu 
+                    WHERE registro_borrado = 'A'";
+        } else {
+            $sql = "SELECT 
+                    id_usu, 
+                    CONCAT(nombre, ' ', apellido) AS nombre_completo 
+                FROM tbl_usu 
+                WHERE registro_borrado = 'A'
+                AND sede = $sede";
+        }
+
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
+    }
+
     public function listarProveidos()
     {
         $puesto = $this->puesto;

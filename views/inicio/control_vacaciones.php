@@ -21,12 +21,6 @@
 					<p class="text-center">
 						<button type="button" class="btn btn-primary" id="btnModalVacacion"><i class="fas fa-user-plus"></i> &nbsp; Agregar Vacacion</button>
 					</p>
-					<button type="button" class="btn btn-danger" id="btnPDFProveido" onclick="exportarPDF()">
-						<i class="fas fa-file-pdf"></i> &nbsp; Exportar PDF
-					</button>
-					<button type="button" class="btn btn-success" id="btnModalProveido3" onclick="exportarExcel()">
-						<i class="fas fa-file-excel"></i> &nbsp; Exportar Excel
-					</button>
 				</div>
 			</div>
 

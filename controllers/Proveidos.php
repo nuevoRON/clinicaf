@@ -61,6 +61,17 @@ class Proveidos extends Controller
         }
     }
 
+    public function getEmpleados()
+    {
+        $this->verificarSesion();
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = $this->model->getEmpleados();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+    }
+
     //metodo para registrar y modificar
     public function insertarProveido() {
         $this->verificarSesion();

@@ -14,7 +14,6 @@ use Dompdf\Exception as DomException;
 class exportacionPDF extends Controller
 {
     public function exportarProveidos(){
-      // Opciones para prevenir errores con carga de imágenes
       $fechaInicio = !empty($_GET['fechaInicio']) ? strClean($_GET['fechaInicio']) : null;
       $fechaFinal = !empty($_GET['fechaFinal']) ? strClean($_GET['fechaFinal']) : null;
       $reconocimiento = !empty($_GET['reconocimiento']) ? strClean($_GET['reconocimiento']) : null;
@@ -28,7 +27,7 @@ class exportacionPDF extends Controller
       $fecha_actual=date('Y-m-d H:i:s');
 
       //codigo para obtener la imagen de logo de la empresa
-      $nombreImagen = "./assets/images/Avatar.png";
+      $nombreImagen = "./assets/images/mf.jpeg";
       $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
  
       try {
@@ -68,7 +67,7 @@ class exportacionPDF extends Controller
             </style>
           </head>
           <body>
-          <img src='. $imagenBase64 .' width="150" height="100" style="margin-left:17rem;"/>
+          <img src='. $imagenBase64 .' width="150" height="150" style="margin-left:17rem;"/>
             <h1>Informacion de Proveidos</h1>';
             $contenido .='<span> Fecha: ' . $fecha_actual;
             $contenido .='<br><br>';
@@ -134,11 +133,15 @@ class exportacionPDF extends Controller
     
     
     public function exportarVacaciones(){
+      $fechaInicio = !empty($_GET['fecha_inicio']) ? strClean($_GET['fecha_inicio']) : null;
+      $fechaFinal = !empty($_GET['fecha_final']) ? strClean($_GET['fecha_final']) : null;
+      $medico = !empty($_GET['medico']) ? strClean($_GET['medico']) : null;
+
       // Opciones para prevenir errores con carga de imágenes
       $options = new Options();
       $options->set('isRemoteEnabled', true);
 
-      $data = $this->model->listarVacaciones();
+      $data = $this->model->listarVacaciones($fechaInicio,$fechaFinal,$medico);
       $fecha_actual=date('Y-m-d H:i:s');
 
       //codigo para obtener la imagen de logo de la empresa

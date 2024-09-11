@@ -123,60 +123,63 @@ class exportacionExcel extends Controller
 
 
     public function exportarVacaciones(){
-      $data = $this->model->listarVacaciones();
+      $fechaInicio = !empty($_GET['fecha_inicio']) ? strClean($_GET['fecha_inicio']) : null;
+      $fechaFinal = !empty($_GET['fecha_final']) ? strClean($_GET['fecha_final']) : null;
+      $medico = !empty($_GET['medico']) ? strClean($_GET['medico']) : null;
 
-      $documento = new Spreadsheet();
-      $documento
-      ->getProperties()
-      ->setCreator("ADMIN")
-      ->setLastModifiedBy('ADMIN')
-      ->setTitle('Archivo generado desde MySQL')
-      ->setDescription('Reporte de Vacaciones');
+      $data = $this->model->listarVacaciones($fechaInicio,$fechaFinal,$medico);
 
-      $hojaDeProductos = $documento->getActiveSheet();
-      $documento->getActiveSheet()->getDefaultColumnDimension()->setWidth(35); 
-      $documento->getActiveSheet()->getStyle('A1:D4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+    $documento = new Spreadsheet();
+    $documento
+    ->getProperties()
+    ->setCreator("ADMIN")
+    ->setLastModifiedBy('ADMIN')
+    ->setTitle('Archivo generado desde MySQL')
+    ->setDescription('Reporte de Vacaciones');
 
-      $hojaDeProductos->setCellValue('C1','Reporte de Vacaciones');
-      $hojaDeProductos->setCellValue('B2','Fecha: '.date('Y-m-d H:i:s'));
-      $hojaDeProductos->setCellValue('B3','Generado por: '.$_SESSION['usuario']);
-      $hojaDeProductos->getStyle('C1')->getFont()->setSize(20);
-      $documento->getActiveSheet()->getStyle('C1')->getFont()->setBold(true);
-      $hojaDeProductos->getStyle('B2')->getFont()->setSize(12);
-      $documento->getActiveSheet()->getStyle('B2')->getFont()->setBold(true);
-      $hojaDeProductos->getStyle('B3')->getFont()->setSize(12);
-      $documento->getActiveSheet()->getStyle('B3')->getFont()->setBold(true);
+    $hojaDeProductos = $documento->getActiveSheet();
+    $documento->getActiveSheet()->getDefaultColumnDimension()->setWidth(35); 
+    $documento->getActiveSheet()->getStyle('A1:D4')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+    $hojaDeProductos->setCellValue('C1','Reporte de Vacaciones');
+    $hojaDeProductos->setCellValue('B2','Fecha: '.date('Y-m-d H:i:s'));
+    $hojaDeProductos->setCellValue('B3','Generado por: '.$_SESSION['usuario']);
+    $hojaDeProductos->getStyle('C1')->getFont()->setSize(20);
+    $documento->getActiveSheet()->getStyle('C1')->getFont()->setBold(true);
+    $hojaDeProductos->getStyle('B2')->getFont()->setSize(12);
+    $documento->getActiveSheet()->getStyle('B2')->getFont()->setBold(true);
+    $hojaDeProductos->getStyle('B3')->getFont()->setSize(12);
+    $documento->getActiveSheet()->getStyle('B3')->getFont()->setBold(true);
 
-      $hojaDeProductos->setTitle("Reporte de Vacaciones");
-      $hojaDeProductos->setCellValue('A5','N° Empleado');
-      $hojaDeProductos->setCellValue('B5','Nombre');
-      $hojaDeProductos->setCellValue('C5','Estado');
-      $hojaDeProductos->setCellValue('D5','Fecha de Inicio');
-      $hojaDeProductos->setCellValue('E5','Fecha Final');
-      $hojaDeProductos->setCellValue('F5','Días de Vacaciones');
-      $hojaDeProductos->setCellValue('G5','Observaciones');
-      
-      # Comenzamos en la fila 2
-      $numeroDeFila = 6;
-      foreach($data as $val){
-        $nombre = $val['nombre_completo'];
-        $num_empleado = $val['num_empleado'];
-        $nom_estado = $val['nom_estado'];
-        $fecha_inicio = $val['fecha_inicio'];
-        $fecha_final = $val['fecha_final'];
-        $dias_vacaciones = $val['dias_vacaciones'];
-        $observaciones = $val['observaciones'];
+    $hojaDeProductos->setTitle("Reporte de Vacaciones");
+    $hojaDeProductos->setCellValue('A5','N° Empleado');
+    $hojaDeProductos->setCellValue('B5','Nombre');
+    $hojaDeProductos->setCellValue('C5','Estado');
+    $hojaDeProductos->setCellValue('D5','Fecha de Inicio');
+    $hojaDeProductos->setCellValue('E5','Fecha Final');
+    $hojaDeProductos->setCellValue('F5','Días de Vacaciones');
+    $hojaDeProductos->setCellValue('G5','Observaciones');
+    
+    # Comenzamos en la fila 2
+    $numeroDeFila = 6;
+    foreach($data as $val){
+      $nombre = $val['nombre_completo'];
+      $num_empleado = $val['num_empleado'];
+      $nom_estado = $val['nom_estado'];
+      $fecha_inicio = $val['fecha_inicio'];
+      $fecha_final = $val['fecha_final'];
+      $dias_vacaciones = $val['dias_vacaciones'];
+      $observaciones = $val['observaciones'];
 
-        # Escribir registros en el documento
-        $hojaDeProductos->setCellValue('A'. $numeroDeFila, $num_empleado);
-        $hojaDeProductos->setCellValue('B'. $numeroDeFila, $nombre);
-        $hojaDeProductos->setCellValue('C'. $numeroDeFila, $nom_estado);
-        $hojaDeProductos->setCellValue('D'. $numeroDeFila, $fecha_inicio);
-        $hojaDeProductos->setCellValue('E'. $numeroDeFila, $fecha_final);
-        $hojaDeProductos->setCellValue('F'. $numeroDeFila, $dias_vacaciones);
-        $hojaDeProductos->setCellValue('G'. $numeroDeFila, $observaciones);
-         $numeroDeFila++;
-      }
+      # Escribir registros en el documento
+      $hojaDeProductos->setCellValue('A'. $numeroDeFila, $num_empleado);
+      $hojaDeProductos->setCellValue('B'. $numeroDeFila, $nombre);
+      $hojaDeProductos->setCellValue('C'. $numeroDeFila, $nom_estado);
+      $hojaDeProductos->setCellValue('D'. $numeroDeFila, $fecha_inicio);
+      $hojaDeProductos->setCellValue('E'. $numeroDeFila, $fecha_final);
+      $hojaDeProductos->setCellValue('F'. $numeroDeFila, $dias_vacaciones);
+      $hojaDeProductos->setCellValue('G'. $numeroDeFila, $observaciones);
+       $numeroDeFila++;
+    }
 
       //Bordes de tabla
       $documento->getActiveSheet()->getStyle('A5:A'.$numeroDeFila)->getBorders()->getLeft()->

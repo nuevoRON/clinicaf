@@ -64,7 +64,7 @@ class exportacionExcelModel extends Query
     }
 
 
-    public function listarVacaciones()
+    public function listarVacaciones($fechaInicio,$fechaFinal,$medico)
     {
         $sql = "SELECT 
                         v.id_vacaciones,
@@ -79,7 +79,25 @@ class exportacionExcelModel extends Query
                 INNER JOIN tbl_usu u ON u.id_usu = v.id_usu
                 INNER JOIN tbl_estados e ON e.id_estado = u.estado
                 WHERE v.registro_borrado = 'A'";
-        $result = $this->selectAll($sql);
+        // Array para almacenar los parámetros de consulta
+        $array = array();
+        
+        // Añadir condiciones dinámicas a la consulta solo si los parámetros están presentes
+        if (!empty($fechaInicio) && !empty($fechaFinal)){
+            $sql .= " AND v.fecha_inicio >= ? AND v.fecha_final <= ?";
+            array_push($array, $fechaFinal,$fechaInicio);
+        }
+
+        if (!empty($medico)){
+            $sql .= " AND v.id_usu = ?";
+            array_push($array, $medico);
+        }
+
+        if (count($array) > 0) {
+            $result = $this->selectAll($sql, $array);
+        } else {
+            $result = $this->selectAll($sql);
+        }
 
         $this->cerrarConexion();
         return $result;
