@@ -21,6 +21,7 @@
 					<?php if ($_SESSION['puesto'] == 'Administrador' 
 								|| $_SESSION['puesto'] == 'Jefe'
 								|| $_SESSION['puesto'] == 'Enfermera'
+								|| $_SESSION['puesto'] == 'Medicos Locales'
 								|| $_SESSION['puesto'] == 'Secretaria'){?>
 								
 						<li>
@@ -33,6 +34,7 @@
 								|| $_SESSION['puesto'] == 'Jefe'
 								|| $_SESSION['puesto'] == 'Medico Especialista'
 								|| $_SESSION['puesto'] == 'Perito Medico Forense'
+								|| $_SESSION['puesto'] == 'Medicos Locales'
 								|| $_SESSION['puesto'] == 'Odontologo'
 								){?>
 						<li>
@@ -43,6 +45,7 @@
 					<?php if ($_SESSION['puesto'] == 'Administrador' 
 								|| $_SESSION['puesto'] == 'Jefe'
 								|| $_SESSION['puesto'] == 'Enfermera'
+								|| $_SESSION['puesto'] == 'Medicos Locales'
 								|| $_SESSION['puesto'] == 'Secretaria'){?>
 						<li>
 							<a href="<?php echo BASE_URL . 'inicio/controlJuicios'; ?>"><i class="fas fa-balance-scale"></i> &nbsp; Control de Citaciones</a>
@@ -52,14 +55,14 @@
 						</li>
 					<?php }?>
 				<ul>
-					<?php if ($_SESSION['puesto'] == 'Administrador' || $_SESSION['puesto'] == 'Jefe' || $_SESSION['puesto'] == 'Revisor'){?>
+					<?php if ($_SESSION['puesto'] == 'Administrador' || $_SESSION['puesto'] == 'Jefe' || $_SESSION['puesto'] == 'Revisor'|| $_SESSION['puesto'] == 'Medicos Locales'){?>
 						<li>
 							<a href="<?php echo BASE_URL . 'inicio/evaluacionCasos'; ?>"><i class="fas fa-exchange-alt"></i> &nbsp; Revision de Casos</a>
 						</li>
 					<?php }?>
 				</ul>
 					<?php if ($_SESSION['puesto'] == 'Administrador'
-							  || $_SESSION['puesto'] == 'Jefe'){?>
+							  || $_SESSION['puesto'] == 'Jefe' ){?>
 						<li>
 							<a href="#" class="nav-btn-submenu"><i class="fas fa-store-alt fa-fw"></i> &nbsp; Administracion <i class="fas fa-chevron-down"></i></a>
 							<ul>
