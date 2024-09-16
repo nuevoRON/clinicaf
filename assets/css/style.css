@@ -471,8 +471,6 @@ table form{
     overflow-y: auto;
 }
 
-
-
 /*----------  Breakpoints  ----------*/
 @media (max-width: 767px){
 	.nav-lateral{

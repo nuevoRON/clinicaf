@@ -5,7 +5,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Reportes</title>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<?php include "views/templates/archivosCss.php"; ?>
+	<link rel="stylesheet" href="../assets/css/select2-estilos.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" 
+	integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" 
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<style>
 .tab-container {
     display: flex;
@@ -78,19 +83,19 @@
 										<div class="row">
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="fecha_inicio">Fecha de Inicio</label>
+													<label for="fecha_inicio" class="bmd-label" style="margin-top:-3%;">Fecha de Inicio</label>
 													<input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="fecha_final">Fecha Final</label>
+													<label for="fecha_final" class="bmd-label" style="margin-top:-3%;">Fecha Final</label>
 													<input type="date" class="form-control" name="fecha_final" id="fecha_final" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="medico" class="bmd-label">Medico</label>
+													<label for="medico" class="bmd-label" style="margin-top:-3%;">Medico</label>
 													<select class="form-control" name="medico" id="medico" required>
 														<option value="">Seleccione una opción</option>
 													</select>
@@ -98,7 +103,7 @@
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="reconocimiento" class="bmd-label">Tipo de Reconocimiento</label>
+													<label for="reconocimiento" class="bmd-label" style="margin-top:-3%;">Tipo de Reconocimiento</label>
 													<select class="form-control" name="reconocimiento" id="reconocimiento" required>
 														<option value="">Seleccione una opción</option>
 													</select>
@@ -106,7 +111,7 @@
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="sexo" class="bmd-label">Sexo de Evaluado</label>
+													<label for="sexo" class="bmd-label" style="margin-top:-3%;">Sexo de Evaluado</label>
 													<select class="form-control" name="sexo" id="sexo" required>
 														<option value="">Seleccione una opción</option>
 													</select>
@@ -138,19 +143,19 @@
 										<div class="row">
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="fechaInicioVacacion">Fecha de Inicio</label>
+													<label for="fechaInicioVacacion" class="bmd-label" style="margin-top:-3%;">Fecha de Inicio</label>
 													<input type="date" class="form-control" name="fechaInicioVacacion" id="fechaInicioVacacion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="fechaFinVacacion">Fecha Final</label>
+													<label for="fechaFinVacacion" class="bmd-label" style="margin-top:-3%;">Fecha Final</label>
 													<input type="date" class="form-control" name="fechaFinVacacion" id="fechaFinVacacion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="medicoVacaciones" class="bmd-label">Medico</label>
+													<label for="medicoVacaciones" class="bmd-label" style="margin-top:-5%;">Empleado</label>
 													<select class="form-control" name="medicoVacaciones" id="medicoVacaciones" required>
 														<option value="">Seleccione una opción</option>
 													</select>
@@ -177,6 +182,8 @@
 
 	<?php include "views/templates/archivosJS.php"; ?>
 	<script type="module" src="<?php echo BASE_URL; ?>assets/js/modulos/reportes.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	<script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 	<script>
 		function openTab(event, tabName) {
 			var i, tabcontent, tabbuttons;

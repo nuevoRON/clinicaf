@@ -63,13 +63,13 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="nombre" class="bmd-label">Nombre</label>
+											<label for="nombre" class="bmd-label" style="margin-top:-3%;">Nombre</label>
 											<input type="text" class="form-control" name="nombre" id="nombre" maxlength="30" required>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="descripcion" class="bmd-label">Descripcion</label>
+											<label for="descripcion" class="bmd-label" style="margin-top:-3%;">Descripcion</label>
 											<input type="text" class="form-control" name="descripcion" id="descripcion" maxlength="100" required>
 										</div>
 									</div>

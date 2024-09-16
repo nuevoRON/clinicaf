@@ -126,17 +126,24 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="contrasena" class="bmd-label">Contraseña</label>
+										<p>La contraseña debe contener:</p>
+										<ul>
+											<li>Ocho carácteres mínimo</li>
+											<li>Al menos una letra mayúscula</li>
+											<li>Al menos un número</li>
+											<li>Al menos un carácter especial (@$!%*?&_)</li>
+										</ul>
+											<label for="contrasena" class="bmd-label" style="margin-top:-3%;">Contraseña</label>
 											<input type="password" class="form-control" name="contrasena" id="contrasena"
 												pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&_])[A-Za-z\d#@$!%*?&_]{8,}$"
 												title="La contraseña debe contener al menos una letra mayúscula, 
-											un número, un carácter especial (@$!%*?&) y 8 caracteres mínimo">
+											un número, un carácter especial (@$!%*?&_) y 8 caracteres mínimo" required>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="conf_contrasena" class="bmd-label">Confirmar Contraseña</label>
-											<input type="password" class="form-control" name="conf_contrasena" id="conf_contrasena" maxlength="27">
+											<label for="conf_contrasena" class="bmd-label" style="margin-top:-3%;">Confirmar Contraseña</label>
+											<input type="password" class="form-control" name="conf_contrasena" id="conf_contrasena" required>
 											<span id="error-message"></span>
 										</div>
 									</div>

@@ -45,6 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
     "id_usu"
   );
 
+  $(document).ready(function() {
+    $('#num_casoTranscripcion').select2();
+  });
+
+  $(document).ready(function() {
+    $('#num_caso').select2();
+  });
+
 
   //Cargar casos para ampliaciones y transcripciones
   //Se cargan solo los casos que se encuentran guardados en dictamenes
@@ -467,9 +475,9 @@ function editarDictamen(idDictamen) {
             document.getElementById('fecha_entrega').value = res.fecha_entrega;
             document.getElementById('datos_extra').value = res.datos_extra;
             document.getElementById('modal-title').textContent = "Editar Dictamen"
-            $("#num_caso option[value=" + res.numero_caso + "]").attr({selected: true,});
-            $("#tipo_documento option[value='" + res.tipo_documento + "']").attr({selected: true,});
-            $("#medico option[value=" + res.medico + "]").attr({selected: true,});
+            $("#num_caso").val(res.numero_caso).trigger('change'); 
+            document.getElementById('medico').value = res.medico;
+       
       
            //Se abre el modal usando su id
            $('#ModalDictamen').modal('show'); 
@@ -515,9 +523,9 @@ function editarTranscripcion(id) {
             document.getElementById('fecha_entregaTranscripcion').value = res.fecha_entrega;
             document.getElementById('datos_extraTranscripcion').value = res.datos_extra;
             document.getElementById('modal-titleTranscripcion').textContent = "Editar Transcripcion / Ampliacion"
-            $("#num_casoTranscripcion option[value=" + res.id_dictamen + "]").attr({selected: true,});
-            $("#tipo_documentoTranscripcion option[value='" + res.tipo_documento + "']").attr({selected: true,});
-            $("#medicoTranscripcion option[value=" + res.medico + "]").attr({selected: true,});
+            $("#num_casoTranscripcion").val(res.id_dictamen).trigger('change'); 
+            document.getElementById('tipo_documentoTranscripcion').value = res.tipo_documento;
+            document.getElementById('medicoTranscripcion').value = res.medico;
       
            //Se abre el modal usando su id
            $('#ModalTranscripcion').modal('show'); 
@@ -549,7 +557,7 @@ function mostrarModalDictamen(){
     } else {
 
       document.getElementById('formulario').reset();
-      document.getElementById('num_caso').selectedIndex = 0;
+      $("#num_caso").val('').trigger('change'); 
       document.getElementById('medico').selectedIndex = 0;
 
       document.getElementById('modal-title').textContent = "Crear Dictamen"
@@ -584,7 +592,7 @@ function mostrarModalTranscripcion(){
     } else {
 
       document.getElementById('formularioTranscripcion').reset();
-      document.getElementById('num_casoTranscripcion').selectedIndex = 0;
+      $("#num_casoTranscripcion").val('').trigger('change'); 
       document.getElementById('medicoTranscripcion').selectedIndex = 0;
 
       document.getElementById('modal-titleTranscripcion').textContent = "Crear Transcripcion / Ampliación"

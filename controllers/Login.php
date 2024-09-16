@@ -18,8 +18,12 @@ class Login extends Controller{
         if (isset($_POST['usuario']) && isset($_POST['clave'])){
             if(empty($_POST['usuario'])){
                 $res = array('msg' => 'EL USUARIO ES REQUERIDO', 'type' => 'warning');
+                echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                die();
             }else if(empty($_POST['clave'])){
                 $res = array('msg' => 'LA CONTRASEÑA ES REQUERIDO', 'type' => 'warning');
+                echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                die();
             }else {
                 $usuario = strClean($_POST['usuario']);
                 $clave = strClean($_POST['clave']);
@@ -44,6 +48,10 @@ class Login extends Controller{
                 }
                 
                 if(password_verify($clave, $data['contrasena'])){
+                    //Se obtienen los permisos de consulta que tiene el usuario
+                    //Para mostrar los accesos a las pantallas del navbar
+                    $permisos = $this->model->getPermisosMenu($data['puesto']);
+                    
                     session_regenerate_id(true);
                     $_SESSION['id_usuario'] = $data['id_usu'];
                     $_SESSION['nombre_usuario'] = $data['nombre'] . ' ' . $data['apellido'];
@@ -57,13 +65,16 @@ class Login extends Controller{
                     $_SESSION['user_ip'] = $_SERVER['REMOTE_ADDR'];
                     $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 
+                    //Se guardan los datos de las pantallas en una variable de sesión
+                    $_SESSION['permisos_pantallas'] = $permisos; 
+
                     //Restablecer intentos de sesion
-                    $this->model->resetearIntentos($data['id_usu']);
+                   $this->model->resetearIntentos($data['id_usu']);
 
                     $res = array('msg' => 'DATOS CORRECTOS', 'id_usuario' => $_SESSION['id_usuario'], 'type' => 'success');
 
                     $bitacora = new Bitacora();
-                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 1, 'INICIO DE SESION', 'El usuario inició sesión en el sistema', date('Y-m-d H:i:s'));
+                    $bitacora->model->crearEvento($_SESSION['id_usuario'], 1, 'INICIO DE SESION', 'El usuario inició sesión en el sistema', date('Y-m-d H:i:s')); 
                 }else {
                     // Actualizar intentos del usuario
                     $this->model->actualizarIntentos($data['id_usu']);

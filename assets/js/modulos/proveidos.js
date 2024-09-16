@@ -352,20 +352,10 @@ function editarProveido(idProveido) {
             document.getElementById("modal-title").textContent =
               "Editar Proveido";
 
-            $(
-              "#item_departamento_reg option[value=" + res.id_departamento + "]"
-            ).attr({ selected: true });
-            $(
-              "#item_dependencia_reg option[value=" +
-                res.fiscalia_remitente +
-                "]"
-            ).attr({ selected: true });
-            $(
-              "#item_recon_reg option[value=" + res.tipo_reconocimiento + "]"
-            ).attr({ selected: true });
-            $("#medico option[value=" + res.medico + "]").attr({
-              selected: true,
-            });
+            document.getElementById("item_departamento_reg").value = res.id_departamento;
+            document.getElementById("item_dependencia_reg").value = res.fiscalia_remitente;
+            document.getElementById("item_recon_reg").value = res.tipo_reconocimiento;
+            document.getElementById("medico").value = res.medico;
 
             //Cargar municipios
             if (res.fk_departamento != 0) {

@@ -1,0 +1,46 @@
+/* Estilo del contenedor de Select2 para que se vea como un form-control de Bootstrap */
+.select2-container .select2-selection--single {
+    height: calc(2.25rem + 2px); /* Altura del form-control en Bootstrap */
+    padding: 0.375rem 0.75rem; /* Espaciado interno */
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #2b3844; /* Color del texto */
+    background-color: #fff; /* Fondo blanco */
+    border: 1px solid #ced4da; /* Borde del form-control */
+    border-radius: 0.25rem; /* Bordes redondeados de Bootstrap */
+	margin-top:3%;
+	width: '100%';
+}
+
+/* Texto seleccionado con estilo de Bootstrap */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 1.7;
+    color: #2b3844;
+    padding-left: 0;
+}
+
+/* Icono de dropdown con estilo de Bootstrap */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: calc(2.25rem + 2px);
+    top: 0.375rem; /* Alineación del icono con el select */
+    right: 0.75rem;
+}
+
+/* Estilo del dropdown (lista de opciones) de Select2 */
+.select2-container .select2-dropdown {
+    border-radius: 0.25rem; /* Bordes redondeados */
+    border: 1px solid #ced4da; /* Borde del form-control */
+}
+
+/* Opciones dentro del dropdown */
+.select2-container .select2-results__option {
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+}
+
+/* Opción resaltada */
+.select2-container--default .select2-results__option--highlighted {
+    background-color: #007bff; /* Color de Bootstrap */
+    color: white; /* Texto blanco */
+}
+

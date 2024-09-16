@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Cargar municipios
     selectEmpleado.addEventListener("change", function() {
+      console.log('funciona')
       let idEmpleado= selectEmpleado.options[selectEmpleado.selectedIndex].value
       let urlNombreEmpleado = "http://localhost/clinicaf/vacaciones/getNombreEmpleado/"+ idEmpleado;
 
@@ -63,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   
   });
-
 
     /* Mostrar Tabla */
   //Se extraen los datos de la base de datos para llenar el datatable
@@ -301,7 +301,7 @@ axios
           document.getElementById('observaciones').value = res.observaciones;
           document.getElementById('modal-title').textContent = "Editar Vacaciones"
           
-          $("#num_empleado option[value=" + res.id_usu + "]").attr({selected: true,});
+          $("#num_empleado").val(res.id_usu).trigger('change'); 
           $("#item_estado option[value=" + res.estado + "]").attr({selected: true,});
     
          //Se abre el modal usando su id

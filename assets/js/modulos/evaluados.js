@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
       if (res.estado_evaluacion === 'Pendiente' || res.estado_evaluacion === 'Realizado' || res.estado_evaluacion === 'Nuevo') {
         document.getElementById('numero_solicitud').value = res.num_caso;
-        document.getElementById('numero_caso').value = res.num_solicitud || '';
+        document.getElementById('numero_caso').value = res.num_solicitud;
         document.getElementById('numero_caso_ext').value = res.num_caso_ext;
         document.getElementById('fecha_emision').value = res.fech_emi_soli;
         document.getElementById('fecha_recepcion').value = res.fech_recep_soli;
@@ -150,20 +150,20 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('descripcion_evaluacion').value = res.descripcion_evaluacion;
         document.getElementById('agresor_conocido').value = res.especificar_relacion;
         document.getElementById('fecha_finalizacion').value = res.fecha_finalizacion;
-  
-        $("#departamento option[value=" + res.id_departamento + "]").attr({ selected: true });
-        $("#nacionalidad option[value=" + res.nacionalidad + "]").attr({ selected: true });
-        $("#sexo option[value=" + res.id_sexo + "]").attr({ selected: true });
-        $("#estadoCivil option[value=" + res.estado_civil + "]").attr({ selected: true });
+
+        document.getElementById('departamento').value = res.id_departamento;
+        document.getElementById('nacionalidad').value = res.nacionalidad;
+        document.getElementById('sexo').value = res.id_sexo;
+        document.getElementById('estadoCivil').value = res.estado_civil;
+        document.getElementById('escolaridad').value = res.escolaridad;
+        document.getElementById('tiempo').value = res.tiempo;
+        document.getElementById('relacion').value = res.relacion_acompanante;
+        document.getElementById('permiso_evaluacion').value = res.consentimiento_informado;
+        document.getElementById('relacion_agresor').value = res.relacion_agresor;
+        document.getElementById('sede_evaluacion').value = res.sede_evaluacion;
         $("#ocupacion").val(res.ocupacion).trigger('change'); 
-        $("#escolaridad option[value=" + res.escolaridad + "]").attr({ selected: true });
-        $("#tiempo option[value=" + res.tiempo + "]").attr({ selected: true });
-        $("#relacion option[value='" + res.relacion_acompanante + "']").attr({ selected: true });
-        $("#permiso_evaluacion option[value='" + res.consentimiento_informado + "']").attr({ selected: true });
         $("#instrumento").val(res.instrumento_agresion).trigger('change'); 
-        $("#relacion_agresor option[value='" + res.relacion_agresor + "']").attr({ selected: true });
-        $("#sede_evaluacion option[value=" + res.sede_evaluacion + "]").attr({ selected: true });
-  
+
         if (res.consentimiento_informado === 'Si') {
           $(".contenedor-consentimiento").show();
         } else {

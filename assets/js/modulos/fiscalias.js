@@ -6,16 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
   
   axios.post(permisoConsulta, {
     consulta: 1,
-    modulo: 2
+    modulo: 16
   })
-    .then(function (response) {
-      if (response.data.consulta == 0 || response.data == false) {
-        window.location.href = "../inicio/error";
-      }
-    })
-    .catch(function (error) {
-      console.error("Ocurrió un error:", error);
-    });
+  .then(function (response) {
+    if (response.data.consulta == 0 || response.data == false) {
+      window.location.href = "../inicio/error";
+    }
+  })
+  .catch(function (error) {
+    console.error("Ocurrió un error:", error);
+  });
 
   //Se extraen los datos de la base de datos para llenar el datatable
   let urlListar = "http://localhost/clinicaf/fiscalias/listarFiscalias";
@@ -141,7 +141,7 @@ function eliminarFiscalia(id) {
   
   axios.post(permisoEliminacion, {
     consulta: 4,
-    modulo: 2
+    modulo: 16
   })
     .then(function (response) {
       if (response.data.eliminacion == 0 || response.data == false) {
@@ -200,7 +200,7 @@ function editarFiscalia(id) {
   
   axios.post(permisoActualizacion, {
     consulta: 3,
-    modulo: 2
+    modulo: 16
   })
     .then(function (response) {
       console.log(response.data)
@@ -244,7 +244,7 @@ function mostrarModal(){
   
   axios.post(permisoInsercion, {
     consulta: 2,
-    modulo: 2
+    modulo: 16
   })
   .then(function (response) {
     if (response.data.insercion == 0 || response.data == false) {

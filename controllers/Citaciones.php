@@ -61,6 +61,24 @@ class Citaciones extends Controller
             $medico = strClean($_POST['medico']);
             $lugarCitacion = strClean($_POST['lugar_citacion']);
 
+            $validacionFecha = $this->validarFecha($fechaCitacion);
+                if($validacionFecha == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de citación no puede ser menor que la fecha actual', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
+            $validacionFechaCitacion = $this->validarFechaCitacion($fechaRecibe);
+                if($validacionFechaCitacion == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha en que se recibe la citación no puede ser diferente de la fecha de hoy', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
             $data = $this->model->insertarCitacion($numeroCaso,$tipoCitacion,$fechaRecibe,$fechaCitacion,$medico,$lugarCitacion);
             
             if ($data > 0) {
@@ -95,6 +113,25 @@ class Citaciones extends Controller
                 $fechaCitacion = strClean($putData['fecha_citacion']);
                 $medico = strClean($putData['medico']);
                 $lugarCitacion = strClean($putData['lugar_citacion']);
+
+                $validacionFecha = $this->validarFecha($fechaCitacion);
+                if($validacionFecha == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de citación no puede ser menor que la fecha actual', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
+                $validacionFechaCitacion = $this->validarFechaCitacion($fechaRecibe);
+                if($validacionFechaCitacion == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha en que se recibe la citación no puede ser diferente de la fecha de hoy', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
                 $id = strClean($putData['id']);
     
                 $data = $this->model->actualizarCitacion($numeroCaso,$tipoCitacion,$fechaRecibe,$fechaCitacion,$medico,$lugarCitacion, $id);
@@ -156,6 +193,36 @@ class Citaciones extends Controller
             // Devolver respuesta en formato JSON
             echo json_encode($res, JSON_UNESCAPED_UNICODE);
             die();
+        }
+    }
+
+    private function validarFecha($fechaCitacion){
+        $fechaCitacion = new DateTime($fechaCitacion);
+        $fechaActual = new DateTime(); 
+        
+        // Normalizar ambas fechas al día, eliminando la parte de la hora
+        $fechaCitacion->setTime(0, 0, 0);
+        $fechaActual->setTime(0, 0, 0);
+    
+        if ($fechaCitacion >= $fechaActual) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function validarFechaCitacion($fechaRecibe) {
+        $fechaRecibe = new DateTime($fechaRecibe);
+        $fechaActual = new DateTime(); 
+        
+        // Normalizar ambas fechas al día, eliminando la parte de la hora
+        $fechaRecibe->setTime(0, 0, 0);
+        $fechaActual->setTime(0, 0, 0);
+    
+        if ($fechaRecibe == $fechaActual) {
+            return true;
+        } else {
+            return false;
         }
     }
 

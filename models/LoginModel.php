@@ -26,6 +26,20 @@ class LoginModel extends Query{
         return $result;
     }
 
+
+    public function getPermisosMenu($puesto)
+    {
+        $sql = "SELECT 
+                    id_modulo 
+                FROM tbl_permisos 
+                WHERE id_puesto = $puesto AND registro_borrado = 'A' AND consulta = '1';";
+        $result = $this->selectAll($sql);
+
+        $this->cerrarConexion();
+        return $result;
+    }
+
+
     public function getRol($idRol)
     {
         $sql = "SELECT * FROM tbl_roles WHERE id = '$idRol'";

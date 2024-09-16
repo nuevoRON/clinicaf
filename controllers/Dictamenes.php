@@ -86,6 +86,24 @@ class Dictamenes extends Controller
                 die();
             }
 
+            $validacionFecharEvaluacion = $this->validarFechaEvaluacion($fechaEvaluacion);
+            if($validacionFecharEvaluacion == false){
+                $res = array('titulo' => 'Error', 
+                            'desc' => 'La fecha de evaluación no puede ser mayor o igual que la fecha de hoy', 
+                            'type' => 'error');
+                echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                die();
+            }
+
+            $validacionFechaEntrega = $this->validarFechaEntrega($fechaEntrega);
+            if($validacionFechaEntrega == false){
+                $res = array('titulo' => 'Error', 
+                            'desc' => 'La fecha de entrega no puede ser diferente de la fecha de hoy', 
+                            'type' => 'error');
+                echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                die();
+            }
+
             $data = $this->model->insertarDictamen($numeroCaso,$fechaEvaluacion,$fechaEntrega,
             $autoridadSolicitante,$medico,$datosExtra);
             
@@ -121,6 +139,25 @@ class Dictamenes extends Controller
                 $autoridadSolicitante = strClean($putData['autoridad_soli']);
                 $medico = strClean($putData['medico']);
                 $datosExtra = strClean($putData['datos_extra']);
+
+                $validacionFecharEvaluacion = $this->validarFechaEvaluacion($fechaEvaluacion);
+                if($validacionFecharEvaluacion == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de evaluación no puede ser mayor o igual que la fecha de hoy', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
+                $validacionFechaEntrega = $this->validarFechaEntrega($fechaEntrega);
+                if($validacionFechaEntrega == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de entrega no puede ser diferente de la fecha de hoy', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
                 $id = strClean($putData['id']);
     
                 $data = $this->model->actualizarDictamen($numeroCaso,$fechaEvaluacion,$fechaEntrega,
@@ -200,6 +237,24 @@ class Dictamenes extends Controller
             $datosExtra = strClean($_POST['datos_extraTranscripcion']);
             $tipoDocumento = strClean($_POST['tipo_documentoTranscripcion']);
 
+            $validacionFecharEvaluacion = $this->validarFechaEvaluacion($fechaEvaluacion);
+            if($validacionFecharEvaluacion == false){
+                $res = array('titulo' => 'Error', 
+                            'desc' => 'La fecha de evaluación no puede ser mayor o igual que la fecha de hoy', 
+                            'type' => 'error');
+                echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                die();
+            }
+        
+            $validacionFechaEntrega = $this->validarFechaEntrega($fechaEntrega);
+            if($validacionFechaEntrega == false){
+                $res = array('titulo' => 'Error', 
+                            'desc' => 'La fecha de entrega no puede ser diferente de la fecha de hoy', 
+                            'type' => 'error');
+                echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                die();
+            }
+
             $data = $this->model->insertarTranscripcion($idDictamen,$fechaEvaluacion,$fechaEntrega,
             $autoridadSolicitante,$medico,$datosExtra,$tipoDocumento);
             
@@ -260,6 +315,24 @@ class Dictamenes extends Controller
                 $datosExtra = strClean($putData['datos_extraTranscripcion']);
                 $tipoDocumento = strClean($putData['tipo_documentoTranscripcion']);
                 $id = strClean($putData['idTranscripcion']);
+
+                $validacionFecharEvaluacion = $this->validarFechaEvaluacion($fechaEvaluacion);
+                if($validacionFecharEvaluacion == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de evaluación no puede ser mayor o igual que la fecha de hoy', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+            
+                $validacionFechaEntrega = $this->validarFechaEntrega($fechaEntrega);
+                if($validacionFechaEntrega == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de entrega no puede ser diferente de la fecha de hoy', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
     
                 $data = $this->model->actualizarTranscripcion($idDictamen,$fechaEvaluacion,$fechaEntrega,
                 $autoridadSolicitante,$medico,$datosExtra, $tipoDocumento, $id);
@@ -320,6 +393,37 @@ class Dictamenes extends Controller
             // Devolver respuesta en formato JSON
             echo json_encode($res, JSON_UNESCAPED_UNICODE);
             die();
+        }
+    }
+
+
+    private function validarFechaEvaluacion($fechaEvaluacion){
+        $fechaEvaluacion = new DateTime($fechaEvaluacion);
+        $fechaActual = new DateTime(); 
+        
+        // Normalizar ambas fechas al día, eliminando la parte de la hora
+        $fechaEvaluacion->setTime(0, 0, 0);
+        $fechaActual->setTime(0, 0, 0);
+    
+        if ($fechaEvaluacion < $fechaActual) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function validarFechaEntrega($fechaEntrega) {
+        $fechaEntrega = new DateTime($fechaEntrega);
+        $fechaActual = new DateTime(); 
+        
+        // Normalizar ambas fechas al día, eliminando la parte de la hora
+        $fechaEntrega->setTime(0, 0, 0);
+        $fechaActual->setTime(0, 0, 0);
+    
+        if ($fechaEntrega == $fechaActual) {
+            return true;
+        } else {
+            return false;
         }
     }
 

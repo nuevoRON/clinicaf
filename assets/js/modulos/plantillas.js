@@ -2,6 +2,21 @@ const formulario = document.querySelector("#formulario");
 const id = document.querySelector("#id");
 
 document.addEventListener("DOMContentLoaded", function () {
+  let permisoConsulta = "http://localhost/clinicaf/permisos/validarPermisos";
+  
+  axios.post(permisoConsulta, {
+    consulta: 1,
+    modulo: 17
+  })
+  .then(function (response) {
+    if (response.data.consulta == 0 || response.data == false) {
+      window.location.href = "../inicio/error";
+    }
+  })
+  .catch(function (error) {
+    console.error("Ocurrió un error:", error);
+  });
+
   //Se extraen los datos de la base de datos para llenar el datatable
   let urlListar = "http://localhost/clinicaf/plantillas/listarPlantillas";
 

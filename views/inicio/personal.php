@@ -42,7 +42,7 @@
 										<div class="row">
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="nombre" class="bmd-label">Nombre</label>
+													<label for="nombre" class="bmd-label" style="margin-top:-5%;">Nombre</label>
 													<input type="text" class="form-control" name="nombre" id="nombre">
 													<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 												</div>
@@ -51,45 +51,45 @@
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="apellido" class="bmd-label">Apellido</label>
+													<label for="apellido" class="bmd-label" style="margin-top:-5%;">Apellido</label>
 													<input type="text" class="form-control" name="apellido" id="apellido">
 													<span id="spanApellido" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="numero_colegiacion" class="bmd-label">Numero de Colegiación</label>
+													<label for="numero_colegiacion" class="bmd-label-floating">Numero de Colegiación</label>
 													<input type="text" class="form-control" name="numero_colegiacion" id="numero_colegiacion" maxlength="27">
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="numero_empleado" class="bmd-label">Nº de Empleado</label>
+													<label for="numero_empleado" class="bmd-label" style="margin-top:-5%;">Nº de Empleado</label>
 													<input type="text" class="form-control" name="numero_empleado" id="numero_empleado" maxlength="27">
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="usuario" class="bmd-label">Usuario</label>
+													<label for="usuario" class="bmd-label" style="margin-top:-5%;">Usuario</label>
 													<input type="text" class="form-control" name="usuario" id="usuario">
 													<span id="spanUsuario" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
-													<label for="telefono" class="bmd-label">Nº de Telefono</label>
+													<label for="telefono" class="bmd-label" style="margin-top:-5%;">Nº de Telefono</label>
 													<input type="number" class="form-control" name="telefono" id="telefono" maxlength="8">
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="email" class="bmd-label">Correo Electronico</label>
+													<label for="email" class="bmd-label" style="margin-top:-3%;">Correo Electronico</label>
 													<input type="email" class="form-control" name="email" id="email" maxlength="57">
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="password" class="bmd-label" id="label-password">Contraseña</label>
+													<label for="password" class="bmd-label" id="label-password" style="margin-top:-3%;">Contraseña</label>
 													<input type="password" class="form-control" name="password" id="password" maxlength="57">
 												</div>
 											</div>
@@ -103,7 +103,7 @@
 										<div class="row">
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="jornada" class="bmd-label">Jornada</label>
+													<label for="jornada" class="bmd-label" style="margin-top:-5%;">Jornada</label>
 													<select class="form-control" name="jornada" id="jornada">
 														<option value="" selected="" disabled="">Seleccione la Jornanda</option>
 
@@ -112,7 +112,7 @@
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="item_estado" class="bmd-label">Estado</label>
+													<label for="item_estado" class="bmd-label" style="margin-top:-5%;">Estado</label>
 													<select class="form-control" name="item_estado" id="item_estado">
 														<option value="" selected="" disabled="">Seleccione el Estado</option>
 
@@ -121,7 +121,7 @@
 											</div>
 											<div class="col-12 col-md-5">
 												<div class="form-group">
-													<label for="puesto" class="bmd-label">Puesto de Trabajo</label>
+													<label for="puesto" class="bmd-label" style="margin-top:-5%;">Puesto de Trabajo</label>
 													<select class="form-control" name="puesto" id="puesto">
 														<option value="" selected="" disabled="">Seleccione el Puesto</option>
 
@@ -130,7 +130,7 @@
 											</div>
 											<div class="col-12 col-md-7">
 												<div class="form-group">
-													<label for="sede" class="bmd-label">Sede</label>
+													<label for="sede" class="bmd-label" style="margin-top:-5%;">Sede</label>
 													<select class="form-control" name="sede" id="sede">
 														<option value="" selected="" disabled="">Seleccione la sede</option>
 
@@ -139,7 +139,7 @@
 											</div>
 											<div class="col-12 col-md-7">
 												<div class="form-group">
-													<label for="clinica" class="bmd-label">Clinica (en caso de ser médico)</label>
+													<label for="clinica" class="bmd-label" style="margin-top:-5%;">Clinica (en caso de ser médico)</label>
 													<select class="form-control" name="clinica" id="clinica">
 														<option value="" selected="" disabled="">Seleccione la clinica sede</option>
 

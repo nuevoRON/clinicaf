@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Vacaciones</title>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<?php include "views/templates/archivosCss.php"; ?>
 </head>
 
@@ -40,23 +41,23 @@
 									<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES</legend>
 									<div class="container-fluid">
 										<div class="row">
-											<div class="col-12 col-md-4">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="num_empleado" class="bmd-label">Nº de Empleado</label>
+													<label for="num_empleado" class="bmd-label" style="margin-top:-9%;">Nº de Empleado</label>
 													<select name="num_empleado" id="num_empleado" class="form-control" required>
 														<option value="">Seleccione una opcion</option>
 													</select>
 												</div>
 											</div>
-											<div class="col-12 col-md-4">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="nombre_empleado" class="bmd-label">Nombre</label>
+													<label for="nombre_empleado" class="bmd-label" style="margin-top:-6%;">Nombre</label>
 													<input type="text" pattern="[0-9-]{1,27}" class="form-control" name="nombre_empleado" id="nombre_empleado" maxlength="27" readonly>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="item_estado" class="bmd-label">Estado</label>
+													<label for="item_estado" class="bmd-label" style="margin-top:-6%;">Estado</label>
 													<select class="form-control" name="item_estado" id="item_estado" required>
 														<option value="" selected="" disabled="">Seleccione el Estado</option>>
 														<option value="3">Incapacitado</option>
@@ -64,21 +65,21 @@
 													</select>
 												</div>
 											</div>
-											<div class="col-12 col-md-4">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="fecha_inicio">Fecha de Inicio</label>
+													<label for="fecha_inicio" class="bmd-label" style="margin-top:-6%;">Fecha de Inicio</label>
 													<input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" required>
 												</div>
 											</div>
-											<div class="col-12 col-md-4">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="fecha_final">Fecha de Inicio</label>
+													<label for="fecha_final" class="bmd-label" style="margin-top:-6%;">Fecha Final</label>
 													<input type="date" class="form-control" name="fecha_final" id="fecha_final" required>
 												</div>
 											</div>
-											<div class="col-12 col-md-4">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="observaciones" class="bmd-label-floating">Observaciones</label>
+													<label for="observaciones" class="bmd-label" style="margin-top:-6%;">Observaciones</label>
 													<input type="text" class="form-control" name="observaciones" id="observaciones" maxlength="27">
 												</div>
 											</div>
@@ -109,7 +110,7 @@
 								<th>ESTADO</th>
 								<th>FECHA DE INICIO</th>
 								<th>FECHA FINAL</th>
-								<th>TOTAL VACACIONES</th>
+								<th>DIAS VACACIONES</th>
 								<th>OBSERVACION</th>
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>
@@ -126,6 +127,7 @@
 	
 	<?php include "views/templates/archivosJS.php"; ?>
 	<script src="<?php echo BASE_URL; ?>assets/js/modulos/vacaciones.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
 </html>

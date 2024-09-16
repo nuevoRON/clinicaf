@@ -61,7 +61,7 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="nombre" class="bmd-label">Nombre</label>
+											<label for="nombre" class="bmd-label" style="margin-top:-3%;">Nombre</label>
 											<input type="text" class="form-control" name="nombre" id="nombre" required>
 										</div>
 									</div>

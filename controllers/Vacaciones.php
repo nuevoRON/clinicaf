@@ -71,6 +71,16 @@ class Vacaciones extends Controller
             $fechaInicio = strClean($_POST['fecha_inicio']);
             $fechaFin = strClean($_POST['fecha_final']);
             $observaciones = strClean($_POST['observaciones']);
+
+            $validacionFechas = $this->validarFechas($fechaInicio,$fechaFin);
+                if($validacionFechas == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de inicio no puede ser mayor que la fecha final', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
             $diasVacaciones = $this->calcularDiasEntreFechas($fechaInicio, $fechaFin);
 
             $data = $this->model->insertarVacaciones($idEmpleado,$fechaInicio,$fechaFin,$diasVacaciones,$observaciones);
@@ -107,6 +117,16 @@ class Vacaciones extends Controller
                 $fechaInicio = strClean($putData['fecha_inicio']);
                 $fechaFin = strClean($putData['fecha_final']);
                 $observaciones = strClean($putData['observaciones']);
+
+                $validacionFechas = $this->validarFechas($fechaInicio,$fechaFin);
+                if($validacionFechas == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de inicio no puede ser mayor que la fecha final', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+                
                 $diasVacaciones = $this->calcularDiasEntreFechas($fechaInicio, $fechaFin);
                 $id = strClean($putData['id']);
     
@@ -171,6 +191,18 @@ class Vacaciones extends Controller
             // Devolver respuesta en formato JSON
             echo json_encode($res, JSON_UNESCAPED_UNICODE);
             die();
+        }
+    }
+
+    private function validarFechas($fechaInicio, $fechaFin){
+        $dateInicio = new DateTime($fechaInicio);
+        $dateFin = new DateTime($fechaFin);
+
+        // Validar que la fecha de emisión no sea mayor que la fecha de recepción
+        if ($dateInicio > $dateFin) {
+            return false;
+        } else {
+            return true;
         }
     }
 

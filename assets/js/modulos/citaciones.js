@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
     "nombre_completo",
     "id_usu"
   );
+
+  $(document).ready(function() {
+    $('#num_caso').select2();
+  });
   
 /* Mostrar Tabla */
 //Se extraen los datos de la base de datos para llenar el datatable
@@ -263,9 +267,9 @@ function editarCitacion(idCitacion) {
             document.getElementById('lugar_citacion').value = res.lugar_citacion;
             document.getElementById('modal-title').textContent = "Editar Citación"
       
-            $("#num_caso option[value=" + res.numero_caso + "]").attr({selected: true,});
-            $("#tipo_citacion option[value=" + res.tipo_citacion + "]").attr({selected: true,});
-            $("#medico option[value=" + res.medico + "]").attr({selected: true,});
+            $("#num_caso").val(res.numero_caso).trigger('change'); 
+            document.getElementById('tipo_citacion').value = res.tipo_citacion;
+            document.getElementById('medico').value = res.medico;
       
            //Se abre el modal usando su id
            $('#ModalCitacion').modal('show'); 

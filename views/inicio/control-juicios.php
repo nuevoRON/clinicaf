@@ -4,8 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 	<title>Citaciones</title>
 	<?php include "views/templates/archivosCss.php"; ?>
+	<link rel="stylesheet" href="../assets/css/select2-estilos.css">
+	<style>
+
+	</style>
 <body>
 	<main class="full-box main-container">
 		<?php include "views/templates/NavBar.php"; ?>
@@ -38,17 +43,17 @@
 									<legend><i class="fas fa-user"></i> &nbsp; DATOS GENERALES DE LA CITACION</legend>
 									<div class="container-fluid">
 										<div class="row">
-											<div class="col-12 col-md-5">
+											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="num_caso" class="bmd-label">Numero del Caso</label>
-													<select class="form-control" name="num_caso" id="num_caso" required>
+													<label for="num_caso" class="bmd-label" style="margin-top:-9%;">Numero del Caso</label>
+													<select class="form-control" name="num_caso" id="num_caso" required style="margin-top:6%;">
 														<option value="">Seleccione una opción</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="tipo_citacion" class="bmd-label">Tipo de Citacion</label>
+													<label for="tipo_citacion" class="bmd-label" style="margin-top:-6%;">Tipo de Citacion</label>
 													<select class="form-control" name="tipo_citacion" id="tipo_citacion" required>
 														<option value="" selected="" disabled="">Seleccione la Citacion</option>
 														<option value="Juicio">Juicio</option>
@@ -58,28 +63,28 @@
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="fecha_rec_citacion">Fecha que se recibe la citacion</label>
+													<label for="fecha_rec_citacion" class="bmd-label" style="margin-top:-12%;">Fecha que se recibe la citacion</label>
 													<input type="date" class="form-control" name="fecha_rec_citacion" id="fecha_rec_citacion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="fecha_citacion">Fecha de la citacion</label>
+													<label for="fecha_citacion" class="bmd-label" style="margin-top:-6%;">Fecha de la citacion</label>
 													<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label for="medico" class="bmd-label">Medico</label>
+													<label for="medico" class="bmd-label" style="margin-top:-6%;">Medico</label>
 													<select class="form-control" name="medico" id="medico" required>
 														<option value="" selected="" disabled="">Seleccione al Medico</option>
 
 													</select>
 												</div>
 											</div>
-											<div class="col-12 col-md-8">
+											<div class="col-12 col-md-12">
 												<div class="form-group">
-													<label for="lugar_citacion" class="bmd-label">Lugar de la citacion</label>
+													<label for="lugar_citacion" class="bmd-label" style="margin-top:-3%;">Lugar de la citacion</label>
 													<input type="text" class="form-control" name="lugar_citacion" id="lugar_citacion" maxlength="50" required>
 												</div>
 											</div>
