@@ -121,7 +121,7 @@
 											<div class="form-group d-flex align-items-end">
 												<div class="flex-grow-1">
 													<label for="nacionalidad" class="bmd-label" style="margin-top:-3%;">Nacionalidad</label>
-													<select class="form-control" name="nacionalidad" id="nacionalidad" required>
+													<select class="form-control" name="nacionalidad" id="nacionalidad" >
 														
 													</select>
 												</div>

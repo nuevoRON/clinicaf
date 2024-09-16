@@ -71,27 +71,27 @@
 								<div class="row">
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="nombre_perfil" class="bmd-label">Nombre</label>
+											<label for="nombre_perfil" class="bmd-label" style="margin-top:-3%;">Nombre</label>
 											<input type="text" class="form-control" name="nombre_perfil" id="nombre_perfil" required>
 											<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="apellido_perfil" class="bmd-label">Apellido</label>
+											<label for="apellido_perfil" class="bmd-label" style="margin-top:-3%;">Apellido</label>
 											<input type="text" class="form-control" name="apellido_perfil" id="apellido_perfil" required>
 											<span id="spanApellido" style="color: red; font-size:1rem;"></span>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="telefono_perfil" class="bmd-label">Telefono</label>
+											<label for="telefono_perfil" class="bmd-label" style="margin-top:-3%;">Telefono</label>
 											<input type="number" class="form-control" name="telefono_perfil" id="telefono_perfil" required>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">
 										<div class="form-group">
-											<label for="correo_perfil" class="bmd-label">Correo Electrónico</label>
+											<label for="correo_perfil" class="bmd-label" style="margin-top:-3%;">Correo Electrónico</label>
 											<input type="email" class="form-control" name="correo_perfil" id="correo_perfil" required>
 										</div>
 									</div>

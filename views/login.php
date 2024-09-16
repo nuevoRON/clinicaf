@@ -36,11 +36,11 @@
 				</div>
 				<div class="form-group">
 					<label for="UserName" class="bmd-label" style="margin-top: -4%;"><i class="fas fa-user-secret"></i> &nbsp; Usuario</label>
-					<input type="text" class="form-control" id="usuario" name="usuario" pattern="[a-zA-Z0-9]{1,35}" maxlength="35">
+					<input type="text" class="form-control" id="usuario" name="usuario" required>
 				</div>
 				<div class="form-group">
 					<label for="UserPassword" class="bmd-label" style="margin-top: -4%;"><i class="fas fa-key"></i> &nbsp; Contraseña</label>
-					<input type="password" class="form-control" id="clave" name="clave">
+					<input type="password" class="form-control" id="clave" name="clave" required>
 				</div>
 				<button type="submit" class="btn-login text-center">INICIAR</button>
 				<a href="home.php"></a>
