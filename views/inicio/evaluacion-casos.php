@@ -21,12 +21,6 @@
                     <p class="text-center">
                         <button type="button" class="btn btn-primary" id="btnModalCaso"><i class="fas fa-user-plus"></i> &nbsp; Agregar Caso</button>
                     </p>
-					<button type="button" class="btn btn-danger" id="btnPDFCaso">
-						<i class="fas fa-file-pdf"></i> &nbsp; Exportar PDF
-					</button>
-					<button type="button" class="btn btn-success" id="btnExcelCaso">
-						<i class="fas fa-file-excel"></i> &nbsp; Exportar Excel
-					</button>
 				</div>
 			</div>
             
@@ -35,7 +29,6 @@
                     <table class="table table-dark table-sm" id="tabla_revisiones">
                         <thead>
                             <tr class="text-center roboto-medium">
-                                <th>#</th>
                                 <th>MEDICO</th>
                                 <th>ENVIADO PARA</th>
                                 <th>FECHA DE REVISION</th>

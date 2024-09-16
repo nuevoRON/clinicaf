@@ -6,7 +6,9 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Sexos</title>
 	<?php include "views/templates/archivosCss.php"; ?>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" 
+	integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" 
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -29,7 +31,6 @@
 					<table class="table table-dark" id="tblSexos">
 						<thead>
 							<tr class="text-center roboto-medium">
-								<th>ID</th>
 								<th>NOMBRE</th>
 								<th>MODIFICAR</th>
 								<th>ELIMINAR</th>

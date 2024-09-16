@@ -104,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function () {
         paging: true,
         //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
         columns: [
-            { data: 'id_vacaciones' },
             { data: 'num_empleado' },
             { data: 'nombre_completo' },
             { data: 'nom_estado' },

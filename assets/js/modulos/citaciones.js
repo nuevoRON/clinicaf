@@ -77,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
         data: datos, // datos desde el backend o variable predefinida
         paging: true,
         columns: [
-          { data: 'id_citacion' },
           { data: 'num_caso' },
           { data: 'tipo_citacion' },
           { data: 'fecha_recep_citacion' },

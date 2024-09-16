@@ -76,8 +76,14 @@ function obtenerValoresFormularioVacaciones() {
   };
 }
 
+
 function exportarPDFProveido() {
   const { jsPDF } = window.jspdf;
+
+  // Obtener la fecha y hora actual
+  var fechaActual = new Date();
+  var fechaTexto = fechaActual.toLocaleDateString();
+  var horaTexto = fechaActual.toLocaleTimeString();
 
   var valores = obtenerValoresFormularioProveido();
 
@@ -103,26 +109,30 @@ function exportarPDFProveido() {
   axios({
     url: urlDescarga,
     method: "GET",
-    responseType: "json", // Necesario para manejar archivos binarios como Excel
+    responseType: "json",
   })
     .then((response) => {
       var datos = response.data;
 
       // Crear un nuevo documento PDF
       const doc = new jsPDF({
-        orientation: "landscape", // Cambiar a "portrait" para orientación vertical
-        unit: "mm", // Unidad de medida (milímetros en este caso)
-        format: "a4", // Tamaño del formato de página
+        orientation: "landscape", 
+        unit: "mm", 
+        format: "a4", 
       });
 
-      const imageUrl = "http://localhost/clinicaf/assets/images/mf.jpeg"; // Reemplaza con la URL de tu imagen
+      const imageUrl = "http://localhost/clinicaf/assets/images/mf.jpeg"; 
 
-      doc.addImage(imageUrl, "PNG", 135, 20, 30, 30); //
+      doc.addImage(imageUrl, "PNG", 135, 20, 30, 30); 
 
       // Título del PDF
       doc.setFontSize(18);
       doc.setFont("helvetica", "bold");
       doc.text("Reporte de Evaluaciones Médicas", 100, 60);
+
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.text("Fecha: " + fechaTexto + " - Hora: " + horaTexto, 10, 80);
 
       // Datos
       const headers = [
@@ -146,24 +156,22 @@ function exportarPDFProveido() {
       const pageWidth = doc.internal.pageSize.width - 28;
       const pageHeight = doc.internal.pageSize.height - 40;
       const startX = 14;
-      let startY = 80;
+      let startY = 100;
       const cellHeight = 10;
       const padding = 2;
       const headerPadding = 4;
       const zebraColor1 = [240, 240, 240];
       const zebraColor2 = [255, 255, 255];
 
-      // Calcular el ancho de cada columna basado en el contenido
       const maxColumnWidths = headers.map((header, index) =>
         Math.max(
-          doc.getTextWidth(header) + 2 * padding, // Ancho de los encabezados
+          doc.getTextWidth(header) + 2 * padding,
           ...rows.map(
             (row) => doc.getTextWidth(String(row[index])) + 2 * padding
-          ) // Ancho de los datos
+          )
         )
       );
 
-      // Ajustar el ancho de las columnas para que quepan en la página
       const totalWidth = maxColumnWidths.reduce((a, b) => a + b, 0);
       const scaleFactor = pageWidth / totalWidth;
       const adjustedCellWidth = maxColumnWidths.map(
@@ -184,18 +192,17 @@ function exportarPDFProveido() {
         startY + cellHeight / 2 + headerPadding,
         startX + adjustedCellWidth.reduce((a, b) => a + b, 0),
         startY + cellHeight / 2 + headerPadding
-      ); // Línea debajo de los encabezados
+      );
 
-      startY += cellHeight + headerPadding; // Ajustar la posición vertical para las filas de datos
+      startY += cellHeight + headerPadding;
 
       // Datos
       doc.setFont("helvetica", "normal");
       rows.forEach((row, rowIndex) => {
-        // Agregar una nueva página si el contenido excede el tamaño disponible
+        // Si la altura total de la siguiente fila excede el tamaño de la página, crear una nueva página
         if (startY + cellHeight > pageHeight) {
-          // Ajustar el límite vertical de la página
           doc.addPage();
-          startY = 20; // Ajustar la posición vertical para la nueva página
+          startY = 20;
 
           // Reimprimir encabezados en la nueva página
           doc.setFontSize(12);
@@ -211,52 +218,53 @@ function exportarPDFProveido() {
             startY + cellHeight / 2 + headerPadding,
             startX + adjustedCellWidth.reduce((a, b) => a + b, 0),
             startY + cellHeight / 2 + headerPadding
-          ); // Línea debajo de los encabezados
+          );
 
-          startY += cellHeight + headerPadding; // Ajustar la posición vertical para las filas de datos
+          startY += cellHeight + headerPadding;
         }
 
-        // Aplicar color de cebra
         const zebraColor = rowIndex % 2 === 0 ? zebraColor1 : zebraColor2;
         doc.setFillColor(...zebraColor);
         doc.rect(
           startX,
-          startY + rowIndex * cellHeight,
+          startY,
           adjustedCellWidth.reduce((a, b) => a + b, 0),
           cellHeight,
           "F"
-        ); // Rellenar la fila con color
+        );
 
         xOffset = startX;
         row.forEach((cell, cellIndex) => {
           const x = xOffset;
-          const y = startY + rowIndex * cellHeight;
+          const y = startY;
 
-          // Ajustar el texto dentro de la celda si es necesario
           const cellText = String(cell);
           const lines = doc.splitTextToSize(
             cellText,
             adjustedCellWidth[cellIndex] - 2 * padding
           );
           lines.forEach((line, lineIndex) => {
-            doc.text(line, x + padding, y + lineIndex * 10);
+            doc.text(line, x + padding, y + lineIndex * 6);
           });
 
-          xOffset += adjustedCellWidth[cellIndex]; // Mover el offset horizontal para la siguiente columna
+          xOffset += adjustedCellWidth[cellIndex];
         });
+
+        startY += cellHeight; // Mover la posición hacia abajo para la siguiente fila
       });
 
-      // Descargar el PDF
-      doc.save("reporte_evaluaciones.pdf");
+      var nombreArchivo = "reporte_evaluaciones_" + fechaTexto + "_" + horaTexto + ".pdf";
+      doc.save(nombreArchivo);
     })
     .catch((error) => {
       console.error("Error al descargar el archivo Excel:", error);
     });
 }
-
 document
   .getElementById("botonPDF")
   .addEventListener("click", exportarPDFProveido);
+
+
 
 function exportarExcelProveido() {
   var valores = obtenerValoresFormularioProveido();
@@ -280,11 +288,10 @@ function exportarExcelProveido() {
     urlDescarga += "?" + parametros.join("&");
   }
 
-  // Hacer la solicitud GET con Axios para descargar el archivo Excel
   axios({
     url: urlDescarga,
     method: "GET",
-    responseType: "json", // Necesario para manejar archivos binarios como Excel
+    responseType: "json", 
   })
     .then((response) => {
       console.log(response);
@@ -318,18 +325,17 @@ function exportarExcelProveido() {
         ]);
       });
 
-      // Convertir el array de datos a una hoja de trabajo de SheetJS
       const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
 
       const headerStyle = {
-        font: { bold: true, color: { rgb: "FFFFFF" } }, // Texto en negrita y blanco
-        fill: { fgColor: { rgb: "4F81BD" } }, // Color de fondo azul
-        alignment: { horizontal: "center", vertical: "center" }, // Alineación centrada
+        font: { bold: true, color: { rgb: "FFFFFF" } }, 
+        fill: { fgColor: { rgb: "4F81BD" } }, 
+        alignment: { horizontal: "center", vertical: "center" }, 
       };
 
       // Estilo para las celdas de datos
       const cellStyle = {
-        alignment: { horizontal: "center", vertical: "center" }, // Alineación centrada
+        alignment: { horizontal: "center", vertical: "center" }, 
       };
 
       // Aplicar el estilo a los encabezados
@@ -337,7 +343,7 @@ function exportarExcelProveido() {
       for (let C = range.s.c; C <= range.e.c; ++C) {
         const cell_ref = XLSX.utils.encode_cell({ r: 0, c: C });
         if (!worksheet[cell_ref]) continue;
-        worksheet[cell_ref].s = headerStyle; // Aplicar estilo a la fila de encabezado
+        worksheet[cell_ref].s = headerStyle; 
       }
 
       // Aplicar estilo a las celdas de datos
@@ -345,30 +351,33 @@ function exportarExcelProveido() {
         for (let C = range.s.c; C <= range.e.c; ++C) {
           const cell_ref = XLSX.utils.encode_cell({ r: R, c: C });
           if (!worksheet[cell_ref]) continue;
-          worksheet[cell_ref].s = cellStyle; // Aplicar estilo a las filas de datos
+          worksheet[cell_ref].s = cellStyle; 
         }
       }
 
-      // Crear un libro de trabajo (workbook)
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "Evaluaciones");
 
-      // Exportar el archivo Excel
       XLSX.writeFile(workbook, "evaluaciones.xlsx");
     })
     .catch((error) => {
       console.error("Error al descargar el archivo Excel:", error);
     });
 }
-
 document
   .getElementById("botonExcel")
   .addEventListener("click", exportarExcelProveido);
 
+
 function exportarPDFVacaciones() {
   const { jsPDF } = window.jspdf;
 
-  var valores = obtenerValoresFormularioVacaciones();
+  // Obtener la fecha y hora actual
+  var fechaActual = new Date();
+  var fechaTexto = fechaActual.toLocaleDateString();
+  var horaTexto = fechaActual.toLocaleTimeString();
+
+  var valores = obtenerValoresFormularioProveido();
 
   let urlDescarga = "http://localhost/clinicaf/exportacion/exportarVacaciones";
 
@@ -389,19 +398,18 @@ function exportarPDFVacaciones() {
   axios({
     url: urlDescarga,
     method: "GET",
-    responseType: "json", // Necesario para manejar archivos binarios como Excel
+    responseType: "json",
   })
     .then((response) => {
       var datos = response.data;
 
-      // Crear un nuevo documento PDF
       const doc = new jsPDF({
-        orientation: "landscape", // Cambiar a "portrait" para orientación vertical
-        unit: "mm", // Unidad de medida (milímetros en este caso)
-        format: "a4", // Tamaño del formato de página
+        orientation: "landscape", 
+        unit: "mm",
+        format: "a4", 
       });
 
-      const imageUrl = "http://localhost/clinicaf/assets/images/mf.jpeg"; // Reemplaza con la URL de tu imagen
+      const imageUrl = "http://localhost/clinicaf/assets/images/mf.jpeg"; 
 
       doc.addImage(imageUrl, "PNG", 135, 20, 30, 30); //
 
@@ -409,6 +417,10 @@ function exportarPDFVacaciones() {
       doc.setFontSize(18);
       doc.setFont("helvetica", "bold");
       doc.text("Reporte de Vacaciones", 115, 60);
+
+      doc.setFontSize(14);
+      doc.setFont("helvetica", "bold");
+      doc.text("Fecha: " + fechaTexto + " - Hora: " + horaTexto, 10, 80);
 
       // Datos
       const headers = [
@@ -434,24 +446,22 @@ function exportarPDFVacaciones() {
       const pageWidth = doc.internal.pageSize.width - 28;
       const pageHeight = doc.internal.pageSize.height - 40;
       const startX = 14;
-      let startY = 80;
+      let startY = 100;
       const cellHeight = 10;
       const padding = 2;
       const headerPadding = 4;
       const zebraColor1 = [240, 240, 240];
       const zebraColor2 = [255, 255, 255];
 
-      // Calcular el ancho de cada columna basado en el contenido
       const maxColumnWidths = headers.map((header, index) =>
         Math.max(
-          doc.getTextWidth(header) + 2 * padding, // Ancho de los encabezados
+          doc.getTextWidth(header) + 2 * padding,
           ...rows.map(
             (row) => doc.getTextWidth(String(row[index])) + 2 * padding
-          ) // Ancho de los datos
+          )
         )
       );
 
-      // Ajustar el ancho de las columnas para que quepan en la página
       const totalWidth = maxColumnWidths.reduce((a, b) => a + b, 0);
       const scaleFactor = pageWidth / totalWidth;
       const adjustedCellWidth = maxColumnWidths.map(
@@ -472,18 +482,17 @@ function exportarPDFVacaciones() {
         startY + cellHeight / 2 + headerPadding,
         startX + adjustedCellWidth.reduce((a, b) => a + b, 0),
         startY + cellHeight / 2 + headerPadding
-      ); // Línea debajo de los encabezados
+      );
 
-      startY += cellHeight + headerPadding; // Ajustar la posición vertical para las filas de datos
+      startY += cellHeight + headerPadding;
 
       // Datos
       doc.setFont("helvetica", "normal");
       rows.forEach((row, rowIndex) => {
-        // Agregar una nueva página si el contenido excede el tamaño disponible
+        // Si la altura total de la siguiente fila excede el tamaño de la página, crear una nueva página
         if (startY + cellHeight > pageHeight) {
-          // Ajustar el límite vertical de la página
           doc.addPage();
-          startY = 20; // Ajustar la posición vertical para la nueva página
+          startY = 20;
 
           // Reimprimir encabezados en la nueva página
           doc.setFontSize(12);
@@ -499,53 +508,53 @@ function exportarPDFVacaciones() {
             startY + cellHeight / 2 + headerPadding,
             startX + adjustedCellWidth.reduce((a, b) => a + b, 0),
             startY + cellHeight / 2 + headerPadding
-          ); // Línea debajo de los encabezados
+          );
 
-          startY += cellHeight + headerPadding; // Ajustar la posición vertical para las filas de datos
+          startY += cellHeight + headerPadding;
         }
 
-        // Aplicar color de cebra
         const zebraColor = rowIndex % 2 === 0 ? zebraColor1 : zebraColor2;
         doc.setFillColor(...zebraColor);
         doc.rect(
           startX,
-          startY + rowIndex * cellHeight,
+          startY,
           adjustedCellWidth.reduce((a, b) => a + b, 0),
           cellHeight,
           "F"
-        ); // Rellenar la fila con color
+        );
 
         xOffset = startX;
         row.forEach((cell, cellIndex) => {
           const x = xOffset;
-          const y = startY + rowIndex * cellHeight;
+          const y = startY;
 
-          // Ajustar el texto dentro de la celda si es necesario
           const cellText = String(cell);
           const lines = doc.splitTextToSize(
             cellText,
             adjustedCellWidth[cellIndex] - 2 * padding
           );
           lines.forEach((line, lineIndex) => {
-            doc.text(line, x + padding, y + lineIndex * 10);
+            doc.text(line, x + padding, y + lineIndex * 6);
           });
 
-          xOffset += adjustedCellWidth[cellIndex]; // Mover el offset horizontal para la siguiente columna
+          xOffset += adjustedCellWidth[cellIndex];
         });
+
+        startY += cellHeight; // Mover la posición hacia abajo para la siguiente fila
       });
 
-      // Descargar el PDF
-      doc.save("reporte_vacaciones.pdf");
+      var nombreArchivo = "reporte_vacaciones_" + fechaTexto + "_" + horaTexto + ".pdf";
+      doc.save(nombreArchivo);
     })
     .catch((error) => {
       console.error("Error al descargar el archivo Excel:", error);
     });
 }
-
 document
   .getElementById("botonPDFVacacion")
   .addEventListener("click", exportarPDFVacaciones);
 
+  
 function exportarExcelVacaciones() {
   var valores = obtenerValoresFormularioVacaciones();
 
@@ -565,11 +574,10 @@ function exportarExcelVacaciones() {
     urlDescarga += "?" + parametros.join("&");
   }
 
-  // Hacer la solicitud GET con Axios para descargar el archivo Excel
   axios({
     url: urlDescarga,
     method: "GET",
-    responseType: "json", // Necesario para manejar archivos binarios como Excel
+    responseType: "json", 
   })
     .then((response) => {
       console.log(response);
@@ -585,7 +593,6 @@ function exportarExcelVacaciones() {
         "Observaciones",
       ];
 
-      // Crear una hoja de trabajo a partir de los datos
       const worksheetData = [[titulo], []];
       worksheetData.push(headers);
 
@@ -601,18 +608,17 @@ function exportarExcelVacaciones() {
         ]);
       });
 
-      // Convertir el array de datos a una hoja de trabajo de SheetJS
       const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
 
       const headerStyle = {
-        font: { bold: true, color: { rgb: "FFFFFF" } }, // Texto en negrita y blanco
-        fill: { fgColor: { rgb: "4F81BD" } }, // Color de fondo azul
-        alignment: { horizontal: "center", vertical: "center" }, // Alineación centrada
+        font: { bold: true, color: { rgb: "FFFFFF" } }, 
+        fill: { fgColor: { rgb: "4F81BD" } }, 
+        alignment: { horizontal: "center", vertical: "center" }, 
       };
 
       // Estilo para las celdas de datos
       const cellStyle = {
-        alignment: { horizontal: "center", vertical: "center" }, // Alineación centrada
+        alignment: { horizontal: "center", vertical: "center" },
       };
 
       // Aplicar el estilo a los encabezados
@@ -632,11 +638,9 @@ function exportarExcelVacaciones() {
         }
       }
 
-      // Crear un libro de trabajo (workbook)
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "Evaluaciones");
 
-      // Exportar el archivo Excel
       XLSX.writeFile(workbook, "evaluaciones.xlsx");
     })
     .catch((error) => {

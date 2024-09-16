@@ -107,7 +107,6 @@
 					<table class="table table-dark table-sm text-center" id="tabla_citaciones">
 						<thead>
 							<tr class="text-center roboto-medium">
-								<th>#</th>
 								<th>NUMERO DEL CASO</th>
 								<th>TIPO DE CITACION</th>
 								<th>FECHA DE RECEPCION DE CITACION</th>

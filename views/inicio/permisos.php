@@ -91,7 +91,7 @@
 
 			<div class="container-fluid">
 				<div class="table-responsive">
-					<table class="table table-dark table-sm text-center" id="tablaPermisos">
+					<table class="table table-dark table-lg text-center" id="tablaPermisos">
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>PUESTO</th>

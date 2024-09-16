@@ -85,7 +85,6 @@ axios
       paging: true,
       //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
       columns: [
-        { data: "id_revision" },
         { data: "nombre_completo" },
         { data: "enviado_para" },
         { data: "fecha_revision" },

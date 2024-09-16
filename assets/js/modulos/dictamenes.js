@@ -109,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
         data: datos, // datos desde el backend o variable predefinida
         paging: true,
         columns: [
-          { data: 'id_dictamen' },
           { data: 'num_caso' },
           { data: 'nombre_completo' },
           { data: 'fecha_evaluacion' },
@@ -182,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
         data: datos, // datos desde el backend o variable predefinida
         paging: true,
         columns: [
-          { data: 'id' },
           { data: 'num_caso' },
           { data: 'tipo_documento' },
           { data: 'nombre_completo' },

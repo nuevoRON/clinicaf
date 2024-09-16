@@ -104,7 +104,6 @@
 					<table class="table table-dark table-sm" id="tabla_vacaciones">
 						<thead>
 							<tr class="text-center roboto-medium">
-								<th>#</th>
 								<th>Nº EMPLEADO</th>
 								<th>NOMBRE</th>
 								<th>ESTADO</th>

@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
         data: datos,
         paging: true,
         columns: [
-          { data: "id_sexo" },
           { data: "nom_sexo" },
           {
             render: function (data, type, row) {
@@ -266,4 +265,3 @@ function mostrarModal(){
 }
 
 document.getElementById("btnModalSexo").addEventListener("click", mostrarModal);
-

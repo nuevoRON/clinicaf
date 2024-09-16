@@ -81,7 +81,6 @@
 							<table class="table table-dark table-sm" id="tabla-dictamenes">
 								<thead>
 									<tr class="text-center roboto-medium">
-										<th>#</th>
 										<th>NUMERO DEL CASO</th>
 										<th>NOMBRE DEL MEDICO</th>
 										<th>FECHA DE EVALUACION</th>
@@ -112,7 +111,6 @@
 							<table class="table table-dark table-sm" id="tabla-dictamenesTranscripcion">
 								<thead>
 									<tr class="text-center roboto-medium">
-										<th>#</th>
 										<th>NUMERO DEL CASO</th>
 										<th>TIPO DE DOCUMENTO</th>
 										<th>NOMBRE DEL MEDICO</th>

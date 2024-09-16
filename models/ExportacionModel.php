@@ -84,7 +84,7 @@ class ExportacionModel extends Query
         // Añadir condiciones dinámicas a la consulta solo si los parámetros están presentes
         if (!empty($fechaInicio) && !empty($fechaFinal)){
             $sql .= " AND v.fecha_inicio >= ? AND v.fecha_final <= ?";
-            array_push($array, $fechaFinal,$fechaInicio);
+            array_push($array, $fechaInicio,$fechaFinal);
         }
 
         if (!empty($medico)){
@@ -97,29 +97,6 @@ class ExportacionModel extends Query
         } else {
             $result = $this->selectAll($sql);
         }
-
-        $this->cerrarConexion();
-        return $result;
-    }
-
-
-    public function getRevisiones()
-    {
-        $sql = "SELECT  r.id_revision,
-                        CONCAT(u.nombre, ' ', u.apellido) AS nombre_completo,
-                        r.fecha_revision,
-                        r.numero_dictamen,
-                        r.nombre_evaluado,
-                        r.fecha_evaluacion,
-                        t.nom_reconocimiento,
-                        r.sede_medico,
-                        s.ubicacion
-                FROM tbl_revision_casos r
-                INNER JOIN tbl_usu u ON u.id_usu = r.medico
-                INNER JOIN tbl_reconocimiento t ON t.id_reconocimiento = r.tipo_reconocimiento
-                INNER JOIN tbl_sedes s ON s.id_sede = r.sede_clinica
-                WHERE r.registro_borrado = 'A'";
-        $result = $this->selectAll($sql);
 
         $this->cerrarConexion();
         return $result;
