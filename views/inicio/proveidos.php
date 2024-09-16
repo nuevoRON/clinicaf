@@ -76,7 +76,7 @@
 										</div>
 										<div class="col-12 col-md-6">
 											<div class="form-group">
-												<label for="numero_externo_reg" class="bmd-label-floating">Numero Externos (Oficios, Denuncias, Expediente.)</label>
+												<label for="numero_externo_reg" class="bmd-label-floating">Numeros Externos</label>
 												<input type="text" class="form-control" name="numero_externo_reg" id="numero_externo_reg" maxlength="27">
 											</div>
 										</div>
