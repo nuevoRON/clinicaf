@@ -86,7 +86,15 @@
 									<div class="col-12 col-md-8">
 										<div class="form-group">
 											<label for="telefono_perfil" class="bmd-label" style="margin-top:-3%;">Telefono</label>
-											<input type="number" class="form-control" name="telefono_perfil" id="telefono_perfil" required>
+											<input type="text" class="form-control" name="telefono_perfil" id="telefono_perfil" oninput="validateDigits(this)" required>											
+											<script>
+												function validateDigits(input) 
+												{
+												const maxDigits = 8;
+												const regex = new RegExp(`^\\d{0,${maxDigits}}$`);
+												input.value = input.value.match(regex) ? input.value : input.value.slice(0, -1);
+												}
+											</script>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">
