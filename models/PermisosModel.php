@@ -91,11 +91,29 @@ class PermisosModel extends Query
             throw new Exception("Parámetros inválidos.");
         }
 
-        $sql = "SELECT $campo FROM tbl_permisos WHERE id_modulo = ? AND id_puesto = ?";
+        $sql = "SELECT $campo FROM tbl_permisos WHERE id_modulo = ? AND id_puesto = ?
+                AND registro_borrado = 'A'";
         $params = [$modulo, $puesto];
         $types = [PDO::PARAM_INT, PDO::PARAM_INT]; 
 
         $result =  $this->select($sql, $params, $types);
+        $this->cerrarConexion();
+        return $result;
+    }
+
+
+    public function verExistenciaPermiso($pues, $mod)
+    {
+        $puesto = filter_var($pues, FILTER_VALIDATE_INT);
+        $modulo = filter_var($mod, FILTER_VALIDATE_INT);
+        
+        $sql = "SELECT * FROM tbl_permisos WHERE id_modulo = ? AND id_puesto = ?
+                AND registro_borrado = 'A'";
+        $params = [$modulo, $puesto];
+        $types = [PDO::PARAM_INT, PDO::PARAM_INT]; 
+
+        $result =  $this->select($sql, $params, $types);
+
         $this->cerrarConexion();
         return $result;
     }

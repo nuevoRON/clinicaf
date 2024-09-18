@@ -51,6 +51,16 @@ class Permisos extends Controller
             $insercion = isset($_POST['insercion']) ? 1 : 0;
             $actualizacion = isset($_POST['actualizacion']) ? 1 : 0;
             $eliminacion = isset($_POST['eliminacion']) ? 1 : 0;
+
+            $validarPermiso = $this->model->verExistenciaPermiso($puesto,$modulo);
+                if ($validarPermiso > 0){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'Los permisos para este puesto y modulo ya se encuentran registrados', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
         
             $data = $this->model->insertarPermiso($puesto,$modulo,$consulta,$insercion,$actualizacion,$eliminacion);
             if ($data > 0) {

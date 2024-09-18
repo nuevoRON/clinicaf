@@ -6,6 +6,11 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Permisos</title>
 	<?php include "views/templates/archivosCss.php"; ?>
+	<style>
+		tr td{
+			font-size: 1.2rem;
+		}
+	</style>
 </head>
 
 <body>
@@ -93,7 +98,7 @@
 				<div class="table-responsive">
 					<table class="table table-dark table-lg text-center" id="tablaPermisos">
 						<thead>
-							<tr class="text-center roboto-medium">
+							<tr class="text-center ">
 								<th>PUESTO</th>
 								<th>MODULO</th>
 								<th>CONSULTA</th>
@@ -111,6 +116,7 @@
 					</table>
 				</div>
 			</div>
+
 		</section>
 	</main>
 

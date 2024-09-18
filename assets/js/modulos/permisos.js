@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .get(urlListar)
     .then(function (response) {
       //se muestran los datos obtenidos
-      console.log(response.data);
       let datos = response.data;
 
       $('#tablaPermisos').DataTable({
@@ -129,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Maneja errores
       console.error("Ocurrió un error:", error);
     });
+
 
 
 //Funciones del formulario para agregar o actualizar un registro

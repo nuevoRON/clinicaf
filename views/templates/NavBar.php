@@ -79,6 +79,9 @@
 				<li class="menu-item" data-menu="18">
 					<a href="<?php echo BASE_URL . 'inicio/reportes'; ?>"><i class="fas fa-poll-h"></i> &nbsp; Reportes </a>
 				</li>
+				<li class="menu-item" data-menu="26">
+					<a href="<?php echo BASE_URL . 'inicio/reportes'; ?>"><i class="fas fa-poll-h"></i> &nbsp; GrAFICOS </a>
+				</li>
 			</ul>
 		</nav>
 	</div>

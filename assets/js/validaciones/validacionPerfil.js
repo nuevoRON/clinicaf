@@ -15,6 +15,8 @@ document.getElementById("nombre_perfil").addEventListener("change", function () 
   );
 });
 
+
+
 document.getElementById("apellido_perfil").addEventListener("change", function () {
   //se obtiene el valor del input
   const valor = document.getElementById("apellido_perfil").value;
@@ -31,5 +33,5 @@ document.getElementById("telefono_perfil").addEventListener("input", function() 
   //se obtiene el valor del input
   const valor = document.getElementById("telefono_perfil");
   //se envian los datos a la función
-  limitarCaracteresNumericos(valor, 10);
+  limitarCaracteresNumericos(valor, 3);
 });
