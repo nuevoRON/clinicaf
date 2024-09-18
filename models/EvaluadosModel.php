@@ -83,7 +83,7 @@ class EvaluadosModel extends Query
             || $puesto == 'Odontologo'
         ) {
             $sql = "SELECT  p.id_proveidos,
-                        p.num_caso,
+                        p.num_solicitud,
                         e.dni_evaluado,
                         e.nombre_evaluado, 
                         e.apellido_evaluado,
@@ -98,7 +98,7 @@ class EvaluadosModel extends Query
             WHERE p.registro_borrado = 'A' AND pr.medico = $id";
         } else {
             $sql = "SELECT  p.id_proveidos,
-                p.num_caso,
+                p.num_solicitud,
                 e.dni_evaluado,
                 e.nombre_evaluado, 
                 e.apellido_evaluado,

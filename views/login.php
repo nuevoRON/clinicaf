@@ -58,6 +58,12 @@
 				errorMessage.style.display = 'block';
 				errorMessage.textContent = 'Su sesión ha sido cerrada por inactividad. Por favor ingrese nuevamente';
 			}
+
+			if (sessionStatus === 'notlogged') {
+				const errorMessage = document.querySelector('#error-message');
+				errorMessage.style.display = 'block';
+				errorMessage.textContent = 'Ingrese nuevamente al sistema';
+			}
 		});
 	</script>
 

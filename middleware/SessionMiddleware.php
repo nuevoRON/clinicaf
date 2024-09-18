@@ -37,7 +37,7 @@ class SessionMiddleware
 
     private function verificarUsuarioActivo() {
         if (empty($_SESSION['id_usuario'])) {
-            $this->cerrarSesion('closed');
+            $this->cerrarSesion('notlogged');
         }
     }
 

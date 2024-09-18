@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //las colunmas deben contener los datos recibidos desde la base de datos en la misma cantidad y orden de campos
         columns: [
        
-            { data: 'num_caso' },
+            { data: 'num_solicitud' },
             { data: 'dni_evaluado' },
             { data: 'nombre_evaluado' },
             { data: 'apellido_evaluado' },

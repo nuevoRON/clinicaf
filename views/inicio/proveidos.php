@@ -76,7 +76,7 @@
 										</div>
 										<div class="col-12 col-md-6">
 											<div class="form-group">
-												<label for="numero_externo_reg" class="bmd-label-floating">Numeros Externos</label>
+												<label for="numero_externo_reg" class="bmd-label" style="margin-top:-4%;">Numeros Externos</label>
 												<input type="text" class="form-control" name="numero_externo_reg" id="numero_externo_reg" maxlength="27">
 											</div>
 										</div>
@@ -225,7 +225,7 @@
 										</div>
 										<div class="col-12 col-md-5">
 											<div class="form-group">
-												<label for="fecha_citacion">Fecha Para la cual fue citado</label>
+												<label for="fecha_citacion" class="bmd-label" style="margin-top:-5%;">Fecha Para la cual fue citado</label>
 												<input type="date" class="form-control" name="fecha_citacion" id="fecha_citacion" required>
 											</div>
 										</div>
