@@ -33,5 +33,16 @@ document.getElementById("telefono_perfil").addEventListener("input", function() 
   //se obtiene el valor del input
   const valor = document.getElementById("telefono_perfil");
   //se envian los datos a la función
-  limitarCaracteresNumericos(valor, 3);
+  limitarCaracteresNumericos(valor, 10);
+});
+
+
+document.getElementById("contrasena").addEventListener("input", function () {
+  const valor = document.getElementById("contrasena").value;
+  validarCampo(
+    valor,
+    /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_#])[A-Za-z\d@$!%*?&_#]{8,}$/,
+    "spanClave",
+    "Su contraseña no cumple con los parámetros de seguridad"
+  );
 });

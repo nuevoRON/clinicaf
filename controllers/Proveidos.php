@@ -206,6 +206,15 @@ class Proveidos extends Controller
                     die();
                 }
 
+                $validacionFechaCita = $this->validarFechaCitacion($fechaCitacion);
+                if($validacionFechaCita == false){
+                    $res = array('titulo' => 'Error', 
+                                'desc' => 'La fecha de citación no puede ser menor que la fecha actual', 
+                                'type' => 'error');
+                    echo json_encode($res, JSON_UNESCAPED_UNICODE);
+                    die();
+                }
+
                 $dataProveido = $this->model->actualizarProveido($fechaEmision, $fechaRecepcion, $fiscalia, $numeroExterno, $especificar, $id);
                 $dataEvaluado = $this->model->actualizarEvaluado($nombre, $apellido, $dni, $id);
                 $dataHechos = $this->model->actualizarHecho($departamento, $municipio, $localidad, $lugar, $fechaHecho, $id);

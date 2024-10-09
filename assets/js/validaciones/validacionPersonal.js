@@ -1,4 +1,4 @@
-import { validarCampo } from "../helpers/funciones.js";
+import { validarCampo, limitarCaracteresNumericos } from "../helpers/funciones.js";
 
 /* Llamados a la función de validarCampo
 Se usa un evento que detecte si el campo ha sido llenado */
@@ -37,4 +37,12 @@ document.getElementById("usuario").addEventListener("change", function () {
     "spanUsuario",
     "Solo puede ingresar letras minúsculas y números, sin espacios,  en este campo"
   );
+});
+
+
+document.getElementById("telefono").addEventListener("input", function() {
+  //se obtiene el valor del input
+  const valor = document.getElementById("telefono");
+  //se envian los datos a la función
+  limitarCaracteresNumericos(valor, 10);
 });

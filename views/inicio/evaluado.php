@@ -135,7 +135,7 @@
 											<div class="form-group">
 												<label for="sexo" class="bmd-label" style="margin-top:-3%;">Sexo</label>
 												<select class="form-control" name="sexo" id="sexo" required>
-													<option value="" selected="" disabled="">Seleccione el Sexo</option>
+													<option value="" selected disabled>Seleccione el Sexo</option>
 
 												</select>
 
@@ -153,7 +153,7 @@
 											<div class="form-group">
 												<label for="estadoCivil" class="bmd-label" style="margin-top:-4%;">Estado Civil</label>
 												<select class="form-control" name="estadoCivil" id="estadoCivil" required>
-													<option value="" selected="" disabled="">Seleccione el Estado Civil</option>
+													<option value="" selected disabled>Seleccione el Estado Civil</option>
 
 												</select>
 											</div>
@@ -174,7 +174,7 @@
 											<div class="form-group">
 												<label for="escolaridad" class="bmd-label" style="margin-top:-4%;">Escolaridad</label>
 												<select class="form-control" name="escolaridad" id="escolaridad" required>
-													<option value="" selected="" disabled="">Seleccione la Escolaridad</option>
+													<option value="" selected disabled>Seleccione la Escolaridad</option>
 
 												</select>
 											</div>
@@ -189,7 +189,7 @@
 											<div class="form-group">
 												<label for="tiempo" class="bmd-label" style="margin-top:-4%;">Tiempo</label>
 												<select class="form-control" name="tiempo" id="tiempo" required>
-													<option value="" selected="" disabled="">Seleccione el Tiempo</option>
+													<option value="" selected disabled>Seleccione el Tiempo</option>
 													<option value="Horas">Horas</option>
 													<option value="Dias">Dias</option>s
 													<option value="Semanas">Semanas</option>
@@ -237,7 +237,7 @@
 												<div class="form-group">
 													<label for="relacion" class="bmd-label" style="margin-top:-4%;">Relacion</label>
 													<select class="form-control" name="relacion" id="relacion" required>
-														<option value="" selected="" disabled="">Seleccione el Tipo de Relacion</option>
+														<option value="" selected disabled>Seleccione el Tipo de Relacion</option>
 														<option value="Familiar">Familiar</option>
 														<option value="Desconocida">Desconocida</option>
 														<option value="Policia Militar">Policia Militar</option>
@@ -261,7 +261,7 @@
 													<div class="form-group">
 														<label for="permiso_evaluacion" class="bmd-label" style="margin-top:-4%;">PERMITE LA EVALUACION</label>
 														<select class="form-control" name="permiso_evaluacion" id="permiso_evaluacion">
-															<option value="" selected="" disabled="">Seleccione el Estado</option>
+															<option value=""selected disabled>Seleccione el Estado</option>
 															<option value="Si">Si</option>
 															<option value="No">No</option>
 															<option value="No Se Encontro">No Se Encontro</option>
@@ -287,7 +287,7 @@
 													<div class="form-group">
 														<label for="departamento" class="bmd-label" style="margin-top:-4%;">Departamento</label>
 														<select class="form-control" name="departamento" id="departamento">
-															<option value="" selected="" disabled="">Seleccione el Departamento</option>
+															<option value="" selected disabled>Seleccione el Departamento</option>
 
 														</select>
 													</div>
@@ -296,7 +296,7 @@
 													<div class="form-group">
 														<label for="municipio" class="bmd-label" style="margin-top:-4%;">Municipio</label>
 														<select class="form-control" name="municipio" id="municipio">
-															<option value="" selected="" disabled="">Seleccione el Departamento</option>
+															<option value="" selected disabled>Seleccione el Departamento</option>
 
 														</select>
 													</div>

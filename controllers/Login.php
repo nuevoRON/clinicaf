@@ -77,10 +77,12 @@ class Login extends Controller{
                     $bitacora->model->crearEvento($_SESSION['id_usuario'], 1, 'INICIO DE SESION', 'El usuario inició sesión en el sistema', date('Y-m-d H:i:s')); 
                 }else {
                     // Actualizar intentos del usuario
-                    $this->model->actualizarIntentos($data['id_usu']);
+                    if ($data['id_usu'] != 1) {
+                        $this->model->actualizarIntentos($data['id_usu']);
+                    }
 
                     $data = $this->model->getDatos($usuario);
-                    if ($data['intentos'] == 3) {
+                    if ($data['intentos'] == 3 && $data['id_usu'] != 1) {
                         $this->model->bloquearUsuario($data['id_usu']);
                         $res = array('msg' => 'Usuario bloqueado por multiples intentos de sesión fallidos', 'type' => 'warning');
                     } else { 

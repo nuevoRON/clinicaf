@@ -139,13 +139,11 @@
 											<li>Ocho carácteres mínimo</li>
 											<li>Al menos una letra mayúscula</li>
 											<li>Al menos un número</li>
-											<li>Al menos un carácter especial (@$!%*?&_)</li>
+											<li>Al menos un carácter especial (@$!%*?&_#)</li>
 										</ul>
 											<label for="contrasena" class="bmd-label" style="margin-top:-3%;">Contraseña</label>
-											<input type="password" class="form-control" name="contrasena" id="contrasena"
-												pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&_])[A-Za-z\d#@$!%*?&_]{8,}$"
-												title="La contraseña debe contener al menos una letra mayúscula, 
-											un número, un carácter especial (@$!%*?&_) y 8 caracteres mínimo" required>
+											<input type="password" class="form-control" name="contrasena" id="contrasena" required>
+											<span id="spanClave" style="color:red"></span>
 										</div>
 									</div>
 									<div class="col-12 col-md-8">

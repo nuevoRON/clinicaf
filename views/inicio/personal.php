@@ -43,7 +43,7 @@
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="nombre" class="bmd-label" style="margin-top:-5%;">Nombre</label>
-													<input type="text" class="form-control" name="nombre" id="nombre">
+													<input type="text" class="form-control" name="nombre" id="nombre" required>
 													<span id="spanNombre" style="color: red; font-size:1rem;"></span>
 												</div>
 												<div class="col-12 col-md-4">
@@ -52,45 +52,45 @@
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="apellido" class="bmd-label" style="margin-top:-5%;">Apellido</label>
-													<input type="text" class="form-control" name="apellido" id="apellido">
+													<input type="text" class="form-control" name="apellido" id="apellido" required>
 													<span id="spanApellido" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="numero_colegiacion" class="bmd-label-floating">Numero de Colegiación</label>
-													<input type="text" class="form-control" name="numero_colegiacion" id="numero_colegiacion" maxlength="27">
+													<input type="text" class="form-control" name="numero_colegiacion" id="numero_colegiacion" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="numero_empleado" class="bmd-label" style="margin-top:-5%;">Nº de Empleado</label>
-													<input type="text" class="form-control" name="numero_empleado" id="numero_empleado" maxlength="27">
+													<input type="text" class="form-control" name="numero_empleado" id="numero_empleado" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="usuario" class="bmd-label" style="margin-top:-5%;">Usuario</label>
-													<input type="text" class="form-control" name="usuario" id="usuario">
+													<input type="text" class="form-control" name="usuario" id="usuario" required>
 													<span id="spanUsuario" style="color: red; font-size:1rem;"></span>
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label for="telefono" class="bmd-label" style="margin-top:-5%;">Nº de Telefono</label>
-													<input type="number" class="form-control" name="telefono" id="telefono" maxlength="8">
+													<input type="number" class="form-control" name="telefono" id="telefono" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="email" class="bmd-label" style="margin-top:-3%;">Correo Electronico</label>
-													<input type="email" class="form-control" name="email" id="email" maxlength="57">
+													<input type="email" class="form-control" name="email" id="email" required>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="password" class="bmd-label" id="label-password" style="margin-top:-3%;">Contraseña</label>
-													<input type="password" class="form-control" name="password" id="password" maxlength="57">
+													<input type="password" class="form-control" name="password" id="password">
 												</div>
 											</div>
 										</div>
@@ -104,7 +104,7 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="jornada" class="bmd-label" style="margin-top:-5%;">Jornada</label>
-													<select class="form-control" name="jornada" id="jornada">
+													<select class="form-control" name="jornada" id="jornada" required>
 														<option value="" selected="" disabled="">Seleccione la Jornanda</option>
 
 													</select>
@@ -113,7 +113,7 @@
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label for="item_estado" class="bmd-label" style="margin-top:-5%;">Estado</label>
-													<select class="form-control" name="item_estado" id="item_estado">
+													<select class="form-control" name="item_estado" id="item_estado" required>
 														<option value="" selected="" disabled="">Seleccione el Estado</option>
 
 													</select>
@@ -122,7 +122,7 @@
 											<div class="col-12 col-md-5">
 												<div class="form-group">
 													<label for="puesto" class="bmd-label" style="margin-top:-5%;">Puesto de Trabajo</label>
-													<select class="form-control" name="puesto" id="puesto">
+													<select class="form-control" name="puesto" id="puesto" required>
 														<option value="" selected="" disabled="">Seleccione el Puesto</option>
 
 													</select>
@@ -131,7 +131,7 @@
 											<div class="col-12 col-md-7">
 												<div class="form-group">
 													<label for="sede" class="bmd-label" style="margin-top:-5%;">Sede</label>
-													<select class="form-control" name="sede" id="sede">
+													<select class="form-control" name="sede" id="sede" required>
 														<option value="" selected="" disabled="">Seleccione la sede</option>
 
 													</select>
@@ -155,7 +155,7 @@
 								<p class="text-center" style="margin-top: 40px;">
 									<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
 									&nbsp; &nbsp;
-									<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
+									<button type="submit" class="btn btn-raised btn-info btn-sm" id="btn-enviar"><i class="far fa-save"></i> &nbsp; GUARDAR</button>
 								</p>
 							</form>
 						</div>
